@@ -5,6 +5,9 @@ workers_dev = true
 route = ""
 zone_id = ""
 
+[site]
+bucket = "./assets"
+
 # Entry point
 main = "cloudflare-worker/index.js"
 
