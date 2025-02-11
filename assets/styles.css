@@ -1,0 +1,162 @@
+html {
+    scroll-behavior: auto !important;
+    overflow-x: hidden;
+    }
+    body{
+      border:5px solid black;
+    }
+    a, .skill-pill{
+    transition:all .5s linear;
+    }
+    .skill-pill{
+    cursor:default;
+    }
+    .case-study-card-content .logo-embed svg g path{
+    fill:#fff;
+    }
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 50px;
+      background-color: var(--base-color-brand--grey-medium);
+      margin-left: 5px;
+      position: relative;
+      top: 0;
+      left:-12px;
+      transform: translateY(10%);
+      animation: blink 0.9s infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+    /* When animation is set to 'none', ensure it stops */
+  .cursor[style*="animation: none"] {
+    animation: none !important;
+  }
+    .navbar3_container.nav-wrapper {
+      -webkit-backdrop-filter: blur(20px) !important;
+      backdrop-filter: blur(20px) !important;
+    }
+    .navbar3_component {
+    position: -webkit-sticky;  /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000;  /* Ensures the navbar stays above other content */
+    width: 100%;  /* Ensure it takes the full width */
+  }
+  
+  .navbar3_link{
+      text-decoration: none;
+  }
+    
+  /* Set up the parent button */
+  .button, .navbar3_link {
+    position: relative;
+    overflow: hidden; /* Ensures label stays within button bounds */
+  }
+  
+  /* Initial state of the label */
+  .button-label {
+    font-family:inherit !important;
+    display: inline-block;
+    transform: translateY(0); /* Start at the normal position inside the button */
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Ensure visibility on page load */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions for opacity and transform */
+    animation: none; /* Ensure no animation by default */
+  }
+  
+  /* Hover effect */
+  @media (min-width: 769px) {
+    .button:hover .button-label, .navbar3_link:hover .button-label {
+      animation: slideUp 0.3s cubic-bezier(0.2, 0, 0.2, 1) forwards, slideInFromBelow 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+    }
+  
+    .button:not(:hover) .button-label, .navbar3_link:not(:hover) .button-label {
+      animation: none; /* No animation when mouse is out */
+      transform: translateY(0); /* Return to the original position */
+      opacity: 1; /* Keep it visible */
+    }
+  }
+  
+  /* Keyframe animation for sliding up outside the top boundary */
+  @keyframes slideUp {
+    0% {
+      transform: translateY(0); /* Start at original position */
+      opacity: 1; /* Fully visible */
+    }
+    100% {
+      transform: translateY(-160%); /* Move the label up outside the top boundary */
+      opacity: 0; /* Fade out */
+    }
+  }
+  
+  /* Keyframe animation for coming up from below and fading in */
+  @keyframes slideInFromBelow {
+    0% {
+      transform: translateY(160%); /* Start from below */
+      opacity: 0; /* Start faded out */
+    }
+    100% {
+      transform: translateY(0); /* End at the original position */
+      opacity: 1; /* Fully visible */
+    }
+  }
+    .w-slider-dot{
+    transition: all .25s ease-out;
+      border:2px solid #5f7c6b80 !important;
+      background-color: #5f7c6b00 !important;
+  }
+    .w-slider-nav-invert > div {
+      border:2px solid #5f7c6b80 !important;
+  }
+  .w-slider-nav-invert > div.w-active {
+      background-color: var(--base-color-brand--olive) !important;
+      border:2px solid var(--base-color-brand--olive) !important;
+      height: 28px;
+      border-radius: 999px;
+  }
+    
+  /* Cursor Trailing */
+  .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      background-color: var(--base-color-brand--slate-dark);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.05s linear, background-color 0.3s ease, width 0.2s ease, height 0.2s ease;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .custom-cursor .cursor-text {
+      font-size: 12px;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+  }
+  
+  .cursor-scale {
+      width: 24px;
+      height: 24px;
+  }
+  
+  .cursor-white {
+      background-color: white;
+  }
+  
+  .cursor-text-visible .cursor-text {
+      opacity: 1;
+  }
+  
+  .text-invert {
+      color: white;
+      mix-blend-mode: difference;
+  }
+  
