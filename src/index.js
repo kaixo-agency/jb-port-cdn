@@ -1,21 +1,22 @@
-addEventListener("fetch", (event) => {
-    event.respondWith(handleRequest(event.request));
-  });
+export default {
+    async fetch(request, env, ctx) {
+      return handleRequest(request, env);
+    },
+  };
   
-  async function handleRequest(request) {
+  async function handleRequest(request, env) {
     const url = new URL(request.url);
     const filePath = url.pathname.replace("/cdn/", ""); // Remove the "/cdn/" prefix
   
     // GitHub details
     const repo = "kaixo-agency/jb-port-cdn";
     const branch = "main";
-    const githubToken = GITHUB_TOKEN; // Set this in Cloudflare's environment variables
     const githubUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${filePath}`;
   
     // Fetch the file from GitHub
     const response = await fetch(githubUrl, {
       headers: {
-        "Authorization": `token ${githubToken}`,
+        "Authorization": `token ${env.GITHUB_TOKEN}`, // Use env for secrets
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Pragma": "no-cache",
         "Expires": "0",
@@ -27,9 +28,14 @@ addEventListener("fetch", (event) => {
     }
   
     // Determine content type
-    let contentType = "text/plain";
-    if (filePath.endsWith(".css")) contentType = "text/css";
-    if (filePath.endsWith(".js")) contentType = "application/javascript";
+    const extension = filePath.split(".").pop();
+    const contentTypes = {
+      css: "text/css",
+      js: "application/javascript",
+      html: "text/html",
+      json: "application/json",
+    };
+    const contentType = contentTypes[extension] || "text/plain";
   
     return new Response(response.body, {
       headers: {
