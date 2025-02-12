@@ -18,5 +18,5 @@ jobs:
       - name: Publish to Cloudflare Workers
         run: wrangler deploy
         env:
-          CLOUDFLARE_API_TOKEN: ${{ 9aUxEEpBOrOKQCq4okWyv8TqvyuI_HWM7s1pz3bR.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.9aUxEEpBOrOKQCq4okWyv8TqvyuI_HWM7s1pz3bR }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.3fb262f75fdc8f23225659e36155b9b4 }}
