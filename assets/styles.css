@@ -3,7 +3,7 @@ html {
     overflow-x: hidden;
     }
     body{
-      border:5px solid green;
+      border:5px solid yellow;
     }
     a, .skill-pill{
     transition:all .5s linear;
