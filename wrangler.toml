@@ -1,5 +1,4 @@
 name = "port-cdn"
-type = "javascript"
 bucket = "./assets"
 
 # Worker Settings
