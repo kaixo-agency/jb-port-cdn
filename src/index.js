@@ -21,11 +21,11 @@ async function handleRequest(request) {
     // Fetch the file from GitHub
     const response = await fetch(githubUrl, {
         headers: {
-            "Authorization": `token ${githubToken}`,
-            "Cache-Control": "no-cache, no-store, must-revalidate", 
+            "Content-Type": contentType,
+            "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
             "Pragma": "no-cache",
             "Expires": "0",
-        },
+          },
     });
 
     if (!response.ok) {
