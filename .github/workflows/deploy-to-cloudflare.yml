@@ -18,6 +18,9 @@ jobs:
 
       - name: Deploy to Cloudflare Workers
         run: wrangler deploy
+      
+      - name: Debug Environment Variables
+        run: env | sort
 
       - name: Publish to Cloudflare Pages
         run: wrangler pages deploy
