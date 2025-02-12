@@ -13,7 +13,10 @@ async function handleRequest(request) {
     const githubToken = GITHUB_TOKEN; // Set this in Cloudflare Worker environment variables
 
     // Corrected GitHub Raw URL
-    const githubUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/refs/heads/${branch}/assets/${filePath}`;
+
+    const cacheBuster = Date.now();
+    const githubUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/refs/heads/${branch}/assets/${filePath}?t=${cacheBuster}`;
+
 
     // Fetch the file from GitHub
     const response = await fetch(githubUrl, {
