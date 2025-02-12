@@ -1,11 +1,13 @@
 name = "jb-port-cdn"
-main = "./cloudflare-worker/index.js"
+type = "javascript"
 account_id = "3fb262f75fdc8f23225659e36155b9b4"
 
-compatibility_date = "2024-02-11"
-
 [site]
-bucket = "./assets"
+bucket = "./assets"  # Ensure this matches the directory containing your static files
+
+[env.production]
+workers_dev = false
+route = "your-custom-domain-if-applicable"
 
 [pages]
 pages_build_output_dir = "./assets"
