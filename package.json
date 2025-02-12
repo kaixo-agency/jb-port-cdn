@@ -1,5 +1,13 @@
 {
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "My custom workflow setup",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server & node src/reload-server.js"
+  },
   "dependencies": {
     "ws": "^8.18.0"
-  }
+  },
+  "devDependencies": {}
 }
