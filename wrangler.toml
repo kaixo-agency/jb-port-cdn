@@ -2,6 +2,7 @@ name = "port-cdn"
 
 # Worker Settings
 account_id = "3fb262f75fdc8f23225659e36155b9b4"
+workers_dev = true
 
 compatibility_date = "2025-02-11"
 main = "src/index.js"
