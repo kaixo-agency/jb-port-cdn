@@ -4,46 +4,36 @@ addEventListener("fetch", (event) => {
 
 async function handleRequest(request) {
     const url = new URL(request.url);
-    const filePath = url.pathname.replace("/cdn/", ""); // Remove the "/cdn/" prefix
+    const filePath = url.pathname.replace("/cdn/", ""); // Adjust path
 
     // GitHub details
-    const repoOwner = "kaixo-agency";
-    const repoName = "jb-port-cdn";
-    const branch = "main";  // Adjust this if your branch reference differs
-    const githubToken = GITHUB_TOKEN; // Set this in Cloudflare Worker environment variables
+    const repo = "kaixo-agency/jb-port-cdn";
+    const branch = "main";
+    const githubToken = GITHUB_TOKEN; // Set this in Cloudflare's environment variables
+    const githubUrl = `https://raw.githubusercontent.com/${repo}/${branch}/assets/${filePath}`;
 
-    // Corrected GitHub Raw URL
-
-    const cacheBuster = Date.now();
-    const githubUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/refs/heads/${branch}/assets/${filePath}?t=${cacheBuster}`;
-
-
-    // Fetch the file from GitHub with no cache settings
+    // Fetch the file from GitHub
     const response = await fetch(githubUrl, {
-        cf: { cacheTtl: 0, cacheEverything: false }, // Force Cloudflare to bypass cache
         headers: {
-          "Authorization": `token ${githubToken}`,
-          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-          "Pragma": "no-cache",
-          "Expires": "0",
+            "Authorization": `token ${githubToken}`,
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Pragma": "no-cache",
+            "Expires": "0",
         },
-      });
+    });
 
     if (!response.ok) {
         return new Response("File not found", { status: 404 });
     }
 
-    // Determine content type
-    let contentType = "text/plain";
-    if (filePath.endsWith(".css")) contentType = "text/css";
-    if (filePath.endsWith(".js")) contentType = "application/javascript";
+    // Clone response and modify headers
+    const newResponse = new Response(response.body, response);
+    newResponse.headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
+    newResponse.headers.set("Pragma", "no-cache");
+    newResponse.headers.set("Expires", "0");
 
-        return new Response(response.body, {
-      headers: {
-        "Content-Type": contentType,
-        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-        "Pragma": "no-cache",
-        "Expires": "0",
-      },
-    }); 
+    // Force Cloudflare to reveal its caching behavior
+    newResponse.headers.set("CF-Cache-Control", "no-cache");
+
+    return newResponse;
 }
