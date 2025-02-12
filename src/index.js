@@ -18,15 +18,16 @@ async function handleRequest(request) {
     const githubUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/refs/heads/${branch}/assets/${filePath}?t=${cacheBuster}`;
 
 
-    // Fetch the file from GitHub
-  const response = await fetch(githubUrl, {
-    headers: {
-      "Authorization": `token ${githubToken}`,
-      "Cache-Control": "no-cache, no-store, must-revalidate, proxy-revalidate",
-      "Pragma": "no-cache",
-      "Expires": "0",
-    },
-  });
+    // Fetch the file from GitHub with no cache settings
+    const response = await fetch(githubUrl, {
+        cf: { cacheTtl: 0, cacheEverything: false }, // Force Cloudflare to bypass cache
+        headers: {
+          "Authorization": `token ${githubToken}`,
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          "Pragma": "no-cache",
+          "Expires": "0",
+        },
+      });
 
     if (!response.ok) {
         return new Response("File not found", { status: 404 });
@@ -37,12 +38,12 @@ async function handleRequest(request) {
     if (filePath.endsWith(".css")) contentType = "text/css";
     if (filePath.endsWith(".js")) contentType = "application/javascript";
 
-    return new Response(response.body, {
-        headers: {
-          "Content-Type": contentType,
-          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-          "Pragma": "no-cache",
-          "Expires": "0",
-        },
-      });
+        return new Response(response.body, {
+      headers: {
+        "Content-Type": contentType,
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+      },
+    }); 
 }
