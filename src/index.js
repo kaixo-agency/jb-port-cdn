@@ -32,8 +32,6 @@ async function handleRequest(request) {
     newResponse.headers.set("Pragma", "no-cache");
     newResponse.headers.set("Expires", "0");
 
-    // Force Cloudflare to reveal its caching behavior
-    newResponse.headers.set("CF-Cache-Control", "no-cache");
 
     return newResponse;
 }
