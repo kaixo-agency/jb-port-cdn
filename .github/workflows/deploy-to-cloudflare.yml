@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-       - name: Install Wrangler
+      - name: Install Wrangler
         run: curl -fsSL https://workers.cloudflare.com/get-wrangler.sh | bash
 
       - name: Deploy to Cloudflare Workers
