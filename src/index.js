@@ -20,11 +20,6 @@ async function handleRequest(request) {
             "Pragma": "no-cache",
             "Expires": "0",
         },
-        cf: {
-            cacheTtl: 0,  // Cloudflare should never cache this
-            cacheEverything: false,
-        },
-        cache: "no-store" //
     });
 
     if (!response.ok) {
