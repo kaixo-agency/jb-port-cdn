@@ -6,7 +6,7 @@ export default {
   
   async function handleRequest(request, env) {
     const url = new URL(request.url);
-    const filePath = url.pathname.replace("/cdn/", ""); // Remove the "/cdn/" prefix
+    const filePath = `assets${url.pathname.replace("/cdn/", "")}`; // Ensures /assets/ prefix
   
     // GitHub details
     const repo = "kaixo-agency/jb-port-cdn";
