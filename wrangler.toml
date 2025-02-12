@@ -1,6 +1,4 @@
 name = "jb-port-cdn"
 type = "javascript"
 account_id = "3fb262f75fdc8f23225659e36155b9b4"
-
-[pages]
 pages_build_output_dir = "./assets"
