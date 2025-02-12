@@ -3,8 +3,9 @@ html {
     overflow-x: hidden;
     }
     body{
-      border:5px solid black;
+      border:5px solid red;
       width:100%;
+      height:100%;
     }
     a, .skill-pill{
     transition:all .5s linear;
