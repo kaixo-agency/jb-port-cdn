@@ -12,10 +12,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install Wrangler
-        run: npm install -g wrangler
+       - name: Install Wrangler
+        run: curl -fsSL https://workers.cloudflare.com/get-wrangler.sh | bash
 
-      - name: Publish to Cloudflare Workers
+      - name: Deploy to Cloudflare Workers
+        run: wrangler deploy
+
+      - name: Publish to Cloudflare Pages
         run: wrangler pages deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
