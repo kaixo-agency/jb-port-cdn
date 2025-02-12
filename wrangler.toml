@@ -4,3 +4,5 @@ bucket = "./assets"
 
 # Worker Settings
 account_id = "3fb262f75fdc8f23225659e36155b9b4"
+
+main = "src/index.js"
