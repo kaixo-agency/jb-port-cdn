@@ -1,49 +1,43 @@
-export default {
-    async fetch(request, env, ctx) {
-      return handleRequest(request, env);
-    },
-  };
-  
-  async function handleRequest(request, env) {
+addEventListener("fetch", (event) => {
+    event.respondWith(handleRequest(event.request));
+});
+
+async function handleRequest(request) {
     const url = new URL(request.url);
-    const filePath = `assets${url.pathname.replace("/cdn/", "")}`; // Ensures /assets/ prefix
-  
+    const filePath = url.pathname.replace("/cdn/", ""); // Remove the "/cdn/" prefix
+
     // GitHub details
-    const repo = "kaixo-agency/jb-port-cdn";
-    const branch = "main";
-    const githubUrl = `https://raw.githubusercontent.com/kaixo-agency/jb-port-cdn/refs/heads/${branch}/assets/${filePath}`;
+    const repoOwner = "kaixo-agency";
+    const repoName = "jb-port-cdn";
+    const branch = "main";  // Adjust this if your branch reference differs
+    const githubToken = GITHUB_TOKEN; // Set this in Cloudflare Worker environment variables
 
+    // Corrected GitHub Raw URL
+    const githubUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/refs/heads/${branch}/assets/${filePath}`;
 
-  
     // Fetch the file from GitHub
     const response = await fetch(githubUrl, {
-      headers: {
-        "Authorization": `token ${env.GITHUB_TOKEN}`, // Use env for secrets
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        "Pragma": "no-cache",
-        "Expires": "0",
-      },
+        headers: {
+            "Authorization": `token ${githubToken}`,
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Pragma": "no-cache",
+            "Expires": "0",
+        },
     });
-  
+
     if (!response.ok) {
-      return new Response("File not found", { status: 404 });
+        return new Response("File not found", { status: 404 });
     }
-  
+
     // Determine content type
-    const extension = filePath.split(".").pop();
-    const contentTypes = {
-      css: "text/css",
-      js: "application/javascript",
-      html: "text/html",
-      json: "application/json",
-    };
-    const contentType = contentTypes[extension] || "text/plain";
-  
+    let contentType = "text/plain";
+    if (filePath.endsWith(".css")) contentType = "text/css";
+    if (filePath.endsWith(".js")) contentType = "application/javascript";
+
     return new Response(response.body, {
-      headers: {
-        "Content-Type": contentType,
-        "Cache-Control": "public, max-age=3600", // Cache for 1 hour
-      },
+        headers: {
+            "Content-Type": contentType,
+            "Cache-Control": "public, max-age=3600", // Cache for 1 hour
+        },
     });
-  }
-  
+}
