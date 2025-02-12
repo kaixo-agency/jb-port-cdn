@@ -11,7 +11,8 @@ export default {
     // GitHub details
     const repo = "kaixo-agency/jb-port-cdn";
     const branch = "main";
-    const githubUrl = `https://raw.githubusercontent.com/kaixo-agency/jb-port-cdn/${branch}/assets/${filePath}`;
+    const githubUrl = `https://raw.githubusercontent.com/kaixo-agency/jb-port-cdn/refs/heads/${branch}/assets/${filePath}`;
+
 
   
     // Fetch the file from GitHub
