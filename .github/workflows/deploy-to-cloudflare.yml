@@ -21,6 +21,9 @@ jobs:
       
       - name: Debug Environment Variables
         run: env | sort
+      
+      - name: Debug Environment Variables
+        run: env | grep CLOUDFLARE
 
       - name: Publish to Cloudflare Pages
         run: wrangler pages deploy
