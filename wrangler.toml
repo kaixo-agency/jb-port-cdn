@@ -2,7 +2,5 @@ name = "port-cdn"
 type = "javascript"
 pages_build_output_dir = "./assets"
 
-type = "javascript"  # Set to "javascript" or "webpack" if you're using a bundler
-
 # Worker Settings
 account_id = "3fb262f75fdc8f23225659e36155b9b4"
