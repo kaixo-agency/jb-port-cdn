@@ -25,6 +25,9 @@ jobs:
       - name: Debug Environment Variables
         run: env | grep CLOUDFLARE
 
+      - name: Test Wrangler Authentication
+        run: CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }} wrangler whoami
+
       - name: Deploy to Cloudflare Workers
         run: CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }} wrangler deploy
         env:
