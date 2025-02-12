@@ -13,7 +13,7 @@ export default {
       });
   
       if (!response.ok) {
-        return new Response("File not founds", { status: 404 });
+        return new Response("File not found", { status: 404 });
       }
   
       // Set correct content type
