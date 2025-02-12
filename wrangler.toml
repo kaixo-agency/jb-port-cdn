@@ -1,4 +1,4 @@
-name = "jb-port-cdn"
+name = "cf-cdn"
 type = "javascript"
 pages_build_output_dir = "./assets"
 
