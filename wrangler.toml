@@ -3,7 +3,7 @@ type = "javascript"
 pages_build_output_dir = "./assets"
 
 
-name = "jb-port-cdn"
+name = "cf-cdn"
 type = "javascript"  # Set to "javascript" or "webpack" if you're using a bundler
 
 # Worker Settings
