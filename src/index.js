@@ -22,7 +22,7 @@ async function handleRequest(request) {
     const response = await fetch(githubUrl, {
         headers: {
             "Authorization": `token ${githubToken}`,
-            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Cache-Control": "no-cache, no-store, must-revalidate", 
             "Pragma": "no-cache",
             "Expires": "0",
         },
