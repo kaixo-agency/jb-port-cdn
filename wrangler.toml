@@ -1,6 +1,4 @@
 name = "jb-port-cdn"
-type = "javascript"  # or "webpack" depending on your setup
-
-[site]
+type = "javascript"
 pages_build_output_dir = "./assets"
-entry-point = "workers-site"
+
