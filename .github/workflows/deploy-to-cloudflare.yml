@@ -15,9 +15,6 @@ jobs:
 
       - name: Install Wrangler
         run: npm install -g wrangler@latest
-
-      - name: Deploy to Cloudflare Workers
-        run: wrangler deploy
       
       - name: Debug Environment Variables
         run: env | sort
@@ -28,7 +25,10 @@ jobs:
       - name: Test Wrangler Authentication
         run: CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }} wrangler whoami
 
-      - name: Deploy to Cloudflare Workers
+      - name: API Token
         run: CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }} wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      
+      - name: Deploy to Cloudflare Workers
+        run: wrangler deploy
