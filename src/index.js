@@ -10,7 +10,7 @@ async function handleRequest(request) {
     const repo = "kaixo-agency/jb-port-cdn";
     const branch = "main";
     const githubToken = GITHUB_TOKEN; // Set this in Cloudflare's environment variables
-    const githubUrl = `https://raw.githubusercontent.com/${repo}/${branch}/assets/${filePath}`;
+    const githubUrl = `https://raw.githubusercontent.com/${repo}/${branch}/assets/${filePath}?t=${Date.now()}`;
 
     // Fetch the file from GitHub
     const response = await fetch(githubUrl, {
