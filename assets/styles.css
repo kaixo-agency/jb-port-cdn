@@ -4,6 +4,7 @@ html {
     }
     body{
       border:5px solid black;
+      width:100%;
     }
     a, .skill-pill{
     transition:all .5s linear;
