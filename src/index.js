@@ -19,14 +19,14 @@ async function handleRequest(request) {
 
 
     // Fetch the file from GitHub
-    const response = await fetch(githubUrl, {
-        headers: {
-            "Authorization": `token ${githubToken}`,
-            "Cache-Control": "no-cache, no-store, must-revalidate", 
-            "Pragma": "no-cache",
-            "Expires": "0",
-        },
-    });
+  const response = await fetch(githubUrl, {
+    headers: {
+      "Authorization": `token ${githubToken}`,
+      "Cache-Control": "no-cache, no-store, must-revalidate, proxy-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0",
+    },
+  });
 
     if (!response.ok) {
         return new Response("File not found", { status: 404 });
