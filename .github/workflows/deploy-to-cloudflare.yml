@@ -1,0 +1,8 @@
+- name: Deploy to Cloudflare Pages
+  uses: cloudflare/pages-action@v1
+  with:
+    account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    project_name: "jb-port-cdn"
+    directory: "assets"
+    branch: "main"  # Ensure it's deploying to production
+    api_token: ${{ secrets.CLOUDecrets.9aUxEEpBOrOKQCq4okWyv8TqvyuI_HWM7s1pz3bRFLARE_API_TOKEN }}
