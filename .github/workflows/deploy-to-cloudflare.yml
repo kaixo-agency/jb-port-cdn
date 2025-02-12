@@ -20,3 +20,4 @@ jobs:
         run: wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.9aUxEEpBOrOKQCq4okWyv8TqvyuI_HWM7s1pz3bR }}
+
