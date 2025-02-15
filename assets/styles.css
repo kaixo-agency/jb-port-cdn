@@ -5,6 +5,9 @@ html {
     a, .skill-pill{
     transition:all .5s linear;
     }
+    body{
+      border:5px solid red;
+    }
     .skill-pill{
     cursor:default;
     }
