@@ -119,7 +119,7 @@ html {
   .custom-cursor {
       position: fixed;
       top: -10px;
-      left: -10px;
+      left: -8px;
       width: 10px;
       height: 10px;
       background-color: var(--base-color-brand--slate-dark);
