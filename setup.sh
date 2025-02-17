@@ -22,7 +22,7 @@ echo "🔄 Starting WebSocket reload server..."
 node src/reload-server.js &
 
 # Open Webflow staging in the default browser
-WEBFLOW_URL="https://webflow.com/design/your-project"
+WEBFLOW_URL="https://juanbenedit-cf.webflow.io"
 echo "🌐 Opening Webflow staging..."
 open "$WEBFLOW_URL" || xdg-open "$WEBFLOW_URL"
 
