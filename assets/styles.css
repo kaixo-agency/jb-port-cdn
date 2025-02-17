@@ -118,7 +118,7 @@ html {
   /* Cursor Trailing */
   .custom-cursor {
       position: fixed;
-      top: -10px;
+      top: -12px;
       left: -8px;
       width: 10px;
       height: 10px;
