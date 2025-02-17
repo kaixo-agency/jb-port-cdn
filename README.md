@@ -1,3 +1,11 @@
+# -----------------------------------------------------------
+#                                                       **|**
+# Run this to start servers                             **|**
+./setup.sh                                              **|** 
+#                                                       **|**                                                       |
+# -----------------------------------------------------------
+
+
 # Local Development & Deployment Workflow
 
 This project is set up to streamline the development workflow for local CSS and JS editing, automatic syncing with GitHub, and deployment to Cloudflare Workers. It also includes live reloading for instant feedback in Webflow staging.
