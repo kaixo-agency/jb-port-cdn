@@ -118,8 +118,8 @@ html {
   /* Cursor Trailing */
   .custom-cursor {
       position: fixed;
-      top: -6px;
-      left: -6px;
+      top: -10px;
+      left: -10px;
       width: 10px;
       height: 10px;
       background-color: var(--base-color-brand--slate-dark);
