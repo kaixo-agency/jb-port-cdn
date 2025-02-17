@@ -13,22 +13,22 @@ git pull origin main
 echo "📦 Checking dependencies..."
 npm install
 
-# Start live-server for local development
-echo "🌍 Starting live-server..."
-npx live-server assets --port=5500 &
+# Start live-server on port 5500
+echo "🌍 Starting live-server on http://127.0.0.1:5500..."
+npx live-server assets --port=5500 --open=assets/ &
 
 # Start WebSocket reload server
 echo "🔄 Starting WebSocket reload server..."
 node src/reload-server.js &
 
 # Open Webflow staging in the default browser
-WEBFLOW_URL="https://juanbenedit-cf.webflow.io/"
+WEBFLOW_URL="https://webflow.com/design/your-project"
 echo "🌐 Opening Webflow staging..."
 open "$WEBFLOW_URL" || xdg-open "$WEBFLOW_URL"
 
 # Display Webflow path instructions
 echo "✅ All set! Use the following Webflow paths:"
-echo "   Development: http://localhost:5500/assets/styles.css"
+echo "   Development: http://127.0.0.1:5500/assets/styles.css"
 echo "   Production: https://port-cdn.yourdomain.workers.dev/assets/styles.css"
 
 echo "🔥 Happy coding!"
