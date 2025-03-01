@@ -133,9 +133,8 @@ html {
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  padding: 0;
+  padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
-  position: absolute;
 }
 
 /* Cursor text */
@@ -144,29 +143,47 @@ html {
   color: white;
   opacity: 0;
   transition: opacity 0.2s ease;
+  padding:0;
+  margin:10px 0;
 }
 
-/* Triangle carat */
-.custom-cursor::after {
-  content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" width="10" height="6"><path d="M5 6L0 0h10z" fill="white"/></svg>');
-  position: absolute;
-  bottom: -8px;
-  left: 6px;
+/* Scale effect */
+.cursor-scale {
+  width: 34px;
+  height: 34px;
+  top: -17px;
+  left: -17px;
+}
+
+/* Focus effect */
+.cursor-focus {
   width: 10px;
-  height: 6px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
+  height: 10px;
+  top: -5px;
+  left: -5px;
 }
 
-/* Expand cursor for text */
+/* Cursor turns white */
+.cursor-white {
+  background-color: white;
+}
+
+/* Ensure cursor expands to fit text */
 .cursor-text-visible {
   min-width: 40px;
-  height: 24px;
+  height: 24px; /* Fixed height to maintain shape */
   padding: 6px 12px;
-  border-radius: 50px;
+  border-radius: 50px; /* Keeps rounded shape */
 }
 
-/* Show the triangle when label is visible */
-.cursor-text-visible::after {
+.cursor-text-visible .cursor-text {
   opacity: 1;
+}
+
+/* When no label is showing, enforce a perfect circle */
+.cursor-no-label {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
 }
