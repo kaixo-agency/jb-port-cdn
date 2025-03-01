@@ -256,7 +256,7 @@ $(document).ready(function () {
             $cursorText.text(label).parent().addClass("cursor-text-visible");
         }
     }).on("mouseleave", function () {
-        $cursor.removeClass("cursor-scale");
+        $cursor.removeClass("cursor-focus");
         $cursorText.text("").parent().removeClass("cursor-text-visible");
     });
 
