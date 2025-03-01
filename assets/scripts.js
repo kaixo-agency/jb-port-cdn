@@ -236,8 +236,20 @@ $(document).ready(function () {
     });
 
     // Scale cursor when hovering over buttons or links
-    $("a, button, .w-slider-dot").on("mouseenter", function () {
+    $("a, button").on("mouseenter", function () {
         $cursor.addClass("cursor-scale");
+
+        var label = $(this).attr("cursor-label");
+        if (label) {
+            $cursorText.text(label).parent().addClass("cursor-text-visible");
+        }
+    }).on("mouseleave", function () {
+        $cursor.removeClass("cursor-scale");
+        $cursorText.text("").parent().removeClass("cursor-text-visible");
+    });
+
+    $(".w-slider-dot").on("mouseenter", function () {
+        $cursor.addClass("cursor-focus");
 
         var label = $(this).attr("cursor-label");
         if (label) {
