@@ -118,53 +118,62 @@ html {
   }
     
   /* Cursor Trailing */
-  .custom-cursor {
-      position: fixed;
-      top: -12px;
-      left: -8px;
-      width: 6px;
-      height: 6px;
-      background-color: var(--base-color-brand--slate-dark);
-      border-radius: 50%;
-      pointer-events: none;
-      transition: transform 0.05s linear, background-color 0.3s ease, width 0.2s ease, height 0.2s ease;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-  
-  .custom-cursor .cursor-text {
-      font-size: 16px;
-      color: white;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-  }
-  
-  .cursor-scale {
-      width: 34px;
-      height: 34px;
-      top: -17px;
-      left: -17px;
-  }
-
-  .cursor-focus {
-    width: 10px;
-    height: 10px;
-    top: -5px;
-    left: -5px;
+.custom-cursor {
+  position: fixed;
+  top: -12px;
+  left: -8px;
+  width: 6px;
+  height: 6px;
+  background-color: var(--base-color-brand--slate-dark);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.05s linear, background-color 0.3s ease, width 0.2s ease, height 0.2s ease;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap; /* Ensures text remains in a single line */
+  padding: 6px 12px; /* Gives breathing space around text */
+  box-sizing: border-box;
 }
-  
-  .cursor-white {
-      background-color: white;
-  }
-  
-  .cursor-text-visible .cursor-text {
-      opacity: 1;
-  }
-  
-  .text-invert {
-      color: white;
-      mix-blend-mode: difference;
-  }
-  
+
+/* Cursor text */
+.custom-cursor .cursor-text {
+  font-size: 16px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Scale effect */
+.cursor-scale {
+  width: 34px;
+  height: 34px;
+  top: -17px;
+  left: -17px;
+}
+
+/* Focus effect */
+.cursor-focus {
+  width: 10px;
+  height: 10px;
+  top: -5px;
+  left: -5px;
+}
+
+/* Cursor turns white */
+.cursor-white {
+  background-color: white;
+}
+
+/* Ensure cursor expands to fit text */
+.cursor-text-visible {
+  height: auto; /* Keeps height fixed */
+  min-width: 40px; /* Ensures the cursor isn't too small */
+  padding: 6px 12px; /* Ensures padding scales with content */
+  border-radius: 50px; /* Makes sure the shape remains rounded */
+}
+
+.cursor-text-visible .cursor-text {
+  opacity: 1;
+}
