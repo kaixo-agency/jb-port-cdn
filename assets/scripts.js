@@ -216,7 +216,7 @@ $(document).ready(function () {
         $cursorText = $(".cursor-text"),
         mouseX = 0, mouseY = 0,
         cursorX = 0, cursorY = 0,
-        speed = 0.4;
+        speed = 0.2;
 
     function animateCursor() {
         cursorX += (mouseX - cursorX) * speed;
