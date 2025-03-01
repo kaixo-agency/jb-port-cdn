@@ -151,8 +151,8 @@ html {
   .cursor-focus {
     width: 10px;
     height: 10px;
-    top: -17px;
-    left: -17px;
+    top: 0px;
+    left: 0px;
 }
   
   .cursor-white {
