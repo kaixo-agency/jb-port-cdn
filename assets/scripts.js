@@ -1,28 +1,4 @@
-// Initiate Lenis smooth scrolling
 
-  let lenis; // Declare globally
-
-  document.addEventListener("DOMContentLoaded", function () {
-    lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      smoothTouch: false
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    setTimeout(function () {
-      if (window.Webflow && window.Webflow.require) {
-        window.Webflow.require("ix2").init();
-      }
-      lenis.start();
-    }, 300);
-  });
   
 // Create an Intersection Observer to detect when the section is at the top of the viewport
 var section = document.querySelector('.section_case-studies');
