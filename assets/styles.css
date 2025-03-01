@@ -2,9 +2,6 @@ html {
     scroll-behavior: auto !important;
     overflow-x: hidden;
     }
-    body{
-      border:5px solid red;
-    }
     a, .skill-pill{
     transition:all .5s linear;
     }
