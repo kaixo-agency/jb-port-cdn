@@ -147,6 +147,13 @@ html {
       top: -17px;
       left: -17px;
   }
+
+  .cursor-focus {
+    width: 10px;
+    height: 10px;
+    top: -17px;
+    left: -17px;
+}
   
   .cursor-white {
       background-color: white;
