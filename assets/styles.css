@@ -139,7 +139,6 @@ html {
       color: white;
       opacity: 0;
       transition: opacity 0.2s ease;
-      margin:0 20px !important;
   }
   
   .cursor-scale {
