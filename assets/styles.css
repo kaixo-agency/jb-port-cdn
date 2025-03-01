@@ -104,9 +104,8 @@ html {
     transition: all .25s ease-out;
       border:2px solid #5f7c6b80 !important;
       background-color: #5f7c6b00 !important;
-      width:12px;
-      height:12px;
-      border-radius:0;
+      width:10px;
+      height:10px;
   }
     .w-slider-nav-invert > div {
       border:2px solid #5f7c6b80 !important;
@@ -115,7 +114,7 @@ html {
       background-color: var(--base-color-brand--olive) !important;
       border:2px solid var(--base-color-brand--olive) !important;
       height: 28px;
-      border-radius: 0;
+      border-radius: 999px;
   }
     
   /* Cursor Trailing */
