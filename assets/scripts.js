@@ -236,7 +236,7 @@ $(document).ready(function () {
     });
 
     // Scale cursor when hovering over buttons or links
-    $("a, button").on("mouseenter", function () {
+    $("a, button, .w-slider-dot").on("mouseenter", function () {
         $cursor.addClass("cursor-scale");
 
         var label = $(this).attr("cursor-label");
