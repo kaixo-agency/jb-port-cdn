@@ -117,7 +117,7 @@ html {
       border-radius: 999px;
   }
     
-  /* Cursor Trailing */
+ /* Cursor Trailing */
 .custom-cursor {
   position: fixed;
   top: -12px;
@@ -127,13 +127,13 @@ html {
   background-color: var(--base-color-brand--slate-dark);
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 0.05s linear, background-color 0.3s ease, width 0.2s ease, height 0.2s ease;
+  transition: transform 0.05s linear, background-color 0.3s ease, width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap; /* Ensures text remains in a single line */
-  padding: 6px 12px; /* Gives breathing space around text */
+  white-space: nowrap;
+  padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
 }
 
@@ -168,12 +168,20 @@ html {
 
 /* Ensure cursor expands to fit text */
 .cursor-text-visible {
-  height: auto; /* Keeps height fixed */
-  min-width: 40px; /* Ensures the cursor isn't too small */
-  padding: 6px 12px; /* Ensures padding scales with content */
-  border-radius: 50px; /* Makes sure the shape remains rounded */
+  min-width: 40px;
+  height: 24px; /* Fixed height to maintain shape */
+  padding: 6px 12px;
+  border-radius: 50px; /* Keeps rounded shape */
 }
 
 .cursor-text-visible .cursor-text {
   opacity: 1;
+}
+
+/* When no label is showing, enforce a perfect circle */
+.cursor-no-label {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
 }
