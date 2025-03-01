@@ -144,7 +144,7 @@ html {
   opacity: 0;
   transition: opacity 0.2s ease;
   padding:0;
-  margin:10 0;
+  margin:10px 0;
 }
 
 /* Scale effect */
