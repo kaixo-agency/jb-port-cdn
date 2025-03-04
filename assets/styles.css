@@ -187,3 +187,13 @@ html {
   border-radius: 50% !important;
   padding: 0 !important;
 }
+
+/* Tool icons */
+.tool-icon svg {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.tool-icon:hover svg {
+  filter: none;
+}
