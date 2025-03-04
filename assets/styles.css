@@ -190,7 +190,7 @@ html {
 
 /* Tool icons */
 .tool-icon svg {
-  filter: grayscale(100%) brightness(1.2) sepia(20%) hue-rotate(30deg) saturate(0.8);
+  filter: grayscale(100%) brightness(1.1) sepia(20%) hue-rotate(30deg) saturate(0.8);
   transition: filter 0.3s ease;
 }
 
