@@ -196,4 +196,5 @@ html {
 
 .tool-icon:hover svg {
   filter: none;
+  opacity:1;
 }
