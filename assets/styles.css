@@ -197,3 +197,9 @@ html {
 .tool-icon:hover svg {
   filter: none;
 }
+.tool-icon.cursor-focus {
+  width: 10px;
+  height: 10px;
+  top: 10px;
+  left: 10px;
+}
