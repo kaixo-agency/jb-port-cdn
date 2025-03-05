@@ -203,10 +203,10 @@ html {
 }
 
 /* On hover, remove color override */
-.tool-base.hovered {
+.tool-base:hover svg {
   fill: unset;  /* Use original fill from inline attribute */
 }
 
-.tool-secondary.hovered {
+.tool-secondary:hover svg {
   fill: unset;  /* Use original fill from inline attribute */
 }
