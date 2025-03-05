@@ -289,3 +289,21 @@ $(document).ready(function () {
         $(this).removeClass("text-invert");
     });
 });
+
+
+document.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("mouseenter", () => {
+        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
+            el.removeAttribute("fill");
+        });
+    });
+
+    link.addEventListener("mouseleave", () => {
+        link.querySelectorAll(".tool-base").forEach((el) => {
+            el.setAttribute("fill", "#7D7D7C");
+        });
+        link.querySelectorAll(".tool-secondary").forEach((el) => {
+            el.setAttribute("fill", "#FAFAF9");
+        });
+    });
+});
