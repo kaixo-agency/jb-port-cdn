@@ -217,6 +217,10 @@ svg path{
   left:10px;
   top:10px;
 }
+.avatar{
+  left:10px;
+  top:10px;
+}
 
 .cursor-carat{
   visibility: hidden;
