@@ -344,12 +344,12 @@ $(document).ready(function () {
     });
 });
 
-document.querySelectorAll('.navbar3_logo-link').forEach(link => {
+document.querySelectorAll('.no-cursor').forEach(link => {
     link.addEventListener('mouseenter', () => {
-        document.body.style.cursor = "none";
+        document.body.classList.add('force-hide-cursor');
     });
 
     link.addEventListener('mouseleave', () => {
-        document.body.style.cursor = "";
+        document.body.classList.remove('force-hide-cursor');
     });
 });
