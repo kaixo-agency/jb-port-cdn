@@ -206,6 +206,6 @@ html {
   fill: inherit !important; /* Revert to inline fill */
 }
 
-.tool-icon.hovered .tool-secondary {
+.tool-icon.hovered svg .tool-secondary {
   fill: inherit !important; /* Revert to inline fill */
 }
