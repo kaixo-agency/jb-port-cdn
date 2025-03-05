@@ -344,26 +344,3 @@ $(document).ready(function () {
     });
 });
 
-document.querySelectorAll(".no-cursor").forEach(link => {
-    link.addEventListener("mouseenter", () => {
-        console.log("Mouse entered the link");
-        document.body.style.cursor = "none"; // Hide the cursor
-        
-        // Check if there's any conflicting cursor style
-        const cursorStyle = getComputedStyle(document.body).cursor;
-        console.log("Cursor style:", cursorStyle); // Debugging line
-
-    });
-
-    link.addEventListener("mouseleave", () => {
-        console.log("Mouse left the link");
-        document.body.style.cursor = ""; // Reset the cursor
-        
-        // Check if the cursor is being reset properly
-        const cursorStyle = getComputedStyle(document.body).cursor;
-        console.log("Cursor style after leave:", cursorStyle); // Debugging line
-    });
-});
-
-
-
