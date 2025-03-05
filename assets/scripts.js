@@ -290,17 +290,17 @@ $(document).ready(function () {
     });
 });
 
-document.querySelectorAll(".tool-icon").forEach((link) => {
-    link.addEventListener("mouseenter", () => {
-        // Remove the classes that change the color or behavior
-        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
+document.querySelectorAll(".tool-icon").forEach((icon) => {
+    icon.addEventListener("mouseenter", () => {
+        // Add 'hovered' class to the paths inside the SVG on hover
+        icon.querySelectorAll(".logo-embed .tool-base, .logo-embed .tool-secondary").forEach((el) => {
             el.classList.add("hovered");
         });
     });
 
-    link.addEventListener("mouseleave", () => {
-        // Restore the classes to their original state
-        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
+    icon.addEventListener("mouseleave", () => {
+        // Remove 'hovered' class from the paths inside the SVG when mouse leaves
+        icon.querySelectorAll(".logo-embed .tool-base, .logo-embed .tool-secondary").forEach((el) => {
             el.classList.remove("hovered");
         });
     });
