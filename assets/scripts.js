@@ -290,6 +290,11 @@ $(document).ready(function () {
         $cursor.removeClass("cursor-white");
     });
 
+    $(".nav-dark").on("mouseenter", function () {
+        console.log("Mouse entered .nav-dark");
+    });
+    
+
     // Invert text color only inside .section_case-studies
     $(".section_case-studies a, .section_case-studies button").on("mouseenter", function () {
         $(this).addClass("text-invert");
