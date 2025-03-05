@@ -219,7 +219,7 @@ svg path{
 }
 .tooltip.avatar{
   left:5px;
-  top:-2px;
+  top:5px;
   width:auto !important;
   height:auto;
   padding:4px 20px 4px 4px;
