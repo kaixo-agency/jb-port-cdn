@@ -202,10 +202,6 @@ html {
 }
 
 /* On hover, remove the color override */
-.tool-icon:hover div svg .tool-base {
-  fill: unset !important; /* Revert to inline fill */
-}
-
-.tool-icon:hover div svg .tool-secondary {
+.tool-icon:hover div svg .tool-base, .tool-icon:hover div svg .tool-secondary  {
   fill: unset !important; /* Revert to inline fill */
 }
