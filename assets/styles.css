@@ -172,7 +172,7 @@ html {
 /* Ensure cursor expands to fit text */
 .cursor-text-visible {
   height: 24px; /* Fixed height to maintain shape */
-  padding:0;
+  padding: 6px 12px;
   border-radius: 50px; /* Keeps rounded shape */
   font-size:12px !important;
   width:auto;
@@ -216,11 +216,10 @@ svg path{
 .tooltip{
   left:10px;
   top:10px;
-  padding:0;
 }
-.avatar{
-  left:5px;
-  top:5px;
+.tooltip.avatar{
+  left:-10px;
+  top:10px;
   width:auto !important;
   height:auto;
   padding:4px 20px 4px 4px;
