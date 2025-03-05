@@ -295,15 +295,18 @@ $(document).ready(function () {
 document.querySelectorAll(".tool-icon").forEach((link) => {
     link.addEventListener("mouseenter", () => {
         link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
-            el.dataset.originalFill = el.getAttribute("fill"); // Store original fill
-            el.removeAttribute("fill"); // Remove CSS-applied fill to restore inline color
+            // Save the original fill
+            el.dataset.originalFill = el.getAttribute("fill");
+            // Remove the fill to apply CSS override
+            el.setAttribute("fill", "#7D7D7C");  // or "#FAFAF9" for .tool-secondary
         });
     });
 
     link.addEventListener("mouseleave", () => {
         link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
+            // Restore the original fill from the dataset
             if (el.dataset.originalFill) {
-                el.setAttribute("fill", el.dataset.originalFill); // Restore original inline fill
+                el.setAttribute("fill", el.dataset.originalFill);
             }
         });
     });
