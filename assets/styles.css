@@ -106,6 +106,7 @@ html {
       background-color: #5f7c6b !important;
       width:4px;
       height:10px;
+      opacity:.5;
   }
     .w-slider-nav-invert > div {
       border:0 !important;
