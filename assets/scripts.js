@@ -290,18 +290,27 @@ $(document).ready(function () {
     });
 });
 
+
+
 document.querySelectorAll(".tool-icon").forEach((icon) => {
     icon.addEventListener("mouseenter", () => {
-        // Add 'hovered' class to the paths inside the SVG on hover
-        icon.querySelectorAll(".logo-embed svg .tool-base, .logo-embed svg .tool-secondary").forEach((el) => {
-            el.classList.add("hovered");
+        // Find all path elements inside the SVG
+        icon.querySelectorAll("svg path").forEach((path) => {
+            // Store the current class value
+            path.dataset.originalClass = path.getAttribute("class");
+
+            // Remove the class attribute to hide it
+            path.removeAttribute("class");
         });
     });
 
     icon.addEventListener("mouseleave", () => {
-        // Remove 'hovered' class from the paths inside the SVG when mouse leaves
-        icon.querySelectorAll(".logo-embed svg .tool-base, .logo-embed svg .tool-secondary").forEach((el) => {
-            el.classList.remove("hovered");
+        // Restore the class attribute on mouseleave
+        icon.querySelectorAll("svg path").forEach((path) => {
+            // Restore the original class
+            if (path.dataset.originalClass) {
+                path.setAttribute("class", path.dataset.originalClass);
+            }
         });
     });
 });
