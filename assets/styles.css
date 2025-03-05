@@ -175,6 +175,7 @@ html {
   padding: 6px 12px;
   border-radius: 50px; /* Keeps rounded shape */
   font-family: JetBrains Mono, sans-serif;
+  font-size:14px;
 }
 
 .cursor-text-visible .cursor-text {
