@@ -204,9 +204,9 @@ html {
 
 /* On hover, remove color override */
 .tool-icon:hover div svg .tool-base{
-  fill: inherit;  /* Use original fill from inline attribute */
+  fill: unset;  /* Use original fill from inline attribute */
 }
 
 .tool-icon:hover div svg .tool-secondary{
-  fill: inherit;  /* Use original fill from inline attribute */
+  fill: unset;  /* Use original fill from inline attribute */
 }
