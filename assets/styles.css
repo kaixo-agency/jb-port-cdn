@@ -191,17 +191,22 @@ html {
 }
 
 /* Tool icons */
+/* Default colors */
 .tool-base {
-  fill: #7D7D7C !important;
+  fill: #7D7D7C !important;  /* Desaturated color */
   transition: fill 0.3s ease;
 }
 
 .tool-secondary {
-  fill: #FAFAF9 !important;
+  fill: #FAFAF9 !important;  /* Desaturated color */
   transition: fill 0.3s ease;
 }
 
-/* On hover, remove the color override */
-.tool-icon:hover div svg .tool-base, .tool-icon:hover div svg .tool-secondary  {
-  fill: unset !important; /* Revert to inline fill */
+/* On hover, remove color override */
+.tool-base.hovered {
+  fill: inherit;  /* Use original fill from inline attribute */
+}
+
+.tool-secondary.hovered {
+  fill: inherit;  /* Use original fill from inline attribute */
 }
