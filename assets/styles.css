@@ -221,6 +221,8 @@ svg path{
   left:5px;
   top:5px;
   padding:2px 20px 2px 2px;
+  width:auto !important;
+  height:auto !important;
 }
 
 .cursor-carat{
