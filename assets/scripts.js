@@ -236,38 +236,44 @@ $(document).ready(function () {
     });
 
     // Handle hover interactions
-$("[cursor-label]").on("mouseenter", function () {
-    var label = $(this).attr("cursor-label");
-    $cursorText.text(label);
-
-    // Wait for text to update, then adjust cursor width dynamically
-    setTimeout(() => {
-        var textWidth = $cursorText[0].offsetWidth + 24; // Add padding
-        var cursorTextHeight = $cursorText[0].offsetHeight + 20; // Add padding to height
-        var xOffset = 10; // x offset for the text
-        var yOffset = 10; // y offset for the text
-
-        // Adjust cursor position and size dynamically
-        $cursor.css({
-            width: textWidth + "px", // Adjust width dynamically
-            height: cursorTextHeight + "px", // Adjust height dynamically
-            top: `-${cursorTextHeight / 2}px`, // Position cursor vertically centered
-            left: `-${textWidth / 2}px` // Position cursor horizontally centered
-        }).addClass("cursor-text-visible");
-
-        // Adjust the position of the text label inside the cursor
-        $cursorText.css({
-            top: `${yOffset}px`,  // Apply y offset
-            left: `${xOffset}px`  // Apply x offset
+    $("[cursor-label]").on("mouseenter", function () {
+        var label = $(this).attr("cursor-label");
+        $cursorText.text(label);
+        
+        // Wait for text to update, then adjust cursor width dynamically
+        setTimeout(() => {
+            var textWidth = $cursorText[0].offsetWidth + 24; // Add padding
+            $cursor.css({
+                width: textWidth + "px"
+            }).addClass("cursor-text-visible");
+        }, 10);
+        
+    }).on("mouseleave", function () {
+        $cursor.removeClass("cursor-text-visible").css({
+            width: "6px" // Reset width to default
         });
-    }, 10);
-}).on("mouseleave", function () {
-    $cursor.removeClass("cursor-text-visible").css({
-        width: "6px",  // Reset width to default
-        height: "6px"  // Reset height to default
+        $cursorText.text(""); 
     });
-    $cursorText.text(""); 
-});
+
+    // Extra interaction for slider dots
+    $(".w-slider-dot").on("mouseenter", function () {
+        var label = $(this).attr("cursor-label");
+        $cursor.addClass("cursor-focus");
+        $cursorText.text(label);
+        
+        setTimeout(() => {
+            var textWidth = $cursorText[0].offsetWidth + 24;
+            $cursor.css({
+                width: textWidth + "px"
+            }).addClass("cursor-text-visible");
+        }, 10);
+
+    }).on("mouseleave", function () {
+        $cursor.removeClass("cursor-focus cursor-text-visible").css({
+            width: "6px"
+        });
+        $cursorText.text("");
+    });
 
     // Change cursor to white when inside section_case-studies
     $(".section_case-studies").on("mouseenter", function () {
