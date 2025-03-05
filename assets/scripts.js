@@ -347,12 +347,10 @@ $(document).ready(function () {
 document.querySelectorAll(".no-cursor").forEach(link => {
     link.addEventListener("mouseenter", () => {
         console.log("Mouse entered the link");
-        alert("Mouse is over the link!");
     });
 
     link.addEventListener("mouseleave", () => {
         console.log("Mouse left the link");
-        alert("Mouse has left the link!");
     });
 });
 
