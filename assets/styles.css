@@ -221,7 +221,9 @@ svg path {
 .custom-cursor.tooltip {
   visibility: visible; /* Make sure the cursor is visible */
 }
-
+.cursor-pointer{
+  visibility: hidden;
+}
 /* Ensuring .cursor-pointer is visible when tooltip class is added */
 .custom-cursor.cursor-pointer {
   visibility: visible;  /* This will be visible */
