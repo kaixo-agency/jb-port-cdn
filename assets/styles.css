@@ -104,7 +104,7 @@ html {
     transition: all .25s ease-out;
       border-radius:0 !important;
       background-color: #5f7c6b !important;
-      width:5px;
+      width:4px;
       height:10px;
   }
     .w-slider-nav-invert > div {
