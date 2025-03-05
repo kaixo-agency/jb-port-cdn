@@ -284,14 +284,10 @@ $(document).ready(function () {
     }).on("mouseleave", function () {
         $cursor.removeClass("cursor-white");
     });
-    $(".nav-dark").on("mouseenter", function () {
-        $cursor.addClass("cursor-white");
-    }).on("mouseleave", function () {
-        $cursor.removeClass("cursor-white");
-    });
-
-    $(".navbar3_container.nav-dark").on("mouseenter", function () {
-        alert("Mouse entered .nav-dark");
+    $(document).on("mouseenter", ".nav-dark", function () {
+        $(".custom-cursor").addClass("cursor-white");
+    }).on("mouseleave", ".nav-dark", function () {
+        $(".custom-cursor").removeClass("cursor-white");
     });
     
 
