@@ -225,7 +225,7 @@ svg path{
   height:auto !important;
 }
 .navbar3_logo-link:hover{
-  cursor:none;
+  cursor:none !important;
 }
 
 .cursor-carat{
