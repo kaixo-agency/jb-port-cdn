@@ -213,3 +213,7 @@ svg path {
 .tool-secondary {
   fill: #FAFAF9;  /* Desaturated color */
 }
+.tooltip{
+  left:20px;
+  top:20px;
+}
