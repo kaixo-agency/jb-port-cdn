@@ -203,10 +203,10 @@ html {
 }
 
 /* On hover, remove color override */
-.tool-icon:hover svg .tool-base{
+.tool-icon:hover div svg .tool-base{
   fill: inherit;  /* Use original fill from inline attribute */
 }
 
-.tool-icon:hover svg .tool-secondary{
+.tool-icon:hover div svg .tool-secondary{
   fill: inherit;  /* Use original fill from inline attribute */
 }
