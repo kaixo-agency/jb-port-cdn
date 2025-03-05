@@ -108,7 +108,7 @@ html {
       height:10px;
   }
     .w-slider-nav-invert > div {
-      border:2px solid #5f7c6b80 !important;
+      border0 !important;
       height: 28px;
   }
   .w-slider-nav-invert > div.w-active {
