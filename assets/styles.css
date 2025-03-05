@@ -219,6 +219,8 @@ svg path {
 }
 .cursor-carat{
   visibility: hidden;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)); /* Subtle drop shadow */
+
   left:-12px;
   top:-12px;
 }
