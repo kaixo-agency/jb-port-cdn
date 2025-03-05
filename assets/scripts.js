@@ -318,13 +318,26 @@ document.querySelectorAll(".tool-icon").forEach((icon) => {
 
 $(document).ready(function () {
     // When hovering over .tool-icon, add the 'tooltip' class to .custom-cursor and hide the system cursor
-    $(".tool-icon, .navbar3_logo-link").on("mouseenter", function () {
+    $(".tool-icon").on("mouseenter", function () {
         $(".custom-cursor").addClass("tooltip");
         $(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
         $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
         $(".custom-cursor").removeClass("tooltip");
         $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
+        $(this).css("cursor", "");  // Restore the default system cursor
+    });
+
+    // When hovering over .tool-icon, add the 'tooltip' class to .custom-cursor and hide the system cursor
+    $(".navbar3_logo-link").on("mouseenter", function () {
+        $(".custom-cursor").addClass("tooltip");
+        $(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
+        $(".cursor-avatar").css("visibility", "visible");  // Make the .cursor-avatar visible
+        $(this).css("cursor", "none");  // Hide the system cursor
+    }).on("mouseleave", function () {
+        $(".custom-cursor").removeClass("tooltip");
+        $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
+        $(".cursor-avatar").css("visibility", "hidden");  // Hide the .cursor-avatar again
         $(this).css("cursor", "");  // Restore the default system cursor
     });
 });
