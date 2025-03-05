@@ -293,7 +293,7 @@ $(document).ready(function () {
 document.querySelectorAll(".tool-icon").forEach((icon) => {
     icon.addEventListener("mouseenter", () => {
         // Add 'hovered' class to the paths inside the SVG on hover
-        icon.querySelectorAll(".logo-embed .tool-base, .logo-embed .tool-secondary").forEach((el) => {
+        icon.querySelectorAll(".logo-embed svg .tool-base, .logo-embed svg .tool-secondary").forEach((el) => {
             el.classList.add("hovered");
         });
     });
