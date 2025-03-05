@@ -346,11 +346,13 @@ $(document).ready(function () {
 
 document.querySelectorAll(".no-cursor").forEach(link => {
     link.addEventListener("mouseenter", () => {
-        document.body.style.cursor = "none";
+        console.log("Mouse entered the link");
+        alert("Mouse is over the link!");
     });
 
     link.addEventListener("mouseleave", () => {
-        document.body.style.cursor = "";
+        console.log("Mouse left the link");
+        alert("Mouse has left the link!");
     });
 });
 
