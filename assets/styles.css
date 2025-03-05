@@ -204,9 +204,9 @@ html {
 
 /* On hover, remove color override */
 .tool-base.hovered {
-  fill: inherit;  /* Use original fill from inline attribute */
+  fill: unset;  /* Use original fill from inline attribute */
 }
 
 .tool-secondary.hovered {
-  fill: inherit;  /* Use original fill from inline attribute */
+  fill: unset;  /* Use original fill from inline attribute */
 }
