@@ -222,7 +222,7 @@ svg path{
   top:10px;
   width:auto !important;
   height:auto;
-  padding:0;
+  padding:0 10px 0 0;
 }
 .cursor-carat{
   visibility: hidden;
