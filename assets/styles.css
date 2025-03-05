@@ -109,6 +109,7 @@ html {
   }
     .w-slider-nav-invert > div {
       border:2px solid #5f7c6b80 !important;
+      height: 28px;
   }
   .w-slider-nav-invert > div.w-active {
       background-color: var(--base-color-brand--olive) !important;
