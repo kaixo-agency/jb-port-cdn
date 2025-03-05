@@ -297,6 +297,13 @@ $(document).ready(function () {
     });
     
 
+    // Invert text color only inside .section_case-studies
+    $(".section_case-studies a, .section_case-studies button").on("mouseenter", function () {
+        $(this).addClass("text-invert");
+    }).on("mouseleave", function () {
+        $(this).removeClass("text-invert");
+    });
+});
 
 
 
