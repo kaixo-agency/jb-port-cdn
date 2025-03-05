@@ -344,12 +344,14 @@ $(document).ready(function () {
     });
 });
 
-document.addEventListener("mousemove", (event) => {
-    const link = document.querySelector(".no-cursor"); // Change this to match your element
-    if (link && link.matches(":hover")) {
-        document.documentElement.style.cursor = "none"; // Hide cursor when hovering
-    } else {
-        document.documentElement.style.cursor = ""; // Restore cursor when not hovering
-    }
+document.querySelectorAll(".no-cursor").forEach(link => {
+    link.addEventListener("mouseenter", () => {
+        document.body.style.cursor = "none";
+    });
+
+    link.addEventListener("mouseleave", () => {
+        document.body.style.cursor = "";
+    });
 });
+
 
