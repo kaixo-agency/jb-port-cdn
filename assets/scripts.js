@@ -343,3 +343,13 @@ $(document).ready(function () {
         $(this).css("cursor", "");  // Restore the default system cursor
     });
 });
+
+document.querySelectorAll('.navbar3_link').forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        document.body.style.cursor = "none";
+    });
+
+    link.addEventListener('mouseleave', () => {
+        document.body.style.cursor = "";
+    });
+});
