@@ -145,6 +145,7 @@ html {
   transition: opacity 0.2s ease;
   padding:0;
   margin:10px 0;
+  font-family: JetBrains Mono, sans-serif;
 }
 
 /* Scale effect */
