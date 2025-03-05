@@ -346,10 +346,10 @@ $(document).ready(function () {
 
 document.querySelectorAll('.no-cursor').forEach(link => {
     link.addEventListener('mouseenter', () => {
-        document.body.classList.add('force-hide-cursor');
+        document.documentElement.style.cursor = 'none';
     });
 
     link.addEventListener('mouseleave', () => {
-        document.body.classList.remove('force-hide-cursor');
+        document.documentElement.style.cursor = '';
     });
 });
