@@ -133,6 +133,7 @@ $(document).ready(function () {
             });
         } else {
             // Apply light mode
+            navbar.removeClass("nav-dark"); 
             navbar.css({
                 "background": "rgba(255, 255, 255, 0.85)",
                 "border-color": "#DCDCDB",
