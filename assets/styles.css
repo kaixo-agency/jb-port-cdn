@@ -202,5 +202,5 @@ html {
 /* Revert to inline fill attributes on hover */
 .tool-icon:hover .tool-icon .tool-base,
 .tool-icon:hover .tool-icon .tool-secondary {
-  fill: none !important;
+  fill: unset !important;
 }
