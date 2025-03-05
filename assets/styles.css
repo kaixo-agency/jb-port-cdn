@@ -201,12 +201,3 @@ html {
   fill: #FAFAF9 !important;  /* Desaturated color */
   transition: fill 0.5s ease;
 }
-
-/* On hover, remove color override */
-.tool-icon:hover div svg .tool-base{
-  fill: unset;  /* Use original fill from inline attribute */
-}
-
-.tool-icon:hover div svg .tool-secondary{
-  fill: unset;  /* Use original fill from inline attribute */
-}
