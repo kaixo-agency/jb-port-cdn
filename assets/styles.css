@@ -201,3 +201,11 @@ html {
   transition: fill 0.3s ease;
 }
 
+/* On hover, remove the color override */
+.tool-icon.hovered .logo-embed svg .tool-base {
+  fill: inherit !important; /* Revert to inline fill */
+}
+
+.tool-icon.hovered .logo-embed svg .tool-secondary {
+  fill: inherit !important; /* Revert to inline fill */
+}
