@@ -333,13 +333,11 @@ $(document).ready(function () {
         $(".custom-cursor").addClass("avatar");
         $(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
         $(".cursor-avatar").css("visibility", "visible");  // Make the .cursor-avatar visible
-        $(".cursor-avatar").css("display", "block");  // Make the .cursor-avatar visible
         $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
         $(".custom-cursor").removeClass("avatar");
         $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
         $(".cursor-avatar").css("visibility", "hidden");  // Hide the .cursor-avatar again
-        $(".cursor-avatar").css("display", "none");  // Make the .cursor-avatar visible
         $(this).css("cursor", "");  // Restore the default system cursor
     });
 });
