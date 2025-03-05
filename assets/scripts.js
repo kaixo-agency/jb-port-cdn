@@ -344,7 +344,7 @@ $(document).ready(function () {
     });
 });
 
-document.querySelectorAll('.navbar3_link').forEach(link => {
+document.querySelectorAll('.navbar3_logo-link').forEach(link => {
     link.addEventListener('mouseenter', () => {
         document.body.style.cursor = "none";
     });
