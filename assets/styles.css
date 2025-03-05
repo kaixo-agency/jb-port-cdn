@@ -103,6 +103,7 @@ html {
     .w-slider-dot{
     transition: all .25s ease-out;
       border-radius:0 !important;
+      border:0 !important;
       background-color: #5f7c6b !important;
       width:4px;
       height:10px;
@@ -117,6 +118,7 @@ html {
       background-color: var(--base-color-brand--olive) !important;
       height: 48px;
       opacity:1;
+      border:0 !important;
   }
     
  /* Cursor Trailing */
