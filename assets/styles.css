@@ -202,17 +202,19 @@ html {
 
 /* Set initial transition properties */
 svg path {
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: fill 0.3s ease;  /* Transition for color change */
 }
 
-/* Hovered state - scale and fade */
+/* Define default fill colors for tool-base and tool-secondary */
+.tool-base {
+  fill: #7D7D7C;  /* Desaturated color */
+}
+
+.tool-secondary {
+  fill: #FAFAF9;  /* Desaturated color */
+}
+
+/* On hover, paths change color (to the inline color when the class is removed) */
 .tool-icon:hover svg path {
-  transform: scale(1.1);  /* Subtle scale */
-  opacity: 0.7;  /* Fade effect */
-}
-
-/* Optional: Ensure paths are visible and properly scaled when restored */
-svg path {
-  opacity: 1;  /* Full opacity when not hovered */
-  transform: scale(1);  /* Normal scale when not hovered */
+  fill: inherit;  /* Use the inline fill color */
 }
