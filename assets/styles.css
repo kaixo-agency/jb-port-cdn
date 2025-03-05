@@ -202,7 +202,7 @@ html {
 
 /* Set initial transition properties */
 svg path{
-  transition: fill .75s ease;  /* Transition for color change */
+  transition: all .75s ease;  /* Transition for color change */
 }
 
 /* Define default fill colors for tool-base and tool-secondary */
