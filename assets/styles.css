@@ -229,6 +229,12 @@ svg path{
   cursor: none !important;
 }
 
+/* Prevent the cursor from reappearing due to child elements */
+.no-cursor * {
+  pointer-events: none;
+}
+
+
 body.force-hide-cursor {
   cursor: none !important;
 }
