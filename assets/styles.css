@@ -201,8 +201,3 @@ html {
   transition: fill 0.3s ease;
 }
 
-/* Revert to inline fill attributes on hover */
-.tool-icon:hover .logo-embed svg .tool-base,
-.tool-icon:hover .logo-embed svg .tool-secondary {
-  fill: unset !important;
-}
