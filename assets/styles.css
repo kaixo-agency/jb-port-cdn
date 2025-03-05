@@ -219,4 +219,6 @@ svg path {
 }
 .cursor-carat{
   visibility: hidden;
+  left:0;
+  top:0;
 }
