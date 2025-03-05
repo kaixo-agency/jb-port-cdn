@@ -293,7 +293,7 @@ $(document).ready(function () {
 
 document.querySelectorAll(".tool-icon").forEach((link) => {
     link.addEventListener("mouseenter", () => {
-        link.querySelectorAll(".logo-embed svg .tool-base, .logo-embed svg .tool-secondary").forEach((el) => {
+        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
             el.removeAttribute("fill");
         });
     });
