@@ -292,12 +292,30 @@ $(document).ready(function () {
 
 
 
+
+
 document.querySelectorAll(".tool-icon").forEach((link) => {
     link.addEventListener("mouseenter", () => {
-        link.classList.add("hovered");
+        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
+            // Store original fill color in a data attribute
+            el.dataset.originalFill = el.getAttribute("fill");
+
+            // Set new fill color on hover
+            if (el.classList.contains("tool-base")) {
+                el.setAttribute("fill", "#7D7D7C"); // Desired color for .tool-base
+            }
+            if (el.classList.contains("tool-secondary")) {
+                el.setAttribute("fill", "#FAFAF9"); // Desired color for .tool-secondary
+            }
+        });
     });
 
     link.addEventListener("mouseleave", () => {
-        link.classList.remove("hovered");
+        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
+            // Restore original fill color from data attribute
+            if (el.dataset.originalFill) {
+                el.setAttribute("fill", el.dataset.originalFill);
+            }
+        });
     });
 });
