@@ -200,7 +200,7 @@ html {
 }
 
 /* Revert to inline fill attributes on hover */
-.tool-icon:hover svg .tool-base,
-.tool-icon:hover svg .tool-secondary {
+.tool-icon:hover div svg .tool-base,
+.tool-icon:hover div svg .tool-secondary {
   fill: unset !important;
 }
