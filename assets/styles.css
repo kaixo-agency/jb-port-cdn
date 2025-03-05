@@ -201,8 +201,8 @@ html {
 }
 
 /* Set initial transition properties */
-svg path, svg defs linearGradient stop{
-  transition: fill .75s ease;  /* Transition for color change */
+svg path{
+  transition: all .75s ease;  /* Transition for color change */
 }
 
 /* Define default fill colors for tool-base and tool-secondary */
