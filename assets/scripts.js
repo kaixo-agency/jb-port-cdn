@@ -315,3 +315,12 @@ document.querySelectorAll(".tool-icon").forEach((icon) => {
         });
     });
 });
+
+$(document).ready(function () {
+    // When hovering over .tool-icon, add the 'tooltip' class to .custom-cursor
+    $(".tool-icon").on("mouseenter", function () {
+        $(".custom-cursor").addClass("tooltip");
+    }).on("mouseleave", function () {
+        $(".custom-cursor").removeClass("tooltip");
+    });
+});
