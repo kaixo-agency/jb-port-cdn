@@ -290,3 +290,18 @@ $(document).ready(function () {
     });
 });
 
+document.querySelectorAll(".tool-icon").forEach((link) => {
+    link.addEventListener("mouseenter", () => {
+        // Remove the classes that change the color or behavior
+        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
+            el.classList.add("hovered");
+        });
+    });
+
+    link.addEventListener("mouseleave", () => {
+        // Restore the classes to their original state
+        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
+            el.classList.remove("hovered");
+        });
+    });
+});
