@@ -290,7 +290,7 @@ $(document).ready(function () {
         $cursor.removeClass("cursor-white");
     });
 
-    $(".nav-dark").on("mouseenter", function () {
+    $(".navbar3_container.nav-dark").on("mouseenter", function () {
         alert("Mouse entered .nav-dark");
     });
     
