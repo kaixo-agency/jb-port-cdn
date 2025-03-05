@@ -291,19 +291,20 @@ $(document).ready(function () {
 });
 
 
+
 document.querySelectorAll(".tool-icon").forEach((link) => {
     link.addEventListener("mouseenter", () => {
         link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
-            el.removeAttribute("fill");
+            el.dataset.originalFill = el.getAttribute("fill"); // Store original fill
+            el.removeAttribute("fill"); // Remove CSS-applied fill to restore inline color
         });
     });
 
     link.addEventListener("mouseleave", () => {
-        link.querySelectorAll(".tool-base").forEach((el) => {
-            el.setAttribute("fill", "#7D7D7C");
-        });
-        link.querySelectorAll(".tool-secondary").forEach((el) => {
-            el.setAttribute("fill", "#FAFAF9");
+        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
+            if (el.dataset.originalFill) {
+                el.setAttribute("fill", el.dataset.originalFill); // Restore original inline fill
+            }
         });
     });
 });
