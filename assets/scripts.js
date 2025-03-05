@@ -106,6 +106,7 @@ $(document).ready(function () {
                 isDarkMode = true;
                 return false; // Stop checking further sections
             }
+            navbar.addClass("nav-dark"); 
         });
 
         if (isDarkMode) {
