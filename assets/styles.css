@@ -200,7 +200,7 @@ html {
 }
 
 /* Revert to inline fill attributes on hover */
-.tool-icon:hover.tool-base,
+.tool-icon:hover .tool-base,
 .tool-icon:hover .tool-secondary {
   fill: inherit !important;
 }
