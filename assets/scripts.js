@@ -239,6 +239,12 @@ $(document).ready(function () {
     });
 
     // Handle hover interactions
+    $(".hover-link").on("mouseenter", function () {
+        $(".custom-cursor").addClass("cursor-scale");
+    }).on("mouseleave", function () {
+        $(".custom-cursor").removeClass("cursor-scale");
+    });
+
     $("[cursor-label]").on("mouseenter", function () {
         var label = $(this).attr("cursor-label");
         $cursorText.text(label);
