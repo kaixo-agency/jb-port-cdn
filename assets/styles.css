@@ -218,8 +218,8 @@ svg path{
   top:10px;
 }
 .tooltip.avatar{
-  left:30px;
-  top:30px;
+  left:-30px;
+  top:-30px;
 }
 .cursor-carat{
   visibility: hidden;
