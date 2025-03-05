@@ -226,6 +226,7 @@ svg path{
 }
 .navbar3_logo-link:hover{
   cursor:none !important;
+  display:block;
 }
 
 .cursor-carat{
