@@ -291,7 +291,6 @@ $(document).ready(function () {
 });
 
 
-
 document.querySelectorAll(".tool-icon").forEach((icon) => {
     icon.addEventListener("mouseenter", () => {
         // Find all path elements inside the SVG
