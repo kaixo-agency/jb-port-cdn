@@ -290,28 +290,3 @@ $(document).ready(function () {
     });
 });
 
-
-
-
-
-
-
-document.querySelectorAll(".tool-icon").forEach((link) => {
-    link.addEventListener("mouseenter", () => {
-        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
-            // Store original fill color from inline SVG (if available)
-            el.dataset.originalFill = el.getAttribute("fill");
-
-            // Restore the original inline fill color on hover
-            el.setAttribute("fill", el.dataset.originalFill || el.getAttribute("fill"));
-        });
-    });
-
-    link.addEventListener("mouseleave", () => {
-        link.querySelectorAll(".tool-base, .tool-secondary").forEach((el) => {
-            // Revert back to the desaturated CSS colors on mouse leave
-            el.setAttribute("fill", "#7D7D7C"); // Default color for .tool-base
-            el.setAttribute("fill", "#FAFAF9"); // Default color for .tool-secondary
-        });
-    });
-});
