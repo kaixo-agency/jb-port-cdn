@@ -102,7 +102,7 @@ html {
   }
     .w-slider-dot{
     transition: all .25s ease-out;
-      border:2px solid #5f7c6b80 !important;
+      border:0 !important;
       background-color: #5f7c6b00 !important;
       width:10px;
       height:10px;
