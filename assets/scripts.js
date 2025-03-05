@@ -279,7 +279,7 @@ $(document).ready(function () {
     });
 
     // Change cursor to white when inside section_case-studies
-    $(".section_case-studies, .nav-dark").on("mouseenter", function () {
+    $(".section_case-studies, .navbar3_container.nav-dark").on("mouseenter", function () {
         $cursor.addClass("cursor-white");
     }).on("mouseleave", function () {
         $cursor.removeClass("cursor-white");
