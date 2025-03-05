@@ -114,7 +114,6 @@ html {
       background-color: var(--base-color-brand--olive) !important;
       border:2px solid var(--base-color-brand--olive) !important;
       height: 28px;
-      border-radius: 999px;
   }
     
  /* Cursor Trailing */
