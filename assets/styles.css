@@ -220,6 +220,7 @@ svg path{
 .tooltip.avatar{
   left:10px;
   top:10px;
+  width:auto;
 }
 .cursor-carat{
   visibility: hidden;
