@@ -335,7 +335,7 @@ $(document).ready(function () {
         $(".cursor-avatar").css("visibility", "visible");  // Make the .cursor-avatar visible
         $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
-        $(".custom-cursor").removeClass("tooltip, avatar");
+        $(".custom-cursor").removeClass("tooltip avatar");
         $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
         $(".cursor-avatar").css("visibility", "hidden");  // Hide the .cursor-avatar again
         $(this).css("cursor", "");  // Restore the default system cursor
