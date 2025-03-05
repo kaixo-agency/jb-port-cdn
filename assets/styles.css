@@ -224,6 +224,7 @@ svg path{
   top:-12px;
 }
 .cursor-avatar{
-  width:24px;
-  height:24px;
+  visibility: hidden;
+  width:40px;
+  height:40px;
 }
