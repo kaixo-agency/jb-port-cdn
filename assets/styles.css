@@ -218,12 +218,12 @@ svg path{
   top:10px;
 }
 .tooltip.avatar{
-  left:-10px;
+  left:10px;
   top:10px;
   width:auto !important;
   height:auto;
   padding:4px 20px 4px 4px;
-  transition: all .25s ease;  /* Transition for color change */
+  transition: fill .75s ease;  /* Transition for color change */
 }
 .cursor-carat{
   visibility: hidden;
