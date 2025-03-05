@@ -172,7 +172,7 @@ html {
 /* Ensure cursor expands to fit text */
 .cursor-text-visible {
   height: 24px; /* Fixed height to maintain shape */
-  padding: 6px 12px;
+  padding:0;
   border-radius: 50px; /* Keeps rounded shape */
   font-size:12px !important;
   width:auto;
