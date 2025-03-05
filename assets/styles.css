@@ -109,12 +109,12 @@ html {
   }
     .w-slider-nav-invert > div {
       border:0 !important;
-      height: 28px;
+      height: 48px;
   }
   .w-slider-nav-invert > div.w-active {
       background-color: var(--base-color-brand--olive) !important;
       border:2px solid var(--base-color-brand--olive) !important;
-      height: 28px;
+      height: 48px;
   }
     
  /* Cursor Trailing */
