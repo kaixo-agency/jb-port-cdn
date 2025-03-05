@@ -285,10 +285,6 @@ $(document).ready(function () {
         $cursor.removeClass("cursor-white");
     });
 
-    $(".nav-light").on("mouseleave", function () {
-        $cursor.removeClass("cursor-white");
-    });
-
     // Invert text color only inside .section_case-studies
     $(".section_case-studies a, .section_case-studies button").on("mouseenter", function () {
         $(this).addClass("text-invert");
