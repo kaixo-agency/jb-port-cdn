@@ -291,7 +291,7 @@ $(document).ready(function () {
     });
 
     $(".nav-dark").on("mouseenter", function () {
-        console.log("Mouse entered .nav-dark");
+        alert("Mouse entered .nav-dark");
     });
     
 
