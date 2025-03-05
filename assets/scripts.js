@@ -106,11 +106,12 @@ $(document).ready(function () {
                 isDarkMode = true;
                 return false; // Stop checking further sections
             }
-            navbar.addClass("nav-dark"); 
+            //navbar.addClass("nav-dark"); 
         });
 
         if (isDarkMode) {
             // Apply dark mode
+            navbar.addClass("nav-dark"); 
             navbar.css({
                 "background": "rgba(18, 29, 41, 0.85)", // Updated dark mode background
                 "border-color": "var(--base-color-brand--slate-dark)", 
