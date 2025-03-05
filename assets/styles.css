@@ -114,8 +114,8 @@ html {
   }
   .w-slider-nav-invert > div.w-active {
       background-color: var(--base-color-brand--olive) !important;
-      border:2px solid var(--base-color-brand--olive) !important;
       height: 48px;
+      opacity:.5;
   }
     
  /* Cursor Trailing */
