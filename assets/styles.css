@@ -194,10 +194,8 @@ html {
 /* Default colors */
 .tool-base {
   fill: #7D7D7C !important;  /* Desaturated color */
-  transition: fill 1s ease;
 }
 
 .tool-secondary {
   fill: #FAFAF9 !important;  /* Desaturated color */
-  transition: fill 1s ease;
 }
