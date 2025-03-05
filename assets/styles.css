@@ -220,7 +220,7 @@ svg path{
 .tooltip.avatar{
   left:10px;
   top:10px;
-  width:260px !important;
+  width:auto !important;
   height:auto;
   padding:0;
 }
