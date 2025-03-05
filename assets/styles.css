@@ -201,7 +201,7 @@ html {
 }
 
 /* Set initial transition properties */
-svg path {
+svg path, svg defs linearGradient {
   transition: fill .75s ease;  /* Transition for color change */
 }
 
