@@ -202,7 +202,7 @@ html {
 }
 
 /* On hover, remove the color override */
-.tool-icon.hovered .tool-base {
+.tool-icon.hovered svg .tool-base {
   fill: inherit !important; /* Revert to inline fill */
 }
 
