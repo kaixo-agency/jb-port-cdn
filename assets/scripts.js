@@ -320,11 +320,11 @@ $(document).ready(function () {
     // When hovering over .tool-icon, add the 'tooltip' class to .custom-cursor and hide the system cursor
     $(".tool-icon").on("mouseenter", function () {
         $(".custom-cursor").addClass("tooltip");
-        $(".custom-cursor").addClass("cursor-pointer");  // Ensure .cursor-pointer is also visible
+        $(".custom-cursor").addClass("cursor-carat");  // Ensure .cursor-pointer is also visible
         $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
         $(".custom-cursor").removeClass("tooltip");
-        $(".custom-cursor").removeClass("cursor-pointer");  // Remove .cursor-pointer
+        $(".custom-cursor").removeClass("cursor-carat");  // Remove .cursor-pointer
         $(this).css("cursor", "");  // Restore the default system cursor
     });
 });
