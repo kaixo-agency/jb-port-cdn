@@ -282,12 +282,6 @@ $(document).ready(function () {
     }).on("mouseleave", function () {
         $cursor.removeClass("cursor-white");
     });
-    // Change cursor to white when inside section_case-studies
-    $(".nav-dark").on("mouseenter", function () {
-        $cursor.addClass("cursor-white");
-    }).on("mouseleave", function () {
-        $cursor.removeClass("cursor-white");
-    });
 
     // Invert text color only inside .section_case-studies
     $(".section_case-studies a, .section_case-studies button").on("mouseenter", function () {
