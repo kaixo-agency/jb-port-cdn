@@ -238,6 +238,7 @@ $(document).ready(function () {
     // Handle hover interactions
     $("[cursor-label]").on("mouseenter", function () {
         var label = $(this).attr("cursor-label");
+        var caption = $(this).attr("cursor-caption");
         $cursorText.text(label);
         
         // Wait for text to update, then adjust cursor width dynamically
