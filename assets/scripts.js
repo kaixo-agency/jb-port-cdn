@@ -317,10 +317,12 @@ document.querySelectorAll(".tool-icon").forEach((icon) => {
 });
 
 $(document).ready(function () {
-    // When hovering over .tool-icon, add the 'tooltip' class to .custom-cursor
+    // When hovering over .tool-icon, add the 'tooltip' class to .custom-cursor and hide the system cursor
     $(".tool-icon").on("mouseenter", function () {
         $(".custom-cursor").addClass("tooltip");
+        $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
         $(".custom-cursor").removeClass("tooltip");
+        $(this).css("cursor", "");  // Restore the default system cursor
     });
 });
