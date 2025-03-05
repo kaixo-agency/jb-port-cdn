@@ -201,21 +201,20 @@ html {
 }
 
 /* Set initial transition properties */
-/* Set initial transition properties */
 svg path {
-  transition: fill 0.3s ease;  /* Transition for color change */
+    transition: fill 0.3s ease;  /* Transition for color change */
 }
 
 /* Define default fill colors for tool-base and tool-secondary */
 .tool-base {
-  fill: #7D7D7C;  /* Desaturated color */
+    fill: #7D7D7C;  /* Desaturated color */
 }
 
 .tool-secondary {
-  fill: #FAFAF9;  /* Desaturated color */
+    fill: #FAFAF9;  /* Desaturated color */
 }
 
 /* On hover, paths change color (to the inline color when the class is removed) */
 .tool-icon:hover svg path {
-  fill: inherit;  /* Use the inline fill color */
+    fill: inherit;  /* Use the inline fill color */
 }
