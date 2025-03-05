@@ -299,10 +299,10 @@ document.querySelectorAll(".tool-icon").forEach((link) => {
     });
 
     link.addEventListener("mouseleave", () => {
-        link.querySelectorAll(".tool-base").forEach((el) => {
+        link.querySelectorAll(".logo-embed svg .tool-base").forEach((el) => {
             el.setAttribute("fill", "#7D7D7C");
         });
-        link.querySelectorAll(".tool-secondary").forEach((el) => {
+        link.querySelectorAll(".logo-embed svg .tool-secondary").forEach((el) => {
             el.setAttribute("fill", "#FAFAF9");
         });
     });
