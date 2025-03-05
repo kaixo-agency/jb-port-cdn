@@ -202,5 +202,5 @@ html {
 /* Revert to inline fill attributes on hover */
 .tool-icon:hover svg .tool-base,
 .tool-icon:hover svg .tool-secondary {
-  fill: none !important;
+  fill: unset !important;
 }
