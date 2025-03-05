@@ -217,6 +217,10 @@ svg path{
   left:10px;
   top:10px;
 }
+.tooltip.avatar{
+  left:20px;
+  top:20px;
+}
 .cursor-carat{
   visibility: hidden;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)); /* Subtle drop shadow */
