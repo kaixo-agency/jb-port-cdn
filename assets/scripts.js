@@ -328,7 +328,7 @@ $(document).ready(function () {
         $(this).css("cursor", "");  // Restore the default system cursor
     });
 
-    // When hovering over .tool-icon, add the 'tooltip' class to .custom-cursor and hide the system cursor
+    // When hovering over .navbar logo, add the 'avatar' class to .custom-cursor and hide the system cursor
     $(".navbar3_logo-link").on("mouseenter", function () {
         $(".custom-cursor").addClass("tooltip avatar");
         $(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
