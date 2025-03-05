@@ -176,6 +176,7 @@ html {
   font-family: JetBrains Mono, sans-serif;
   font-size:12px !important;
   width:auto;
+  border:1px solid red;
 }
 
 .cursor-text-visible .cursor-text {
