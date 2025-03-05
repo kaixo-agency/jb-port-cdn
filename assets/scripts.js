@@ -300,7 +300,7 @@ document.querySelectorAll(".tool-icon").forEach((icon) => {
 
     icon.addEventListener("mouseleave", () => {
         // Remove 'hovered' class from the paths inside the SVG when mouse leaves
-        icon.querySelectorAll(".logo-embed .tool-base, .logo-embed .tool-secondary").forEach((el) => {
+        icon.querySelectorAll(".logo-embed svg .tool-base, .logo-embed svg .tool-secondary").forEach((el) => {
             el.classList.remove("hovered");
         });
     });
