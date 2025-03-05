@@ -107,6 +107,7 @@ html {
       width:4px;
       height:10px;
       opacity:.5;
+      border:3px solid var(--base-color-brand--slate-medium);
   }
     .w-slider-nav-invert > div {
       border:0 !important;
