@@ -220,6 +220,7 @@ svg path{
 .avatar{
   left:5px;
   top:5px;
+  padding:2px 20px 2px 2px;
 }
 
 .cursor-carat{
