@@ -346,10 +346,12 @@ $(document).ready(function () {
 
 document.querySelectorAll(".no-cursor").forEach(link => {
     link.addEventListener("mouseenter", () => {
+        document.body.style.cursor = "none"; // Hide the cursor
         console.log("Mouse entered the link");
     });
 
     link.addEventListener("mouseleave", () => {
+        document.body.style.cursor = ""; // Reset the cursor
         console.log("Mouse left the link");
     });
 });
