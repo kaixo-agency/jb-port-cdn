@@ -166,10 +166,10 @@ html {
 
 .custom-cursor-active .cursor-active-bg{
   background:yellow;
-  backface-visibility: hidden !important;
+  backface-visibility: hidden;
   width:100%;
   height:100%;
-  
+
 }
 
 
