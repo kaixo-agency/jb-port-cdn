@@ -202,19 +202,28 @@ html {
   transition: color 0.3s;
 }
 
-.cursor-hover:hover .button-label {
-  color: #fff; /* Change color of the text on hover */
+.cursor-hover::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: transparent;
+  pointer-events: none;
+  mix-blend-mode: difference; /* This inverts the color */
+  z-index: 999;
 }
 
-/* Ensure the text inside the circle is inverted and outside remains unchanged */
-.cursor-hover:hover .custom-cursor .cursor-bg {
-
-  filter: invert(1); /* Invert text under the cursor */
+.cursor-hover:hover::before {
+  background-color: transparent; /* Ensure the pseudo-element does not interfere with layout */
 }
 
-.cursor-hover .cursor-bg {
-  mix-blend-mode: normal; /* Keep text color outside the circle unaffected */
-}
+
+
+
+
 
 
 /* Cursor text */
