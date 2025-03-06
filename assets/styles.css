@@ -149,7 +149,7 @@ html {
   border-radius: 50%;
   filter: contrast(10);
   mix-blend-mode: darken; /* This will invert text within its area */
-  background: red; /* Ensure no background so only text is affected */
+  background: white; /* Ensure no background so only text is affected */
 
 }
 
