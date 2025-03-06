@@ -350,3 +350,28 @@ $(document).ready(function () {
     });
 });
 
+const cursor = document.querySelector('.custom-cursor');
+const link = document.querySelector('.my-link');
+
+document.addEventListener('mousemove', (e) => {
+  const cursorX = e.clientX;
+  const cursorY = e.clientY;
+
+  cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+
+  const linkRect = link.getBoundingClientRect();
+  const cursorRect = cursor.getBoundingClientRect();
+
+  const isOverlapping = !(
+    linkRect.right < cursorRect.left ||
+    linkRect.left > cursorRect.right ||
+    linkRect.bottom < cursorRect.top ||
+    linkRect.top > cursorRect.bottom
+  );
+
+  if (isOverlapping) {
+    link.style.color = 'white'; // Inverted color
+  } else {
+    link.style.color = 'black'; // Original color
+  }
+});
