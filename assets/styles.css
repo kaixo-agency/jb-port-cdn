@@ -55,9 +55,6 @@ html {
       text-decoration: none;
       position: relative; /* Ensure it's in the stacking context */
   }
-  .navbar3_link:hover{
-    color:black !important;
-  }
   .navbar3_link:hover .custom-cursor .cursor-bg {
     mix-blend-mode: difference; /* Invert the text on hover */
   }
