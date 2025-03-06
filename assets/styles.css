@@ -159,7 +159,7 @@ html {
   height: 34px !important;
   top: -17px;
   left: -17px;
-  filter:contrast(10);
+  filter:contrast(0);
   mix-blend-mode: difference;
 }
 
