@@ -189,13 +189,13 @@ a {
   display: inline-block;
 }
 
-/* Invert the text inside the circle */
-a:hover .button-label .custom-cursor .cursor-bg {
-  filter: invert(1); /* Only invert content inside the cursor */
+/* Hover state for the button's text */
+a:hover .button-label {
+  filter: invert(1); /* Invert text color inside button */
 }
 
 /* Maintain normal color for outside content */
-a:hover .button-label {
+a:hover {
   color: inherit; /* Keep original text color outside the cursor */
 }
 
