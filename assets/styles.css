@@ -150,7 +150,7 @@ html {
   z-index: 1001 !important;
   display:none !important;
   mix-blend-mode: lighten;
-  backface-visibility: hidden !important;
+  backface-visibility: visible !important;
 }
 
 .cursor-active-bg{
