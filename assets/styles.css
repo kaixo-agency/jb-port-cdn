@@ -148,6 +148,8 @@ html {
   mix-blend-mode: difference;
 }
 .custom-cursor .cursor-bg{
+  width:100%;
+  height:100%;
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 
