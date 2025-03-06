@@ -3,7 +3,7 @@ html {
     overflow-x: hidden;
     }
     a{
-      z-index:800 !important;
+      z-index:1200 !important;
     }
     a, .skill-pill{
     transition:all .5s linear;
