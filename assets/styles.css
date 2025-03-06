@@ -147,7 +147,7 @@ html {
 }
 
 .custom-cursor .cursor-active-bg{
-  background: var(--base-color-brand--slate-dark);
+  
   border-radius: 50%;
   position: absolute;
   will-change: transform;
@@ -178,6 +178,7 @@ html {
   will-change:transform;
   background:transparent !important;
   mix-blend-mode: darken;
+  background: var(--base-color-brand--slate-dark);
 }
 
 
