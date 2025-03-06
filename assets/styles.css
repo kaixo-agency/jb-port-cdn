@@ -178,11 +178,6 @@ html {
   opacity:.25;
 }
 
-.navbar3_link:hover{
-  cursor:none;
-  pointer-events: none;
-}
-
 
 /* Focus effect */
 .cursor-focus {
