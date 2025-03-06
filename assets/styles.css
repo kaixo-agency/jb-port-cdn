@@ -141,6 +141,7 @@ html {
   box-sizing: border-box;
   mix-blend-mode: normal;
   will-change: transform;
+  backface-visibility: hidden !important;
 }
 .custom-cursor-active{
   position: fixed;
