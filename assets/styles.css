@@ -52,6 +52,9 @@ html {
       text-decoration: none;
       position: relative; /* Ensure it's in the stacking context */
   }
+  .button-label{
+    mix-blend-mode: exclusion;
+  }
   .navbar3_link:hover{
     color:black !important;
   }
