@@ -159,7 +159,7 @@ html {
   transition: mix-blend-mode 0.1s ease;
 }
 
-/* Backface Cursor 
+/* Backface Cursor */
 .custom-cursor-backface {
   position: fixed;
   top: -12px;
@@ -168,7 +168,7 @@ html {
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 900; /* Backface cursor sits below the front cursor 
+  z-index: 900; /* Backface cursor sits below the front cursor */
 }
 
 .custom-cursor-backface .cursor-bg {
@@ -176,9 +176,9 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast 
+  background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
 }
-*/
+
 
 
 /* Cursor text */
