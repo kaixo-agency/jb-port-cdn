@@ -148,6 +148,7 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 1300;
+  mix-blend-mode: difference;
 }
 .custom-cursor .cursor-bg{
   width:100%;
