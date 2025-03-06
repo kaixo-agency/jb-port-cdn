@@ -348,14 +348,10 @@ $(document).ready(function () {
 
     // When hovering over .navbar item, add the 'down arrow' class to .custom-cursor and hide the system cursor
     $(".navbar3_link").on("mouseenter", function () {
-        $(".custom-cursor").addClass("avatar");
-        $(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
-        $(".cursor-avatar").css("visibility", "visible");  // Make the .cursor-avatar visible
+        $(".custom-cursor").addClass("down-arrow");
         $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
-        $(".custom-cursor").removeClass("avatar");
-        $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
-        $(".cursor-avatar").css("visibility", "hidden");  // Hide the .cursor-avatar again
+        $(".custom-cursor").removeClass("down-arrow");
         $(this).css("cursor", "");  // Restore the default system cursor
     });
 
