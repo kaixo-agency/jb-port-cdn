@@ -137,18 +137,26 @@ html {
  /* Trailing Cursor */
  .custom-cursor {
   position: fixed;
-  top: -12px;
-  left: -8px;
-  width: 6px;
-  height: 6px;
-  position: fixed;
-  border-radius: 50%;
+  top: -18px;
+  left: -18px;
+  display: block;
+  width: 120px;
+  height: 120px;
   pointer-events: none;
-  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
+  will-change: transform;
+  z-index: 998;
+  -webkit-transform: matrix(1, 0, 0, 1, -100, -100);
+  transform: matrix(1, 0, 0, 1, -100, -100);
+  opacity: 0;
   mix-blend-mode: difference;
-  background-color: var(--base-color-brand--slate-dark); /* Cursor background */
-}
 
+  transition: opacity 0.4s ease,
+    -webkit-transform 0.15s cubic-bezier(0, 0.89, 0.49, 0.92);
+  transition: transform 0.15s cubic-bezier(0, 0.89, 0.49, 0.92),
+    opacity 0.4s ease;
+  transition: transform 0.15s cubic-bezier(0, 0.89, 0.49, 0.92),
+    opacity 0.4s ease, -webkit-transform 0.15s cubic-bezier(0, 0.89, 0.49, 0.92);
+}
 
 
 /* Cursor text */
