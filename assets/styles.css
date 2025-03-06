@@ -138,7 +138,7 @@ html {
   white-space: nowrap;
   padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
-  
+  will-change: transform;
 }
 .custom-cursor-active .cursor-active-bg{
   position: fixed;
