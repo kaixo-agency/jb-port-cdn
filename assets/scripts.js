@@ -349,33 +349,7 @@ $(document).ready(function () {
         $(this).css("cursor", "");  // Restore the default system cursor
     });
 
-    var cursor = document.querySelector('.custom-cursor');
-var link = document.querySelector('a');
-
-document.addEventListener('mousemove', (e) => {
-    var cursorX = e.clientX;
-    var cursorY = e.clientY;
-
-  cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
-
-  var linkRect = link.getBoundingClientRect();
-  var cursorRect = cursor.getBoundingClientRect();
-
-  var isOverlapping = !(
-    linkRect.right < cursorRect.left ||
-    linkRect.left > cursorRect.right ||
-    linkRect.bottom < cursorRect.top ||
-    linkRect.top > cursorRect.bottom
-  );
-
-  if (isOverlapping) {
-    link.style.color = 'red'; // Inverted color
-    alert="yes";
-  } else {
-    link.style.color = 'black'; // Original color
     
-  }
-});
 });
 
 
