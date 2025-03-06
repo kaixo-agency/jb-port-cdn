@@ -145,6 +145,7 @@ html {
   will-change: transform;
   mix-blend-mode: difference;
   backface-visibility: hidden !important;
+  background:transparent;
 }
 
 .custom-cursor .cursor-active-bg{
