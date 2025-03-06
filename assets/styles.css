@@ -155,10 +155,11 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: transparent; /* No background, only text inversion */
-  mix-blend-mode: difference; /* Invert text colors */
+  background: transparent; /* No background */
   backface-visibility: hidden;
   pointer-events: none; /* Ensures it doesn't block hover events */
+  mix-blend-mode: difference; /* Use difference mode to invert the content */
+  transition: mix-blend-mode 0.1s ease;
 }
 
 /* Backface Cursor */
