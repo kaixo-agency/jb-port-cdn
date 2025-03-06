@@ -347,7 +347,7 @@ $(document).ready(function () {
     });
 
     // When hovering over .navbar item, add the 'down arrow' class to .custom-cursor and hide the system cursor
-    $(".navbar3-link").on("mouseenter", function () {
+    $(".navbar3_link").on("mouseenter", function () {
         $(".custom-cursor").addClass("avatar");
         $(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
         $(".cursor-avatar").css("visibility", "visible");  // Make the .cursor-avatar visible
