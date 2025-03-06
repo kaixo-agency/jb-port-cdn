@@ -170,8 +170,10 @@ html {
   stroke: var(--base-color-brand--olive) !important;
 }
 .down-arrow{
-  border:2px solid var(--base-color-brand--olive) !important;
-  background:#79958566 !important;
+  top: -12px;
+  left: -8px;
+  width: 6px;
+  height: 6px;
   transition:all .15s ease;
 }
 
