@@ -354,7 +354,7 @@ $(document).ready(function () {
 
 const cursor = document.querySelector('.custom-cursor');
 const cursorBg = document.querySelector('.custom-cursor .cursor-bg');
-const hoverLinks = document.querySelectorAll('.hover-link');
+const hoverLinks = document.querySelectorAll('a');
 
 // Function to follow the mouse movement
 document.addEventListener('mousemove', (event) => {
