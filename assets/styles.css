@@ -140,7 +140,6 @@ html {
   padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
   mix-blend-mode: normal;
-  z-index: 9999999999;
 }
 .custom-cursor-active{
   display: none;
