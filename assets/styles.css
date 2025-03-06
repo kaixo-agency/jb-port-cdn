@@ -140,6 +140,17 @@ html {
   box-sizing: border-box;
   will-change: transform;
 }
+
+.custom cursor .cursor-active-bg{
+  background: var(--base-color-brand--slate-dark);
+  border-radius: 50%;
+  position: absolute;
+  will-change: transform;
+  width: 100%;
+  backface-visibility: hidden;
+  height: 100%;
+}
+
 .custom-cursor-active .cursor-active-bg{
   position: fixed;
   top: -12px;
@@ -152,17 +163,7 @@ html {
   backface-visibility: visible !important;
 }
 
-.custom cursor .cursor-active-bg{
-  filter: contrast(10) !important;
-  background: var(--base-color-brand--slate-dark);
-  border-radius: 50%;
-  position: absolute;
-  will-change: transform;
-  width: 100%;
-  height: 100%;
-  
-  
-}
+
 /* Cursor text */
 .custom-cursor .cursor-text {
   font-size: 14px;
