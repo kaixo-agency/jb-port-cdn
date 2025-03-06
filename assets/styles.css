@@ -150,7 +150,7 @@ html {
   width: 100%;
   backface-visibility: hidden;
   height: 100%;
-  mix-blend-mode: lighten;
+  mix-blend-mode: darken;
 }
 
 .custom-cursor-active{
