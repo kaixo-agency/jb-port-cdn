@@ -147,7 +147,7 @@ html {
   width: 6px;
   height: 6px;
   filter: contrast(10) !important;
-  mix-blend-mode: lighten !important;
+  mix-blend-mode:difference !important;
   z-index: 1001 !important;
   display:none !important;
   
