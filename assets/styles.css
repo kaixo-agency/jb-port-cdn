@@ -135,7 +135,6 @@ html {
   border-radius: 50%;
   pointer-events: none;
   transition: transform 0.05s linear, background-color 0.3s ease, width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
-  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,7 +142,7 @@ html {
   padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
   will-change: transform;
-  mix-blend-mode: normal;
+
   backface-visibility: hidden !important;
   background:transparent;
 }
@@ -156,7 +155,7 @@ html {
   will-change:transform;
   border-radius:50%;
   filter:contrast(10);
-  mix-blend-mode:darken;
+  mix-blend-mode:lighten;
   z-index: 9999;
 }
 
