@@ -196,7 +196,6 @@ html {
 
 .cursor-hover:hover .button-label {
   color: #fff;
-  z-index: 1000; /* Ensure the text remains above the circle */
 }
 
 /* Invert text inside the cursor area */
