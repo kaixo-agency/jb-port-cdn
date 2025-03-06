@@ -298,7 +298,12 @@ $(document).ready(function () {
 
 });
 
-
+document.addEventListener("mousemove", (e) => {
+    document.documentElement.style.setProperty("--cursor-x", `${e.clientX}px`);
+    document.documentElement.style.setProperty("--cursor-y", `${e.clientY}px`);
+    document.querySelector(".button-label::before").style.clipPath = `circle(25px at ${e.clientX}px ${e.clientY}px)`;
+  });
+  
 
 
 document.querySelectorAll(".tool-icon").forEach((icon) => {
