@@ -134,28 +134,15 @@ html {
  /* Trailing Cursor */
 .custom-cursor {
   position: fixed;
-  top: -12px;
-  left: -8px;
-  width: 6px;
-  height: 6px;
+  top: 0;
+  left: 0;
+  width: 40px; /* Adjust as needed */
+  height: 40px;
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1300;
-}
-
-.custom-cursor .cursor-bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  background: transparent; /* Make background transparent */
-  mix-blend-mode: exclusion; /* Only apply blending to the cursor */
-  z-index: 999; /* Ensure it's above the background, but not affecting text */
+  background: black; /* Solid color to act as a mask */
+  mix-blend-mode: difference; /* Inverts only where cursor overlaps */
+  z-index: 9999;
 }
 
 /* Backface Cursor */
@@ -178,38 +165,29 @@ html {
   border-radius: 50%;
   background-color: var(--base-color-brand--slate-dark) !important;
 }
-
-/* Ensuring Link Text Blends Correctly */
-a {
+/* Normal button label */
+.button-label {
   position: relative;
-  display: inline-block;
+  color: black; /* Default text color */
 }
 
-a .button-label {
-  display: inline-block;
-  position: relative;
-  z-index: 9998;
-  transition: color 0.3s;
-}
-
-/* Blend Text Only Inside Cursor */
-a .button-label::before {
+/* Duplicate the text and make it white */
+.button-label::before {
   content: attr(data-text); /* Duplicate text */
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  color: #fff; /* Inverted text color */
-  mix-blend-mode: exclusion;
+  color: white; /* White text to be revealed */
   pointer-events: none;
-  z-index: 9999;
-  opacity: 1;
+  z-index: -1; /* Place behind original text */
 }
 
-/* Ensure Normal Text Outside Cursor */
-a:hover .button-label {
-  color: inherit; /* Keep original color outside cursor */
+/* Reveal only inside cursor */
+.custom-cursor + .button-label::before {
+  visibility: visible;
+  mix-blend-mode: normal; /* Make sure the text is visible through cursor */
 }
 
 
