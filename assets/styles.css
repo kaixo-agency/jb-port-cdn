@@ -153,7 +153,7 @@ html {
   will-change:transform;
   border-radius:50%;
   z-index: 9999;
-  filter:contrast(1);
+  filter:contrast(10);
   mix-blend-mode:difference;
 }
 
