@@ -140,7 +140,7 @@ html {
   justify-content: center;
   white-space: nowrap;
   z-index: 9999;
-  opacity:.5;
+  
 }
 
 .custom-cursor .cursor-bg {
@@ -149,7 +149,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: yellow; /* Ensure no background so only text is affected */
-  
+  opacity:.5;
 
 }
 
