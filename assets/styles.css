@@ -162,7 +162,7 @@ html {
   top: -12px;
   left: -8px;  
   z-index: 1001;
-  mix-blend-mode: darken;
+  mix-blend-mode: lighten;
   will-change: transform;
   border-radius: 50%;
 }
