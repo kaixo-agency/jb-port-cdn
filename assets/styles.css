@@ -142,9 +142,7 @@ html {
   padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
   will-change: transform;
-
   backface-visibility: hidden !important;
-  background:transparent;
 }
 
 .custom-cursor .cursor-bg{
