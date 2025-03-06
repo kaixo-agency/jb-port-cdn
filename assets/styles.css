@@ -152,7 +152,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: transparent; /* No background so only text is affected */
-  mix-blend-mode:hard-light;
+  mix-blend-mode:lighten;
 }
 
 
