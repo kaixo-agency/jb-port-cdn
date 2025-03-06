@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Trailing Cursor
 
 $(document).ready(function () {
-    var $cursor = $(".custom-cursor, .custom-cursor-active"),
+    var $cursor = $(".custom-cursor"),
         $cursorText = $(".cursor-text"),
         mouseX = 0, mouseY = 0,
         cursorX = 0, cursorY = 0,
