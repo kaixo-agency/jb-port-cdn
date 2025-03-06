@@ -152,7 +152,7 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: transparent;
+  background: fff;
   pointer-events: none;
   mix-blend-mode: difference;
 }
