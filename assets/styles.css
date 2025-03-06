@@ -174,7 +174,7 @@ html {
 }
 .page-wrapper::before {
   position: fixed;
-  background: var(--base-color-brand--slate-dark) !important;
+  background: #000;
   mix-blend-mode: difference;
   content: "";
   top: 0;
