@@ -50,7 +50,6 @@ html {
 
   .navbar3_link{
       text-decoration: none;
-      z-index:8000 !important;
   }
     
   /* Set up the parent button */
