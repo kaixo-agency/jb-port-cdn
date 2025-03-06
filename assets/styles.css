@@ -140,7 +140,7 @@ html {
       border:0 !important;
   }
     
- /* Trailing Cursor */
+ //* Trailing Cursor */
 .custom-cursor {
   position: fixed;
   top: -12px;
@@ -154,18 +154,18 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 1300;
-  overflow: hidden; /* Hide anything outside of the circle */
+  mask: radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 10%); /* Mask for circular cursor */
+  -webkit-mask: radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 10%); /* Webkit support */
 }
 
+/* Circle Background */
 .custom-cursor .cursor-bg {
   width: 100%;
   height: 100%;
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  background: transparent; /* Make background transparent to affect only the text */
-  mix-blend-mode: difference; /* This will invert colors */
-  z-index: 9999; /* Make sure it sits above the text */
+  background: transparent; /* Transparent background */
 }
 
 /* Backface Cursor */
@@ -186,41 +186,23 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background-color: var(--base-color-brand--slate-dark) !important;
+  background-color: var(--base-color-brand--slate-dark) !important; /* Dark background */
 }
 
-/* Hover Effects for Links */
-.cursor-hover{
+/* Invert Text inside the Cursor Circle */
+a {
   position: relative;
   display: inline-block;
 }
 
-.cursor-hover:hover .button-label {
-  color: #fff;
-}
-
-/* Invert text inside the cursor area */
-.cursor-hover::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: transparent;
-  pointer-events: none;
-  mix-blend-mode: difference; /* This inverts the color */
-  z-index: 999;
-}
-
-.cursor-hover:hover::before {
-  background-color: transparent; /* Ensure the pseudo-element does not interfere with layout */
-}
-
-/* Applying text effect only within the circle */
+/* Invert the text inside the circle */
 a:hover .custom-cursor .cursor-bg {
-  filter: invert(1); /* Invert only within the circle */
+  filter: invert(1); /* Only invert content inside the cursor */
+}
+
+/* Maintain normal color for outside content */
+a:hover {
+  color: inherit; /* Keep original text color outside the cursor */
 }
 
 
