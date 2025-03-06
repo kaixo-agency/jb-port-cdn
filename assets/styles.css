@@ -141,7 +141,6 @@ html {
   justify-content: center;
   white-space: nowrap;
   z-index: 9999 !important;
-  mix-blend-mode: difference;;
 }
 
 .custom-cursor .cursor-bg {
