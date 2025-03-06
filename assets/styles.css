@@ -143,41 +143,6 @@ html {
   background: var(--base-color-brand--slate-dark);
 }
 
-.custom-cursor .cursor-active-bg{
-  background:transparent !important;
-  border-radius: 50%;
-  position: absolute;
-  will-change: transform;
-  width: 100%;
-  backface-visibility: hidden;
-  height: 100%;
-  mix-blend-mode: lighten;
-}
-
-.custom-cursor-active{
-  display:none;
-  filter:contrast(10);
-  width: 6px;
-  height: 6px;
-  position: fixed;
-  top: -12px;
-  left: -8px;  
-  z-index: 1001;
-  
-  will-change: transform;
-  border-radius: 50%;
-}
-
-.custom-cursor-active .cursor-active-bg{
-  backface-visibility: hidden !important;
-  width:100%;
-  height:100%;
-  position:absolute;
-  will-change:transform;
-  background:transparent !important;
-  mix-blend-mode: darken;
-  background: var(--base-color-brand--slate-dark);
-}
 
 
 /* Cursor text */
