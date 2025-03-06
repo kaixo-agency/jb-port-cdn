@@ -163,8 +163,9 @@ html {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  background: transparent; /* Make background transparent */
-  z-index: 9999;
+  background: transparent; /* Make background transparent to affect only the text */
+  mix-blend-mode: difference; /* This will invert colors */
+  z-index: 9999; /* Make sure it sits above the text */
 }
 
 /* Backface Cursor */
