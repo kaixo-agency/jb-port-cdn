@@ -150,6 +150,7 @@ html {
   filter: contrast(1);
   mix-blend-mode: lighten; /* This will invert text within its area */
   background: yellow; /* Ensure no background so only text is affected */
+  opacity:.5;
 
 }
 
