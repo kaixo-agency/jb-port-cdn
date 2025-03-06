@@ -154,6 +154,7 @@ html {
   background: transparent; /* Background color to contrast */
    mix-blend-mode: difference;
    backface-visibility: hidden;
+   pointer-events: none;
 }
 
 
