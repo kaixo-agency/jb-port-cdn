@@ -155,7 +155,6 @@ html {
   position: absolute;
   border-radius: 50%;
   background: transparent; /* Background color to contrast */
-   backface-visibility: hidden;
    filter:invert(1);
 }
 
