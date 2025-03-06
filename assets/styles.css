@@ -154,6 +154,7 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 1300;
+  overflow: hidden; /* Hide everything outside the circle */
 }
 
 .custom-cursor .cursor-bg {
@@ -162,8 +163,9 @@ html {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  background: transparent;
-  mix-blend-mode: exclusion; /* Only affect the text within the cursor */
+  background: transparent; /* Make background transparent */
+  z-index: 9999;
+  mix-blend-mode: exclusion; /* Invert text only inside cursor's area */
 }
 
 /* Backface Cursor */
