@@ -160,6 +160,7 @@ html {
   z-index: 9995;
   will-change: transform;
   border-radius: 50%;
+  background: var(--base-color-brand--slate-dark);
 }
 
 .custom-cursor-active .cursor-active-bg{
