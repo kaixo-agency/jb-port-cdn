@@ -218,6 +218,15 @@ html {
   background-color: transparent; /* Ensure the pseudo-element does not interfere with layout */
 }
 
+/* Text inversion effect inside the cursor */
+a:hover {
+  filter: invert(1); /* Invert text color on hover */
+}
+
+/* Applying text effect only within the circle */
+a:hover .custom-cursor .cursor-bg {
+  filter: invert(1); /* Invert only within the circle */
+}
 
 
 
