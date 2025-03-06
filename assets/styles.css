@@ -134,81 +134,34 @@ html {
  /* Trailing Cursor */
 .custom-cursor {
   position: fixed;
-  top: -12px;
-  left: -8px;
-  width: 6px;
-  height: 6px;
+  top: 0;
+  left: 0;
+  width: 80px; /* Adjust based on desired cursor size */
+  height: 80px;
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s linear;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1300;
+  mix-blend-mode: difference; /* Apply color inversion */
+  background: white; /* The color that will cause the inversion */
 }
 
-/* Cursor Background to Create Inversion Effect */
-.custom-cursor .cursor-bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  background: transparent;
-  mix-blend-mode: difference; /* Switch to 'difference' for a better inversion effect */
-  z-index: 999;
-}
-
-/* Backface Cursor */
-.custom-cursor-backface {
-  position: fixed;
-  top: -12px;
-  left: -8px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 900;
-  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
-}
-
-.custom-cursor-backface .cursor-bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border-radius: 50%;
-  background-color: var(--base-color-brand--slate-dark) !important;
-}
-
-/* Ensure Button Label Text is Normally Visible */
-a .button-label {
-  display: inline-block;
+/* Make sure button text is normally visible */
+.button-label {
   position: relative;
-  z-index: 9998;
+  display: inline-block;
   transition: color 0.3s;
-  color: var(--button-text-color); /* Keep the normal color */
 }
 
-/* Create an Inversion Effect Inside the Cursor Circle */
-a .button-label::before {
-  content: attr(data-text); /* Duplicate text */
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  color: white; /* This will be the inverted color */
-  mix-blend-mode: difference; /* Ensure it inverts properly */
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 1;
-  clip-path: circle(10px at var(--cursor-x) var(--cursor-y)); /* Make the effect appear only inside the cursor */
+/* Invert text only when under the cursor */
+.button-label.invert {
+  color: white !important; /* Inverted effect */
 }
 
-/* Keep Normal Color Outside Cursor */
-a:hover .button-label {
-  color: inherit;
-}
 
 
 
