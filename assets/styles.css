@@ -155,7 +155,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: transparent; /* Background color to contrast */
-   mix-blend-mode: lighten;
+   mix-blend-mode: screen;
    backface-visibility: hidden;
    filter: brightness(10);
 }
