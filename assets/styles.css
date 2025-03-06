@@ -141,8 +141,6 @@ html {
   mix-blend-mode: normal;
   will-change: transform;
   
-  backface-visibility: visible !important;
-  
 }
 .custom-cursor-active{
   position: fixed;
