@@ -176,6 +176,7 @@ html {
   position:absolute;
   will-change:transform;
   border-radius:50%;
+  backface-visibility: hidden;
   
 }
 
