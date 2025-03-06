@@ -199,7 +199,7 @@ a:hover .button-label {
 /* Make the cursor background blend with the text when hovering */
 a:hover .custom-cursor .cursor-bg {
   background: transparent; /* Keep background transparent */
-  mix-blend-mode: exclusion; /* Only invert the text inside the cursor */
+  mix-blend-mode: difference; /* Only invert the text inside the cursor */
 }
 
 a .button-label .cursor-bg {
