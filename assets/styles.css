@@ -145,6 +145,7 @@ html {
   white-space: nowrap;
   z-index: 1300 !important;
   mix-blend-mode: normal;
+  will-change: transform;
 }
 
 .custom-cursor .cursor-bg {
