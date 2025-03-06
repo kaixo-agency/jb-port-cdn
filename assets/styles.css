@@ -146,6 +146,7 @@ html {
   mix-blend-mode: darken !important;
   will-change: transform !important;
   z-index: 1001 !important;
+  display:none !important'
 }
 
 
