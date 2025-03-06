@@ -191,7 +191,7 @@ a {
 
 /* Invert the text inside the circle */
 a:hover .custom-cursor .cursor-bg {
-  filter: invert(0); /* Only invert content inside the cursor */
+  mix-blend-mode: difference;
 }
 
 /* Maintain normal color for outside content */
