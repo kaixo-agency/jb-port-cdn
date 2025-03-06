@@ -193,8 +193,8 @@ html {
 .cursor-scale {
   width: 48px !important;
   height: 48px !important;
-  top: -17px;
-  left: -17px;
+  top: -22px;
+  left: -2px;
 }
 
 /* Focus effect */
