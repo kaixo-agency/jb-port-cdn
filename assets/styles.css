@@ -143,11 +143,10 @@ html {
   padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
   will-change: transform;
-  mix-blend-mode: normal;
+  mix-blend-mode: difference;
 }
 
 .custom-cursor .cursor-active-bg{
-  
   border-radius: 50%;
   position: absolute;
   will-change: transform;
