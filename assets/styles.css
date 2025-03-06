@@ -196,6 +196,29 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 
+/* Hover Effects for Links */
+.cursor-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.cursor-hover .button-label {
+  display: inline-block;
+  position: relative;
+  z-index: 9998;
+  transition: color 0.3s;
+}
+
+.cursor-hover:hover .button-label {
+  color: #fff; /* Change color of the text on hover */
+}
+
+.cursor-hover:hover .custom-cursor .cursor-bg {
+  mix-blend-mode: difference; /* Invert the text on hover */
+}
+
+
+
 
 /* Cursor text */
 .custom-cursor .cursor-text {
