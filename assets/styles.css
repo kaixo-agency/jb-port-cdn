@@ -141,7 +141,8 @@ html {
   box-sizing: border-box;
   mix-blend-mode: normal;
   will-change: transform;
-  backface-visibility: hidden !important;
+  
+  backface-visibility: visible !important;
   
 }
 .custom-cursor-active{
@@ -150,11 +151,11 @@ html {
   left: -8px;
   width: 6px;
   height: 6px;
-  filter: contrast(10) !important;
-  mix-blend-mode: darken !important;
+  filter: contrast(0) !important;
+  mix-blend-mode: lighten !important;
   z-index: 1001 !important;
   display:none !important;
-  backface-visibility: visible !important;
+  backface-visibility: hidden !important;
 }
 .cursor-active-bg{
   backface-visibility: hidden !important;
