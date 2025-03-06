@@ -168,7 +168,7 @@ html {
 }
 
 .custom-cursor-active .cursor-active-bg{
-  backface-visibility: visible !important;
+  backface-visibility: hidden !important;
   width:100%;
   height:100%;
   position:absolute;
