@@ -393,6 +393,7 @@ document.addEventListener('mousemove', function(e) {
     var originalBgColor = getComputedStyle(link).getPropertyValue('--original-bg-color') || 'white';
     link.style.color = invertColor(originalTextColor);
     link.style.backgroundColor = invertColor(originalBgColor);
+    alert('Hover Detected!'); // Added alert here
   } else {
     var originalTextColor = getComputedStyle(link).getPropertyValue('--original-text-color') || 'black';
     var originalBgColor = getComputedStyle(link).getPropertyValue('--original-bg-color') || 'white';
