@@ -132,7 +132,7 @@ html {
   }
     
  /* Trailing Cursor */
- .custom-cursor {
+.custom-cursor {
   position: fixed;
   top: -12px;
   left: -8px;
@@ -144,7 +144,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1300;
+  z-index: 1300; /* Above links */
 }
 
 .custom-cursor .cursor-bg {
@@ -152,10 +152,14 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
+  background: white; /* Solid color for difference blending */
+  backface-visibility: hidden;
   pointer-events: none;
-  mix-blend-mode:exclusion;
+  opacity: 1;
+  mix-blend-mode: difference; /* Inverts colors of elements below */
 }
 
+/* Backface Cursor */
 .custom-cursor-backface {
   position: fixed;
   top: -12px;
@@ -164,7 +168,7 @@ html {
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 900;
+  z-index: 900; /* Below links */
   transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
 }
 
@@ -173,7 +177,16 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background-color: var(--base-color-brand--slate-dark) !important;
+  background: red; /* Background contrast color */
+}
+
+/* Link Hover Effect */
+a:hover ~ .custom-cursor,
+a:hover ~ .custom-cursor-backface {
+  width: 40px; /* Enlarge cursors on hover */
+  height: 40px;
+  top: -20px; /* Adjust position to center over text */
+  left: -20px;
 }
 
 
