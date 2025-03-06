@@ -201,13 +201,14 @@ html {
 }
 
 .cursor-hover:hover .button-label {
-  color: #000; /* Change color of the text on hover */
+  color: #fff; /* Change color of the text on hover */
 }
 
 /* Ensure the text inside the circle is inverted and outside remains unchanged */
 .cursor-hover:hover .custom-cursor .cursor-bg {
+
   background: transparent; /* Keep background transparent */
-  mix-blend-mode: difference; /* Invert text inside the cursor area */
+  mix-blend-mode: exclusion; /* Invert text inside the cursor area */
 }
 
 .cursor-hover .cursor-bg {
