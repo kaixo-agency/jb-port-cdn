@@ -167,10 +167,10 @@ html {
 
 /* Scale effect */
 .cursor-scale {
-  width: 62px !important;
-  height: 62px !important;
-  top: -31px;
-  left: -31px;
+  width: 78px !important;
+  height: 78px !important;
+  top: -39px;
+  left: -39px;
   background:transparent;
   pointer-events: none;
   cursor:none;
