@@ -163,7 +163,7 @@ html {
 .page-wrapper::before {
   position: fixed;
   background: #000;
-  mix-blend-mode: lighten;
+  mix-blend-mode: difference;
   content: "";
   top: 0;
   left: 0;
