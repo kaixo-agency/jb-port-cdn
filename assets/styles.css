@@ -146,6 +146,7 @@ html {
   z-index: 1300 !important;
   mix-blend-mode: normal;
   will-change: transform;
+  pointer-events: none;
 }
 
 .custom-cursor .cursor-bg {
@@ -156,7 +157,7 @@ html {
   background: transparent; /* Background color to contrast */
    mix-blend-mode: difference;
    backface-visibility: hidden;
-   pointer-events: none;
+   
 }
 
 
