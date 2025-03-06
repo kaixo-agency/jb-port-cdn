@@ -174,7 +174,7 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-   background: #121d2900; /* Background color to contrast */
+   background: #121d290f; /* Background color to contrast */
    mix-blend-mode: difference;
   /*background:red;*/
   
