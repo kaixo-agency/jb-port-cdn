@@ -152,7 +152,7 @@ html {
   height: 100%;
   transform: translate3d(-50%, -50%, 0);
     transform-origin: 50% 50%;
-    display: none;
+    
 }
 
 .custom-cursor-active{
@@ -178,6 +178,7 @@ html {
   will-change:transform;
   transform: translate3d(-50%, -50%, 0);
     transform-origin: 50% 50%;
+    display: none;
 }
 
 
