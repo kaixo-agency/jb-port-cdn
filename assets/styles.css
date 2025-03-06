@@ -148,15 +148,6 @@ html {
   background:transparent;
 }
 
-.custom-cursor .cursor-active-bg{
-  border-radius: 50%;
-  position: absolute;
-  will-change: transform;
-  width: 100%;
-  backface-visibility: hidden;
-  height: 100%;
-  mix-blend-mode: difference;
-}
 
 .custom-cursor-active{
   display:none;
