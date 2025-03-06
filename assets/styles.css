@@ -162,6 +162,7 @@ html {
   z-index: 1001;
   mix-blend-mode: darken;
   will-change: transform;
+  border-radius: 50%;
 }
 
 .custom-cursor-active .cursor-active-bg{
