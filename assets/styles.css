@@ -161,7 +161,8 @@ html {
   background: transparent; /* No background, only text inversion */
   backface-visibility: hidden;
   pointer-events: none; /* Ensures it doesn't block hover events */
-  transition: filter 0.1s ease;
+  mix-blend-mode: difference; /* Use difference mode to invert the content */
+  transition: mix-blend-mode 0.1s ease;
 }
 
 /* Backface Cursor */
