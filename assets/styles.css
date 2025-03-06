@@ -143,6 +143,7 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 1300; /* Ensure it's above the links */
+  filter:invert(1);
 }
 
 .custom-cursor .cursor-bg {
@@ -154,7 +155,7 @@ html {
   backface-visibility: hidden;
   pointer-events: none; /* Ensures it doesn't block hover events */
   opacity:1;
-  filter:invert(1);
+  
 }
 
 /* Backface Cursor */
