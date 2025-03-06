@@ -350,19 +350,19 @@ $(document).ready(function () {
     });
 });
 
-const cursor = document.querySelector('.custom-cursor');
-const link = document.querySelector('.a');
+var cursor = document.querySelector('.custom-cursor');
+var link = document.querySelector('a');
 
 document.addEventListener('mousemove', (e) => {
-  const cursorX = e.clientX;
-  const cursorY = e.clientY;
+    var cursorX = e.clientX;
+    var cursorY = e.clientY;
 
   cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
 
-  const linkRect = link.getBoundingClientRect();
-  const cursorRect = cursor.getBoundingClientRect();
+  var linkRect = link.getBoundingClientRect();
+  var cursorRect = cursor.getBoundingClientRect();
 
-  const isOverlapping = !(
+  var isOverlapping = !(
     linkRect.right < cursorRect.left ||
     linkRect.left > cursorRect.right ||
     linkRect.bottom < cursorRect.top ||
