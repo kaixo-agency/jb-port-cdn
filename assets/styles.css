@@ -173,8 +173,6 @@ html {
   height:100%;
   position:absolute;
   will-change:transform;
-  transform: translate3d(-50%, -50%, 0);
-    transform-origin: 50% 50%;
 }
 
 
