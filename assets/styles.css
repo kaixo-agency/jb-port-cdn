@@ -135,6 +135,32 @@ html {
   }
     
  /* Trailing Cursor */
+ .custom-cursor {
+  position: fixed;
+  display:block;
+  top: -12px;
+  left: -8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1300;
+
+}
+.custom-cursor .cursor-bg{
+  width:100%;
+  height:100%;
+  will-change: transform;
+  background-color: var(--base-color-brand--slate-dark) !important;
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  mix-blend-mode: difference;
+}
 
 
 
@@ -150,6 +176,7 @@ html {
   pointer-events: none;
   will-change: transform;
   z-index: 1300;
+  transform: matrix(1, 0, 0, 1, -100, -100);
   opacity: 0;
   transition: transform 0.15s cubic-bezier(0, 0.89, 0.49, 0.92),
               opacity 0.4s ease;
@@ -162,25 +189,33 @@ html {
   background: var(--base-color-brand--slate-dark);
 }
 
-/* Button Label */
-.button-label {
-  position: relative;
-  color: ar(--base-color-brand--grey-medium); /* Default text color */
-  z-index: 1000;
+
+
+
+
+
+.custom-cursor.custom-cursor-active .cursor-bg {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
 }
 
-/* Masked Duplicate */
-.button-label::before {
-  content: attr(data-text); /* Duplicate text */
-  position: absolute;
+
+.page-wrapper {
+  background: #fff;
+  min-height: 100vh;
+}
+.page-wrapper::before {
+  position: fixed;
+  background: #000;
+  mix-blend-mode: difference;
+  content: "";
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  color: white; /* White text revealed inside cursor */
+  right: 0;
+  bottom: 0;
+  z-index: 999;
   pointer-events: none;
-  clip-path: circle(50px at var(--cursor-x) var(--cursor-y)); /* Reveal only under cursor */
-  z-index: 1301; /* Above original text */
 }
 
 /* Cursor text */
