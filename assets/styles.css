@@ -158,7 +158,7 @@ html {
 }
 .cursor-active-bg{
   backface-visibility: hidden !important;
-    background: #ffe800 !important;
+    background: var(--base-color-brand--olive;
     will-change: transform;
     border-radius: 50%;
     position: absolute;
