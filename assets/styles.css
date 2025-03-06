@@ -219,7 +219,7 @@ html {
 }
 
 /* Text inversion effect inside the cursor */
-a:hover {
+.button-label:hover {
   filter: invert(1); /* Invert text color on hover */
 }
 
