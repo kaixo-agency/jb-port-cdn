@@ -147,7 +147,7 @@ html {
   mix-blend-mode: darken;
   will-change: transform;
   z-index: 1001;
-  background:red !important;
+  background-color:red !important;
 }
 
 
