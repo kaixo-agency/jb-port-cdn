@@ -139,11 +139,19 @@ html {
   padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
   will-change: transform;
-  mix-blend-mode:soft-light;
+  mix-blend-mode: darken;
   background: var(--base-color-brand--slate-dark);
 }
 
-
+.custom-cursor .cursor-active-bg{
+  background: yellow;
+  border-radius: 50%;
+  position: absolute;
+  will-change: transform;
+  width: 100%;
+  backface-visibility: hidden;
+  height: 100%;
+}
 
 .custom-cursor-active{
   display:none;
