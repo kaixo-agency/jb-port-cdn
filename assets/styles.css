@@ -142,7 +142,7 @@ html {
   mix-blend-mode: normal;
 }
 
-.custom cursor .cursor-active-bg{
+.custom-cursor .cursor-active-bg{
   background: var(--base-color-brand--slate-dark);
   border-radius: 50%;
   position: absolute;
