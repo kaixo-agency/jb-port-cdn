@@ -142,8 +142,7 @@ html {
   mix-blend-mode: normal;
 }
 .custom-cursor-active{
-  display: none;
-  filter: contrast(0);
+  filter: contrast(10);
   mix-blend-mode: lighten;
   will-change: transform;
   z-index: 1001;
