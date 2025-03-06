@@ -130,7 +130,7 @@ html {
   }
     
  /* Trailing Cursor */
-.custom-cursor {
+ .custom-cursor {
   position: fixed;
   top: -12px;
   left: -8px;
@@ -142,7 +142,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1300; /* Ensure it's above the links */
+  z-index: 1300;
 }
 
 .custom-cursor .cursor-bg {
@@ -150,13 +150,10 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: #fff;
-  backface-visibility: hidden;
-  pointer-events: none; /* Ensures it doesn't block hover events */
-  filter:invert(1);
+  background: white;
+  pointer-events: none;
 }
 
-/* Backface Cursor */
 .custom-cursor-backface {
   position: fixed;
   top: -12px;
@@ -165,7 +162,7 @@ html {
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 900; /* Backface cursor sits below the front cursor */
+  z-index: 900;
   transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
 }
 
@@ -174,10 +171,8 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background:red;
-  /*background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
+  background: red;
 }
-
 
 
 /* Cursor text */
