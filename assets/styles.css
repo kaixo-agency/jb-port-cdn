@@ -149,7 +149,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: yellow; /* Ensure no background so only text is affected */
-  opacity:.5;
+  opacity:.25;
   
 
 }
