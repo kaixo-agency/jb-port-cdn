@@ -150,7 +150,7 @@ html {
   left: -8px;
   width: 6px;
   height: 6px;
-  filter: contrast(0) !important;
+  filter: contrast(10) !important;
   mix-blend-mode: lighten !important;
   z-index: 1001 !important;
   display:none !important;
