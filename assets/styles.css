@@ -203,6 +203,7 @@ html {
 }
 
 .cursor-hover:hover .custom-cursor .cursor-bg {
+  background: transparent; /* Keep background transparent */
   mix-blend-mode: difference; /* Invert the text on hover */
 }
 
