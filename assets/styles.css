@@ -167,7 +167,7 @@ html {
   border-radius: 50%;
   pointer-events: none;
   transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
-  z-index: 1900 !important;
+  z-index: 900 !important;
 }
 
 .custom-cursor-backface .cursor-bg {
