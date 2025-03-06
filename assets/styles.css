@@ -140,7 +140,6 @@ html {
   box-sizing: border-box;
   will-change: transform;
   mix-blend-mode: darken;
-  background: var(--base-color-brand--slate-dark);
 }
 
 .custom-cursor .cursor-active-bg{
