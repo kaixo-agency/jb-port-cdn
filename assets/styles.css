@@ -195,7 +195,7 @@ a:hover .button-label .custom-cursor .cursor-bg {
 }
 
 /* Maintain normal color for outside content */
-a:hover {
+a:hover .button-label {
   color: inherit; /* Keep original text color outside the cursor */
 }
 
