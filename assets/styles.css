@@ -161,7 +161,7 @@ html {
   height: 6px;
   filter:contrast(10);
   z-index: 1001;
-  mix-blend-mode: lighten;
+  mix-blend-mode: darken;
   will-change: transform;
   border-radius: 50%;
 }
