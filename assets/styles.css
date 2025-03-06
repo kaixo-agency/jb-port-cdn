@@ -146,20 +146,6 @@ html {
   mask: radial-gradient(circle, rgba(255, 255, 255, 1) 30%, rgba(0, 0, 0, 0) 100%); /* Mask for the circle */
 }
 
-.custom-cursor:hover .button-label::before {
-  content: attr(data-text); /* Duplicate text */
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  color: white; /* White duplicate text */
-  z-index: 1300; /* Above normal text */
-  pointer-events: none;
-  mix-blend-mode: difference; /* Creates the inversion effect */
-}
-
-
 /* Button label, with white text and positioned relative */
 .button-label {
   position: relative;
