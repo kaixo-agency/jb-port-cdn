@@ -34,7 +34,7 @@ html {
   .cursor[style*="animation: none"] {
     animation: none !important;
   }
-  .navbar3_container.nav-wrapper{
+  .navbar3_container,  .navbar3_container.nav-wrapper{
     z-index:1000 !important;
   }
     .navbar3_component {
