@@ -4,6 +4,7 @@ html {
     }
     a{
       z-index:1200 !important;
+      isolation: isolate !important;  /* Keeps blend mode inside this context */
     }
     a, .skill-pill{
     transition:all .5s linear;
