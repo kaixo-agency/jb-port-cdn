@@ -180,7 +180,7 @@ html {
 
 .navbar3_link:hover .cursor-scale{
   cursor:none;
-  background-color: var(--base-color-brand--olive) !important;
+  pointer-events: none;
 }
 
 
