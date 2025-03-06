@@ -155,6 +155,7 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
   pointer-events: none;
   mix-blend-mode: difference;
+  filter:invert(1);
 }
 
 .custom-cursor-backface {
