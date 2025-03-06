@@ -370,7 +370,7 @@ document.addEventListener('mousemove', (e) => {
   );
 
   if (isOverlapping) {
-    link.style.color = 'white'; // Inverted color
+    link.style.color = 'red'; // Inverted color
   } else {
     link.style.color = 'black'; // Original color
   }
