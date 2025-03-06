@@ -154,7 +154,7 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 1300;
-  overflow: hidden; /* Hide everything outside the circle */
+  overflow: hidden; /* Hide anything outside of the circle */
 }
 
 .custom-cursor .cursor-bg {
@@ -165,7 +165,7 @@ html {
   pointer-events: none;
   background: transparent; /* Make background transparent */
   z-index: 9999;
-  mix-blend-mode: normal; /* Invert text only inside cursor's area */
+  mix-blend-mode: normal;
 }
 
 /* Backface Cursor */
@@ -190,35 +190,39 @@ html {
 }
 
 /* Hover Effects for Links */
+/* Hover Effects for Links */
 .cursor-hover {
   position: relative;
   display: inline-block;
 }
 
-.cursor-hover .button-label {
-  display: inline-block !important;
-  position: relative;
-  z-index: 9998;
-  transition: color 0.3s;
+/* Ensuring text inside the link inverts correctly */
+.cursor-hover:hover .button-label {
+  color: #fff;
+  z-index: 1000; /* Ensure the text remains above the circle */
 }
 
+/* Invert text inside the cursor area */
 .cursor-hover::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   background-color: transparent;
   pointer-events: none;
-  mix-blend-mode: difference; /* This inverts the color */
+  mix-blend-mode: difference; /* This inverts the text color */
   z-index: 999;
 }
 
+/* Ensure only the text inside the circle is inverted, no fading outside */
 .cursor-hover:hover::before {
-  background-color: transparent; /* Ensure the pseudo-element does not interfere with layout */
+  background-color: transparent;
+  mix-blend-mode: difference; /* Only apply inversion within the circle */
 }
+
 
 
 
