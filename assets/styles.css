@@ -148,7 +148,7 @@ html {
   position: absolute;
   will-change: transform;
   width: 100%;
-  backface-visibility: hidden;
+  backface-visibility: visible;
   height: 100%;
 }
 
