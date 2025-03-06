@@ -162,20 +162,7 @@ html {
   margin:10px 0;
   font-family: JetBrains Mono, sans-serif;
 }
-/* Cursor arrow */
-.custom-cursor .cursor-arrow-down{
-  display:none;
-}
-.custom-cursor .cursor-arrow-down svg path{
-  stroke: var(--base-color-brand--olive) !important;
-}
-.down-arrow{
-  top: -12px;
-  left: -8px;
-  width: 12px;
-  height: 12px;
-  transition:all .15s ease;
-}
+
 
 /* Scale effect */
 .cursor-scale {
