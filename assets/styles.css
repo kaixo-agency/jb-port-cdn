@@ -10,11 +10,7 @@ html {
     a, .skill-pill{
     transition:all .5s linear;
     }
-    a:hover{
-      color: transparent; /* Temporarily remove the text color */
-      background: transparent; /* Ensure background doesn't interfere */
-    }
-   
+ 
     .skill-pill{
     cursor:default;
     }
