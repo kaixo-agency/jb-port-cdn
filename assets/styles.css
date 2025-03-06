@@ -152,7 +152,7 @@ html {
   background: yellow; /* Ensure no background so only text is affected */
   mix-blend-mode: normal;
   backface-visibility: hidden;
-  filter: brightness(10);
+  filter: brightness(1);
 }
 
 /* Backface Cursor */
