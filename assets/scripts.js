@@ -350,6 +350,7 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
 var cursor = document.querySelector('.custom-cursor');
 var link = document.querySelector('a');
 
@@ -374,4 +375,5 @@ document.addEventListener('mousemove', (e) => {
   } else {
     link.style.color = 'black'; // Original color
   }
+});
 });
