@@ -47,7 +47,7 @@ html {
     background:none !important;
     box-shadow:none !important;
   }
-    .navbar3_component {
+.navbar3_component {
     position: -webkit-sticky;  /* For Safari */
     position: sticky;
     top: 0;
@@ -205,7 +205,7 @@ html {
   padding: 6px 12px;
   border-radius: 50px; /* Keeps rounded shape */
   font-size:12px !important;
-  width:auto;
+  width:auto !important;
 }
 
 .cursor-text-visible .cursor-text {
