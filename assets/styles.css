@@ -149,13 +149,14 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 1300;
+  mix-blend-mode: difference;
 }
 .custom-cursor .cursor-bg{
   width:100%;
   height:100%;
   will-change: transform;
   background-color: var(--base-color-brand--slate-dark) !important;
-  mix-blend-mode: difference;
+ 
   transition: -webkit-transform 0.5s ease;
   transition: transform 0.5s ease;
   transition: transform 0.5s ease, -webkit-transform 0.5s ease;
