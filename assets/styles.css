@@ -152,7 +152,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
-  mix-blend-mode:difference;
+  mix-blend-mode:difference !important;
 }
 
 
