@@ -180,6 +180,14 @@ html {
   background: red; /* Background contrast color */
 }
 
+.custom-cursor.hover,
+.custom-cursor-backface.hover {
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  left: -20px;
+}
+
 /* Link Hover Effect */
 a:hover ~ .custom-cursor,
 a:hover ~ .custom-cursor-backface {
