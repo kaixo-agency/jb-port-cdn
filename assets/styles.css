@@ -143,7 +143,6 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 1300; /* Ensure it's above the links */
-  filter:invert(1);
 }
 
 .custom-cursor .cursor-bg {
