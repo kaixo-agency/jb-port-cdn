@@ -201,7 +201,7 @@ html {
 }
 
 .cursor-hover:hover .button-label {
-  color: #fff; /* Change color of the text on hover */
+  color: #000; /* Change color of the text on hover */
 }
 
 /* Ensure the text inside the circle is inverted and outside remains unchanged */
