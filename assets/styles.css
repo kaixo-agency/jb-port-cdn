@@ -173,7 +173,7 @@ html {
   left: -31px;
   background:transparent;
   pointer-events: none;
-  mix-blend-mode:color-dodge;
+  mix-blend-mode:exclusion;
 }
 
 /* Focus effect */
