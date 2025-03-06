@@ -164,7 +164,13 @@ html {
     border-radius: 50%;
     position: absolute;
 }
-
+.custom-cursor .cursor-active-bg{
+  backface-visibility: hidden;
+  background: #ffe800;
+  border-radius: 50%;
+  position: absolute;
+  will-change: transform;
+}
 /* Cursor text */
 .custom-cursor .cursor-text {
   font-size: 14px;
