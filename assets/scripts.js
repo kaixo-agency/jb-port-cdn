@@ -375,3 +375,33 @@ function invertColor(hex) {
 });
 
 
+
+document.addEventListener('mousemove', function(e) {
+    var cursorX = e.clientX;
+    var cursorY = e.clientY;
+  
+    cursor.style.transform = 'translate(' + cursorX + 'px, ' + cursorY + 'px)';
+  
+    var linkRect = link.getBoundingClientRect();
+    var cursorRect = cursor.getBoundingClientRect();
+  
+    var isOverlapping = !(
+      linkRect.right < cursorRect.left ||
+      linkRect.left > cursorRect.right ||
+      linkRect.bottom < cursorRect.top ||
+      linkRect.top > cursorRect.bottom
+    );
+  
+    if (isOverlapping) {
+      var originalTextColor = getComputedStyle(link).getPropertyValue('--original-text-color') || 'black';
+      var originalBgColor = getComputedStyle(link).getPropertyValue('--original-bg-color') || 'white';
+      link.style.color = invertColor(originalTextColor);
+      link.style.backgroundColor = invertColor(originalBgColor);
+      alert('Hover Detected!'); // Added alert here
+    } else {
+      var originalTextColor = getComputedStyle(link).getPropertyValue('--original-text-color') || 'black';
+      var originalBgColor = getComputedStyle(link).getPropertyValue('--original-bg-color') || 'white';
+      link.style.color = originalTextColor;
+      link.style.backgroundColor = originalBgColor;
+    }
+  });
