@@ -137,8 +137,6 @@ html {
   pointer-events: none;
   background-color: var(--base-color-brand--slate-dark) !important;
   mix-blend-mode: difference; /* Invert text inside the cursor */
-
-
   position: fixed;
   top: -12px;
   left: -8px;
@@ -159,7 +157,7 @@ html {
   color: var(--base-color-brand--grey-medium) !important;
 }
 
-.button-label::before {
+.custom-cursor:hover .button-label::before {
   content: attr(data-text); /* Duplicate text */
   position: absolute;
   left: 0;
