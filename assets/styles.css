@@ -152,7 +152,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15); /* Add semi-transparent white */
-  mix-blend-mode:saturation;
+  mix-blend-mode:difference;
 }
 
 
