@@ -142,10 +142,10 @@ html {
   mix-blend-mode: normal;
 }
 .custom-cursor-active{
-  filter: contrast(10);
-  mix-blend-mode: darken;
+  filter: contrast(10) !important;
+  mix-blend-mode: darken !important;
   will-change: transform;
-  z-index: 1001;
+  z-index: 1001 !important;
 }
 
 
