@@ -143,7 +143,7 @@ html {
   pointer-events: none;
   transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
   mix-blend-mode: difference;
-  background-color: var(--base-color-brand--slate-dark); /* Cursor background */
+  background-color: black;
 }
 
 
