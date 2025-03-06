@@ -139,7 +139,7 @@ html {
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  z-index: 999999;
+  
   
 }
 
@@ -150,6 +150,7 @@ html {
   border-radius: 50%;
   background: yellow; /* Ensure no background so only text is affected */
   opacity:.5;
+  z-index: 999999;
 
 }
 
