@@ -158,7 +158,7 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 
-.content::before {
+.page-wrapper::before {
   position: fixed;
   background: #ff0;
   mix-blend-mode: multiply;
