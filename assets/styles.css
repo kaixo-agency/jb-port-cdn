@@ -142,7 +142,7 @@ html {
   padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
   filter:contrast(10);
-  mix-blend-mode:difference;
+  mix-blend-mode:lighten;
 
 }
 
