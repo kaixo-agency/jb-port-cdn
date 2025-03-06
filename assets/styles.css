@@ -147,6 +147,9 @@ html {
   backface-visibility: hidden !important;
   background:transparent;
 }
+.custom-cursor .cursor-bg{
+  background: var(--base-color-brand--slate-dark);
+}
 
 
 .custom-cursor-active{
