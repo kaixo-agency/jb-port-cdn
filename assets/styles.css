@@ -158,6 +158,7 @@ html {
     background: #ffe800 !important;
     will-change: transform;
     border-radius: 50%;
+    position: absolute;
 }
 
 /* Cursor text */
