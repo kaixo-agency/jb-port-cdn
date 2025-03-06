@@ -185,6 +185,7 @@ html {
 }
 .down-arrow{
   border:1px solid var(--base-color-brand--olive) !important;
+  background:#79958580;
 }
 
 /* Scale effect */
