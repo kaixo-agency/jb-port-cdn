@@ -190,6 +190,7 @@ html {
 /* Cursor arrow */
 .custom-cursor .cursor-arrow-down{
   border:1px solid red;
+  display:none;
 }
 
 /* Scale effect */
