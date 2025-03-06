@@ -351,8 +351,8 @@ $(document).ready(function () {
 
     
 
-    const cursor = document.querySelector('.custom-cursor');
-const link = document.querySelector('a');
+    var cursor = document.querySelector('.custom-cursor');
+var link = document.querySelector('a');
 
 function invertColor(hex) {
   if (hex.indexOf('#') === 0) {
@@ -364,7 +364,7 @@ function invertColor(hex) {
   if (hex.length !== 6) {
     return '#000000'; // Return black for invalid hex
   }
-  let r = parseInt(hex.slice(0, 2), 16),
+  var r = parseInt(hex.slice(0, 2), 16),
     g = parseInt(hex.slice(2, 4), 16),
     b = parseInt(hex.slice(4, 6), 16);
   return '#' + (255 - r).toString(16).padStart(2, '0') +
@@ -372,16 +372,16 @@ function invertColor(hex) {
     (255 - b).toString(16).padStart(2, '0');
 }
 
-document.addEventListener('mousemove', (e) => {
-  const cursorX = e.clientX;
-  const cursorY = e.clientY;
+document.addEventListener('mousemove', function(e) {
+  var cursorX = e.clientX;
+  var cursorY = e.clientY;
 
-  cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+  cursor.style.transform = 'translate(' + cursorX + 'px, ' + cursorY + 'px)';
 
-  const linkRect = link.getBoundingClientRect();
-  const cursorRect = cursor.getBoundingClientRect();
+  var linkRect = link.getBoundingClientRect();
+  var cursorRect = cursor.getBoundingClientRect();
 
-  const isOverlapping = !(
+  var isOverlapping = !(
     linkRect.right < cursorRect.left ||
     linkRect.left > cursorRect.right ||
     linkRect.bottom < cursorRect.top ||
@@ -389,13 +389,15 @@ document.addEventListener('mousemove', (e) => {
   );
 
   if (isOverlapping) {
-    const originalTextColor = getComputedStyle(link).getPropertyValue('--original-text-color') || 'black';
-    const originalBgColor = getComputedStyle(link).getPropertyValue('--original-bg-color') || 'white';
+    var originalTextColor = getComputedStyle(link).getPropertyValue('--original-text-color') || 'black';
+    var originalBgColor = getComputedStyle(link).getPropertyValue('--original-bg-color') || 'white';
     link.style.color = invertColor(originalTextColor);
     link.style.backgroundColor = invertColor(originalBgColor);
   } else {
-    link.style.color = getComputedStyle(link).getPropertyValue('--original-text-color') || 'black';
-    link.style.backgroundColor = getComputedStyle(link).getPropertyValue('--original-bg-color') || 'white';
+    var originalTextColor = getComputedStyle(link).getPropertyValue('--original-text-color') || 'black';
+    var originalBgColor = getComputedStyle(link).getPropertyValue('--original-bg-color') || 'white';
+    link.style.color = originalTextColor;
+    link.style.backgroundColor = originalBgColor;
   }
 });
 
