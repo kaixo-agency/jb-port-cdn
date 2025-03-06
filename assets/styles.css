@@ -155,6 +155,7 @@ html {
   pointer-events: none; /* Ensures it doesn't block hover events */
   opacity:1;
   filter:invert(1);
+  mix-blend-mode: difference;
 }
 
 /* Backface Cursor */
