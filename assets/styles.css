@@ -146,7 +146,7 @@ html {
   left: -8px;
   width: 6px;
   height: 6px;
-  filter: contrast(10) !important;
+  
   z-index: 1001 !important;
   display:none !important;
   mix-blend-mode: lighten;
@@ -154,7 +154,7 @@ html {
 }
 
 .cursor-active-bg{
-  
+  filter: contrast(10) !important;
   background: var(--base-color-brand--slate-dark);
   border-radius: 50%;
   position: absolute;
