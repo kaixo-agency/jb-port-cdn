@@ -350,6 +350,55 @@ $(document).ready(function () {
     });
 
     
+
+    const cursor = document.querySelector('.custom-cursor');
+const link = document.querySelector('.my-link');
+
+function invertColor(hex) {
+  if (hex.indexOf('#') === 0) {
+    hex = hex.slice(1);
+  }
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  if (hex.length !== 6) {
+    return '#000000'; // Return black for invalid hex
+  }
+  let r = parseInt(hex.slice(0, 2), 16),
+    g = parseInt(hex.slice(2, 4), 16),
+    b = parseInt(hex.slice(4, 6), 16);
+  return '#' + (255 - r).toString(16).padStart(2, '0') +
+    (255 - g).toString(16).padStart(2, '0') +
+    (255 - b).toString(16).padStart(2, '0');
+}
+
+document.addEventListener('mousemove', (e) => {
+  const cursorX = e.clientX;
+  const cursorY = e.clientY;
+
+  cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+
+  const linkRect = link.getBoundingClientRect();
+  const cursorRect = cursor.getBoundingClientRect();
+
+  const isOverlapping = !(
+    linkRect.right < cursorRect.left ||
+    linkRect.left > cursorRect.right ||
+    linkRect.bottom < cursorRect.top ||
+    linkRect.top > cursorRect.bottom
+  );
+
+  if (isOverlapping) {
+    const originalTextColor = getComputedStyle(link).getPropertyValue('--original-text-color') || 'black';
+    const originalBgColor = getComputedStyle(link).getPropertyValue('--original-bg-color') || 'white';
+    link.style.color = invertColor(originalTextColor);
+    link.style.backgroundColor = invertColor(originalBgColor);
+  } else {
+    link.style.color = getComputedStyle(link).getPropertyValue('--original-text-color') || 'black';
+    link.style.backgroundColor = getComputedStyle(link).getPropertyValue('--original-bg-color') || 'white';
+  }
+});
+
 });
 
 
