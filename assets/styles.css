@@ -149,7 +149,7 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 1300;
-  mix-blend-mode:lighten;
+  mix-blend-mode:screen;
 }
 .custom-cursor .cursor-bg{
   width:100%;
