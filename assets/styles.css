@@ -155,7 +155,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: red; /* Background color to contrast */
-   filter:invert(1);
+   
 }
 
 
@@ -179,7 +179,7 @@ html {
   position: absolute;
   border-radius: 50%;
    background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
-  /*background:red;*/
+   filter:invert(1);
   
 }
 
