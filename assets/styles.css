@@ -147,19 +147,18 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1300;
-  mask: radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 10%); /* Mask for circular cursor */
-  -webkit-mask: radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 10%); /* Webkit support */
+  z-index: 1300; /* Ensure it's above the links */
 }
 
-/* Circle Background */
 .custom-cursor .cursor-bg {
   width: 100%;
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  pointer-events: none;
-  background: transparent; /* Transparent background */
+  background: transparent; /* No background, only text inversion */
+  mix-blend-mode: difference; /* Invert text colors */
+  backface-visibility: hidden;
+  pointer-events: none; /* Ensures it doesn't block hover events */
 }
 
 /* Backface Cursor */
@@ -171,8 +170,7 @@ html {
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 900;
-  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
+  z-index: 1299; /* Backface cursor sits below the front cursor */
 }
 
 .custom-cursor-backface .cursor-bg {
@@ -180,7 +178,7 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background-color: var(--base-color-brand--slate-dark) !important; /* Dark background */
+  background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
 }
 
 /* Invert Text inside the Cursor Circle */
