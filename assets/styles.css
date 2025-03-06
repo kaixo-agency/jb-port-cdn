@@ -10,7 +10,13 @@ html {
     a, .skill-pill{
     transition:all .5s linear;
     }
- 
+    a:hover{
+      color: transparent; /* Temporarily remove the text color */
+      background: transparent; /* Ensure background doesn't interfere */
+    }
+    a:hover .custom-cursor .cursor-bg {
+      mix-blend-mode: difference; /* Inverts the content inside the cursor */
+    }
     .skill-pill{
     cursor:default;
     }
@@ -155,8 +161,7 @@ html {
   background: transparent; /* No background, only text inversion */
   backface-visibility: hidden;
   pointer-events: none; /* Ensures it doesn't block hover events */
-  mix-blend-mode: difference; /* Use difference mode to invert the content */
-  transition: mix-blend-mode 0.1s ease;
+  transition: filter 0.1s ease;
 }
 
 /* Backface Cursor */
