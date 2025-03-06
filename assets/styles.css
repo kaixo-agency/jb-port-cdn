@@ -209,7 +209,9 @@ html {
   mix-blend-mode: exclusion !important; /* Invert text inside the cursor area */
 }
 
-
+.cursor-hover .cursor-bg {
+  mix-blend-mode: normal; /* Keep text color outside the circle unaffected */
+}
 
 
 /* Cursor text */
