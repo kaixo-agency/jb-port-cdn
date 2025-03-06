@@ -44,7 +44,7 @@ html {
     top: 0;
     z-index: 1000;  /* Ensures the navbar stays above other content */
     width: 100%;  /* Ensure it takes the full width */
-    isolation: isolate;  /* Keeps blend mode inside this context */
+    isolation: isolate !important;  /* Keeps blend mode inside this context */
     background:none !important;
   }
   
