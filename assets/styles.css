@@ -146,7 +146,7 @@ html {
 }
 
 .custom-cursor .cursor-bg{
-  background: var(--base-color-brand--slate-dark) !important;
+  background: yellow;
   width:100%;
   height:100%;
   position:absolute;
