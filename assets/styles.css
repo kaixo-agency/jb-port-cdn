@@ -158,6 +158,12 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
   mix-blend-mode: difference;
 }
+
+.custom-cursor.custom-cursor-active .cursor-bg {
+  opacity: 1;
+}
+
+
 .page-wrapper {
   background: #fff;
 }
