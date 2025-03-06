@@ -132,7 +132,7 @@ html {
   border-radius: 50%;
   pointer-events: none;
   transition: transform 0.05s linear, background-color 0.3s ease, width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
-  z-index: 9999;
+  z-index: 1001;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,7 +150,7 @@ html {
   height: 6px;
   filter: contrast(10) !important;
   mix-blend-mode: darken !important;
-  z-index: 1001 !important;
+  z-index: 9999 !important;
   display:none !important;
 }
 .cursor-active-bg{
