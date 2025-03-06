@@ -141,7 +141,6 @@ html {
   white-space: nowrap;
   padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
-  background:transparent;
 }
 
 .custom-cursor .cursor-bg{
