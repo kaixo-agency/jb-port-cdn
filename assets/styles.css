@@ -158,7 +158,7 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 .page-wrapper {
-  background: #000;
+  background: #fff;
 }
 .page-wrapper::before {
   position: fixed;
