@@ -166,7 +166,7 @@ html {
 /* Button Label */
 .button-label {
   position: relative;
-  color: var(--original-text-color); /* Default text color */
+  color: ar(--base-color-brand--grey-medium); /* Default text color */
   z-index: 1000;
 }
 
