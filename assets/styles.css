@@ -148,12 +148,6 @@ html {
   justify-content: center;
 }
 
-
-.button-label {
-  position: relative;
-  color: var(--base-color-brand--grey-medium) !important;
-}
-
 .custom-cursor:hover .button-label::before {
   content: attr(data-text); /* Duplicate text */
   position: absolute;
