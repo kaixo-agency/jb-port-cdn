@@ -355,7 +355,7 @@ $(document).ready(function () {
 
 });
 
-
+$(document).ready(function () {
 var cursor = document.querySelector('.custom-cursor');
 var link = document.querySelector('a');
 
@@ -405,4 +405,5 @@ document.addEventListener('mousemove', function(e) {
     link.style.color = originalTextColor;
     link.style.backgroundColor = originalBgColor;
   }
+});
 });
