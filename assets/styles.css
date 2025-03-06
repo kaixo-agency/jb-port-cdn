@@ -141,21 +141,76 @@ html {
   border-radius: 50%;
   pointer-events: none;
   transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
-  mix-blend-mode: difference; /* Invert colors behind the cursor */
-  background: white; /* The color that will cause the inversion */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1300;
 }
-/* Ensure button text is normally visible */
-.button-label {
+
+.custom-cursor .cursor-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: transparent; /* Make background transparent */
+  mix-blend-mode: exclusion; /* Only apply blending to the cursor */
+  z-index: 999; /* Ensure it's above the background, but not affecting text */
+}
+
+/* Backface Cursor */
+.custom-cursor-backface {
+  position: fixed;
+  top: -12px;
+  left: -8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 900;
+  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
+}
+
+.custom-cursor-backface .cursor-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--base-color-brand--slate-dark) !important;
+}
+
+/* Ensuring Link Text Blends Correctly */
+a {
   position: relative;
+  display: inline-block;
+}
+
+a .button-label {
+  display: inline-block;
+  position: relative;
+  z-index: 9998;
   transition: color 0.3s;
 }
 
-/* Invert text only when under the cursor */
-.button-label.invert {
-  color: white !important; /* Forces inversion effect */
+/* Blend Text Only Inside Cursor */
+a .button-label::before {
+  content: attr(data-text); /* Duplicate text */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff; /* Inverted text color */
+  mix-blend-mode: exclusion;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 1;
 }
 
+/* Ensure Normal Text Outside Cursor */
+a:hover .button-label {
+  color: inherit; /* Keep original color outside cursor */
+}
 
 
 
