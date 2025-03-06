@@ -349,11 +349,9 @@ $(document).ready(function () {
     // When hovering over .navbar item, add the 'down arrow' class to .custom-cursor and hide the system cursor
     $(".navbar3_link").on("mouseenter", function () {
         $(".custom-cursor").addClass("down-arrow");
-        $(".cursor-arrow-down").css("display", "block");  // Show the arrow
         $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
         $(".custom-cursor").removeClass("down-arrow");
-        $(".cursor-arrow-down").css("display", "none");  // Hide the arrow
         $(this).css("cursor", "");  // Restore the default system cursor
     });
 
