@@ -150,7 +150,7 @@ html {
   mix-blend-mode: darken;
   z-index: 1001 !important;
   display:none !important;
-  mix-blend-mode: darken;
+  mix-blend-mode: lighten;
   backface-visibility: hidden !important;
 }
 
