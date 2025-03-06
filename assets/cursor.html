@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-color: #eee;
+}
+.container {
+  position: relative;
+  display: inline-block; /* test with inline-block */
+}
+.my-link {
+  position: relative;
+  z-index: 1000;
+  color: black;
+  text-decoration: none;
+  background-color: white;
+}
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1300;
+}
+.custom-cursor .cursor-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  mix-blend-mode: difference;
+}
+.custom-cursor-backface {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 900;
+}
+.custom-cursor-backface .cursor-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  background: red;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="#" class="my-link">Invert Me</a>
+  <div class="custom-cursor">
+    <div class="cursor-bg"></div>
+  </div>
+  <div class="custom-cursor-backface">
+    <div class="cursor-bg"></div>
+  </div>
+</div>
+</body>
+</html>
