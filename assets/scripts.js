@@ -299,32 +299,20 @@ $(document).ready(function () {
 });
 
 
-var $c = $("[data-custom-cursor]");
-var $h = $("a, button");
-var $i = $("img");
+var cursor = document.querySelector(".custom-cursor");
+var buttonLabel = document.querySelector(".button-label::before");
 
-$(window).on("mousemove",function(e){
-	x = e.clientX;
-	y = e.clientY;
-  console.log(x,y);
-	$c.css("transform","matrix(1, 0, 0, 1, "+x+","+y+")");
+document.addEventListener("mousemove", function(e) {
+  let x = e.clientX;
+  let y = e.clientY;
+
+  cursor.style.transform = `translate(${x - 60}px, ${y - 60}px)`;
+
+  // Update CSS variables for clip-path
+  document.documentElement.style.setProperty("--cursor-x", `${x}px`);
+  document.documentElement.style.setProperty("--cursor-y", `${y}px`);
 });
 
- $h.on("mouseenter",function(e){
-    $c.addClass("custom-cursor-active");
-});
-
-
- $h.on("mouseleave",function(e){
-  $c.removeClass("custom-cursor-active");
-});
-
-$i.on("mouseenter",function(e){
-    $c.addClass("custom-cursor-active-img");
-});
-$i.on("mouseleave",function(e){
-  $c.removeClass("custom-cursor-active-img");
-});
 
 
 
