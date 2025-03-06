@@ -153,6 +153,7 @@ html {
   filter:contrast(10);
   mix-blend-mode:difference;
   z-index: 9999;
+  backface-visibility: hidden;
 }
 
 .custom-cursor-backface{
