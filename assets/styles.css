@@ -3,19 +3,11 @@ html {
     overflow-x: hidden;
     }
     a, .button{
-      position: relative;
-      z-index: 1200; /* Ensure links are below the cursor */
+      z-index:1200 !important;
      
     }
     a, .skill-pill{
     transition:all .5s linear;
-    }
-    a:hover{
-      color: transparent; /* Temporarily remove the text color */
-      background: transparent; /* Ensure background doesn't interfere */
-    }
-    a:hover .custom-cursor .cursor-bg {
-      mix-blend-mode: difference; /* Inverts the content inside the cursor */
     }
     .skill-pill{
     cursor:default;
