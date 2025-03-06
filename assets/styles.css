@@ -152,6 +152,7 @@ html {
   background: transparent; /* Ensure no background so only text is affected */
   mix-blend-mode: difference;
   backface-visibility: hidden;
+  filter: brightness(10);
 }
 
 /* Backface Cursor */
