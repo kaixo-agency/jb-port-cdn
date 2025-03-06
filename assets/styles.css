@@ -152,7 +152,7 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: yellow; /* Background color to contrast */
+  background: transparent; /* Background color to contrast */
   opacity:.5;
   mix-blend-mode: difference;
 }
