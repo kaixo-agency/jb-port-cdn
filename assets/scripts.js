@@ -351,7 +351,7 @@ $(document).ready(function () {
 });
 
 const cursor = document.querySelector('.custom-cursor');
-const link = document.querySelector('a');
+const link = document.querySelector('.a');
 
 document.addEventListener('mousemove', (e) => {
   const cursorX = e.clientX;
