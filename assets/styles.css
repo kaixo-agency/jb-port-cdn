@@ -146,6 +146,7 @@ html {
   z-index: 998;
   opacity: 0;
   mix-blend-mode: difference;
+  border-radius:50%;
 }
 .custom-cursor .cursor-bg{
   width:100%;
