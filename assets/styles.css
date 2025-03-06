@@ -52,6 +52,9 @@ html {
       text-decoration: none;
       position: relative; /* Ensure it's in the stacking context */
   }
+  .navbar3_link:hover{
+    color:red;
+  }
     
   /* Set up the parent button */
   .button, .navbar3_link {
