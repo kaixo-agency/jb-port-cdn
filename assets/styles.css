@@ -178,7 +178,7 @@ html {
   opacity:.25;
 }
 
-.navbar3_link:hover .cursor-scale{
+.navbar3_link:hover{
   cursor:none;
   pointer-events: none;
 }
