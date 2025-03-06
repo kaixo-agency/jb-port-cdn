@@ -134,73 +134,27 @@ html {
  /* Trailing Cursor */
 .custom-cursor {
   position: fixed;
-  top: -12px;
-  left: -8px;
-  width: 6px;
-  height: 6px;
+  top: 0;
+  left: 0;
+  width: 40px; /* Adjust size as needed */
+  height: 40px;
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  mix-blend-mode: difference; /* Key to inverting colors */
-  background-color: white; /* This will invert text */
-  z-index: 1300;
-}
-
-/* Backface Cursor */
-.custom-cursor-backface {
-  position: fixed;
-  top: -12px;
-  left: -8px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 900;
-  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
-}
-
-.custom-cursor-backface .cursor-bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border-radius: 50%;
-  background-color: var(--base-color-brand--slate-dark) !important;
-}
-
-/* Ensuring Link Text Blends Correctly */
-a {
-  position: relative;
-  display: inline-block;
+  background: white; /* The cursor should have a solid background */
+  mix-blend-mode: difference; /* Inverts colors behind it */
+  z-index: 9999; /* Ensure it's above everything */
 }
 
 /* Normal button label */
-a .button-label {
+.button-label {
   position: relative;
-  z-index: 9998;
   transition: color 0.3s;
 }
 
-/* Cloning text for inversion */
-a .button-label::before {
-  content: attr(data-text); /* Duplicate text */
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  color: white; /* Inverted text */
-  mix-blend-mode: difference; /* Makes text invert against the cursor */
-  pointer-events: none;
-  z-index: 1301; /* Ensure it's just above the cursor */
-  opacity: 1;
-}
-
-/* Keep Normal Text Outside Cursor */
-a:hover .button-label {
-  color: inherit; /* Keep original color outside cursor */
+/* Text color inverts when under cursor */
+.button-label,
+.button-label::before {
+  mix-blend-mode: difference;
 }
 
 
