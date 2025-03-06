@@ -179,8 +179,8 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 
-/* Hover Effects for Links */
-a{
+/* Ensuring Link Text Blends Correctly */
+a {
   position: relative;
   display: inline-block;
 }
@@ -192,20 +192,25 @@ a .button-label {
   transition: color 0.3s;
 }
 
+/* Blend Text Only Inside Cursor */
+a .button-label::before {
+  content: attr(data-text); /* Duplicate text */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff; /* Inverted text color */
+  mix-blend-mode: exclusion;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 1;
+}
+
+/* Ensure Normal Text Outside Cursor */
 a:hover .button-label {
-  color: #fff; /* Change color of the text on hover */
+  color: inherit; /* Keep original color outside cursor */
 }
-
-/* Make the cursor background blend with the text when hovering */
-a:hover .custom-cursor .cursor-bg {
-  background: transparent; /* Keep background transparent */
-  mix-blend-mode: difference; /* Only invert the text inside the cursor */
-}
-
-a .button-label .cursor-bg {
-  mix-blend-mode: normal !important; /* Keep text color outside the circle unaffected */
-}
-
 
 
 
