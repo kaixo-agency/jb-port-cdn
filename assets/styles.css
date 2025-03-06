@@ -140,7 +140,7 @@ html {
       border:0 !important;
   }
     
- //* Trailing Cursor */
+ /* Trailing Cursor */
 .custom-cursor {
   position: fixed;
   top: -12px;
