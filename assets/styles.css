@@ -150,7 +150,7 @@ html {
 }
 .cursor-active-bg{
   backface-visibility: hidden;
-    background: #ffe800;
+    background: #ffe800 !important;
     will-change: transform;
 }
 
