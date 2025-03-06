@@ -141,7 +141,7 @@ html {
   will-change: transform;
   mix-blend-mode:difference;
   backface-visibility: hidden;
-  background: var(--base-color-brand--slate-dark);
+  background: #000;
 }
 
 
