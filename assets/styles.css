@@ -149,7 +149,7 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: transparent;
+  background: #fff;
   backface-visibility: hidden;
   pointer-events: none; /* Ensures it doesn't block hover events */
   filter:invert(1);
