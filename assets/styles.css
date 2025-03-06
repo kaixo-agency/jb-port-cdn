@@ -143,7 +143,7 @@ html {
 }
 .custom-cursor-active{
   display: none;
-  filter: contrast(10);
+  filter: contrast(0);
   mix-blend-mode: lighten;
   will-change: transform;
   z-index: 1001;
