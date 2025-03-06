@@ -151,7 +151,7 @@ html {
   will-change:transform;
   border-radius:50%;
   filter:contrast(10);
-  mix-blend-mode:lighten;
+  mix-blend-mode:darken;
   z-index: 9999;
 }
 
