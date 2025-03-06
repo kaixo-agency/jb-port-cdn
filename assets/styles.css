@@ -151,15 +151,23 @@ html {
   height: 100%;
 }
 
-.custom-cursor-active .cursor-active-bg{
+.custom-cursor-active{
+  display:none;
   position: fixed;
   top: -12px;
   left: -8px;
   width: 6px;
   height: 6px;
-  background:yellow;
+  filter:contrast(10);
   z-index: 1001 !important;
-  mix-blend-mode: lighten;
+  mix-blend-mode: darken;
+  will-change: transform;
+}
+
+.custom-cursor-active .cursor-active-bg{
+  background:yellow;
+  
+  
   backface-visibility: visible !important;
 }
 
