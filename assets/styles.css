@@ -154,7 +154,6 @@ html {
   border-radius: 50%;
   pointer-events: none;
   mix-blend-mode: difference;
-  filter:invert(1);
 }
 
 .custom-cursor-backface {
