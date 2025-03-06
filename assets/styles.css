@@ -178,6 +178,12 @@ html {
   opacity:.25;
 }
 
+.navbar3_link:hover .cursor-scale{
+  cursor:none;
+  background-color: var(--base-color-brand--olive) !important;
+}
+
+
 /* Focus effect */
 .cursor-focus {
   width: 10px;
