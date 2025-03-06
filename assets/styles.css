@@ -141,7 +141,7 @@ html {
   justify-content: center;
   white-space: nowrap;
   z-index: 9999 !important;
-  
+  mix-blend-mode: difference;;
 }
 
 .custom-cursor .cursor-bg {
@@ -151,7 +151,7 @@ html {
   border-radius: 50%;
   background: yellow; /* Ensure no background so only text is affected */
   opacity:.65;
-  mix-blend-mode: difference;;
+ 
   
 
 }
