@@ -158,6 +158,19 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 
+.content::before {
+  position: fixed;
+  background: #ff0;
+  mix-blend-mode: multiply;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  pointer-events: none;
+}
+
 /* Cursor text */
 .custom-cursor .cursor-text {
   font-size: 14px;
