@@ -167,7 +167,7 @@ html {
   display:none;
 }
 .custom-cursor .cursor-arrow-down svg path{
-  fill: var(--base-color-brand--olive) !important;
+  stroke: var(--base-color-brand--olive) !important;
 }
 .down-arrow{
   border:2px solid var(--base-color-brand--olive) !important;
