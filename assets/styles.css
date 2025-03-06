@@ -159,9 +159,8 @@ html {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  mix-blend-mode:difference;
-  backface-visibility: hidden;
-  background:transparent;
+  background: transparent; /* Make background transparent */
+  mix-blend-mode: exclusion; /* Set blend mode for the background */
 }
 /* Clip the background within the custom cursor's circle using ::before */
 .custom-cursor::before {
