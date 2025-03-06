@@ -47,9 +47,6 @@ html {
     width: 100%;  /* Ensure it takes the full width */
     background:none !important;
   }
-  .navbar3_menu{
-    isolation: isolate !important;  /* Keeps blend mode inside this context */
-  }
 
   .navbar3_link{
       text-decoration: none;
