@@ -140,6 +140,7 @@ html {
   box-sizing: border-box;
   will-change: transform;
   mix-blend-mode:darken;
+  backface-visibility: hidden;
   background: var(--base-color-brand--slate-dark);
 }
 
