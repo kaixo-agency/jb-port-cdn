@@ -184,7 +184,7 @@ html {
   display:none;
 }
 .down-arrow{
-  border:1px solid red;
+  border:1px solid var(--base-color-brand--olive) !important;
 }
 
 /* Scale effect */
