@@ -3,7 +3,9 @@ html {
     overflow-x: hidden;
     }
     a, .button{
-      z-index:1200 !important;
+      position: relative;
+      z-index: 1200; /* Ensure links are below the cursor */
+      color: black; /* Default text color */
      
     }
     a, .skill-pill{
