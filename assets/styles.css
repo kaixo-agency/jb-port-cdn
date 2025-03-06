@@ -157,12 +157,12 @@ html {
   background: transparent; /* Background color to contrast */
    mix-blend-mode: difference;
    backface-visibility: hidden;
-   
 }
 
 
 /* Backface Cursor */
 .custom-cursor-backface {
+  filter: contrast(10);
   position: fixed;
   top: -12px;
   left: -8px;
