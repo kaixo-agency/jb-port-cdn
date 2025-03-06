@@ -2,6 +2,9 @@ html {
     scroll-behavior: auto !important;
     overflow-x: hidden;
     }
+    a{
+      z-index:9996;
+    }
     a, .skill-pill{
     transition:all .5s linear;
     }
@@ -43,6 +46,7 @@ html {
     width: 100%;  /* Ensure it takes the full width */
   }
   
+
   .navbar3_link{
       text-decoration: none;
   }
