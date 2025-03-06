@@ -240,9 +240,9 @@ $(document).ready(function () {
 
     // Handle hover interactions
     $(".cursor-hover").on("mouseenter", function () {
-        $(".custom-cursor, .custom-cursor-backface").addClass("cursor-scale");
+        $(".custom-cursor").addClass("cursor-scale");
     }).on("mouseleave", function () {
-        $(".custom-cursor, .custom-cursor-backface").removeClass("cursor-scale");
+        $(".custom-cursor").removeClass("cursor-scale");
     });
 
     $("[cursor-label]").on("mouseenter", function () {
