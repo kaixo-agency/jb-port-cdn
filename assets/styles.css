@@ -129,7 +129,7 @@ html {
       border:0 !important;
   }
     
-/* Trailing Cursor */
+ /* Trailing Cursor */
 .custom-cursor {
   position: fixed;
   top: -12px;
@@ -165,7 +165,7 @@ html {
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 1299; /* Backface cursor sits below the front cursor */
+  z-index: 900; /* Backface cursor sits below the front cursor */
 }
 
 .custom-cursor-backface .cursor-bg {
