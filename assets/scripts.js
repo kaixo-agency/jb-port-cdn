@@ -348,10 +348,8 @@ $(document).ready(function () {
         $(".cursor-avatar").css("visibility", "hidden");  // Hide the .cursor-avatar again
         $(this).css("cursor", "");  // Restore the default system cursor
     });
-});
 
-
-var cursor = document.querySelector('.custom-cursor');
+    var cursor = document.querySelector('.custom-cursor');
 var link = document.querySelector('a');
 
 document.addEventListener('mousemove', (e) => {
@@ -378,3 +376,6 @@ document.addEventListener('mousemove', (e) => {
     
   }
 });
+});
+
+
