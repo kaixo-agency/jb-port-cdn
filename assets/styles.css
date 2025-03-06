@@ -166,7 +166,6 @@ html {
   top: -12px;
   left: -8px;  
   z-index: 9995;
-  
   will-change: transform;
   border-radius: 50%;
 }
