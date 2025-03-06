@@ -154,8 +154,8 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: transparent; /* Background color to contrast */
-   filter:invert(1);
+  background: yellow; /* Background color to contrast */
+  opacity:.5;
 }
 
 
