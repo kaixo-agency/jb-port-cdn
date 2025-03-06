@@ -154,8 +154,8 @@ html {
 
 /* Scale effect */
 .cursor-scale {
-  width: 34px;
-  height: 34px;
+  width: 34px !important;
+  height: 34px !important;
   top: -17px;
   left: -17px;
 }
