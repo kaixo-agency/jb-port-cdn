@@ -126,8 +126,8 @@ html {
   position: fixed;
   top: -12px;
   left: -8px;
-  width: 6px !important;
-  height: 6px !important;
+  width: 6px;
+  height: 6px;
   background-color: var(--base-color-brand--slate-dark);
   border-radius: 50%;
   pointer-events: none;
