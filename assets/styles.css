@@ -171,11 +171,11 @@ html {
 }
 
 
-.navbar3_menu {
+.page-wrapper {
   background: #fff;
   min-height: 100vh;
 }
-.navbar3_menu::before {
+.page-wrapper::before {
   position: fixed;
   background: #000;
   mix-blend-mode: difference;
