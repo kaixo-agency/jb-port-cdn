@@ -150,7 +150,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: yellow; /* Ensure no background so only text is affected */
-  mix-blend-mode: lighten;
+  mix-blend-mode: normal;
   backface-visibility: hidden;
   filter: brightness(10);
 }
