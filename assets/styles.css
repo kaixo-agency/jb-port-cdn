@@ -152,14 +152,6 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 
-
-.custom-cursor.custom-cursor-active .cursor-bg {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  opacity: 1;
-}
-
-
 .page-wrapper {
   background: #fff;
   min-height: 100vh;
