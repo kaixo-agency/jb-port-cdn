@@ -3,7 +3,7 @@ html {
     overflow-x: hidden;
     }
     a{
-      z-index:9998 !important;
+      z-index:9997 !important;
     }
     a, .skill-pill{
     transition:all .5s linear;
@@ -140,7 +140,7 @@ html {
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  z-index: 9999 !important;
+  z-index: 9998 !important;
 }
 
 .custom-cursor .cursor-bg {
@@ -162,7 +162,7 @@ html {
   border-radius: 50%;
   pointer-events: none;
   transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
-  z-index: 9997 !important;
+  z-index: 9996 !important;
 }
 
 .custom-cursor-backface .cursor-bg {
