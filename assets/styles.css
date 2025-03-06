@@ -132,25 +132,22 @@ html {
   }
     
  /* Trailing Cursor */
-.custom-cursor {
+ .custom-cursor {
   position: fixed;
-  top: -12px;
-  left: -8px;
-  width: 6px;
-  height: 6px;
+  top: 0;
+  left: 0;
+  width: 50px; /* Adjust size */
+  height: 50px;
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 1300;
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 
+
 .button-label {
   position: relative;
-  color: var(--base-color-brand--grey-medium);
+  color: var(--base-color-brand--grey-medium) !important;
 }
 
 .button-label::before {
