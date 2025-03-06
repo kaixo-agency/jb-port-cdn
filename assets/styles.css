@@ -159,6 +159,7 @@ html {
 
 .custom-cursor-backface{
   position: fixed;
+  transition: transform 0.05s linear, background-color 0.3s ease, width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
   top: -12px;
   left: -8px;
   width: 6px;
