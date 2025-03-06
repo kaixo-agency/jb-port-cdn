@@ -176,8 +176,8 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-   background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
-  /*background:red;*/
+  /* background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
+  background:red;
   
 }
 
