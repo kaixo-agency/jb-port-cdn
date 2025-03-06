@@ -184,6 +184,9 @@ html {
   border:1px solid red;
   display:none;
 }
+.down-arrow{
+  border:1px solid red;
+}
 
 /* Scale effect */
 .cursor-scale {
