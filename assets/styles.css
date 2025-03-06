@@ -148,7 +148,6 @@ html {
   height: 6px;
   background:yellow;
   z-index: 1001 !important;
-  display:none !important;
   mix-blend-mode: lighten;
   backface-visibility: visible !important;
   border:1px solid red;
