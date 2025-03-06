@@ -160,7 +160,7 @@ html {
 
 .page-wrapper::before {
   position: fixed;
-  background: #ff0;
+  background: #fff;
   mix-blend-mode: multiply;
   content: "";
   top: 0;
