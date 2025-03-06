@@ -34,10 +34,10 @@ html {
   .cursor[style*="animation: none"] {
     animation: none !important;
   }
-    .navbar3_container.nav-wrapper {
+    /* .navbar3_container.nav-wrapper {
       -webkit-backdrop-filter: blur(20px) !important;
       backdrop-filter: blur(20px) !important;
-    }
+    }*/
     .navbar3_component {
     position: -webkit-sticky;  /* For Safari */
     position: sticky;
