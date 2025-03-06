@@ -152,8 +152,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: yellow; /* No background so only text is affected */
-  mix-blend-mode: difference; /* Inverts colors */
-  backface-visibility: hidden;
+  opacity:.6;
 }
 
 
