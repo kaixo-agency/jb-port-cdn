@@ -144,18 +144,9 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  mix-blend-mode: difference; /* Key to inverting colors */
+  background-color: white; /* This will invert text */
   z-index: 1300;
-}
-
-.custom-cursor .cursor-bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  background: transparent; /* Make background transparent */
-  mix-blend-mode: exclusion; /* Only apply blending to the cursor */
-  z-index: 999; /* Ensure it's above the background, but not affecting text */
 }
 
 /* Backface Cursor */
@@ -185,14 +176,14 @@ a {
   display: inline-block;
 }
 
+/* Normal button label */
 a .button-label {
-  display: inline-block;
   position: relative;
   z-index: 9998;
   transition: color 0.3s;
 }
 
-/* Blend Text Only Inside Cursor */
+/* Cloning text for inversion */
 a .button-label::before {
   content: attr(data-text); /* Duplicate text */
   position: absolute;
@@ -200,14 +191,14 @@ a .button-label::before {
   top: 0;
   width: 100%;
   height: 100%;
-  color: #fff; /* Inverted text color */
-  mix-blend-mode: exclusion;
+  color: white; /* Inverted text */
+  mix-blend-mode: difference; /* Makes text invert against the cursor */
   pointer-events: none;
-  z-index: 9999;
+  z-index: 1301; /* Ensure it's just above the cursor */
   opacity: 1;
 }
 
-/* Ensure Normal Text Outside Cursor */
+/* Keep Normal Text Outside Cursor */
 a:hover .button-label {
   color: inherit; /* Keep original color outside cursor */
 }
