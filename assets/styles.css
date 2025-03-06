@@ -154,7 +154,7 @@ html {
 
 .custom-cursor-active{
   display:none;
-  filter:contrast(10);
+  filter:contrast(1);
   width: 6px;
   height: 6px;
   position: fixed;
