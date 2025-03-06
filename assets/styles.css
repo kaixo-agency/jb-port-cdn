@@ -162,7 +162,7 @@ html {
 }
 .page-wrapper::before {
   position: fixed;
-  background: #fff;
+  background: #000;
   mix-blend-mode: multiply;
   content: "";
   top: 0;
