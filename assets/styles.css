@@ -136,7 +136,6 @@ html {
   
   pointer-events: none;
   background-color: var(--base-color-brand--slate-dark) !important;
-  mix-blend-mode: difference; /* Invert text inside the cursor */
   position: fixed;
   top: -12px;
   left: -8px;
