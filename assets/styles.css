@@ -38,14 +38,6 @@ html {
   .cursor[style*="animation: none"] {
     animation: none !important;
   }
-  .navbar3_component {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    transition: top 0.3s ease-in-out;
-    z-index: 1000;
-  }
   
   .navbar-hidden {
     top: -100px; /* Adjust based on your navbar height */
