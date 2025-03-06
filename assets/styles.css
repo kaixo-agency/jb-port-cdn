@@ -136,12 +136,13 @@ html {
   position: fixed;
   top: 0;
   left: 0;
-  width: 50px; /* Adjust size */
+  width: 50px; /* Cursor size */
   height: 50px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 1300;
+  z-index: 1400; /* Above everything */
   background-color: var(--base-color-brand--slate-dark) !important;
+  mix-blend-mode: difference; /* Invert text inside the cursor */
 }
 
 
@@ -158,11 +159,11 @@ html {
   width: 100%;
   height: 100%;
   color: white; /* White duplicate text */
-  z-index: 1200; /* Below cursor */
+  z-index: 1300; /* Above normal text */
   pointer-events: none;
-  clip-path: circle(0% at var(--cursor-x, 50%) var(--cursor-y, 50%)); /* Initially hidden */
-  transition: clip-path 0.1s ease-out;
+  mix-blend-mode: difference; /* Creates the inversion effect */
 }
+
 
 
 
