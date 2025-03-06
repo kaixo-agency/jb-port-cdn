@@ -175,6 +175,7 @@ html {
   will-change:transform;
   background:transparent !important;
   mix-blend-mode: darken;
+  background: var(--base-color-brand--slate-dark);
 }
 
 
