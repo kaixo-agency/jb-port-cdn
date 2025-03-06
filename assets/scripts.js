@@ -135,10 +135,10 @@ $(document).ready(function () {
             // Apply light mode
             navbar.removeClass("nav-dark"); 
             navbar.css({
-                "background": "rgba(255, 255, 255, 0)",
+                "background": "rgba(255, 255, 255, 0.85)",
                 "border-color": "#DCDCDB",
                 "transition": "background-color 0.5s ease, border-color 0.5s ease",
-                "box-shadow": "0 4px 20px #2c2c2c00"
+                "box-shadow": "0 4px 20px #2c2c2c0f"
             });
             buttonLabels.css({
                 "color": "",
