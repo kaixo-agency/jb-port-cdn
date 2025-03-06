@@ -149,7 +149,7 @@ html {
 /* Button label, with white text and positioned relative */
 .button-label {
   position: relative;
-  color: var(--original-text-color); /* Default text color */
+  color: var(--base-color-brand--grey-medium); /* Default text color */
   z-index: 9999; /* Ensure it's above normal content */
 }
 
@@ -162,7 +162,7 @@ html {
   color: white; /* White text */
   z-index: 1300;
   pointer-events: none;
-  mask: radial-gradient(circle, rgba(255, 255, 255, 1) 30%, rgba(0, 0, 0, 0) 100%); /* Apply the mask to text */
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 100%); /* Apply the mask to text */
 }
 
 
