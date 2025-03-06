@@ -156,6 +156,7 @@ html {
   height:100%;
   will-change: transform;
   background-color: var(--base-color-brand--slate-dark) !important;
+  mix-blend-mode: difference;
 }
 .page-wrapper {
   background: #fff;
