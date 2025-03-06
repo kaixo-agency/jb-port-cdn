@@ -141,6 +141,7 @@ html {
   box-sizing: border-box;
 }
 
+
 /* Cursor text */
 .custom-cursor .cursor-text {
   font-size: 14px;
@@ -158,6 +159,11 @@ html {
   height: 34px !important;
   top: -17px;
   left: -17px;
+}
+
+/* Apply the effect only when hovering over .cursor-scale */
+.cursor-scale-hover .custom-cursor {
+  mix-blend-mode: difference;
 }
 
 /* Focus effect */
