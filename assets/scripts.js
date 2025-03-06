@@ -242,7 +242,7 @@ $(document).ready(function () {
     $(".cursor-hover").on("mouseenter", function () {
         $(".custom-cursor, .custom-cursor-backface").addClass("cursor-scale");
     }).on("mouseleave", function () {
-        $(".custom-cursor").removeClass("cursor-scale");
+        $(".custom-cursor, .custom-cursor-backface").removeClass("cursor-scale");
     });
 
     $("[cursor-label]").on("mouseenter", function () {
