@@ -148,7 +148,7 @@ html {
   position: absolute;
   border-radius: 50%;
   filter: contrast(10);
-  mix-blend-mode: difference; /* This will invert text within its area */
+  mix-blend-mode: lighten; /* This will invert text within its area */
   background: transparent; /* Ensure no background so only text is affected */
 
 }
