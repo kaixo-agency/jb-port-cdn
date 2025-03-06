@@ -167,11 +167,12 @@ html {
 
 /* Scale effect */
 .cursor-scale {
-  width: 52px !important;
-  height: 52px !important;
-  top: -24px;
-  left: -24px;
+  width: 62px !important;
+  height: 62px !important;
+  top: -31px;
+  left: -31px;
   background:transparent;
+  pointer-events: none;
 }
 
 /* Focus effect */
