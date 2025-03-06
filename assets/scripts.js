@@ -351,6 +351,24 @@ $(document).ready(function () {
 
     
 
- 
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorBackface = document.querySelector('.custom-cursor-backface');
+    const links = document.querySelectorAll('a');
+    
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      cursorBackface.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+    
+    links.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+        cursorBackface.classList.add('hover');
+      });
+      link.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+        cursorBackface.classList.remove('hover');
+      });
+    });
 
 });
