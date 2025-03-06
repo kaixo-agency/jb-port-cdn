@@ -141,7 +141,6 @@ html {
   }
     
  /* Trailing Cursor */
-/* Trailing Cursor */
 .custom-cursor {
   position: fixed;
   top: -12px;
@@ -163,9 +162,8 @@ html {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  background: transparent; /* Make background transparent */
-  mix-blend-mode: exclusion; /* Apply blending only to the cursor */
-  z-index: 999; /* Ensure it's above the background, but not affecting text */
+  background: transparent;
+  mix-blend-mode: exclusion; /* Only affect the text within the cursor */
 }
 
 /* Backface Cursor */
