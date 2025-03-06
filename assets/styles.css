@@ -171,6 +171,7 @@ html {
 
 .page-wrapper {
   background: #fff;
+  min-height: 100vh;
 }
 .page-wrapper::before {
   position: fixed;
