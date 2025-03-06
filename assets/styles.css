@@ -148,7 +148,6 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 1300;
-  mix-blend-mode: exclusion;
 }
 
 .custom-cursor .cursor-bg {
@@ -158,6 +157,7 @@ html {
   border-radius: 50%;
   pointer-events: none;
   mix-blend-mode:exclusion;
+  backface-visibility: hidden;
 }
 
 .custom-cursor-backface {
