@@ -141,7 +141,7 @@ html {
   border-radius: 50%;
   pointer-events: none;
   background: black; /* Solid color to act as a mask */
-  mix-blend-mode: normal; /* Inverts only where cursor overlaps */
+  mix-blend-mode: difference; /* Inverts only where cursor overlaps */
   z-index: 9999;
 }
 
