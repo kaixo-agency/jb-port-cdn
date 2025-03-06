@@ -150,7 +150,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: transparent; /* Ensure no background so only text is affected */
-  mix-blend-mode: lighten;
+  mix-blend-mode: difference;
 }
 
 /* Backface Cursor */
