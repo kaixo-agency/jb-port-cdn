@@ -192,6 +192,7 @@ html {
   height: 48px !important;
   top: -24px;
   left: -24px;
+  background:transparent;
 }
 
 /* Focus effect */
