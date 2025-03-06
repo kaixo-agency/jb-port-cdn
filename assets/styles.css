@@ -138,9 +138,10 @@ html {
   white-space: nowrap;
   padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
+  will-change: transform;
   mix-blend-mode:difference;
   backface-visibility: hidden;
-  background: #000;
+  background: var(--base-color-brand--slate-dark);
 }
 
 
