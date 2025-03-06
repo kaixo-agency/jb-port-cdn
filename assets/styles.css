@@ -11,7 +11,11 @@ html {
     transition:all .5s linear;
     }
     a:hover{
-      filter: invert(1);
+      color: transparent; /* Temporarily remove the text color */
+      background: transparent; /* Ensure background doesn't interfere */
+    }
+    a:hover .custom-cursor .cursor-bg {
+      mix-blend-mode: difference; /* Inverts the content inside the cursor */
     }
     .skill-pill{
     cursor:default;
