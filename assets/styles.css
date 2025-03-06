@@ -35,7 +35,7 @@ html {
     animation: none !important;
   }
   .navbar3_container.nav-wrapper{
-    z-index:1100;
+    z-index:1000;
   }
     .navbar3_component {
     position: -webkit-sticky;  /* For Safari */
