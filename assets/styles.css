@@ -2,7 +2,7 @@ html {
     scroll-behavior: auto !important;
     overflow-x: hidden;
     }
-    a, button{
+    a, .button{
       z-index:1200 !important;
      
     }
