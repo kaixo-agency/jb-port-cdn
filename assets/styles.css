@@ -168,7 +168,7 @@ html {
 }
 .down-arrow{
   border:2px solid var(--base-color-brand--olive) !important;
-  background:#79958580 !important;
+  background:#79958566 !important;
   transition:all .15s ease;
 }
 
