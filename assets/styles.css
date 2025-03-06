@@ -144,7 +144,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1300; /* Ensure it's above the links */
+  z-index: 1300;
 }
 
 .custom-cursor .cursor-bg {
@@ -152,11 +152,10 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: transparent; /* No background */
-  backface-visibility: hidden;
-  pointer-events: none; /* Ensures it doesn't block hover events */
-  mix-blend-mode: difference; /* Use difference mode to invert the content */
-  transition: mix-blend-mode 0.1s ease;
+  pointer-events: none;
+  background: transparent; /* Make background transparent */
+  mix-blend-mode: exclusion; /* Only apply blending to the cursor */
+  z-index: 999; /* Ensure it's above the background, but not affecting text */
 }
 
 /* Backface Cursor */
@@ -168,7 +167,8 @@ html {
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 1299; /* Backface cursor sits below the front cursor */
+  z-index: 900;
+  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
 }
 
 .custom-cursor-backface .cursor-bg {
@@ -176,23 +176,30 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
+  background-color: var(--base-color-brand--slate-dark) !important;
 }
 
-/* Invert Text inside the Cursor Circle */
-a {
+/* Hover Effects for Links */
+a{
   position: relative;
   display: inline-block;
 }
 
-/* Hover state for the button's text */
-a:hover .button-label {
-  filter: invert(1); /* Invert text color inside button */
+a .button-label {
+  display: inline-block;
+  position: relative;
+  z-index: 9998;
+  transition: color 0.3s;
 }
 
-/* Maintain normal color for outside content */
-a:hover {
-  color: inherit; /* Keep original text color outside the cursor */
+a:hover .button-label {
+  color: #fff; /* Change color of the text on hover */
+}
+
+/* Make the cursor background blend with the text when hovering */
+a:hover .custom-cursor .cursor-bg {
+  background: transparent; /* Keep background transparent */
+  mix-blend-mode: exclusion; /* Only invert the text inside the cursor */
 }
 
 
