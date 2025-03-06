@@ -174,8 +174,8 @@ html {
 
 /* Scale effect */
 .cursor-scale {
-  width: 48px !important;
-  height: 48px !important;
+  width: 52px !important;
+  height: 52px !important;
   top: -24px;
   left: -24px;
   background:transparent;
