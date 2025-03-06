@@ -151,10 +151,11 @@ html {
   z-index: 1001 !important;
   display:none !important;
   mix-blend-mode: darken;
+  backface-visibility: hidden !important;
 }
 
 .cursor-active-bg{
-  backface-visibility: hidden !important;
+  
   background: var(--base-color-brand--slate-dark);
   border-radius: 50%;
   position: absolute;
