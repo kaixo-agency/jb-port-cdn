@@ -158,11 +158,11 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 .page-wrapper {
-  background: #fff;
+  background: #000;
 }
 .page-wrapper::before {
   position: fixed;
-  background: #000;
+  background: #fff;
   mix-blend-mode: multiply;
   content: "";
   top: 0;
