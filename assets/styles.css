@@ -155,7 +155,6 @@ html {
   background: transparent;
   pointer-events: none;
   mix-blend-mode: difference;
-  filter:invert(1);
 }
 
 .custom-cursor-backface {
