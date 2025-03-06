@@ -150,7 +150,7 @@ html {
   justify-content: center;
   z-index: 1300;
   background-color: var(--base-color-brand--slate-dark) !important;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
 }
 
 /* Cursor text */
@@ -173,6 +173,7 @@ html {
   left: -31px;
   background:transparent;
   pointer-events: none;
+  mix-blend-mode: normal;
 }
 
 /* Focus effect */
