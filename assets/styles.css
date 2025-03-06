@@ -150,6 +150,7 @@ html {
   justify-content: center;
   z-index: 1300;
   background-color: var(--base-color-brand--slate-dark) !important;
+  mix-blend-mode: difference;
 
 }
 .custom-cursor .cursor-bg{
