@@ -154,12 +154,12 @@ html {
 
 .custom-cursor-active{
   display:none;
-  position: fixed;
-  top: -12px;
-  left: -8px;
+  filter:contrast(10);
   width: 6px;
   height: 6px;
-  filter:contrast(10);
+  position: fixed;
+  top: -12px;
+  left: -8px;  
   z-index: 1001;
   mix-blend-mode: darken;
   will-change: transform;
