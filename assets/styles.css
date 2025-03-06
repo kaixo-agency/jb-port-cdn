@@ -161,6 +161,7 @@ html {
   pointer-events: none;
   mix-blend-mode:difference;
   backface-visibility: hidden;
+  background:transparent;
 }
 /* Clip the background within the custom cursor's circle using ::before */
 .custom-cursor::before {
