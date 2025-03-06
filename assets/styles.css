@@ -160,7 +160,24 @@ html {
 }
 
 
+/* Button label, with white text and positioned relative */
+.button-label {
+  position: relative;
+  color: var(--original-text-color); /* Default text color */
+  z-index: 9999; /* Ensure it's above normal content */
+}
 
+/* White text that appears within the cursor circle */
+.button-label::before {
+  content: attr(data-text); /* Duplicates the text */
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white; /* White text */
+  z-index: 1300;
+  pointer-events: none;
+  mask: radial-gradient(circle, rgba(255, 255, 255, 1) 30%, rgba(0, 0, 0, 0) 100%); /* Apply the mask to text */
+}
 
 
 
