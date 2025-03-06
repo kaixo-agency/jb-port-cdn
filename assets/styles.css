@@ -143,7 +143,7 @@ html {
 }
 
 .custom-cursor .cursor-active-bg{
-  background: var(--base-color-brand--slate-dark);
+  background: yellow;
   border-radius: 50%;
   position: absolute;
   will-change: transform;
@@ -167,7 +167,7 @@ html {
 }
 
 .custom-cursor-active .cursor-active-bg{
-  background: yellow;
+  background: var(--base-color-brand--slate-dark);
   backface-visibility: hidden;
   width:100%;
   height:100%;
