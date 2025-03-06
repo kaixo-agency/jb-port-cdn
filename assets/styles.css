@@ -144,7 +144,6 @@ html {
   justify-content: center;
   white-space: nowrap;
   z-index: 1300 !important;
-  mix-blend-mode: normal;
   will-change: transform;
   pointer-events: none;
 }
