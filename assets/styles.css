@@ -147,15 +147,16 @@ html {
   z-index: 1300;
 }
 
+/* Cursor Background to Create Inversion Effect */
 .custom-cursor .cursor-bg {
   width: 100%;
   height: 100%;
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  background: transparent; /* Make background transparent */
-  mix-blend-mode: exclusion; /* Only apply blending to the cursor */
-  z-index: 999; /* Ensure it's above the background, but not affecting text */
+  background: transparent;
+  mix-blend-mode: difference; /* Switch to 'difference' for a better inversion effect */
+  z-index: 999;
 }
 
 /* Backface Cursor */
@@ -179,20 +180,16 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 
-/* Ensuring Link Text Blends Correctly */
-a {
-  position: relative;
-  display: inline-block;
-}
-
+/* Ensure Button Label Text is Normally Visible */
 a .button-label {
   display: inline-block;
   position: relative;
   z-index: 9998;
   transition: color 0.3s;
+  color: var(--button-text-color); /* Keep the normal color */
 }
 
-/* Blend Text Only Inside Cursor */
+/* Create an Inversion Effect Inside the Cursor Circle */
 a .button-label::before {
   content: attr(data-text); /* Duplicate text */
   position: absolute;
@@ -200,17 +197,19 @@ a .button-label::before {
   top: 0;
   width: 100%;
   height: 100%;
-  color: #fff; /* Inverted text color */
-  mix-blend-mode: exclusion;
+  color: white; /* This will be the inverted color */
+  mix-blend-mode: difference; /* Ensure it inverts properly */
   pointer-events: none;
   z-index: 9999;
   opacity: 1;
+  clip-path: circle(10px at var(--cursor-x) var(--cursor-y)); /* Make the effect appear only inside the cursor */
 }
 
-/* Ensure Normal Text Outside Cursor */
+/* Keep Normal Color Outside Cursor */
 a:hover .button-label {
-  color: inherit; /* Keep original color outside cursor */
+  color: inherit;
 }
+
 
 
 
