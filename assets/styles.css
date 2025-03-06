@@ -148,7 +148,11 @@ html {
   z-index: 1001 !important;
   display:none !important;
 }
-
+.cursor-active-bg{
+  backface-visibility: hidden;
+    background: #ffe800;
+    will-change: transform;
+}
 
 /* Cursor text */
 .custom-cursor .cursor-text {
