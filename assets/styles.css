@@ -165,7 +165,7 @@ html {
   position: fixed;
   top: -12px;
   left: -8px;  
-  z-index: 1001;
+  z-index: 9995;
   
   will-change: transform;
   border-radius: 50%;
