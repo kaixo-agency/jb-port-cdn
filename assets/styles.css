@@ -125,7 +125,7 @@ html {
       border:0 !important;
   }
     
- /* Cursor Trailing */
+ /* Trailing Cursor */
 .custom-cursor {
   position: fixed;
   top: -12px;
@@ -134,8 +134,7 @@ html {
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 0.05s linear, background-color 0.3s ease, 
-              width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
+  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,18 +142,17 @@ html {
   z-index: 9999;
 }
 
-/* This is what inverts the text */
 .custom-cursor .cursor-bg {
   width: 100%;
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  mix-blend-mode: difference; /* Inverts the text beneath it */
-  background: white; /* Ensure it has a background */
-  transition: background 0.3s ease;
+  mix-blend-mode: difference; /* This will invert text within its area */
+  background: transparent; /* Ensure no background so only text is affected */
+  backface-visibility: hidden;
 }
 
-/* Backface Cursor - Serves as background */
+/* Backface Cursor */
 .custom-cursor-backface {
   position: fixed;
   top: -12px;
@@ -163,23 +161,16 @@ html {
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease, 
-              border-radius 0.2s ease;
+  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
   z-index: 9997;
 }
 
-/* Ensures background contrast */
 .custom-cursor-backface .cursor-bg {
   width: 100%;
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: black !important; /* Set a solid dark background */
-}
-
-/* Activate effect only on .cursor-scale */
-.cursor-scale .custom-cursor .cursor-bg {
-  mix-blend-mode: difference;
+  background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
 }
 
 
