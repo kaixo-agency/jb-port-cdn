@@ -125,8 +125,8 @@ html {
       border:0 !important;
   }
     
- /* Cursor Trailing */
-.custom-cursor{
+ /* Trailing Cursor */
+.custom-cursor {
   position: fixed;
   top: -12px;
   left: -8px;
@@ -134,51 +134,44 @@ html {
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 0.05s linear, background-color 0.3s ease, width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
+  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  padding: 0; /* Prevents extra spacing when no text is present */
-  box-sizing: border-box;
-  
-
-}
-
-.custom-cursor .cursor-bg{
-  background: yellow !important;
-  width:100%;
-  height:100%;
-  position:absolute;
-  will-change:transform;
-  border-radius:50%;
   z-index: 9999;
-  filter:contrast(10);
-  mix-blend-mode:normal;
 }
 
-.custom-cursor-backface{
+.custom-cursor .cursor-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: difference; /* This will invert text within its area */
+  background: transparent; /* Ensure no background so only text is affected */
+}
+
+/* Backface Cursor */
+.custom-cursor-backface {
   position: fixed;
-  transition: transform 0.05s linear, background-color 0.3s ease, width 0.2s ease, height 0.2s ease, border-radius 0.2s ease;
   top: -12px;
   left: -8px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
+  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
   z-index: 9997;
 }
 
-.custom-cursor-backface .cursor-bg{
-  background: var(--base-color-brand--slate-dark) !important;
-  width:100%;
-  height:100%;
-  position:absolute;
-  will-change:transform;
-  border-radius:50%;
-  backface-visibility: hidden;
-  
+.custom-cursor-backface .cursor-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
 }
+
 
 
 /* Cursor text */
