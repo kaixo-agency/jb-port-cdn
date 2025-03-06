@@ -171,7 +171,7 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background: red;
+  background-color: var(--base-color-brand--olive) !important;
 }
 
 
