@@ -37,6 +37,7 @@ html {
 .navbar3_container.nav-wrapper{
     background:none !important;
     box-shadow:none !important;
+    isolation: isolate !important;  /* Keeps blend mode inside this context */
   }
     .navbar3_component {
     position: -webkit-sticky;  /* For Safari */
