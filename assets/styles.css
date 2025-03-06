@@ -58,7 +58,10 @@ html {
   .navbar3_link:hover{
     color:black !important;
   }
-    
+  .navbar3_link:hover .custom-cursor .cursor-bg {
+    mix-blend-mode: difference; /* Invert the text on hover */
+  }
+
   /* Set up the parent button */
   .button, .navbar3_link {
     position: relative;
