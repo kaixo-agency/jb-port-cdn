@@ -141,7 +141,7 @@ html {
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  z-index: 9000 !important;
+  z-index: 1000 !important;
 }
 
 .custom-cursor .cursor-bg {
