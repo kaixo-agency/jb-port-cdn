@@ -154,6 +154,7 @@ html {
   border-radius: 50%;
   pointer-events: none;
   mix-blend-mode: lighten;
+  background-color:red;
 }
 
 .custom-cursor-backface {
