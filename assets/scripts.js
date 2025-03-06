@@ -309,21 +309,16 @@ document.addEventListener("DOMContentLoaded", function () {
       // Check if the cursor overlaps with button labels
       buttonLabels.forEach((label) => {
         const rect = label.getBoundingClientRect();
-        const cursorRadius = 40; // Half of cursor size (80px)
   
-        // Calculate if cursor is within button label bounds
+        // Detect overlap (without hardcoded cursor size)
         const isHovering =
-          e.clientX > rect.left - cursorRadius &&
-          e.clientX < rect.right + cursorRadius &&
-          e.clientY > rect.top - cursorRadius &&
-          e.clientY < rect.bottom + cursorRadius;
+          e.clientX > rect.left &&
+          e.clientX < rect.right &&
+          e.clientY > rect.top &&
+          e.clientY < rect.bottom;
   
         // Apply inversion only when cursor is over text
-        if (isHovering) {
-          label.classList.add("invert");
-        } else {
-          label.classList.remove("invert");
-        }
+        label.classList.toggle("invert", isHovering);
       });
     });
   });
