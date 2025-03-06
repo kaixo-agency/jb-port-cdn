@@ -202,7 +202,7 @@ a:hover .custom-cursor .cursor-bg {
   mix-blend-mode: exclusion; /* Only invert the text inside the cursor */
 }
 
-a .button-label .cursor-bg {
+.button-label .cursor-bg {
   mix-blend-mode: normal !important; /* Keep text color outside the circle unaffected */
 }
 
