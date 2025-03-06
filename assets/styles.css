@@ -196,7 +196,7 @@ html {
 }
 
 .cursor-hover .button-label {
-  display: inline-block;
+  display: inline-block !important;
   position: relative;
   z-index: 9998;
   transition: color 0.3s;
