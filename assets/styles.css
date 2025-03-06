@@ -156,15 +156,7 @@ html {
   display:none !important;
   
 }
-.cursor-active-bg{
-  backface-visibility: hidden !important;
-  background-color: var(--base-color-brand--slate-medium);
-    will-change: transform;
-    border-radius: 50%;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
+
 .custom-cursor .cursor-active-bg{
   backface-visibility: hidden !important;
   background: var(--base-color-brand--slate-medium);
