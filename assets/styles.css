@@ -9,6 +9,9 @@ html {
     a, .skill-pill{
     transition:all .5s linear;
     }
+    a:hover{
+      filter: invert(1);
+    }
     .skill-pill{
     cursor:default;
     }
