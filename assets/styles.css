@@ -154,7 +154,7 @@ html {
   mix-blend-mode: darken !important;
   z-index: 1001 !important;
   display:none !important;
-  backface-visibility: hidden !important;
+  
 }
 .cursor-active-bg{
   backface-visibility: hidden !important;
