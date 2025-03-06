@@ -298,7 +298,36 @@ $(document).ready(function () {
 
 });
 
-
+document.addEventListener("DOMContentLoaded", function () {
+    const cursor = document.querySelector(".custom-cursor");
+    const buttonLabels = document.querySelectorAll(".button-label");
+  
+    document.addEventListener("mousemove", (e) => {
+      // Move cursor
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  
+      // Check if the cursor overlaps with button labels
+      buttonLabels.forEach((label) => {
+        const rect = label.getBoundingClientRect();
+        const cursorRadius = 40; // Half of cursor size (80px)
+  
+        // Calculate if cursor is within button label bounds
+        const isHovering =
+          e.clientX > rect.left - cursorRadius &&
+          e.clientX < rect.right + cursorRadius &&
+          e.clientY > rect.top - cursorRadius &&
+          e.clientY < rect.bottom + cursorRadius;
+  
+        // Apply inversion only when cursor is over text
+        if (isHovering) {
+          label.classList.add("invert");
+        } else {
+          label.classList.remove("invert");
+        }
+      });
+    });
+  });
+  
 
 
 document.querySelectorAll(".tool-icon").forEach((icon) => {
