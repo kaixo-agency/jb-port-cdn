@@ -150,7 +150,7 @@ html {
   mix-blend-mode: darken;
   z-index: 1001 !important;
   display:none !important;
-  
+  mix-blend-mode: darken;
 }
 
 .cursor-active-bg{
@@ -161,7 +161,7 @@ html {
   will-change: transform;
   width: 100%;
   height: 100%;
-  mix-blend-mode: darken;
+  
   
 }
 /* Cursor text */
