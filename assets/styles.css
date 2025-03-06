@@ -5,7 +5,6 @@ html {
     a, .button{
       position: relative;
       z-index: 1200; /* Ensure links are below the cursor */
-      color: black; /* Default text color */
      
     }
     a, .skill-pill{
