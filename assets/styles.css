@@ -174,7 +174,7 @@ html {
   background:transparent;
   pointer-events: none;
   background-color: var(--base-color-brand--olive) !important;
-  opacity:.5;
+  opacity:.25;
 }
 
 /* Focus effect */
