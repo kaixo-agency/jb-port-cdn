@@ -9,6 +9,9 @@ html {
     a, .skill-pill{
     transition:all .5s linear;
     }
+    body{
+      background-color:#fff;
+    }
     .skill-pill{
     cursor:default;
     }
