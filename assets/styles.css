@@ -169,6 +169,7 @@ html {
 .down-arrow{
   border:1px solid var(--base-color-brand--olive) !important;
   background:#79958580 !important;
+  transition:all 1s ease;
 }
 
 /* Scale effect */
