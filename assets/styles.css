@@ -159,6 +159,7 @@ html {
   height: 34px !important;
   top: -17px;
   left: -17px;
+  mix-blend-mode: difference;
 }
 
 /* Focus effect */
