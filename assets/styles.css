@@ -167,7 +167,7 @@ html {
   display:none;
 }
 .down-arrow{
-  border:1px solid var(--base-color-brand--olive) !important;
+  border:2px solid var(--base-color-brand--olive) !important;
   background:#79958580 !important;
   transition:all .25s ease;
 }
