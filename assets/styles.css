@@ -152,8 +152,7 @@ html {
   background: transparent;
   backface-visibility: hidden;
   pointer-events: none; /* Ensures it doesn't block hover events */
-  opacity:.5;
-  mix-blend-mode: difference !important;
+  filter:invert(1);
 }
 
 /* Backface Cursor */
