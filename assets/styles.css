@@ -37,7 +37,6 @@ html {
 .navbar3_container.nav-wrapper{
     background:none !important;
     box-shadow:none !important;
-    isolation: isolate !important;  /* Keeps blend mode inside this context */
   }
     .navbar3_component {
     position: -webkit-sticky;  /* For Safari */
@@ -45,10 +44,11 @@ html {
     top: 0;
     z-index: 1000;  /* Ensures the navbar stays above other content */
     width: 100%;  /* Ensure it takes the full width */
-    isolation: isolate !important;  /* Keeps blend mode inside this context */
     background:none !important;
   }
-  
+  .navbar3_menu{
+    isolation: isolate !important;  /* Keeps blend mode inside this context */
+  }
 
   .navbar3_link{
       text-decoration: none;
