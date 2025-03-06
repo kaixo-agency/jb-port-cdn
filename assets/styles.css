@@ -161,10 +161,6 @@ html {
   left: -17px;
 }
 
-/* Apply the effect only when hovering over .cursor-scale */
-.cursor-scale-hover .custom-cursor {
-  mix-blend-mode: difference;
-}
 
 /* Focus effect */
 .cursor-focus {
