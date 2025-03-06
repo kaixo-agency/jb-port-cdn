@@ -168,7 +168,6 @@ html {
 }
 
 .custom-cursor-active .cursor-active-bg{
-  background: var(--base-color-brand--slate-dark);
   backface-visibility: hidden !important;
   width:100%;
   height:100%;
