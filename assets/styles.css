@@ -149,7 +149,7 @@ html {
   display:none !important;
 }
 .cursor-active-bg{
-  backface-visibility: hidden;
+  backface-visibility: hidden !important;
     background: #ffe800 !important;
     will-change: transform;
 }
