@@ -144,8 +144,6 @@ html {
   pointer-events: none;
   will-change: transform;
   z-index: 998;
-  -webkit-transform: matrix(1, 0, 0, 1, -100, -100);
-  transform: matrix(1, 0, 0, 1, -100, -100);
   opacity: 0;
   mix-blend-mode: difference;
 }
