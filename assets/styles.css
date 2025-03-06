@@ -122,7 +122,7 @@ html {
   }
     
  /* Cursor Trailing */
-.custom-cursor, .custom-cursor-active{
+.custom-cursor{
   position: fixed;
   top: -12px;
   left: -8px;
@@ -143,6 +143,11 @@ html {
   will-change: transform;
 }
 .custom-cursor-active{
+  position: fixed;
+  top: -12px;
+  left: -8px;
+  width: 6px;
+  height: 6px;
   filter: contrast(10) !important;
   mix-blend-mode: darken !important;
   z-index: 1001 !important;
@@ -152,6 +157,7 @@ html {
   backface-visibility: hidden !important;
     background: #ffe800 !important;
     will-change: transform;
+    border-radius: 50%;
 }
 
 /* Cursor text */
