@@ -151,7 +151,7 @@ html {
   height: 100%;
   position: absolute;
   border-radius: 50%;
-  background:transparent; /* Add semi-transparent white */
+  background: var(--base-color-brand--slate-dark) !important; /* Background color to contrast */
   mix-blend-mode:difference;
 }
 
