@@ -165,7 +165,7 @@ html {
   pointer-events: none;
   background: transparent; /* Make background transparent */
   z-index: 9999;
-  mix-blend-mode: exclusion; /* Invert text only inside cursor's area */
+  mix-blend-mode: normal; /* Invert text only inside cursor's area */
 }
 
 /* Backface Cursor */
