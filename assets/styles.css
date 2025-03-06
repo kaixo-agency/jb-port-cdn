@@ -154,7 +154,7 @@ html {
   border-radius:50%;
   z-index: 9999;
   filter:contrast(1);
-  mix-blend-mode:lighten;
+  mix-blend-mode:difference;
 }
 
 .custom-cursor-backface{
