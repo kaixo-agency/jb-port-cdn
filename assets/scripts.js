@@ -352,7 +352,7 @@ $(document).ready(function () {
     
 
     const cursor = document.querySelector('.custom-cursor');
-const link = document.querySelector('.my-link');
+const link = document.querySelector('a');
 
 function invertColor(hex) {
   if (hex.indexOf('#') === 0) {
