@@ -152,7 +152,7 @@ html {
 }
 
 .custom-cursor-active{
-  display:none;
+  
   position: fixed;
   top: -12px;
   left: -8px;
