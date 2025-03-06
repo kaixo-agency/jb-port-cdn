@@ -153,8 +153,7 @@ html {
   position: absolute;
   border-radius: 50%;
   background: transparent; /* Background color to contrast */
-  opacity:1;
-  mix-blend-mode: difference;
+  filter: invert(1);
 }
 
 
