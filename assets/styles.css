@@ -203,7 +203,7 @@ a:hover .custom-cursor .cursor-bg {
 }
 
 a .cursor-bg {
-  mix-blend-mode: normal; /* Keep text color outside the circle unaffected */
+  mix-blend-mode: normal !important; /* Keep text color outside the circle unaffected */
 }
 
 
