@@ -141,9 +141,9 @@ html {
   position: fixed;
   border-radius: 50%;
   pointer-events: none;
- transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
-  background-color: var(--base-color-brand--slate-dark); /* Cursor background color */
-  mask: radial-gradient(circle, rgba(255, 255, 255, 1) 30%, rgba(0, 0, 0, 0) 100%); /* Mask for the circle */
+  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
+  mix-blend-mode: difference;
+  background-color: var(--base-color-brand--slate-dark); /* Cursor background */
 }
 
 /* Button label, with white text and positioned relative */
