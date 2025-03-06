@@ -162,6 +162,19 @@ html {
   mix-blend-mode:difference;
   backface-visibility: hidden;
 }
+/* Clip the background within the custom cursor's circle using ::before */
+.custom-cursor::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: yellow; /* You can change this to the color you want */
+  clip-path: circle(50%); /* Ensure the content is clipped to a circle */
+  pointer-events: none; /* Ensures it doesn't interfere with other elements */
+}
 
 .custom-cursor-backface {
   position: fixed;
