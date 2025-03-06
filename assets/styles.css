@@ -71,6 +71,7 @@ html {
     transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions for opacity and transform */
     animation: none; /* Ensure no animation by default */
     filter:invert(0);
+    clip-path: circle();
   }
   
   /* Hover effect */
