@@ -159,7 +159,7 @@ html {
 
 .custom-cursor .cursor-active-bg{
   backface-visibility: hidden !important;
-  background: var(--base-color-brand--slate-medium);
+  background: var(--base-color-brand--slate-dark);
   border-radius: 50%;
   position: absolute;
   will-change: transform;
