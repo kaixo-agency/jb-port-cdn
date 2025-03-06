@@ -148,6 +148,7 @@ html {
   position: absolute;
   will-change: transform;
   width: 100%;
+  backface-visibility: hidden;
   height: 100%;
   mix-blend-mode: difference;
 }
