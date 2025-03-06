@@ -157,7 +157,7 @@ html {
   background: transparent; /* Background color to contrast */
    mix-blend-mode: difference;
    backface-visibility: hidden;
-   filter: contrast(10);
+   filter: brightness(10);
 }
 
 
