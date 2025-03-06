@@ -200,7 +200,7 @@ html {
 }
 
 /* Invert text inside the cursor area */
-.cursor-hover::before {
+.cursor-hover .button-label::before {
   content: "";
   position: absolute;
   top: -50%;
