@@ -149,7 +149,7 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 1300;
-  mix-blend-mode: difference;
+
 }
 .custom-cursor .cursor-bg{
   width:100%;
@@ -159,6 +159,7 @@ html {
   transition: -webkit-transform 0.5s ease;
   transition: transform 0.5s ease;
   transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  mix-blend-mode: difference;
 }
 
 .custom-cursor.custom-cursor-active .cursor-bg {
