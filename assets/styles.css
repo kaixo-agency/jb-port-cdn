@@ -140,18 +140,17 @@ html {
   box-sizing: border-box;
   will-change: transform;
   mix-blend-mode: normal;
-  
 }
 
 .custom-cursor .cursor-active-bg{
-  background:transparent !important;
+  background: var(--base-color-brand--slate-dark);
   border-radius: 50%;
   position: absolute;
   will-change: transform;
   width: 100%;
   backface-visibility: hidden;
   height: 100%;
-  mix-blend-mode: lighten;
+  mix-blend-mode: difference;
 }
 
 .custom-cursor-active{
@@ -176,7 +175,6 @@ html {
   will-change:transform;
   background:transparent !important;
   mix-blend-mode: darken;
-  background: var(--base-color-brand--slate-dark);
 }
 
 
