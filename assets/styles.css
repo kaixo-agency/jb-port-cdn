@@ -148,7 +148,7 @@ html {
   position: absolute;
   border-radius: 50%;
   mix-blend-mode: difference; /* This will invert text within its area */
-  background: transparent; /* Ensure no background so only text is affected */
+  background: red; /* Ensure no background so only text is affected */
 
 }
 
@@ -156,7 +156,7 @@ html {
 .custom-cursor-backface {
   position: fixed;
   top: -12px;
-  left: -10px;
+  left: -8px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
