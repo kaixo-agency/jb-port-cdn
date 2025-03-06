@@ -138,7 +138,7 @@ $(document).ready(function () {
                 "background": "rgba(255, 255, 255, 0)",
                 "border-color": "#DCDCDB",
                 "transition": "background-color 0.5s ease, border-color 0.5s ease",
-                "box-shadow": "0 4px 20px #2c2c2c0f"
+                "box-shadow": "0 4px 20px #2c2c2c00"
             });
             buttonLabels.css({
                 "color": "",
