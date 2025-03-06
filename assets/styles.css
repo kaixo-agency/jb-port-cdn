@@ -51,6 +51,7 @@ html {
     position: -webkit-sticky;  /* For Safari */
     position: sticky;
     top: 0;
+    left:0;
     z-index: 1000;  /* Ensures the navbar stays above other content */
     width: 100%;  /* Ensure it takes the full width */
     background:none !important;
