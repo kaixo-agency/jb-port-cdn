@@ -140,6 +140,7 @@ html {
   justify-content: center;
   white-space: nowrap;
   z-index: 9999;
+  opacity:.5;
 }
 
 .custom-cursor .cursor-bg {
