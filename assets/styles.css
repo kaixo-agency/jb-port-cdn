@@ -54,7 +54,6 @@ html {
   .navbar3_link{
       text-decoration: none;
       position: relative; /* Ensure it's in the stacking context */
-      background-color: white; /* add a background color to the link. */
   }
     
   /* Set up the parent button */
