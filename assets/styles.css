@@ -152,23 +152,6 @@ html {
   background-color: var(--base-color-brand--slate-dark) !important;
 }
 
-.page-wrapper {
-  background: #fff;
-  min-height: 100vh;
-}
-.page-wrapper::before {
-  position: fixed;
-  background: #000;
-  mix-blend-mode: difference;
-  content: "";
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
-  pointer-events: none;
-}
-
 /* Cursor text */
 .custom-cursor .cursor-text {
   font-size: 14px;
