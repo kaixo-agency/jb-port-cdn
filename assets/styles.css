@@ -149,6 +149,8 @@ html {
 }
 .custom-cursor .cursor-bg{
   background: var(--base-color-brand--slate-dark);
+  width:100%;
+  height:100%;
 }
 
 
