@@ -152,7 +152,7 @@ html {
   backface-visibility: visible !important;
 }
 
-.cursor-active-bg{
+.custom cursor .cursor-active-bg{
   filter: contrast(10) !important;
   background: var(--base-color-brand--slate-dark);
   border-radius: 50%;
