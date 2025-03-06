@@ -144,7 +144,6 @@ html {
 
 .custom-cursor .cursor-active-bg{
   background: yellow;
-  border-radius: 50%;
   position: absolute;
   will-change: transform;
   width: 100%;
