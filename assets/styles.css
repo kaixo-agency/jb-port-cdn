@@ -133,19 +133,21 @@ html {
     
  /* Trailing Cursor */
  .custom-cursor {
-  pointer-events: none;
-  background-color: var(--base-color-brand--slate-dark) !important;
   position: fixed;
   top: -12px;
   left: -8px;
   width: 6px;
   height: 6px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+ transition: transform 0.05s linear, width 0.2s ease, height 0.2s ease;
+  background-color: var(--base-color-brand--slate-dark); /* Cursor background color */
+  mask: radial-gradient(circle, rgba(255, 255, 255, 1) 30%, rgba(0, 0, 0, 0) 100%); /* Mask for the circle */
 }
 
 .custom-cursor:hover .button-label::before {
