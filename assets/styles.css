@@ -141,8 +141,7 @@ html {
   white-space: nowrap;
   padding: 0; /* Prevents extra spacing when no text is present */
   box-sizing: border-box;
-  filter:contrast(1);
-  mix-blend-mode:lighten;
+  
 
 }
 
@@ -154,7 +153,8 @@ html {
   will-change:transform;
   border-radius:50%;
   z-index: 9999;
-  
+  filter:contrast(1);
+  mix-blend-mode:lighten;
 }
 
 .custom-cursor-backface{
