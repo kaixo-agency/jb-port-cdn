@@ -163,6 +163,7 @@ html {
   height: 6px;
   border-radius: 50%;
   pointer-events: none;
+  z-index: 9997;
 }
 
 .custom-cursor-backface .cursor-bg{
@@ -172,7 +173,7 @@ html {
   position:absolute;
   will-change:transform;
   border-radius:50%;
-  z-index: 9997;
+  
 }
 
 
