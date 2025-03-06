@@ -144,7 +144,7 @@ html {
 .custom-cursor-active{
   display: none;
   filter: contrast(10);
-  mix-blend-mode: darken;
+  mix-blend-mode: lighten;
   will-change: transform;
   z-index: 1001;
   background-color:red !important;
