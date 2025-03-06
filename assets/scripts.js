@@ -296,7 +296,14 @@ $(document).ready(function () {
         $(".custom-cursor").removeClass("cursor-white");
     });
     
-
+    $(document).ready(function () {
+        $(".cursor-scale").on("mouseenter", function () {
+            $("body").addClass("cursor-scale-hover");
+        }).on("mouseleave", function () {
+            $("body").removeClass("cursor-scale-hover");
+        });
+    });
+    
 
 });
 
