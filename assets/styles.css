@@ -151,16 +151,7 @@ html {
   z-index: 1300;
   background-color: var(--base-color-brand--slate-dark) !important;
 }
-.custom-cursor .cursor-arrow-down{
-  width:100%;
-  height:100%;
-  will-change: transform;
-  background-color: var(--base-color-brand--slate-dark) !important;
-  transition: -webkit-transform 0.5s ease;
-  transition: transform 0.5s ease;
-  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
-  mix-blend-mode: difference;
-}
+
 
 .custom-cursor.custom-cursor-active .cursor-bg {
   -webkit-transform: scale(1);
@@ -195,6 +186,10 @@ html {
   padding:0;
   margin:10px 0;
   font-family: JetBrains Mono, sans-serif;
+}
+/* Cursor arrow */
+.custom-cursor .cursor-arrow-down{
+  
 }
 
 /* Scale effect */
