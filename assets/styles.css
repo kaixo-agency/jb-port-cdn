@@ -155,7 +155,7 @@ html {
   position:absolute;
   will-change:transform;
   border-radius:50%;
-  filter:contrast(10);
+
   z-index: 9999;
 }
 
