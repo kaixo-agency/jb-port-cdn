@@ -332,19 +332,5 @@ $(document).ready(function () {
         $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
         $(this).css("cursor", "");  // Restore the default system cursor
     });
-
-    // When hovering over .navbar logo, add the 'avatar' class to .custom-cursor and hide the system cursor
-    $(".navbar1_logo-link").on("mouseenter", function () {
-        $(".custom-cursor").addClass("avatar");
-        $(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
-        $(".cursor-avatar").css("visibility", "visible");  // Make the .cursor-avatar visible
-        $(this).css("cursor", "none");  // Hide the system cursor
-    }).on("mouseleave", function () {
-        $(".custom-cursor").removeClass("avatar");
-        $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
-        $(".cursor-avatar").css("visibility", "hidden");  // Hide the .cursor-avatar again
-        $(this).css("cursor", "");  // Restore the default system cursor
-    });
-
     
 });
