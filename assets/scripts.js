@@ -334,3 +334,53 @@ $(document).ready(function () {
     });
     
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const panels = document.querySelectorAll(".layout410_card"); // Adjust selector if needed
+    let isScrollingLocked = false;
+
+    panels.forEach((panel) => {
+        const slider = panel.querySelector(".gallery14_slider"); // Adjust selector if needed
+        if (!slider) return;
+
+        const slides = slider.querySelectorAll(".gallery14_slide"); // Adjust selector if needed
+        const totalSlides = slides.length;
+        let currentSlide = 0;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        lockScrolling(panel, slider, totalSlides);
+                    }
+                });
+            },
+            { threshold: 0.6 }
+        );
+
+        observer.observe(panel);
+    });
+
+    function lockScrolling(panel, slider, totalSlides) {
+        if (isScrollingLocked) return;
+
+        isScrollingLocked = true;
+        let currentSlide = 0;
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                slider.scrollTo({
+                    left: slider.clientWidth * currentSlide,
+                    behavior: "smooth",
+                });
+                setTimeout(nextSlide, 2000); // Adjust timing between slides
+            } else {
+                isScrollingLocked = false;
+            }
+        }
+
+        nextSlide();
+    }
+});
