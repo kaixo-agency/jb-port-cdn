@@ -370,7 +370,7 @@ document.body.addEventListener("click", function (event) {
                 // Trigger the slide transition (simulating button click or navigation)
                 const nextDot = clickedDot.nextElementSibling || clickedDot.parentElement.firstElementChild;
                 nextDot.click();
-            }, 2000); // Give enough time for the video to start playing
-        }, 2000);
+            }, 3000); // Give enough time for the video to start playing
+        }, 3000);
     }, 500); // Small delay to allow Webflow to change the active slide
 });
