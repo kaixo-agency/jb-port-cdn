@@ -350,7 +350,7 @@ $(document).ready(function () {
 
  
     let lastScrollTop = 0;
-    const navbar = document.querySelector('.navbar3_container');
+    const navbar = document.querySelector('.navbar1_container');
     
     window.addEventListener('scroll', function() {
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
