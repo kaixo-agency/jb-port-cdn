@@ -347,7 +347,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const video = activeSlide.querySelector(".demo-videos video");
             if (!video) return;
-
+            alert("video!");
             video.pause();
             video.currentTime = 0; // Reset to first frame
 
