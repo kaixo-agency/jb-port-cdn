@@ -89,7 +89,7 @@ $(document).ready(function () {
     var navbar = $(".navbar1_container.nav-wrapper");
     var buttonLabels = $(".button-label");
     var logoSvgPaths = $(".navbar1_logo-link svg path"); // Target all path elements inside the SVG
-    var buttons = $(".button.is-navbar3-button"); // Target buttons for background transition
+    var buttons = $(".button.is-navbar1-button"); // Target buttons for background transition
     var darkSectionClass = "section_case-studies";
 
     function checkSection() {
