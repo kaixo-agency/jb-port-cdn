@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isScrollingLocked = false;
 
     panels.forEach((panel) => {
-        const slider = panel.querySelector(".gallery14_slider-right"); // Adjust selector if needed
+        const slider = panel.querySelector(".gallery14_component-right"); // Adjust selector if needed
         if (!slider) return;
 
         const slides = slider.querySelectorAll(".gallery14_slide"); // Adjust selector if needed
