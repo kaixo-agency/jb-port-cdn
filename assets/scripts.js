@@ -337,7 +337,7 @@ $(document).ready(function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const panels = document.querySelectorAll(".layout410_card"); // Adjust selector if needed
+    const panels = document.querySelectorAll(".layout410_component"); // Adjust selector if needed
     let isScrollingLocked = false;
 
     panels.forEach((panel) => {
