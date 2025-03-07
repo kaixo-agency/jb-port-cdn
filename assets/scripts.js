@@ -345,9 +345,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const activeSlide = document.querySelector(".w-slide[aria-hidden='false']");
             if (!activeSlide) return;
 
-            const video = activeSlide.querySelector(".demo-videos video");
+            const video = activeSlide.querySelector(".gallery14_image-wrapper .demo-videos video");
             if (!video) return;
-            alert("video!");
             video.pause();
             video.currentTime = 0; // Reset to first frame
 
