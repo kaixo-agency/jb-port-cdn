@@ -347,22 +347,4 @@ $(document).ready(function () {
     });
 
     
-
- 
-    let lastScrollTop = 0;
-    const navbar = document.querySelector('.navbar1_container');
-    
-    window.addEventListener('scroll', function() {
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // If the user is scrolling down and past a certain point
-      if (currentScroll > lastScrollTop) {
-        navbar.classList.add('navbar-hidden'); // Hide navbar
-      } else {
-        navbar.classList.remove('navbar-hidden'); // Show navbar
-      }
-    
-      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
-    });
-    
 });
