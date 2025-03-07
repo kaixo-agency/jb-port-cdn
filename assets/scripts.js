@@ -364,6 +364,13 @@ document.body.addEventListener("click", function (event) {
         setTimeout(() => {
             console.log("Playing video...");
             video.play();
+
+            // Delay slide transition to ensure video is finished loading
+            setTimeout(() => {
+                // Trigger the slide transition (simulating button click or navigation)
+                const nextDot = clickedDot.nextElementSibling || clickedDot.parentElement.firstElementChild;
+                nextDot.click();
+            }, 2000); // Give enough time for the video to start playing
         }, 2000);
     }, 300); // Small delay to allow Webflow to change the active slide
 });
