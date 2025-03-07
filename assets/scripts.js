@@ -338,12 +338,16 @@ $(document).ready(function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const sliderDots = document.querySelectorAll(".w-slider-dot");
-    const video = document.querySelector(".demo-videos video");
-
-    if (!video) return;
-
+    
     sliderDots.forEach(dot => {
         dot.addEventListener("click", function () {
+            // Select the active panel's video inside .demo-videos
+            const activeSlide = document.querySelector(".w-slide[aria-hidden='false']");
+            if (!activeSlide) return;
+
+            const video = activeSlide.querySelector(".demo-videos video");
+            if (!video) return;
+
             video.pause();
             video.currentTime = 0; // Reset to first frame
 
