@@ -334,7 +334,7 @@ $(document).ready(function () {
     });
 
     // When hovering over .navbar logo, add the 'avatar' class to .custom-cursor and hide the system cursor
-    $(".navbar3_logo-link").on("mouseenter", function () {
+    $(".navbar1_logo-link").on("mouseenter", function () {
         $(".custom-cursor").addClass("avatar");
         $(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
         $(".cursor-avatar").css("visibility", "visible");  // Make the .cursor-avatar visible
