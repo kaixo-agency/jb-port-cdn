@@ -336,24 +336,48 @@ $(document).ready(function () {
 });
 
 
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script Loaded!"); // Debugging
+
     const sliderDots = document.querySelectorAll(".w-slider-dot");
-    
+
+    if (!sliderDots.length) {
+        console.log("No .w-slider-dot elements found!");
+        return;
+    }
+
     sliderDots.forEach(dot => {
         dot.addEventListener("click", function () {
-            // Select the active panel's video inside .demo-videos
+            console.log("Slider dot clicked!"); // Debugging
+
+            // Find the currently active slide
             const activeSlide = document.querySelector(".w-slide[aria-hidden='false']");
-            if (!activeSlide) return;
+            if (!activeSlide) {
+                console.log("No active slide found!");
+                return;
+            }
 
-            const video = activeSlide.querySelector(".gallery14_image-wrapper .demo-videos video");
-            if (!video) return;
-            alert("yes!");
+            // Find the video inside the active slide
+            const video = activeSlide.querySelector(".demo-videos video");
+            if (!video) {
+                console.log("No video element found in active slide!");
+                return;
+            }
+
+            console.log("Video found, pausing and resetting...");
+
+            // Pause the video and reset to the first frame
             video.pause();
-            video.currentTime = 0; // Reset to first frame
+            video.currentTime = 0; 
 
+            // Wait 2 seconds before autoplaying again
             setTimeout(() => {
+                console.log("Playing video...");
                 video.play();
-            }, 2000); // Wait 2 seconds before autoplaying
+            }, 2000);
         });
     });
 });
