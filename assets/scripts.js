@@ -337,50 +337,19 @@ $(document).ready(function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const panels = document.querySelectorAll(".layout410_card"); // Adjust selector if needed
-    let isScrollingLocked = false;
+    const sliderDots = document.querySelectorAll(".w-slider-dot");
+    const video = document.querySelector(".demo-videos video");
 
-    panels.forEach((panel) => {
-        const slider = panel.querySelector(".gallery14_component"); // Adjust selector if needed
-        if (!slider) return;
-        alert("slider!");
-        const slides = slider.querySelectorAll(".gallery14_slide"); // Adjust selector if needed
-        const totalSlides = slides.length;
-        let currentSlide = 0;
+    if (!video) return;
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        lockScrolling(panel, slider, totalSlides);
-                    }
-                });
-            },
-            { threshold: 0.6 }
-        );
+    sliderDots.forEach(dot => {
+        dot.addEventListener("click", function () {
+            video.pause();
+            video.currentTime = 0; // Reset to first frame
 
-        observer.observe(panel);
+            setTimeout(() => {
+                video.play();
+            }, 2000); // Wait 2 seconds before autoplaying
+        });
     });
-
-    function lockScrolling(panel, slider, totalSlides) {
-        if (isScrollingLocked) return;
-
-        isScrollingLocked = true;
-        let currentSlide = 0;
-
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                slider.scrollTo({
-                    left: slider.clientWidth * currentSlide,
-                    behavior: "smooth",
-                });
-                setTimeout(nextSlide, 2000); // Adjust timing between slides
-            } else {
-                isScrollingLocked = false;
-            }
-        }
-
-        nextSlide();
-    }
 });
