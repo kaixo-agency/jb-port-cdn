@@ -372,5 +372,5 @@ document.body.addEventListener("click", function (event) {
                 nextDot.click();
             }, 2000); // Give enough time for the video to start playing
         }, 2000);
-    }, 300); // Small delay to allow Webflow to change the active slide
+    }, 500); // Small delay to allow Webflow to change the active slide
 });
