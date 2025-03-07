@@ -347,6 +347,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const video = activeSlide.querySelector(".gallery14_image-wrapper .demo-videos video");
             if (!video) return;
+            alert("yes!");
             video.pause();
             video.currentTime = 0; // Reset to first frame
 
