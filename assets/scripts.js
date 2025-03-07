@@ -343,7 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
     panels.forEach((panel) => {
         const slider = panel.querySelector(".gallery14_slider-right"); // Adjust selector if needed
         if (!slider) return;
-
+        alert("slider!");
         const slides = slider.querySelectorAll(".gallery14_slide"); // Adjust selector if needed
         const totalSlides = slides.length;
         let currentSlide = 0;
