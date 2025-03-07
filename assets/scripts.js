@@ -1,45 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("Script Loaded!"); // Debugging
 
-    const sliderDots = document.querySelectorAll(".w-slider-dot");
-
-    if (!sliderDots.length) {
-        console.log("No .w-slider-dot elements found!");
-        return;
-    }
-
-    sliderDots.forEach(dot => {
-        dot.addEventListener("click", function () {
-            console.log("Slider dot clicked!"); // Debugging
-
-            // Find the currently active slide
-            const activeSlide = document.querySelector(".w-slide[aria-hidden='false']");
-            if (!activeSlide) {
-                console.log("No active slide found!");
-                return;
-            }
-
-            // Find the video inside the active slide
-            const video = activeSlide.querySelector(".demo-videos video");
-            if (!video) {
-                console.log("No video element found in active slide!");
-                return;
-            }
-
-            console.log("Video found, pausing and resetting...");
-
-            // Pause the video and reset to the first frame
-            video.pause();
-            video.currentTime = 0; 
-
-            // Wait 2 seconds before autoplaying again
-            setTimeout(() => {
-                console.log("Playing video...");
-                video.play();
-            }, 2000);
-        });
-    });
-});
 
   
 // Create an Intersection Observer to detect when the section is at the top of the viewport
@@ -380,4 +339,46 @@ $(document).ready(function () {
 
 
 
+alert("JavaScript Loaded!");
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script Loaded!"); // Debugging
 
+    const sliderDots = document.querySelectorAll(".w-slider-dot");
+
+    if (!sliderDots.length) {
+        console.log("No .w-slider-dot elements found!");
+        return;
+    }
+
+    sliderDots.forEach(dot => {
+        dot.addEventListener("click", function () {
+            console.log("Slider dot clicked!"); // Debugging
+
+            // Find the currently active slide
+            const activeSlide = document.querySelector(".w-slide[aria-hidden='false']");
+            if (!activeSlide) {
+                console.log("No active slide found!");
+                return;
+            }
+
+            // Find the video inside the active slide
+            const video = activeSlide.querySelector(".demo-videos video");
+            if (!video) {
+                console.log("No video element found in active slide!");
+                return;
+            }
+
+            console.log("Video found, pausing and resetting...");
+
+            // Pause the video and reset to the first frame
+            video.pause();
+            video.currentTime = 0; 
+
+            // Wait 2 seconds before autoplaying again
+            setTimeout(() => {
+                console.log("Playing video...");
+                video.play();
+            }, 2000);
+        });
+    });
+});
