@@ -86,7 +86,7 @@ $(document).ready(function () {
 // Navigation
 
 $(document).ready(function () {
-    var navbar = $(".navbar3_container.nav-wrapper");
+    var navbar = $(".navbar1_container.nav-wrapper");
     var buttonLabels = $(".button-label");
     var logoSvgPaths = $(".navbar1_logo-link svg path"); // Target all path elements inside the SVG
     var buttons = $(".button.is-navbar3-button"); // Target buttons for background transition
