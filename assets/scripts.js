@@ -336,7 +336,7 @@ $(document).ready(function () {
     
     const hasVideoDiv = document.querySelector('.has-video');
     const image = document.querySelector('image');
-    const video = document.querySelector('.demo-videos .video');
+    const video = document.querySelector('.demo-videos video');
     
     hasVideoDiv.addEventListener('mouseenter', () => {
       // Start fading out the image
