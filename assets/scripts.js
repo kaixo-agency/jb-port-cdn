@@ -337,37 +337,6 @@ $(document).ready(function () {
 });
 
 
-document.body.addEventListener("click", function (event) {
-    const clickedDot = event.target.closest(".w-slider-dot");
-    if (!clickedDot) return; // Ignore clicks outside .w-slider-dot
-
-    console.log("A slider dot was clicked!");
-
-    // Wait for Webflow to update the active slide
-    setTimeout(() => {
-        const activeSlide = document.querySelector(".w-slide:not([aria-hidden='true'])"); 
-        if (!activeSlide) {
-            console.log("No active slide found after waiting!");
-            return;
-        }
-
-        const video = activeSlide.querySelector(".demo-videos video");
-        if (!video) {
-            console.log("No video element found in active slide!");
-            return;
-        }
-
-        console.log("Pausing video...");
-        video.pause();
-        video.currentTime = 0;
-
-        setTimeout(() => {
-            console.log("Playing video...");
-            video.play();
-        }, 2000);
-    }, 300); // Small delay to allow Webflow to change the active slide
-});
-
 const hasVideoDiv = document.querySelector('.has-video');
 const image = document.querySelector('.image');
 const video = document.querySelector('.demo-videos .video');
