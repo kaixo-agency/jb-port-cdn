@@ -334,29 +334,31 @@ $(document).ready(function () {
         $(this).css("cursor", "");  // Restore the default system cursor
     });
     
+    const hasVideoDiv = document.querySelector('.has-video');
+    const image = document.querySelector('.image');
+    const video = document.querySelector('.demo-videos .video');
+    
+    hasVideoDiv.addEventListener('mouseenter', () => {
+      // Start fading out the image
+      image.style.opacity = 0;
+    
+      // Delay the video play until the image fade-out is complete
+      setTimeout(() => {
+        // Start playing the video and fade it in
+        video.style.opacity = 1;
+        video.play();
+      }, 500); // 500ms delay to match the fade-out duration
+    });
+    
+    hasVideoDiv.addEventListener('mouseleave', () => {
+      // Reset the image opacity and video opacity when leaving the hover area
+      image.style.opacity = 1;
+      video.style.opacity = 0;
+      video.pause();
+      video.currentTime = 0; // Reset video to the beginning
+    });
+    
+
 });
 
 
-const hasVideoDiv = document.querySelector('.has-video');
-const image = document.querySelector('.image');
-const video = document.querySelector('.demo-videos .video');
-
-hasVideoDiv.addEventListener('mouseenter', () => {
-  // Start fading out the image
-  image.style.opacity = 0;
-
-  // Delay the video play until the image fade-out is complete
-  setTimeout(() => {
-    // Start playing the video and fade it in
-    video.style.opacity = 1;
-    video.play();
-  }, 500); // 500ms delay to match the fade-out duration
-});
-
-hasVideoDiv.addEventListener('mouseleave', () => {
-  // Reset the image opacity and video opacity when leaving the hover area
-  image.style.opacity = 1;
-  video.style.opacity = 0;
-  video.pause();
-  video.currentTime = 0; // Reset video to the beginning
-});
