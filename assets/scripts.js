@@ -338,19 +338,12 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $(".has-video").on("mouseenter", function () {
-        var $image = $(this).find(".gallery14_image");
-        var $video = $(this).find("video").get(0);
-
-        // Fade out image over 1s
-        $image.stop().animate({ opacity: 0 }, 1000, function () {
-            // Wait 1 second before playing the video
-            setTimeout(function () {
-                $video.play();
-            }, 1000);
-        });
+        $(".custom-cursor").addClass("tooltip cursor-text-visible");
     });
 
     $(".has-video").on("mouseleave", function () {
+        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);
 
@@ -364,5 +357,18 @@ $(document).ready(function () {
                 $video.currentTime = 0;
             });
         }, 500);
+    });
+
+    $(".has-video").on("click", function () {
+        var $image = $(this).find(".gallery14_image");
+        var $video = $(this).find("video").get(0);
+
+        // Fade out image over 1s
+        $image.stop().animate({ opacity: 0 }, 1000, function () {
+            // Wait 1 second before playing the video
+            setTimeout(function () {
+                $video.play();
+            }, 1000);
+        });
     });
 });
