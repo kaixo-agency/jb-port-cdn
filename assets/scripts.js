@@ -339,29 +339,28 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(".has-video").on("mouseenter", function () {
         var $image = $(this).find(".gallery14_image");
-        var $video = $(this).find("video");
+        var $video = $(this).find("video").get(0);
 
         // Fade out image
         $image.stop().animate({ opacity: 0 }, 400, function () {
             // Wait 1 second before playing the video
             setTimeout(function () {
-                $video.get(0).play();
+                $video.play();
             }, 1000);
         });
     });
 
     $(".has-video").on("mouseleave", function () {
         var $image = $(this).find(".gallery14_image");
-        var $video = $(this).find("video");
+        var $video = $(this).find("video").get(0);
 
-        // Pause the video immediately
-        $video.get(0).pause();
-        $video.get(0).currentTime = 0;
+        // Pause the video first
+        $video.pause();
 
-        // Wait 0.5 seconds before fading image back in
+        // Wait 0.5 seconds before resetting the video and fading the image back in
         setTimeout(function () {
+            $video.currentTime = 0;
             $image.stop().animate({ opacity: 1 }, 400);
         }, 500);
     });
 });
-
