@@ -304,3 +304,6 @@ body.force-hide-cursor {
   top: 0;
   overflow: hidden;
 }
+.video-panel{
+  filter: drop-shadow(0px 40px 100px rgba(59, 161, 199, 0.15));
+}
