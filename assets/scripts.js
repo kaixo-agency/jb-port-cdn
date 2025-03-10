@@ -358,7 +358,10 @@ $(document).ready(function () {
         $video.get(0).pause();
         $video.get(0).currentTime = 0;
 
-        // Fade image back in after pausing
-        $image.stop().animate({ opacity: 1 }, 400);
+        // Wait 0.5 seconds before fading image back in
+        setTimeout(function () {
+            $image.stop().animate({ opacity: 1 }, 400);
+        }, 500);
     });
 });
+
