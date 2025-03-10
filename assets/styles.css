@@ -200,7 +200,7 @@ html {
 .cursor-white .cursor-text{
   mix-blend-mode:difference;
 }
-}
+
 
 /* Ensure cursor expands to fit text */
 .cursor-text-visible {
