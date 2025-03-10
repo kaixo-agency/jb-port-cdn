@@ -195,7 +195,7 @@ html {
 /* Cursor turns white */
 .cursor-white {
   background-color: white !important;
-  mix-blend-mode:difference;
+
 }
 
 /* Ensure cursor expands to fit text */
