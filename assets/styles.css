@@ -282,3 +282,15 @@ body.force-hide-cursor {
   border-radius:20px;
   margin-right:10px;
 }
+
+.w-background-video > video {
+  /* object-fit: cover; */
+  z-index: -100;
+  /* background-position: 50%; */
+  /* background-size: cover; */
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  /* position: absolute; */
+  /* inset: -100%; */
+}
