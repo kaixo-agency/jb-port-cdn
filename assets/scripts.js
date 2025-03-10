@@ -341,8 +341,8 @@ $(document).ready(function () {
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);
 
-        // Fade out image
-        $image.stop().animate({ opacity: 0 }, 400, function () {
+        // Fade out image over 1s
+        $image.stop().animate({ opacity: 0 }, 1000, function () {
             // Wait 1 second before playing the video
             setTimeout(function () {
                 $video.play();
@@ -357,9 +357,9 @@ $(document).ready(function () {
         // Pause the video immediately
         $video.pause();
 
-        // Wait 0.5 seconds, then fade in the image
+        // Wait 0.5s, then fade in the image over 1s
         setTimeout(function () {
-            $image.stop().animate({ opacity: 1 }, 400, function () {
+            $image.stop().animate({ opacity: 1 }, 1000, function () {
                 // Reset video time **only after** the fade-in is complete
                 $video.currentTime = 0;
             });
