@@ -334,31 +334,34 @@ $(document).ready(function () {
         $(this).css("cursor", "");  // Restore the default system cursor
     });
     
-    const hasVideoDiv = document.querySelector('.has-video');
-    const image = document.querySelector('image');
-    const video = document.querySelector('.demo-videos video');
-    
-    hasVideoDiv.addEventListener('mouseenter', () => {
-      // Start fading out the image
-      image.style.opacity = 0;
-    
-      // Delay the video play until the image fade-out is complete
-      setTimeout(() => {
-        // Start playing the video and fade it in
-        video.style.opacity = 1;
-        video.play();
-      }, 500); // 500ms delay to match the fade-out duration
-    });
-    
-    hasVideoDiv.addEventListener('mouseleave', () => {
-      // Reset the image opacity and video opacity when leaving the hover area
-      image.style.opacity = 1;
-      video.style.opacity = 0;
-      video.pause();
-      video.currentTime = 0; // Reset video to the beginning
-    });
-    
-
 });
+
+$(document).ready(function () {
+    $(".has-video").on("mouseenter", function () {
+        var $image = $(this).find(".gallery14_image");
+        var $video = $(this).find("video");
+
+        // Fade out image
+        $image.stop().animate({ opacity: 0 }, 400, function () {
+            // Wait 1 second before playing the video
+            setTimeout(function () {
+                $video.get(0).play();
+            }, 1000);
+        });
+    });
+
+    $(".has-video").on("mouseleave", function () {
+        var $image = $(this).find(".gallery14_image");
+        var $video = $(this).find("video");
+
+        // Pause and reset video
+        $video.get(0).pause();
+        $video.get(0).currentTime = 0;
+
+        // Fade image back in
+        $image.stop().animate({ opacity: 1 }, 400);
+    });
+});
+
 
 
