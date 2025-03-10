@@ -338,11 +338,11 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $(".has-video").on("mouseenter", function () {
-        $(".custom-cursor").addClass("cursor-scale cursor-white cursor-text-visible");
+        $(".custom-cursor").addClass("cursor-scale cursor-text-visible");
     });
 
     $(".has-video").on("mouseleave", function () {
-        $(".custom-cursor").removeClass("cursor-scale cursor-white cursor-text-visible");
+        $(".custom-cursor").removeClass("cursor-scale cursor-text-visible");
 
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);
