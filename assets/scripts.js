@@ -336,47 +336,39 @@ $(document).ready(function () {
     
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const hasVideoElements = document.querySelectorAll(".has-video");
-    const customCursor = document.querySelector(".custom-cursor");
+$(document).ready(function () {
+    $(".has-video").on("mouseenter", function () {
+        $(".custom-cursor").addClass("tooltip cursor-text-visible");
+    });
 
-    hasVideoElements.forEach((element) => {
-        const image = element.querySelector(".gallery14_image");
-        const video = element.querySelector("video");
+    $(".has-video").on("mouseleave click", function () {
+        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
 
-        let isPlaying = false;
+        var $image = $(this).find(".gallery14_image");
+        var $video = $(this).find("video").get(0);
 
-        element.addEventListener("mouseenter", () => {
-            if (!isPlaying) {
-                customCursor.classList.add("tooltip", "cursor-text-visible");
-            }
-        });
+        // Pause the video immediately
+        $video.pause();
 
-        element.addEventListener("mouseleave", () => {
-            if (!isPlaying) {
-                customCursor.classList.remove("tooltip", "cursor-text-visible");
-            }
-        });
+        // Wait 0.5s, then fade in the image over 1s
+        setTimeout(function () {
+            $image.stop().animate({ opacity: 1 }, 1000, function () {
+                // Reset video time **only after** the fade-in is complete
+                $video.currentTime = 0;
+            });
+        }, 500);
+    });
 
-        element.addEventListener("click", () => {
-            if (!isPlaying) {
-                isPlaying = true;
-                customCursor.classList.remove("tooltip", "cursor-text-visible");
-                image.style.transition = "opacity 1s ease";
-                image.style.opacity = "0";
-                
-                setTimeout(() => {
-                    video.play();
-                }, 1000);
-            } else {
-                video.pause();
-                isPlaying = false;
-                setTimeout(() => {
-                    image.style.transition = "opacity 1s ease";
-                    image.style.opacity = "1";
-                    customCursor.classList.add("tooltip", "cursor-text-visible");
-                }, 500);
-            }
+    $(".has-video").on("click", function () {
+        var $image = $(this).find(".gallery14_image");
+        var $video = $(this).find("video").get(0);
+
+        // Fade out image over 1s
+        $image.stop().animate({ opacity: 0 }, 1000, function () {
+            // Wait 1 second before playing the video
+            setTimeout(function () {
+                $video.play();
+            }, 1000);
         });
     });
 });
