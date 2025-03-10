@@ -371,6 +371,7 @@ $(document).ready(function () {
                 $video.play();
             }, 1000);
         });
-        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+       
     });
+    $(".custom-cursor").removeClass("tooltip cursor-text-visible");
 });
