@@ -131,7 +131,7 @@ html {
   }
     .w-slider-nav-invert > div {
       border:0 !important;
-      height: 48px;
+      height: 16px;
   }
   .w-slider-nav-invert > div.w-active {
       background-color: var(--base-color-brand--olive) !important;
