@@ -366,12 +366,12 @@ $(document).ready(function () {
        
 
         // Fade out image over 1s
-        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
         $image.stop().animate({ opacity: 0 }, 1000, function () {
             // Wait 1 second before playing the video
             setTimeout(function () {
                 $video.play();
             }, 1000);
         });
+        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
     });
 });
