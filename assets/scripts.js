@@ -365,7 +365,8 @@ $(document).ready(function () {
         $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
         $(".cursor-cursor-text").css("visibility", "hidden");  // Hide the .cursor-carat again
         $(".custom-cursor").css("width", "6px");  // Restore the default system cursor
-
+        $(this).css("cursor", "");  // Restore the default system cursor
+        
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);        
 
