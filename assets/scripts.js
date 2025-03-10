@@ -360,7 +360,7 @@ $(document).ready(function () {
         // Wait 0.5 seconds before resetting the video and fading the image back in
         setTimeout(function () {
             $video.currentTime = 0;
-            $image.stop().animate({ opacity: 1 }, 400);
+            $image.stop().animate({ opacity: 1 }, 500);
         }, 500);
     });
 });
