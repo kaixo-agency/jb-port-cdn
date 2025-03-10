@@ -137,6 +137,7 @@ html {
       height: 32px;
       opacity:1;
       border:0 !important;
+      border-radius:4px;
   }
     
  /* Trailing Cursor */
