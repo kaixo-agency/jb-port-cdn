@@ -341,7 +341,7 @@ $(document).ready(function () {
         $(".custom-cursor").addClass("tooltip cursor-text-visible");
     });
 
-    $(".has-video").on("mouseleave, click", function () {
+    $(".has-video").on("mouseleave", function () {
         $(".custom-cursor").removeClass("tooltip cursor-text-visible");
 
         var $image = $(this).find(".gallery14_image");
