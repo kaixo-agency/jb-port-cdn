@@ -121,7 +121,6 @@ html {
   }
     .w-slider-dot{
     transition: all .25s ease-out;
-      border-radius:0 !important;
       border:0 !important;
       background-color: #5f7c6b !important;
       width:8px;
