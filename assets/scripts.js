@@ -363,9 +363,10 @@ $(document).ready(function () {
     $(".has-video").on("click", function () {
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);
-        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+       
 
         // Fade out image over 1s
+        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
         $image.stop().animate({ opacity: 0 }, 1000, function () {
             // Wait 1 second before playing the video
             setTimeout(function () {
