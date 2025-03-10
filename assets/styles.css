@@ -195,7 +195,7 @@ html {
 
 /* Cursor turns white */
 .cursor-white {
-  background-color: white;
+  background-color: white !important;
 }
 
 /* Ensure cursor expands to fit text */
