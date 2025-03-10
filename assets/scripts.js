@@ -349,10 +349,11 @@ $(document).ready(function () {
 
         // Pause the video immediately
         $video.pause();
-        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+        
 
         // Wait 0.5s, then fade in the image over 1s
         setTimeout(function () {
+            $(".custom-cursor").removeClass("tooltip cursor-text-visible");
             $image.stop().animate({ opacity: 1 }, 1000, function () {
                 // Reset video time **only after** the fade-in is complete
                 $video.currentTime = 0;
