@@ -361,6 +361,8 @@ $(document).ready(function () {
     });
 
     $(".has-video").on("click", function () {
+        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+        
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);        
 
