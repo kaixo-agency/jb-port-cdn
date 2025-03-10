@@ -354,14 +354,11 @@ $(document).ready(function () {
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video");
 
-        // Pause and reset video
+        // Pause the video immediately
         $video.get(0).pause();
         $video.get(0).currentTime = 0;
 
-        // Fade image back in
+        // Fade image back in after pausing
         $image.stop().animate({ opacity: 1 }, 400);
     });
 });
-
-
-
