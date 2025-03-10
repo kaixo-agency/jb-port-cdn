@@ -362,7 +362,7 @@ $(document).ready(function () {
 
     $(".has-video").on("click", function () {
         $(".custom-cursor").removeClass("tooltip cursor-text-visible");
-        $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
+        $(".cursor-carat custom-cursor-text").css("visibility", "hidden");  // Hide the .cursor-carat again
         $(".custom-cursor").css("width", "6px");  // Restore the default system cursor
 
         var $image = $(this).find(".gallery14_image");
