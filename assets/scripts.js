@@ -327,6 +327,7 @@ $(document).ready(function () {
     $(".tool-icon, .has-video").on("mouseenter", function () {
         $(".custom-cursor").addClass("tooltip");
         $(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
+        $(".cursor-text").css("visibility", "visible");  // Hide the .cursor-carat again
         $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
         $(".custom-cursor").removeClass("tooltip");
