@@ -186,8 +186,7 @@ html {
 
 /* Focus effect */
 .cursor-focus {
-  width: 10px;
-  height: 10px;
+
   top: -10px;
   left: -10px;
 }
