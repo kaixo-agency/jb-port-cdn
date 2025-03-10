@@ -354,13 +354,15 @@ $(document).ready(function () {
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);
 
-        // Pause the video first
+        // Pause the video immediately
         $video.pause();
 
-        // Wait 0.5 seconds before resetting the video and fading the image back in
+        // Wait 0.5 seconds, then fade in the image
         setTimeout(function () {
-            $video.currentTime = 0;
-            $image.stop().animate({ opacity: 1 }, 500);
+            $image.stop().animate({ opacity: 1 }, 400, function () {
+                // Reset video time **only after** the fade-in is complete
+                $video.currentTime = 0;
+            });
         }, 500);
     });
 });
