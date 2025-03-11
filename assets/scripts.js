@@ -380,27 +380,44 @@ $(document).ready(function () {
         });
     });
 });
-window.onload = function () {
+window.onload = function() {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+        console.error("GSAP or ScrollTrigger is not loaded.");
+        return;
+    }
+
     gsap.registerPlugin(ScrollTrigger);
 
-    setTimeout(() => { // Ensure layout is stable before animating
-        ScrollTrigger.refresh(); // Force recalculation
+    let cards = gsap.utils.toArray(".layout410_card");
 
-        gsap.utils.toArray(".layout410_card").forEach((card) => {
-            gsap.fromTo(card, 
-                { opacity: 0, y: 150 },  
-                { 
-                    opacity: 1, y: 0, duration: 1, ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 75%",  // Adjust where animation starts
-                        end: "top 30%",    // Adjust where animation ends
-                        markers: true,     // Keep markers for testing
-                        toggleActions: "play none none reverse"
-                    }
+    cards.forEach((card, index) => {
+        let prevCard = cards[index - 1]; // Get the previous card
+
+        // Animate the new card sliding up
+        gsap.fromTo(card, 
+            { y: 150 },  
+            { 
+                y: 0, duration: 1, ease: "power3.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 75%",  
+                    end: "top 30%",
+                    toggleActions: "play none none reverse"
                 }
-            );
-        });
-        
-    }, 500); // Short delay ensures Webflow fully renders
+            }
+        );
+
+        // Fade out the previous card when new one enters
+        if (prevCard) { 
+            gsap.to(prevCard, { 
+                opacity: 0, duration: 1, ease: "power3.out",
+                scrollTrigger: {
+                    trigger: card,  // Triggers when the new card enters
+                    start: "top 75%",  
+                    end: "top 30%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        }
+    });
 };
