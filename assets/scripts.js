@@ -390,15 +390,13 @@ window.addEventListener("scroll", function() {
         if (!prevCard) return;
 
         let rect = card.getBoundingClientRect();
-        let triggerStart = window.innerHeight * 0.9; // Start fading much earlier
-        let triggerEnd = window.innerHeight * 0.5; // Fully faded sooner
+        let triggerStart = window.innerHeight * 0.95; // Start fading even earlier
+        let triggerEnd = window.innerHeight * 0.4; // Fully faded sooner
 
-        if (rect.top < triggerStart) {
-            let progress = (triggerStart - rect.top) / (triggerStart - triggerEnd);
-            progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
-            prevCard.style.opacity = (1 - progress).toFixed(2);
-        } else {
-            prevCard.style.opacity = "1"; // Reset opacity if above trigger start
-        }
+        let progress = (triggerStart - rect.top) / (triggerStart - triggerEnd);
+        progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
+
+        prevCard.style.transition = "opacity 0s linear"; // Linear fade
+        prevCard.style.opacity = (1 - progress).toFixed(2);
     });
 });
