@@ -382,7 +382,7 @@ $(document).ready(function () {
 });
 
 
-window.addEventListener("scroll", function() {
+wwindow.addEventListener("scroll", function() {
     let cards = document.querySelectorAll(".layout410_card");
 
     cards.forEach((card, index) => {
@@ -390,17 +390,23 @@ window.addEventListener("scroll", function() {
         if (!prevCard) return;
 
         let rect = card.getBoundingClientRect();
-        let triggerStart = window.innerHeight * 0.95; // Start fading earlier
-        let triggerEnd = window.innerHeight * 0.2; // Fully faded sooner
+        let triggerStart = window.innerHeight * 0.95; // Start effect earlier
+        let triggerEnd = window.innerHeight * 0.4; // Fully faded sooner
 
         let progress = (triggerStart - rect.top) / (triggerStart - triggerEnd);
         progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
 
-        let blurStart = 0.4; // Blur starts after 30% of the fade progress
+        let blurStart = 0.3; // Blur starts after 30% of fade
         let blurProgress = Math.max(progress - blurStart, 0) / (1 - blurStart);
 
+        // Previous card fade & blur
         prevCard.style.transition = "opacity 0s linear, filter 0s linear";
         prevCard.style.opacity = (1 - progress).toFixed(2);
-        prevCard.style.filter = `blur(${Math.max(blurProgress * 10, 0)}px)`; // Blur starts delayed
+        prevCard.style.filter = `blur(${Math.max(blurProgress * 10, 0)}px)`;
+
+        // Scale effect on current card
+        let scaleFactor = 1.08 - (progress * 0.08); // Scale from 1.08 to 1.00
+        card.style.transition = "transform 0s linear";
+        card.style.transform = `scale(${scaleFactor.toFixed(3)})`;
     });
 });
