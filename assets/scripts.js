@@ -393,13 +393,14 @@ window.onload = function () {
                     opacity: 1, y: 0, duration: 1, ease: "power3.out",
                     scrollTrigger: {
                         trigger: card,
-                        start: "top 85%",
-                        end: "top 50%",
-                        markers: true,
+                        start: "top 75%",  // Adjust where animation starts
+                        end: "top 30%",    // Adjust where animation ends
+                        markers: true,     // Keep markers for testing
                         toggleActions: "play none none reverse"
                     }
                 }
             );
         });
+        
     }, 500); // Short delay ensures Webflow fully renders
 };
