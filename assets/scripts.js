@@ -392,7 +392,7 @@ window.addEventListener("scroll", function () {
         let rect = card.getBoundingClientRect();
         let windowHeight = window.innerHeight;
         
-        let fadeTriggerStart = windowHeight * 0.95; // When fading starts
+        let fadeTriggerStart = windowHeight * 0.75; // When fading starts
         let fadeTriggerEnd = windowHeight * 0.4; // When fully faded
         
         let scaleTriggerStart = windowHeight * 0.65; // Starts halfway over the previous card
