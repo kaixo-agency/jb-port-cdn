@@ -380,21 +380,26 @@ $(document).ready(function () {
         });
     });
 });
-document.addEventListener("DOMContentLoaded", function () {
+window.onload = function () {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.fromTo(".layout410_card", 
-        { opacity: 0, y: 150 },  
-        { 
-            opacity: 1, y: 0, duration: 1, ease: "power3.out",
-            stagger: 0.2,  // Delay between animations
-            scrollTrigger: {
-                trigger: ".layout410_card",
-                start: "top 85%",
-                end: "top 50%",
-                markers: true,
-                toggleActions: "play none none reverse"
-            }
-        }
-    );
-});
+    setTimeout(() => { // Ensure layout is stable before animating
+        ScrollTrigger.refresh(); // Force recalculation
+
+        gsap.utils.toArray(".layout410_card").forEach((card) => {
+            gsap.fromTo(card, 
+                { opacity: 0, y: 150 },  
+                { 
+                    opacity: 1, y: 0, duration: 1, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        end: "top 50%",
+                        markers: true,
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+    }, 500); // Short delay ensures Webflow fully renders
+};
