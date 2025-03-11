@@ -383,19 +383,18 @@ $(document).ready(function () {
 document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.utils.toArray(".layout410_card").forEach((card, index) => {
-        gsap.fromTo(card, 
-            { opacity: 0, y: 150 },  // Start offscreen
-            { 
-                opacity: 1, y: 0, duration: 1, ease: "power3.out",
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 85%",  // Adjust this to control when animation starts
-                    end: "top 50%",    
-                    markers: true,     // Show debugging markers
-                    toggleActions: "play none none reverse"
-                }
+    gsap.fromTo(".layout410_card", 
+        { opacity: 0, y: 150 },  
+        { 
+            opacity: 1, y: 0, duration: 1, ease: "power3.out",
+            stagger: 0.2,  // Delay between animations
+            scrollTrigger: {
+                trigger: ".layout410_card",
+                start: "top 85%",
+                end: "top 50%",
+                markers: true,
+                toggleActions: "play none none reverse"
             }
-        );
-    });
+        }
+    );
 });
