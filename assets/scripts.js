@@ -394,15 +394,16 @@ window.onload = function() {
 
     cards.forEach((card, index) => {
         let prevCard = cards[index - 1]; // Get the previous card
+        let isLastCard = index === cards.length - 1; // Check if it's the last card
 
         // Animate the new card sliding up with a delay and slower transition
         gsap.fromTo(card, 
             { y: 150, opacity: 0 },  
             { 
-                y: 0, opacity: 1, duration: 1.5, ease: "power3.out", // Slowed animation
+                y: 0, opacity: 1, duration: 1.5, ease: "power3.out",
                 scrollTrigger: {
                     trigger: card,
-                    start: "top 40%",  // Delayed trigger
+                    start: "top 40%",
                     end: "top 20%",
                     toggleActions: "play none none reverse"
                 }
@@ -412,13 +413,24 @@ window.onload = function() {
         // Fade out the previous card when the new one enters
         if (prevCard) { 
             gsap.to(prevCard, { 
-                opacity: 0, duration: 1.5, ease: "power3.out", // Matching slow fade-out
+                opacity: 0, duration: 1.5, ease: "power3.out",
                 scrollTrigger: {
-                    trigger: card,  // Triggers when the new card enters
-                    start: "top 40%",  // Matches the delay of the new card animation
+                    trigger: card,  
+                    start: "top 40%",
                     end: "top 20%",
                     toggleActions: "play none none reverse"
                 }
+            });
+        }
+
+        // If it's the last card, pin it so it locks in place
+        if (isLastCard) {
+            ScrollTrigger.create({
+                trigger: card,
+                start: "top 40%",
+                end: "bottom 20%",
+                pin: true, // Keeps the last card in place until scrolled past
+                pinSpacing: false // Prevents extra white space from being added
             });
         }
     });
