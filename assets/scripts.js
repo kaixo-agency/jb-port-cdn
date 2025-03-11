@@ -382,3 +382,21 @@ $(document).ready(function () {
 });
 
 
+window.addEventListener("scroll", function() {
+    let cards = document.querySelectorAll(".layout410_card");
+
+    cards.forEach((card, index) => {
+        let prevCard = cards[index - 1]; // Get the previous card
+
+        if (prevCard) {
+            let rect = card.getBoundingClientRect(); 
+            let windowHeight = window.innerHeight;
+
+            if (rect.top < windowHeight * 0.4) {
+                prevCard.style.opacity = "0";
+            } else {
+                prevCard.style.opacity = "1";
+            }
+        }
+    });
+});
