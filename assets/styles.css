@@ -318,3 +318,6 @@ body.force-hide-cursor {
   width: 100%;
   height: auto;
 }
+.layout410_card {
+  transition: opacity 0.5s ease-in-out;
+}
