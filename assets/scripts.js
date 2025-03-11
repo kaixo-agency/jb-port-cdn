@@ -396,7 +396,7 @@ window.addEventListener("scroll", function() {
         let progress = (triggerStart - rect.top) / (triggerStart - triggerEnd);
         progress = Math.min(Math.max(progress, 0), 1);
 
-        let delay = index * 100; // Increase this for more delay
+        let delay = index * 200; // Increase this for more delay
 
         setTimeout(() => {
             prevCard.style.transition = "opacity 0s linear";
