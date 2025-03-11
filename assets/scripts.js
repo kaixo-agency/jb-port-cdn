@@ -383,7 +383,7 @@ $(document).ready(function () {
 document.addEventListener("DOMContentLoaded", function () {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.utils.toArray(".layout410-card").forEach((card, index) => {
+    gsap.utils.toArray(".layout410_card").forEach((card, index) => {
         gsap.fromTo(card, 
             { opacity: 0, y: 100 },  
             { opacity: 1, y: 0, 
