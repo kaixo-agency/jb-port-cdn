@@ -316,7 +316,3 @@ body.force-hide-cursor {
   width: 100%;
   height: auto;
 }
-.layout410_card {
-  opacity: 0;
-  transform: translateY(100px);
-}
