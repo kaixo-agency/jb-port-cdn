@@ -382,30 +382,25 @@ $(document).ready(function () {
 });
 
 
-let lastScrollTop = 0;
-let scrollThreshold = 100; // Adjust this value for more or less required scroll
-let activeIndex = 0;
-
-window.addEventListener("scroll", function () {
+window.addEventListener("scroll", function() {
     let cards = document.querySelectorAll(".layout410_card");
-    let currentScroll = window.scrollY;
-    let scrollDiff = Math.abs(currentScroll - lastScrollTop);
 
-    if (scrollDiff > scrollThreshold) {
-        let nextCard = cards[activeIndex + 1];
-        let currentCard = cards[activeIndex];
+    cards.forEach((card, index) => {
+        let prevCard = cards[index - 1];
+        if (!prevCard) return;
 
-        if (nextCard) {
-            nextCard.style.opacity = "1"; 
-            nextCard.style.transition = "opacity 0.6s linear";
+        let rect = card.getBoundingClientRect();
+        let triggerStart = window.innerHeight * 0.95;
+        let triggerEnd = window.innerHeight * 0.4;
 
-            if (currentCard) {
-                currentCard.style.opacity = "0";
-            }
+        let progress = (triggerStart - rect.top) / (triggerStart - triggerEnd);
+        progress = Math.min(Math.max(progress, 0), 1);
 
-            activeIndex++; // Move to next card
-        }
+        let delay = index * 200; // Increase this for more delay
 
-        lastScrollTop = currentScroll; // Reset scroll position tracker
-    }
+        setTimeout(() => {
+            prevCard.style.transition = "opacity 0s linear";
+            prevCard.style.opacity = (1 - progress).toFixed(2);
+        }, delay);
+    });
 });
