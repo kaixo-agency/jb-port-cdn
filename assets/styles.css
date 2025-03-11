@@ -323,6 +323,6 @@ body.force-hide-cursor {
 }
 .card-two, .card-three, .card-four, .card-five {
   box-shadow: 0px -50px 30px 100px #151b20;
-  margin-top:100px;
+  padding-top:200px;
   border:1px solid red !important;
 }
