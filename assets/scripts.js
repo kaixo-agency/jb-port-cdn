@@ -386,13 +386,11 @@ window.addEventListener("scroll", function() {
     let cards = document.querySelectorAll(".layout410_card");
 
     cards.forEach((card, index) => {
-        let prevCard = cards[index - 1]; // Get previous card
+        let prevCard = cards[index - 1];
         if (!prevCard) return;
 
         let rect = card.getBoundingClientRect();
-        let triggerPoint = window.innerHeight * 0.5; // Adjust as needed
-
-        console.log(`Card ${index}: top=${rect.top}, trigger=${triggerPoint}`);
+        let triggerPoint = window.innerHeight * 0.75; // Adjusted for earlier fade
 
         if (rect.top < triggerPoint) {
             prevCard.style.transition = "opacity 0.5s ease-in-out";
@@ -402,3 +400,4 @@ window.addEventListener("scroll", function() {
         }
     });
 });
+
