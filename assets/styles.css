@@ -195,7 +195,7 @@ html {
 .cursor-white {
   background-color: white !important;
   mix-blend-mode:difference;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(3px);
 
 }
 .cursor-white .cursor-text{
