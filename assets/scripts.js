@@ -390,14 +390,17 @@ window.addEventListener("scroll", function() {
         if (!prevCard) return;
 
         let rect = card.getBoundingClientRect();
-        let triggerStart = window.innerHeight * 0.95; // Start effect earlier
-        let triggerEnd = window.innerHeight * 0.4; // Fully faded/blurry sooner
+        let triggerStart = window.innerHeight * 0.95; // Start fading earlier
+        let triggerEnd = window.innerHeight * 0.4; // Fully faded sooner
 
         let progress = (triggerStart - rect.top) / (triggerStart - triggerEnd);
         progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
 
+        let blurStart = 0.3; // Blur starts after 30% of the fade progress
+        let blurProgress = Math.max(progress - blurStart, 0) / (1 - blurStart);
+
         prevCard.style.transition = "opacity 0s linear, filter 0s linear";
         prevCard.style.opacity = (1 - progress).toFixed(2);
-        prevCard.style.filter = `blur(${progress * 10}px)`; // Adjust blur intensity
+        prevCard.style.filter = `blur(${Math.max(blurProgress * 10, 0)}px)`; // Blur starts delayed
     });
 });
