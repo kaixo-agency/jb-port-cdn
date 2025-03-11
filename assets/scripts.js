@@ -382,7 +382,7 @@ $(document).ready(function () {
 });
 
 
-wwindow.addEventListener("scroll", function() {
+window.addEventListener("scroll", function() {
     let cards = document.querySelectorAll(".layout410_card");
 
     cards.forEach((card, index) => {
