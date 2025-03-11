@@ -396,7 +396,7 @@ window.addEventListener("scroll", function() {
         let progress = (triggerStart - rect.top) / (triggerStart - triggerEnd);
         progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
 
-        let blurStart = 0.3; // Blur starts after 30% of the fade progress
+        let blurStart = 0.4; // Blur starts after 30% of the fade progress
         let blurProgress = Math.max(progress - blurStart, 0) / (1 - blurStart);
 
         prevCard.style.transition = "opacity 0s linear, filter 0s linear";
