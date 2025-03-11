@@ -389,7 +389,7 @@ window.addEventListener("scroll", function() {
         let prevCard = cards[index - 1]; // Get the previous card
 
         if (prevCard) {
-            let rect = card.getBoundingClientRect(); 
+            let rect = card.getBoundingClientRect();
             let windowHeight = window.innerHeight;
 
             if (rect.top < windowHeight * 0.4) {
