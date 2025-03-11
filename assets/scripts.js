@@ -382,7 +382,7 @@ $(document).ready(function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const cards = document.querySelectorAll(".layout410-card");
+    const cards = document.querySelectorAll(".layout410_card");
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
