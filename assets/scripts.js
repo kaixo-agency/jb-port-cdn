@@ -380,3 +380,23 @@ $(document).ready(function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll(".layout410-card");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.transform = "translateY(0)";
+                entry.target.style.opacity = "1";
+                entry.target.style.transition = "transform 0.8s ease-out, opacity 0.8s ease-out";
+            }
+        });
+    }, { threshold: 0.3 });
+
+    cards.forEach(card => {
+        card.style.transform = "translateY(50px)";
+        card.style.opacity = "0";
+        observer.observe(card);
+    });
+});
