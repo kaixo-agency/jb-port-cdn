@@ -390,7 +390,7 @@ window.addEventListener("scroll", function() {
         if (!prevCard) return;
 
         let rect = card.getBoundingClientRect();
-        let triggerPoint = window.innerHeight * 0.85; // Adjusted for earlier fade
+        let triggerPoint = window.innerHeight * 0.75; // Adjusted for earlier fade
 
         if (rect.top < triggerPoint) {
             prevCard.style.transition = "opacity 0.5s ease-in-out";
