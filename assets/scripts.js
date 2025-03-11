@@ -390,13 +390,17 @@ window.addEventListener("scroll", function() {
         if (!prevCard) return;
 
         let rect = card.getBoundingClientRect();
-        let triggerStart = window.innerHeight * 0.95; // Start fading even earlier
-        let triggerEnd = window.innerHeight * 0.4; // Fully faded sooner
+        let triggerStart = window.innerHeight * 0.95;
+        let triggerEnd = window.innerHeight * 0.4;
 
         let progress = (triggerStart - rect.top) / (triggerStart - triggerEnd);
-        progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
+        progress = Math.min(Math.max(progress, 0), 1);
 
-        prevCard.style.transition = "opacity 0s linear"; // Linear fade
-        prevCard.style.opacity = (1 - progress).toFixed(2);
+        let delay = index * 100; // Increase this for more delay
+
+        setTimeout(() => {
+            prevCard.style.transition = "opacity 0s linear";
+            prevCard.style.opacity = (1 - progress).toFixed(2);
+        }, delay);
     });
 });
