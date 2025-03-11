@@ -391,7 +391,7 @@ window.addEventListener("scroll", function() {
 
         let rect = card.getBoundingClientRect();
         let triggerStart = window.innerHeight * 0.95; // Start fading earlier
-        let triggerEnd = window.innerHeight * 0.4; // Fully faded sooner
+        let triggerEnd = window.innerHeight * 0.2; // Fully faded sooner
 
         let progress = (triggerStart - rect.top) / (triggerStart - triggerEnd);
         progress = Math.min(Math.max(progress, 0), 1); // Clamp between 0 and 1
