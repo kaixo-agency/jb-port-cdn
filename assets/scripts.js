@@ -382,20 +382,19 @@ $(document).ready(function () {
 });
 
 
-window.addEventListener("scroll", function() {
-    let cards = document.querySelectorAll(".layout410_card");
+$(window).on("scroll", function() {
+    $(".layout410_card").each(function(index) {
+        let prevCard = $(".layout410_card").eq(index - 1); // Get previous card
 
-    cards.forEach((card, index) => {
-        let prevCard = cards[index - 1]; // Get the previous card
+        if (prevCard.length) {
+            let cardTop = $(this).offset().top;
+            let scrollPos = $(window).scrollTop();
+            let windowHeight = $(window).height();
 
-        if (prevCard) {
-            let rect = card.getBoundingClientRect();
-            let windowHeight = window.innerHeight;
-
-            if (rect.top < windowHeight * 0.4) {
-                prevCard.style.opacity = "0";
+            if (cardTop < scrollPos + windowHeight * 0.4) {
+                prevCard.stop().fadeTo(300, 0); // Smooth fade out
             } else {
-                prevCard.style.opacity = "1";
+                prevCard.stop().fadeTo(300, 1); // Smooth fade in
             }
         }
     });
