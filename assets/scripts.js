@@ -387,14 +387,13 @@ $(window).on("scroll", function() {
         let prevCard = $(".layout410_card").eq(index - 1); // Get previous card
 
         if (prevCard.length) {
-            let cardTop = $(this).offset().top;
-            let scrollPos = $(window).scrollTop();
-            let windowHeight = $(window).height();
+            let cardTop = $(this).offset().top - $(window).scrollTop();
+            let triggerPoint = $(window).height() * 0.5; // Adjust to control when fading starts
 
-            if (cardTop < scrollPos + windowHeight * 0.4) {
-                prevCard.stop().fadeTo(300, 0); // Smooth fade out
+            if (cardTop < triggerPoint) {
+                prevCard.fadeTo(500, 0); // Fade out smoothly
             } else {
-                prevCard.stop().fadeTo(300, 1); // Smooth fade in
+                prevCard.fadeTo(500, 1); // Fade back in if scrolled up
             }
         }
     });
