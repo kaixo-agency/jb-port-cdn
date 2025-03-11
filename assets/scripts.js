@@ -380,23 +380,21 @@ $(document).ready(function () {
         });
     });
 });
-
 document.addEventListener("DOMContentLoaded", function () {
-    const cards = document.querySelectorAll(".layout410_card");
+    gsap.registerPlugin(ScrollTrigger);
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.transform = "translateY(0)";
-                entry.target.style.opacity = "1";
-                entry.target.style.transition = "transform 0.8s ease-out, opacity 0.8s ease-out";
+    gsap.utils.toArray(".layout410_card").forEach((card, index) => {
+        gsap.fromTo(card, 
+            { opacity: 0, y: 50 }, 
+            { opacity: 1, y: 0, 
+              duration: 1, ease: "power3.out", 
+              scrollTrigger: {
+                  trigger: card,
+                  start: "top 80%",  // Adjust when animation starts
+                  end: "top 40%",    // Adjust when animation ends
+                  toggleActions: "play none none reverse",
+              }
             }
-        });
-    }, { threshold: 0.3 });
-
-    cards.forEach(card => {
-        card.style.transform = "translateY(50px)";
-        card.style.opacity = "0";
-        observer.observe(card);
+        );
     });
 });
