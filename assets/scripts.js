@@ -387,16 +387,18 @@ window.addEventListener("scroll", function() {
 
     cards.forEach((card, index) => {
         let prevCard = cards[index - 1]; // Get previous card
-        if (prevCard) {
-            let rect = card.getBoundingClientRect();
-            let triggerPoint = window.innerHeight * 0.5; // Adjust this value to start fading sooner
+        if (!prevCard) return;
 
-            if (rect.top < triggerPoint) {
-                prevCard.style.transition = "opacity 0.5s ease-in-out";
-                prevCard.style.opacity = "0";
-            } else {
-                prevCard.style.opacity = "1";
-            }
+        let rect = card.getBoundingClientRect();
+        let triggerPoint = window.innerHeight * 0.5; // Adjust as needed
+
+        console.log(`Card ${index}: top=${rect.top}, trigger=${triggerPoint}`);
+
+        if (rect.top < triggerPoint) {
+            prevCard.style.transition = "opacity 0.5s ease-in-out";
+            prevCard.style.opacity = "0";
+        } else {
+            prevCard.style.opacity = "1";
         }
     });
 });
