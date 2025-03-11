@@ -385,12 +385,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     gsap.utils.toArray(".layout410_card").forEach((card, index) => {
         gsap.fromTo(card, 
-            { opacity: 0, y: 150 }, // Start position (hidden & lower)
+            { opacity: 0, y: 150 },  // Start offscreen
             { 
                 opacity: 1, y: 0, duration: 1, ease: "power3.out",
                 scrollTrigger: {
                     trigger: card,
-                    start: "top 90%", // Adjust this if needed
+                    start: "top 85%",  // Adjust this to control when animation starts
+                    end: "top 50%",    
+                    markers: true,     // Show debugging markers
                     toggleActions: "play none none reverse"
                 }
             }
