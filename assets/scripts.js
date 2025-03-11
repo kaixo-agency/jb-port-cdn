@@ -390,7 +390,7 @@ window.addEventListener("scroll", function() {
         if (!prevCard) return;
 
         let rect = card.getBoundingClientRect();
-        let triggerStart = window.innerHeight * 0.95; // Start effect earlier
+        let triggerStart = window.innerHeight * 1.1; // Start effect even earlier
         let triggerEnd = window.innerHeight * 0.4; // Fully faded sooner
 
         let progress = (triggerStart - rect.top) / (triggerStart - triggerEnd);
@@ -404,7 +404,7 @@ window.addEventListener("scroll", function() {
         prevCard.style.opacity = (1 - progress).toFixed(2);
         prevCard.style.filter = `blur(${Math.max(blurProgress * 10, 0)}px)`;
 
-        // Scale effect on current card
+        // Scale effect on current card, starting earlier
         let scaleFactor = 1.08 - (progress * 0.08); // Scale from 1.08 to 1.00
         card.style.transition = "transform 0s linear";
         card.style.transform = `scale(${scaleFactor.toFixed(3)})`;
