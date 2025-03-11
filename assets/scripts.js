@@ -382,18 +382,20 @@ $(document).ready(function () {
 });
 
 
-$(window).on("scroll", function() {
-    $(".layout410_card").each(function(index) {
-        let prevCard = $(".layout410_card").eq(index - 1); // Get previous card
+window.addEventListener("scroll", function() {
+    let cards = document.querySelectorAll(".layout410_card");
 
-        if (prevCard.length) {
-            let cardTop = $(this).offset().top - $(window).scrollTop();
-            let triggerPoint = $(window).height() * 0.5; // Adjust to control when fading starts
+    cards.forEach((card, index) => {
+        let prevCard = cards[index - 1]; // Get previous card
+        if (prevCard) {
+            let rect = card.getBoundingClientRect();
+            let triggerPoint = window.innerHeight * 0.6; // Adjust as needed
 
-            if (cardTop < triggerPoint) {
-                prevCard.fadeTo(500, 0); // Fade out smoothly
+            if (rect.top < triggerPoint) {
+                prevCard.style.transition = "opacity 0.5s ease-in-out";
+                prevCard.style.opacity = "0";
             } else {
-                prevCard.fadeTo(500, 1); // Fade back in if scrolled up
+                prevCard.style.opacity = "1";
             }
         }
     });
