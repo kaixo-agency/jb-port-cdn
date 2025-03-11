@@ -380,6 +380,8 @@ $(document).ready(function () {
         });
     });
 });
+
+
 window.onload = function() {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
         console.error("GSAP or ScrollTrigger is not loaded.");
@@ -393,15 +395,15 @@ window.onload = function() {
     cards.forEach((card, index) => {
         let prevCard = cards[index - 1]; // Get the previous card
 
-        // Animate the new card sliding up
+        // Animate the new card sliding up with a delay
         gsap.fromTo(card, 
-            { y: 150 },  
+            { y: 150, opacity: 0 },  
             { 
-                y: 0, duration: 1, ease: "power3.out",
+                y: 0, opacity: 1, duration: 1, ease: "power3.out",
                 scrollTrigger: {
                     trigger: card,
-                    start: "top 75%",  
-                    end: "top 30%",
+                    start: "top 40%",  // Delayed trigger (adjust this value for more delay)
+                    end: "top 20%",
                     toggleActions: "play none none reverse"
                 }
             }
@@ -413,8 +415,8 @@ window.onload = function() {
                 opacity: 0, duration: 1, ease: "power3.out",
                 scrollTrigger: {
                     trigger: card,  // Triggers when the new card enters
-                    start: "top 75%",  
-                    end: "top 30%",
+                    start: "top 40%",  // Matches the delay of the new card animation
+                    end: "top 20%",
                     toggleActions: "play none none reverse"
                 }
             });
