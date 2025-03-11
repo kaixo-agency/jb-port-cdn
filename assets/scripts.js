@@ -385,18 +385,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     gsap.utils.toArray(".layout410_card").forEach((card, index) => {
         gsap.fromTo(card, 
-            { opacity: 0, y: 100 }, // Start: hidden & moved down
+            { opacity: 0, y: 150 }, // Start position (hidden & lower)
             { 
                 opacity: 1, y: 0, duration: 1, ease: "power3.out",
                 scrollTrigger: {
                     trigger: card,
-                    start: "top 85%", // Adjust when animation starts
-                    toggleActions: "play none none reverse",
+                    start: "top 90%", // Adjust this if needed
+                    toggleActions: "play none none reverse"
                 }
             }
         );
     });
-    
-
-    
 });
