@@ -421,33 +421,39 @@ window.addEventListener("scroll", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    let slider = document.querySelector(".w-slider-mask"); // Adjust if needed
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    const slider = document.querySelector(".w-slider");
+    const track = slider.querySelector(".w-slider-mask");
+    const nextBtn = slider.querySelector(".w-slider-arrow-right");
+    const prevBtn = slider.querySelector(".w-slider-arrow-left");
 
-    slider.addEventListener("mousedown", (e) => {
-        isDown = true;
-        slider.classList.add("active");
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+
+    track.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.clientX;
     });
 
-    slider.addEventListener("mouseleave", () => {
-        isDown = false;
-        slider.classList.remove("active");
+    track.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        currentX = e.clientX;
+
+        // Detect swipe direction
+        if (currentX < startX - 50) {
+            nextBtn.click(); // Move to next slide
+            isDragging = false;
+        } else if (currentX > startX + 50) {
+            prevBtn.click(); // Move to previous slide
+            isDragging = false;
+        }
     });
 
-    slider.addEventListener("mouseup", () => {
-        isDown = false;
-        slider.classList.remove("active");
+    track.addEventListener("mouseup", () => {
+        isDragging = false;
     });
 
-    slider.addEventListener("mousemove", (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2; // Adjust sensitivity
-        slider.scrollLeft = scrollLeft - walk;
+    track.addEventListener("mouseleave", () => {
+        isDragging = false;
     });
 });
