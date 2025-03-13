@@ -421,7 +421,8 @@ window.addEventListener("scroll", function () {
 });
 
 
-const slider = document.querySelector(".gallery14_slider-right"); // Target your specific slider
+document.addEventListener("DOMContentLoaded", function () {
+    const slider = document.querySelector(".gallery14_slider-right"); // Target your specific slider
     const track = slider.querySelector(".gallery14_mask"); // The slider track
     const dots = slider.querySelectorAll(".w-slider-dot"); // The navigation dots
     
