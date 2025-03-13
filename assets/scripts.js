@@ -422,20 +422,21 @@ window.addEventListener("scroll", function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const slider = document.querySelector(".gallery14_slider-right"); // Target your specific slider
-    const track = slider.querySelector(".gallery14_mask"); // The slider track
-    const dots = slider.querySelectorAll(".w-slider-dot"); // The navigation dots
-    
+    const slider = document.querySelector(".gallery14_slider-right"); // Target slider
+    const track = slider.querySelector(".gallery14_mask"); // Track containing slides
+    const dots = slider.querySelectorAll(".w-slider-dot"); // Webflow's built-in dots
+
     let isDragging = false;
     let startX = 0;
     let deltaX = 0;
     let currentIndex = 0;
 
-    // Detect current active dot index
+    // Function to get active slide index
     function getActiveIndex() {
         return [...dots].findIndex(dot => dot.classList.contains("w-active"));
     }
 
+    // Mouse down (start dragging)
     track.addEventListener("mousedown", (e) => {
         isDragging = true;
         startX = e.clientX;
@@ -443,20 +444,22 @@ document.addEventListener("DOMContentLoaded", function () {
         track.style.cursor = "grabbing";
     });
 
+    // Mouse move (track dragging)
     track.addEventListener("mousemove", (e) => {
         if (!isDragging) return;
         deltaX = e.clientX - startX;
     });
 
+    // Mouse up (release and slide)
     track.addEventListener("mouseup", () => {
         if (isDragging) {
-            currentIndex = getActiveIndex(); // Get the active slide
+            currentIndex = getActiveIndex(); // Get current active slide
             
-            if (Math.abs(deltaX) > 50) {
+            if (Math.abs(deltaX) > 50) { // Threshold to detect intent
                 if (deltaX < 0 && currentIndex < dots.length - 1) {
-                    dots[currentIndex + 1].click(); // Go to next slide
+                    dots[currentIndex + 1].click(); // Next slide
                 } else if (deltaX > 0 && currentIndex > 0) {
-                    dots[currentIndex - 1].click(); // Go to previous slide
+                    dots[currentIndex - 1].click(); // Previous slide
                 }
             }
         }
@@ -464,8 +467,34 @@ document.addEventListener("DOMContentLoaded", function () {
         track.style.cursor = "grab";
     });
 
+    // Prevent unwanted dragging
     track.addEventListener("mouseleave", () => {
         isDragging = false;
         track.style.cursor = "grab";
+    });
+
+    // Touch events for mobile (Webflow handles some by default)
+    track.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    });
+
+    track.addEventListener("touchmove", (e) => {
+        if (!isDragging) return;
+        deltaX = e.touches[0].clientX - startX;
+    });
+
+    track.addEventListener("touchend", () => {
+        if (isDragging) {
+            currentIndex = getActiveIndex();
+            if (Math.abs(deltaX) > 50) {
+                if (deltaX < 0 && currentIndex < dots.length - 1) {
+                    dots[currentIndex + 1].click();
+                } else if (deltaX > 0 && currentIndex > 0) {
+                    dots[currentIndex - 1].click();
+                }
+            }
+        }
+        isDragging = false;
     });
 });
