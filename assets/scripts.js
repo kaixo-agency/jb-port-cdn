@@ -423,8 +423,8 @@ window.addEventListener("scroll", function () {
 document.addEventListener("DOMContentLoaded", function () {
     const slider = document.querySelector(".w-slider");
     const track = slider.querySelector(".w-slider-mask");
-    const nextBtn = slider.querySelector(".w-slider-arrow-right");
-    const prevBtn = slider.querySelector(".w-slider-arrow-left");
+    const nextBtn = slider.querySelector(".is-centre-next");
+    const prevBtn = slider.querySelector(".is-centre-previous");
 
     let isDragging = false;
     let startX = 0;
