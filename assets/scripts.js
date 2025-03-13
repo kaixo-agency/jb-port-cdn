@@ -421,18 +421,19 @@ window.addEventListener("scroll", function () {
 });
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
     const slider = document.querySelector(".gallery14_slider-right");
     const track = slider.querySelector(".gallery14_mask");
     const slides = slider.querySelectorAll(".gallery14_slide");
     const totalSlides = slides.length;
-    let isDragging = false, startPos = 0, currentTranslate = 0, prevTranslate = 0, currentIndex = 0;
+    
+    let isDragging = false,
+        startPos = 0,
+        currentTranslate = 0,
+        prevTranslate = 0,
+        currentIndex = 0;
 
-    // Disable Webflow arrows since we're using drag
-    slider.querySelectorAll('.w-slider-arrow-left, .w-slider-arrow-right').forEach(arrow => arrow.style.display = 'none');
-
-    // Prevent image dragging
+    // Prevent image drag
     slides.forEach(slide => {
         slide.querySelectorAll("img").forEach(img => {
             img.draggable = false;
@@ -440,7 +441,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Get Webflow's active slide index
     function getActiveIndex() {
         return [...slider.querySelectorAll('.w-slider-dot')].findIndex(dot => dot.classList.contains("w-active"));
     }
@@ -449,12 +449,14 @@ document.addEventListener("DOMContentLoaded", function () {
         currentTranslate = -currentIndex * slides[0].clientWidth;
         prevTranslate = currentTranslate;
         track.style.transform = `translateX(${currentTranslate}px)`;
+        track.style.transition = "transform 0.4s ease";
     }
 
     function touchStart(event) {
         currentIndex = getActiveIndex();
         isDragging = true;
         startPos = event.type.includes("mouse") ? event.pageX : event.touches[0].clientX;
+        track.style.transition = "none"; // Remove transition while dragging
     }
 
     function touchMove(event) {
@@ -469,17 +471,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const moveThreshold = 50;
         if (currentTranslate - prevTranslate < -moveThreshold && currentIndex < totalSlides - 1) {
-            currentIndex += 1; // Next slide
+            currentIndex += 1;
         } else if (currentTranslate - prevTranslate > moveThreshold && currentIndex > 0) {
-            currentIndex -= 1; // Previous slide
+            currentIndex -= 1;
         }
 
         setPositionByIndex();
-        // Simulate Webflow dot click to trigger built-in logic
         slider.querySelectorAll(".w-slider-dot")[currentIndex].click();
     }
 
-    // Add event listeners
+    // Add event listeners for mouse and touch
     track.addEventListener("mousedown", touchStart);
     track.addEventListener("mousemove", touchMove);
     track.addEventListener("mouseup", touchEnd);
@@ -488,4 +489,3 @@ document.addEventListener("DOMContentLoaded", function () {
     track.addEventListener("touchmove", touchMove);
     track.addEventListener("touchend", touchEnd);
 });
-
