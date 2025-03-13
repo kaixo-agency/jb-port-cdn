@@ -421,80 +421,74 @@ window.addEventListener("scroll", function () {
 });
 
 
+
 document.addEventListener("DOMContentLoaded", function () {
-    const slider = document.querySelector(".gallery14_slider-right"); // Target slider
-    const track = slider.querySelector(".gallery14_mask"); // Track containing slides
-    const dots = slider.querySelectorAll(".w-slider-dot"); // Webflow's built-in dots
+    const slider = document.querySelector(".gallery14_slider-right");
+    const track = slider.querySelector(".gallery14_mask");
+    const slides = slider.querySelectorAll(".gallery14_slide");
+    const totalSlides = slides.length;
+    let isDragging = false, startPos = 0, currentTranslate = 0, prevTranslate = 0, animationID, currentIndex = 0;
 
-    let isDragging = false;
-    let startX = 0;
-    let deltaX = 0;
-    let currentIndex = 0;
+    // Disable Webflow arrows since we're using drag
+    slider.querySelectorAll('.w-slider-arrow-left, .w-slider-arrow-right').forEach(arrow => arrow.style.display = 'none');
 
-    // Function to get active slide index
+    // Get Webflow's active slide index
     function getActiveIndex() {
-        return [...dots].findIndex(dot => dot.classList.contains("w-active"));
+        return [...slider.querySelectorAll('.w-slider-dot')].findIndex(dot => dot.classList.contains("w-active"));
     }
 
-    // Mouse down (start dragging)
-    track.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        startX = e.clientX;
-        deltaX = 0;
-        track.style.cursor = "grabbing";
-    });
+    function setPositionByIndex() {
+        currentTranslate = -currentIndex * slides[0].clientWidth;
+        prevTranslate = currentTranslate;
+        setSliderPosition();
+    }
 
-    // Mouse move (track dragging)
-    track.addEventListener("mousemove", (e) => {
-        if (!isDragging) return;
-        deltaX = e.clientX - startX;
-    });
+    function setSliderPosition() {
+        track.style.transform = `translateX(${currentTranslate}px)`;
+    }
 
-    // Mouse up (release and slide)
-    track.addEventListener("mouseup", () => {
-        if (isDragging) {
-            currentIndex = getActiveIndex(); // Get current active slide
-            
-            if (Math.abs(deltaX) > 50) { // Threshold to detect intent
-                if (deltaX < 0 && currentIndex < dots.length - 1) {
-                    dots[currentIndex + 1].click(); // Next slide
-                } else if (deltaX > 0 && currentIndex > 0) {
-                    dots[currentIndex - 1].click(); // Previous slide
-                }
-            }
-        }
-        isDragging = false;
-        track.style.cursor = "grab";
-    });
+    function animation() {
+        setSliderPosition();
+        if (isDragging) requestAnimationFrame(animation);
+    }
 
-    // Prevent unwanted dragging
-    track.addEventListener("mouseleave", () => {
-        isDragging = false;
-        track.style.cursor = "grab";
-    });
-
-    // Touch events for mobile (Webflow handles some by default)
-    track.addEventListener("touchstart", (e) => {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-    });
-
-    track.addEventListener("touchmove", (e) => {
-        if (!isDragging) return;
-        deltaX = e.touches[0].clientX - startX;
-    });
-
-    track.addEventListener("touchend", () => {
-        if (isDragging) {
+    function touchStart(index) {
+        return function (event) {
             currentIndex = getActiveIndex();
-            if (Math.abs(deltaX) > 50) {
-                if (deltaX < 0 && currentIndex < dots.length - 1) {
-                    dots[currentIndex + 1].click();
-                } else if (deltaX > 0 && currentIndex > 0) {
-                    dots[currentIndex - 1].click();
-                }
-            }
-        }
+            isDragging = true;
+            startPos = event.type.includes("mouse") ? event.pageX : event.touches[0].clientX;
+            animationID = requestAnimationFrame(animation);
+        };
+    }
+
+    function touchMove(event) {
+        if (!isDragging) return;
+        const currentPosition = event.type.includes("mouse") ? event.pageX : event.touches[0].clientX;
+        currentTranslate = prevTranslate + currentPosition - startPos;
+    }
+
+    function touchEnd() {
+        cancelAnimationFrame(animationID);
         isDragging = false;
-    });
+
+        const moveThreshold = 50;
+        if (currentTranslate - prevTranslate < -moveThreshold && currentIndex < totalSlides - 1) {
+            currentIndex += 1; // Next slide
+        } else if (currentTranslate - prevTranslate > moveThreshold && currentIndex > 0) {
+            currentIndex -= 1; // Previous slide
+        }
+
+        setPositionByIndex();
+        // Simulate Webflow dot click to trigger built-in logic
+        slider.querySelectorAll(".w-slider-dot")[currentIndex].click();
+    }
+
+    // Add event listeners
+    track.addEventListener("mousedown", touchStart(0));
+    track.addEventListener("mousemove", touchMove);
+    track.addEventListener("mouseup", touchEnd);
+    track.addEventListener("mouseleave", touchEnd);
+    track.addEventListener("touchstart", touchStart(0));
+    track.addEventListener("touchmove", touchMove);
+    track.addEventListener("touchend", touchEnd);
 });
