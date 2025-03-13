@@ -427,10 +427,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const track = slider.querySelector(".gallery14_mask");
     const slides = slider.querySelectorAll(".gallery14_slide");
     const totalSlides = slides.length;
-    let isDragging = false, startPos = 0, currentTranslate = 0, prevTranslate = 0, animationID, currentIndex = 0;
+    let isDragging = false, startPos = 0, currentTranslate = 0, prevTranslate = 0, currentIndex = 0;
 
     // Disable Webflow arrows since we're using drag
     slider.querySelectorAll('.w-slider-arrow-left, .w-slider-arrow-right').forEach(arrow => arrow.style.display = 'none');
+
+    // Prevent image dragging
+    slides.forEach(slide => {
+        slide.querySelectorAll("img").forEach(img => {
+            img.draggable = false;
+            img.addEventListener("dragstart", e => e.preventDefault());
+        });
+    });
 
     // Get Webflow's active slide index
     function getActiveIndex() {
@@ -440,35 +448,23 @@ document.addEventListener("DOMContentLoaded", function () {
     function setPositionByIndex() {
         currentTranslate = -currentIndex * slides[0].clientWidth;
         prevTranslate = currentTranslate;
-        setSliderPosition();
-    }
-
-    function setSliderPosition() {
         track.style.transform = `translateX(${currentTranslate}px)`;
     }
 
-    function animation() {
-        setSliderPosition();
-        if (isDragging) requestAnimationFrame(animation);
-    }
-
-    function touchStart(index) {
-        return function (event) {
-            currentIndex = getActiveIndex();
-            isDragging = true;
-            startPos = event.type.includes("mouse") ? event.pageX : event.touches[0].clientX;
-            animationID = requestAnimationFrame(animation);
-        };
+    function touchStart(event) {
+        currentIndex = getActiveIndex();
+        isDragging = true;
+        startPos = event.type.includes("mouse") ? event.pageX : event.touches[0].clientX;
     }
 
     function touchMove(event) {
         if (!isDragging) return;
         const currentPosition = event.type.includes("mouse") ? event.pageX : event.touches[0].clientX;
         currentTranslate = prevTranslate + currentPosition - startPos;
+        track.style.transform = `translateX(${currentTranslate}px)`;
     }
 
     function touchEnd() {
-        cancelAnimationFrame(animationID);
         isDragging = false;
 
         const moveThreshold = 50;
@@ -484,11 +480,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Add event listeners
-    track.addEventListener("mousedown", touchStart(0));
+    track.addEventListener("mousedown", touchStart);
     track.addEventListener("mousemove", touchMove);
     track.addEventListener("mouseup", touchEnd);
     track.addEventListener("mouseleave", touchEnd);
-    track.addEventListener("touchstart", touchStart(0));
+    track.addEventListener("touchstart", touchStart);
     track.addEventListener("touchmove", touchMove);
     track.addEventListener("touchend", touchEnd);
 });
+
