@@ -419,3 +419,35 @@ window.addEventListener("scroll", function () {
         card.style.transform = `scale(${scaleFactor.toFixed(3)})`;
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    let slider = document.querySelector(".w-slider-mask"); // Adjust if needed
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener("mousedown", (e) => {
+        isDown = true;
+        slider.classList.add("active");
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener("mouseleave", () => {
+        isDown = false;
+        slider.classList.remove("active");
+    });
+
+    slider.addEventListener("mouseup", () => {
+        isDown = false;
+        slider.classList.remove("active");
+    });
+
+    slider.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2; // Adjust sensitivity
+        slider.scrollLeft = scrollLeft - walk;
+    });
+});
