@@ -338,6 +338,29 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $(".slider-arrow").on("mouseenter", function () {
+        $(".custom-cursor").addClass("tooltip cursor-text-visible");
+    });
+
+    $(".slider-arrow").on("mouseleave", function () {
+        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+
+        var $image = $(this).find(".gallery14_image");
+        var $video = $(this).find("video").get(0);
+
+        // Pause the video immediately
+        $video.pause();
+        
+
+        // Wait 0.5s, then fade in the image over 1s
+        setTimeout(function () {
+            $image.stop().animate({ opacity: 1 }, 1000, function () {
+                // Reset video time **only after** the fade-in is complete
+                $video.currentTime = 0;
+            });
+        }, 500);
+    });
+$(document).ready(function () {
     $(".has-video").on("mouseenter", function () {
         $(".custom-cursor").addClass("tooltip cursor-text-visible");
     });
