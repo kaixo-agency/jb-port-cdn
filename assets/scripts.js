@@ -421,15 +421,19 @@ window.addEventListener("scroll", function () {
 });
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const slider = document.querySelector(".w-slider");
-    const track = slider.querySelector(".w-slider-mask");
-    const nextBtn = slider.querySelector(".is-centre-next");
-    const prevBtn = slider.querySelector(".is-centre-previous");
-
+const slider = document.querySelector(".gallery14_slider-right"); // Target your specific slider
+    const track = slider.querySelector(".gallery14_mask"); // The slider track
+    const dots = slider.querySelectorAll(".w-slider-dot"); // The navigation dots
+    
     let isDragging = false;
     let startX = 0;
     let deltaX = 0;
+    let currentIndex = 0;
+
+    // Detect current active dot index
+    function getActiveIndex() {
+        return [...dots].findIndex(dot => dot.classList.contains("w-active"));
+    }
 
     track.addEventListener("mousedown", (e) => {
         isDragging = true;
@@ -444,11 +448,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     track.addEventListener("mouseup", () => {
-        if (Math.abs(deltaX) > 50) {
-            if (deltaX < 0) {
-                nextBtn.click(); // Move to next slide
-            } else {
-                prevBtn.click(); // Move to previous slide
+        if (isDragging) {
+            currentIndex = getActiveIndex(); // Get the active slide
+            
+            if (Math.abs(deltaX) > 50) {
+                if (deltaX < 0 && currentIndex < dots.length - 1) {
+                    dots[currentIndex + 1].click(); // Go to next slide
+                } else if (deltaX > 0 && currentIndex > 0) {
+                    dots[currentIndex - 1].click(); // Go to previous slide
+                }
             }
         }
         isDragging = false;
