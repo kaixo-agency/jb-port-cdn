@@ -425,59 +425,57 @@ document.addEventListener("DOMContentLoaded", function () {
     const slider = document.querySelector(".gallery14_slider-right");
     const track = slider.querySelector(".gallery14_mask");
     const slides = slider.querySelectorAll(".gallery14_slide");
-    const totalSlides = slides.length;
-    
+    const dots = slider.querySelectorAll(".w-slider-dot");
+
     let isDragging = false,
         startPos = 0,
         currentTranslate = 0,
         prevTranslate = 0,
+        animationID = 0,
         currentIndex = 0;
 
-    // Prevent image drag
-    slides.forEach(slide => {
-        slide.querySelectorAll("img").forEach(img => {
-            img.draggable = false;
-            img.addEventListener("dragstart", e => e.preventDefault());
-        });
-    });
-
-    function getActiveIndex() {
-        return [...slider.querySelectorAll('.w-slider-dot')].findIndex(dot => dot.classList.contains("w-active"));
+    function getPositionX(event) {
+        return event.type.includes("mouse") ? event.pageX : event.touches[0].clientX;
     }
 
-    function setPositionByIndex() {
-        currentTranslate = -currentIndex * slides[0].clientWidth;
-        prevTranslate = currentTranslate;
+    function setSliderPosition() {
         track.style.transform = `translateX(${currentTranslate}px)`;
-        track.style.transition = "transform 0.4s ease";
     }
 
     function touchStart(event) {
-        currentIndex = getActiveIndex();
+        currentIndex = [...dots].findIndex(dot => dot.classList.contains("w-active"));
         isDragging = true;
-        startPos = event.type.includes("mouse") ? event.pageX : event.touches[0].clientX;
-        track.style.transition = "none"; // Remove transition while dragging
+        startPos = getPositionX(event);
+        prevTranslate = -currentIndex * slides[0].clientWidth;
+        track.style.transition = "none";
+        cancelAnimationFrame(animationID);
     }
 
     function touchMove(event) {
         if (!isDragging) return;
-        const currentPosition = event.type.includes("mouse") ? event.pageX : event.touches[0].clientX;
-        currentTranslate = prevTranslate + currentPosition - startPos;
-        track.style.transform = `translateX(${currentTranslate}px)`;
+        const currentPosition = getPositionX(event);
+        const movedBy = currentPosition - startPos;
+        currentTranslate = prevTranslate + movedBy;
+        setSliderPosition();
     }
 
     function touchEnd() {
         isDragging = false;
+        const moveThreshold = slides[0].clientWidth * 0.3; // 30% threshold to trigger slide change
+        const movedDistance = currentTranslate - prevTranslate;
 
-        const moveThreshold = 50;
-        if (currentTranslate - prevTranslate < -moveThreshold && currentIndex < totalSlides - 1) {
-            currentIndex += 1;
-        } else if (currentTranslate - prevTranslate > moveThreshold && currentIndex > 0) {
-            currentIndex -= 1;
+        if (movedDistance < -moveThreshold && currentIndex < slides.length - 1) {
+            currentIndex++;
+        } else if (movedDistance > moveThreshold && currentIndex > 0) {
+            currentIndex--;
         }
 
-        setPositionByIndex();
-        slider.querySelectorAll(".w-slider-dot")[currentIndex].click();
+        currentTranslate = -currentIndex * slides[0].clientWidth;
+        track.style.transition = "transform 0.4s ease";
+        setSliderPosition();
+
+        // Update active dot
+        dots[currentIndex].click();
     }
 
     // Add event listeners for mouse and touch
@@ -488,4 +486,12 @@ document.addEventListener("DOMContentLoaded", function () {
     track.addEventListener("touchstart", touchStart);
     track.addEventListener("touchmove", touchMove);
     track.addEventListener("touchend", touchEnd);
+
+    // Prevent default image dragging
+    slides.forEach(slide => {
+        slide.querySelectorAll("img").forEach(img => {
+            img.draggable = false;
+            img.addEventListener("dragstart", e => e.preventDefault());
+        });
+    });
 });
