@@ -420,6 +420,7 @@ window.addEventListener("scroll", function () {
     });
 });
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const slider = document.querySelector(".w-slider");
     const track = slider.querySelector(".w-slider-mask");
@@ -428,32 +429,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let isDragging = false;
     let startX = 0;
-    let currentX = 0;
+    let deltaX = 0;
 
     track.addEventListener("mousedown", (e) => {
         isDragging = true;
         startX = e.clientX;
+        deltaX = 0;
+        track.style.cursor = "grabbing";
     });
 
     track.addEventListener("mousemove", (e) => {
         if (!isDragging) return;
-        currentX = e.clientX;
-
-        // Detect swipe direction
-        if (currentX < startX - 50) {
-            nextBtn.click(); // Move to next slide
-            isDragging = false;
-        } else if (currentX > startX + 50) {
-            prevBtn.click(); // Move to previous slide
-            isDragging = false;
-        }
+        deltaX = e.clientX - startX;
     });
 
     track.addEventListener("mouseup", () => {
+        if (Math.abs(deltaX) > 50) {
+            if (deltaX < 0) {
+                nextBtn.click(); // Move to next slide
+            } else {
+                prevBtn.click(); // Move to previous slide
+            }
+        }
         isDragging = false;
+        track.style.cursor = "grab";
     });
 
     track.addEventListener("mouseleave", () => {
         isDragging = false;
+        track.style.cursor = "grab";
     });
 });
