@@ -534,7 +534,7 @@ document.addEventListener("DOMContentLoaded", function () {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     console.log(`Detected case-study-card in view:`, entry.target);
-                    setTimeout(() => startAutoplay(entry.target), 500);
+                    setTimeout(() => startAutoplay(entry.target), 1000);
                     observer.unobserve(entry.target);
                 }
             });
