@@ -497,7 +497,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    let sliderAutoplay; // Global variable to store interval
+    let sliderAutoplay; // Global variable for interval
 
     function startAutoplay() {
         if (!sliderAutoplay) { // Prevent multiple intervals
@@ -512,13 +512,11 @@ document.addEventListener("DOMContentLoaded", function () {
         sliderAutoplay = null;
     }
 
-    // Observer to detect when .case-study-card is sticky
     let observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                startAutoplay(); // Start autoplay when sticky
-            } else {
-                stopAutoplay(); // Stop autoplay when out of view (optional)
+                setTimeout(startAutoplay, 4000); // Start autoplay 4s after entering viewport
+                observer.unobserve(entry.target); // Unobserve to prevent retriggering
             }
         });
     }, { rootMargin: "0px 0px -100px 0px" });
