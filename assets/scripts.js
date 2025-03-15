@@ -532,7 +532,9 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     
     // Select slider and observe it
-    let target = $('.w-slider')[0];
+    $('.w-slider').each(function() {
+        observer.observe(this);
+    });
     if (target) {
         observer.observe(target);
     } else {
