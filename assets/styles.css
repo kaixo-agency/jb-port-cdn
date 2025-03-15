@@ -151,7 +151,10 @@ html {
     transform: translate(-50%, -50%);
     opacity: 1;
 }
-
+.gallery14_slide-nav {
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
     
  /* Trailing Cursor */
  .custom-cursor {
