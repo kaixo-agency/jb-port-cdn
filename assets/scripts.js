@@ -526,7 +526,7 @@ document.addEventListener("DOMContentLoaded", function () {
         stopAutoplay(cardElement);
         setTimeout(() => {
             startAutoplay(cardElement);
-        }, 1000); // Restart autoplay after 6s delay
+        }, 2000); // Restart autoplay after 6s delay
     }
 
     document.querySelectorAll('.case-study-card').forEach(card => {
@@ -534,7 +534,7 @@ document.addEventListener("DOMContentLoaded", function () {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     console.log(`Detected case-study-card in view:`, entry.target);
-                    setTimeout(() => startAutoplay(entry.target), 1000);
+                    setTimeout(() => startAutoplay(entry.target), 2000);
                     observer.unobserve(entry.target);
                 }
             });
