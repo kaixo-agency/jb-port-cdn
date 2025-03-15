@@ -497,16 +497,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 (() => {
-    let activeObservers = new Map(); // Store observers per card
     let activeIntervals = new Map(); // Store intervals per card
 
-    function startAutoplay(card) {
-        if (!activeIntervals.has(card)) { // Prevent multiple intervals per card
-            console.log(`Starting autoplay for ${card}...`);
+    function startAutoplay(cardElement) {
+        if (!activeIntervals.has(cardElement)) { // Prevent multiple intervals per card
+            console.log(`Starting autoplay for`, cardElement);
+
+            let slider = cardElement.querySelector('.w-slider'); // Find slider inside this card
+            if (!slider) return;
+
             let interval = setInterval(() => {
-                $(card).find('.w-slider-arrow-right').click();
+                let arrow = slider.querySelector('.w-slider-arrow-right');
+                if (arrow) arrow.click();
             }, 3000);
-            activeIntervals.set(card, interval);
+
+            activeIntervals.set(cardElement, interval);
         }
     }
 
@@ -514,17 +519,14 @@ document.addEventListener("DOMContentLoaded", function () {
         let observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    let cardClass = entry.target.classList[1]; // Get unique class (e.g., "card-one")
-                    console.log(`${cardClass} detected! Starting autoplay in 4s...`);
+                    console.log(`Detected case-study-card in view:`, entry.target);
 
-                    setTimeout(() => startAutoplay(`.${cardClass}`), 4000);
-
+                    setTimeout(() => startAutoplay(entry.target), 4000); // 4s delay
                     observer.unobserve(entry.target); // Stop observing this card
                 }
             });
         }, { rootMargin: "0px 0px -100px 0px" });
 
         observer.observe(card);
-        activeObservers.set(card, observer);
     });
 })();
