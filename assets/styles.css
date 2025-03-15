@@ -125,7 +125,7 @@ html {
     border: 0 !important;
     background-color: transparent !important; /* Make the actual dot invisible */
     width: 30px; /* Larger hitbox */
-    height: 30px; /* Larger hitbox */
+    height: 100%; /* Larger hitbox */
     opacity: 1; /* Ensure the hitbox is active */
 }
 
