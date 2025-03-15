@@ -496,31 +496,37 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    let sliderAutoplay; // Global variable for interval
+(() => {
+    if (window.existingObserver) {
+        window.existingObserver.disconnect();
+    }
+
+    let sliderAutoplay; // Store the interval reference
 
     function startAutoplay() {
         if (!sliderAutoplay) { // Prevent multiple intervals
+            console.log("Starting autoplay...");
             sliderAutoplay = setInterval(() => {
                 $('.w-slider-arrow-right').click();
             }, 3000);
         }
     }
 
-    function stopAutoplay() {
-        clearInterval(sliderAutoplay);
-        sliderAutoplay = null;
-    }
-
     let observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                setTimeout(startAutoplay, 4000); // Start autoplay 4s after entering viewport
-                observer.unobserve(entry.target); // Unobserve to prevent retriggering
+                console.log("case-study-card detected! Starting autoplay in 4s...");
+                setTimeout(startAutoplay, 4000);
+                observer.unobserve(entry.target); // Stop observing after first trigger
             }
         });
     }, { rootMargin: "0px 0px -100px 0px" });
 
     let target = document.querySelector('.case-study-card');
-    if (target) observer.observe(target);
-});
+    if (target) {
+        observer.observe(target);
+        window.existingObserver = observer;
+    } else {
+        console.log("case-study-card not found");
+    }
+})();
