@@ -120,31 +120,28 @@ html {
     }
   }
   .w-slider-dot {
+    position: relative;
     transition: all 0.25s ease-out;
     border: 0 !important;
-    background-color: #5f7c6b !important;
-    width: 30px; /* Increase width to expand hit area */
+    background-color: transparent !important; /* Make the actual dot invisible */
+    width: 30px; /* Larger hitbox */
+    height: 30px; /* Larger hitbox */
+    opacity: 1; /* Ensure the hitbox is active */
+}
+
+.w-slider-dot::after {
+    content: "";
+    position: absolute;
+    width: 30px; /* Line width */
     height: 4px; /* Thin line */
-    opacity: 0.5;
+    background-color: #5f7c6b;
     border-radius: 2px;
-    padding: 8px 0; /* Add vertical padding to increase click area */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
 }
 
-.w-slider-nav-invert > div {
-    border: 0 !important;
-    height: 10px;
-    border-radius: 5px;
-}
-
-.w-slider-nav-invert > div.w-active {
-    background-color: var(--base-color-brand--olive) !important;
-    height: 36px;
-    opacity: 1;
-    border-radius: 5px;
-}
     
  /* Trailing Cursor */
  .custom-cursor {
