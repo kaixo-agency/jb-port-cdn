@@ -498,34 +498,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const caseStudyCard = document.querySelector('.case-study-card');
+    const slider = document.querySelector('.w-slider');
     const sliderNextBtn = document.querySelector('.w-slider-arrow-right');
-    let autoplayInterval;
-    let autoplayStarted = false;
 
-    // Function to check if element is in viewport
+    if (!caseStudyCard || !slider || !sliderNextBtn) {
+        console.error("Missing elements: Check if .case-study-card, .w-slider, and .w-slider-arrow-right exist.");
+        return;
+    }
+
+    // Disable autoplay on load
+    Webflow.require('slider').redraw();
+
     function isElementInViewport(el) {
         const rect = el.getBoundingClientRect();
         return rect.top < window.innerHeight && rect.bottom > 0;
     }
 
     function startAutoplay() {
-        if (!autoplayStarted) {
-            autoplayStarted = true;
-            setTimeout(() => {
-                autoplayInterval = setInterval(() => {
-                    sliderNextBtn.click();
-                }, 3000); // Adjust speed if needed
-            }, 10000); // 2-second delay
-        }
+        setTimeout(() => {
+            setInterval(() => {
+                sliderNextBtn.click();
+            }, 3000); // Adjust speed if needed
+        }, 2000); // 2-second delay
     }
 
     function handleScroll() {
         if (isElementInViewport(caseStudyCard)) {
             startAutoplay();
-            window.removeEventListener('scroll', handleScroll); // Stop checking after it starts
+            window.removeEventListener('scroll', handleScroll); // Remove listener after triggering autoplay
         }
     }
 
-    // Ensure autoplay is off initially
     window.addEventListener('scroll', handleScroll);
 });
