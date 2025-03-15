@@ -129,7 +129,7 @@ html {
     opacity: 1; /* Ensure the hitbox is active */
 }
 .w-slider-dot.w-active{
-  background-color: yellow;
+  background-color: yellow !important;
 }
 
 .w-slider-dot::after {
