@@ -130,6 +130,10 @@ html {
     border-radius:0;
     outline: none !important; /* Removes the default focus outline */
 }
+.w-slider-dot:focus {
+  outline: none !important; /* Ensures no outline on focus */
+  box-shadow: none !important; /* Removes any focus-related shadows */
+}
 .w-slider-dot.w-active::after {
   background-color: yellow !important;
   border-radius:0;
