@@ -339,84 +339,87 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    let autoplayIntervals = new Map(); // Stores autoplay intervals per gallery
-    let isVideoPlaying = new Map(); // Tracks if autoplay is paused
-    let resumeTimeouts = new Map(); // Stores timeout IDs for resuming autoplay
+    let autoplayIntervals = {}; // Stores autoplay intervals per gallery
+    let resumeTimeouts = {}; // Stores timeout IDs for resuming autoplay
 
-    function stopAutoplay($gallery) {
-        let intervalId = autoplayIntervals.get($gallery);
-        if (intervalId) {
-            console.log("Stopping autoplay for:", $gallery);
-            clearInterval(intervalId);
-            autoplayIntervals.delete($gallery);
-            $gallery.attr("data-autoplay", "false");
+    function stopAutoplay(gallery) {
+        if (autoplayIntervals[gallery]) {
+            clearInterval(autoplayIntervals[gallery]);
+            autoplayIntervals[gallery] = null;
         }
     }
 
-    function startAutoplay($gallery) {
-        if (!isVideoPlaying.get($gallery)) {
-            console.log("Starting autoplay for:", $gallery);
-            let intervalId = setInterval(() => {
-                $gallery.find('.w-slider-arrow-right').click();
+    function startAutoplay(gallery) {
+        if (!autoplayIntervals[gallery]) {
+            autoplayIntervals[gallery] = setInterval(function () {
+                $(gallery).find('.w-slider-arrow-right').click();
             }, 3000);
-            autoplayIntervals.set($gallery, intervalId);
-            $gallery.attr("data-autoplay", "true");
         }
     }
 
-    function restartAutoplayAfterDelay($gallery, delay = 30000) {
-        console.log("Setting autoplay to resume in", delay / 1000, "seconds for:", $gallery);
-
-        if (resumeTimeouts.has($gallery)) {
-            clearTimeout(resumeTimeouts.get($gallery)); // Reset if another video is clicked
+    function resumeAutoplayAfterDelay(gallery, delay = 30000) {
+        if (resumeTimeouts[gallery]) {
+            clearTimeout(resumeTimeouts[gallery]); // Reset timer if another video is clicked
         }
 
-        let timeoutId = setTimeout(() => {
-            console.log("Resuming autoplay for:", $gallery);
-            isVideoPlaying.set($gallery, false);
-            startAutoplay($gallery);
-            resumeTimeouts.delete($gallery);
+        resumeTimeouts[gallery] = setTimeout(() => {
+            startAutoplay(gallery);
         }, delay);
-
-        resumeTimeouts.set($gallery, timeoutId);
     }
 
-    $(".has-video").on("click", function (e) {
-        e.stopPropagation();
-        let $image = $(this).find(".gallery14_image");
-        let $video = $(this).find("video").get(0);
-        let $gallery = $(this).closest('.w-slider');
-
-        console.log("Video clicked, stopping autoplay for:", $gallery);
-        stopAutoplay($gallery);
-        isVideoPlaying.set($gallery, true);
-
-        // Fade out image and play video
-        $image.stop().animate({ opacity: 0 }, 1000, function () {
-            setTimeout(() => {
-                console.log("Playing video...");
-                $video.play();
-                restartAutoplayAfterDelay($gallery);
-            }, 1000);
-        });
+    $(".has-video").on("mouseenter", function () {
+        $(".custom-cursor").addClass("tooltip cursor-text-visible");
     });
 
-    // Initialize autoplay when sliders come into view
-    $(".w-slider").each(function () {
-        let $gallery = $(this);
-        let observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        console.log("Gallery in view, starting autoplay:", $gallery);
-                        startAutoplay($gallery);
-                        observer.unobserve(entry.target); // Observe once
-                    }
-                });
-            },
-            { threshold: 0.5 }
-        );
-        observer.observe($gallery[0]);
+    $(".has-video").on("mouseleave", function () {
+        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+
+        var $image = $(this).find(".gallery14_image");
+        var $video = $(this).find("video").get(0);
+        var $gallery = $(this).closest('.w-slider')[0];
+
+        // Pause the video
+        $video.pause();
+
+        // Wait 0.5s, then fade in the image over 1s
+        setTimeout(function () {
+            $image.stop().animate({ opacity: 1 }, 1000, function () {
+                // Reset video time **only after** the fade-in is complete
+                $video.currentTime = 0;
+
+                // Resume autoplay if no other video is playing
+                resumeAutoplayAfterDelay($gallery);
+            });
+        }, 500);
+    });
+
+    $(".has-video").on("click", function () {
+        $(".cursor-text").css("visibility", "hidden");
+        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+        $(".cursor-carat").css("visibility", "hidden");
+        $(".custom-cursor").css("width", "6px");
+        $(this).css("cursor", "");
+
+        var $image = $(this).find(".gallery14_image");
+        var $video = $(this).find("video").get(0);
+        var $gallery = $(this).closest('.w-slider')[0];
+
+        console.log("Video clicked, stopping autoplay for:", $gallery);
+
+        // Stop autoplay when the video starts
+        stopAutoplay($gallery);
+
+        // Fade out image over 1s
+        $image.stop().animate({ opacity: 0 }, 1000, function () {
+            // Wait 1 second before playing the video
+            setTimeout(function () {
+                console.log("Playing video...");
+                $video.play();
+
+                // Resume autoplay in 30 seconds
+                resumeAutoplayAfterDelay($gallery, 30000);
+            }, 1000);
+        });
     });
 });
 
