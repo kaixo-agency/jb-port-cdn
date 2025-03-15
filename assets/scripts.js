@@ -339,34 +339,6 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    let autoplayIntervals = {}; // Stores autoplay intervals per gallery
-    let resumeTimeouts = {}; // Stores timeout IDs for resuming autoplay
-
-    function stopAutoplay(gallery) {
-        if (autoplayIntervals[gallery]) {
-            clearInterval(autoplayIntervals[gallery]);
-            autoplayIntervals[gallery] = null;
-        }
-    }
-
-    function startAutoplay(gallery) {
-        if (!autoplayIntervals[gallery]) {
-            autoplayIntervals[gallery] = setInterval(function () {
-                $(gallery).find('.w-slider-arrow-right').click();
-            }, 3000);
-        }
-    }
-
-    function resumeAutoplayAfterDelay(gallery, delay = 30000) {
-        if (resumeTimeouts[gallery]) {
-            clearTimeout(resumeTimeouts[gallery]); // Reset timer if another video is clicked
-        }
-
-        resumeTimeouts[gallery] = setTimeout(() => {
-            startAutoplay(gallery);
-        }, delay);
-    }
-
     $(".has-video").on("mouseenter", function () {
         $(".custom-cursor").addClass("tooltip cursor-text-visible");
     });
@@ -376,53 +348,39 @@ $(document).ready(function () {
 
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);
-        var $gallery = $(this).closest('.w-slider')[0];
 
-        // Pause the video
+        // Pause the video immediately
         $video.pause();
+        
 
         // Wait 0.5s, then fade in the image over 1s
         setTimeout(function () {
             $image.stop().animate({ opacity: 1 }, 1000, function () {
                 // Reset video time **only after** the fade-in is complete
                 $video.currentTime = 0;
-
-                // Resume autoplay if no other video is playing
-                resumeAutoplayAfterDelay($gallery);
             });
         }, 500);
     });
 
     $(".has-video").on("click", function () {
-        $(".cursor-text").css("visibility", "hidden");
+        $(".cursor-text").css("visibility", "hidden");  // Hide the .cursor-carat again
         $(".custom-cursor").removeClass("tooltip cursor-text-visible");
-        $(".cursor-carat").css("visibility", "hidden");
-        $(".custom-cursor").css("width", "6px");
-        $(this).css("cursor", "");
+        $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
+        $(".custom-cursor").css("width", "6px");  // Restore the default system cursor
+        $(this).css("cursor", "");  // Restore the default system cursor
 
         var $image = $(this).find(".gallery14_image");
-        var $video = $(this).find("video").get(0);
-        var $gallery = $(this).closest('.w-slider')[0];
-
-        console.log("Video clicked, stopping autoplay for:", $gallery);
-
-        // Stop autoplay when the video starts
-        stopAutoplay($gallery);
+        var $video = $(this).find("video").get(0);        
 
         // Fade out image over 1s
         $image.stop().animate({ opacity: 0 }, 1000, function () {
             // Wait 1 second before playing the video
             setTimeout(function () {
-                console.log("Playing video...");
                 $video.play();
-
-                // Resume autoplay in 30 seconds
-                resumeAutoplayAfterDelay($gallery, 30000);
             }, 1000);
         });
     });
 });
-
 
 
 window.addEventListener("scroll", function () {
