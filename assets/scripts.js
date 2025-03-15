@@ -339,39 +339,40 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    let isPlaying = new Map(); // Track if a video is playing for each gallery
+    let autoplayIntervals = new Map(); // Stores autoplay intervals per gallery
+    let isVideoPlaying = new Map(); // Tracks video play state per gallery
 
     function stopAutoplay($gallery) {
-        let intervalId = $gallery.data("autoplay-interval");
+        let intervalId = autoplayIntervals.get($gallery);
         if (intervalId) {
             console.log("Stopping autoplay for:", $gallery);
             clearInterval(intervalId);
-            $gallery.data("autoplay-interval", null);
+            autoplayIntervals.delete($gallery);
             $gallery.attr("data-autoplay", "false");
         }
     }
 
     function startAutoplay($gallery) {
-        if (!isPlaying.get($gallery)) {
+        if (!isVideoPlaying.get($gallery)) {
             console.log("Starting autoplay for:", $gallery);
             let intervalId = setInterval(() => {
                 $gallery.find('.w-slider-arrow-right').click();
             }, 3000);
-            $gallery.data("autoplay-interval", intervalId);
+            autoplayIntervals.set($gallery, intervalId);
             $gallery.attr("data-autoplay", "true");
         }
     }
 
     $(".has-video").on("click", function (e) {
         e.stopPropagation();
-        var $image = $(this).find(".gallery14_image");
-        var $video = $(this).find("video").get(0);
-        var $gallery = $(this).closest('.w-slider');
+        let $image = $(this).find(".gallery14_image");
+        let $video = $(this).find("video").get(0);
+        let $gallery = $(this).closest('.w-slider');
 
         console.log("Video clicked, stopping autoplay immediately for:", $gallery);
 
         stopAutoplay($gallery);
-        isPlaying.set($gallery, true);
+        isVideoPlaying.set($gallery, true);
 
         // Fade out image and play video
         $image.stop().animate({ opacity: 0 }, 1000, function () {
@@ -383,29 +384,47 @@ $(document).ready(function () {
     });
 
     $("video").on("play", function () {
-        var $gallery = $(this).closest('.w-slider');
+        let $gallery = $(this).closest('.w-slider');
 
         console.log("Video started, ensuring autoplay remains stopped for:", $gallery);
         stopAutoplay($gallery);
-        isPlaying.set($gallery, true);
+        isVideoPlaying.set($gallery, true);
     });
 
     $("video").on("ended", function () {
-        var $gallery = $(this).closest('.w-slider');
-        var $image = $(this).siblings(".gallery14_image");
+        let $gallery = $(this).closest('.w-slider');
+        let $image = $(this).siblings(".gallery14_image");
 
         console.log("Video ended, resuming autoplay for:", $gallery);
 
-        isPlaying.set($gallery, false);
+        isVideoPlaying.set($gallery, false);
 
         // Fade image back in, then resume autoplay
         $image.stop().animate({ opacity: 1 }, 1000, function () {
             setTimeout(() => {
-                if (!isPlaying.get($gallery)) {
+                if (!isVideoPlaying.get($gallery)) {
                     startAutoplay($gallery);
                 }
             }, 1500);
         });
+    });
+
+    // Initialize autoplay when sliders come into view
+    $(".w-slider").each(function () {
+        let $gallery = $(this);
+        let observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        console.log("Gallery in view, starting autoplay:", $gallery);
+                        startAutoplay($gallery);
+                        observer.unobserve(entry.target); // Observe once
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+        observer.observe($gallery[0]);
     });
 });
 
