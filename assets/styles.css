@@ -127,9 +127,11 @@ html {
     width: 30px; /* Larger hitbox */
     height: 100%; /* Larger hitbox */
     opacity: 1; /* Ensure the hitbox is active */
+    border-radius:0;
 }
 .w-slider-dot.w-active::after {
   background-color: yellow !important;
+  border-radius:0;
 }
 
 .w-slider-dot::after {
