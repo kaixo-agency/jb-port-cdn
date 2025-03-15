@@ -366,24 +366,24 @@ $(document).ready(function () {
         var $video = $(this).find("video").get(0);
         var $gallery = $(this).closest('.w-slider')[0];
 
-        console.log("Video clicked, stopping autoplay for:", $gallery);
+        console.log("Video clicked, stopping autoplay immediately for:", $gallery);
 
-        stopAutoplay($gallery);
+        stopAutoplay($gallery); // Stop autoplay immediately
         isPlaying[$gallery] = true; // Mark as playing
 
-        // Fade out image and start video
+        // Fade out image and start video with delay
         $image.stop().animate({ opacity: 0 }, 1000, function () {
+            console.log("Waiting 1s, then playing video...");
             setTimeout(function () {
-                console.log("Playing video...");
                 $video.play();
-            }, 1000);
+            }, 1000); // Ensures video doesn't start immediately to align with animation
         });
     });
 
     $("video").on("play", function () {
         var $gallery = $(this).closest('.w-slider')[0];
-        console.log("Video started, ensuring autoplay is stopped for:", $gallery);
-        stopAutoplay($gallery); // Ensure autoplay is stopped
+        console.log("Video started, ensuring autoplay remains stopped for:", $gallery);
+        stopAutoplay($gallery); // Ensure autoplay is fully stopped
         isPlaying[$gallery] = true;
     });
 
@@ -395,9 +395,9 @@ $(document).ready(function () {
 
         isPlaying[$gallery] = false; // Mark video as finished
 
-        // Fade image back in after video ends
+        // Fade image back in, then resume autoplay after a small delay
         $image.stop().animate({ opacity: 1 }, 1000, function () {
-            startAutoplay($gallery);
+            setTimeout(() => startAutoplay($gallery), 1500); // Resume autoplay after image is visible
         });
     });
 });
