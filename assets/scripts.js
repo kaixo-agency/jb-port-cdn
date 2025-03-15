@@ -498,22 +498,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const caseStudyCard = document.querySelector('.case-study-card');
-    const slider = document.querySelector('.w-slider');
-    const sliderInstance = Webflow.require('slider');
+    const sliderNextBtn = document.querySelector('.w-slider-arrow-right');
+    let autoplayInterval;
 
-    // Pause autoplay on load
-    sliderInstance.stop(slider);
-
+    // Function to check if case-study-card is sticky
     function isCardStuck() {
-        return caseStudyCard.getBoundingClientRect().top === 0; // Check if sticky is engaged
+        return caseStudyCard.getBoundingClientRect().top === 0;
+    }
+
+    function startAutoplay() {
+        if (!autoplayInterval) {
+            autoplayInterval = setInterval(() => {
+                sliderNextBtn.click();
+            }, 3000); // Adjust speed if needed
+        }
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
     }
 
     function handleScroll() {
         if (isCardStuck()) {
-            sliderInstance.play(slider); // Resume autoplay
-            window.removeEventListener('scroll', handleScroll); // Stop listening once autoplay starts
+            startAutoplay();
+            window.removeEventListener('scroll', handleScroll); // Stop checking once autoplay starts
         }
     }
 
+    // Ensure autoplay is off initially
+    stopAutoplay();
     window.addEventListener('scroll', handleScroll);
 });
