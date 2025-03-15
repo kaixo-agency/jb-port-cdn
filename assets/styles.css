@@ -135,7 +135,7 @@ html {
     width: 4px; /* Line width */
     height: 30px; /* Thin line */
     background-color: #5f7c6b;
-    border-radius: 2px;
+    border-radius: 0;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
