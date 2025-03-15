@@ -498,22 +498,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll(".layout410");
-    
+
     sections.forEach((section) => {
         const gallery = section.querySelector(".gallery24");
         const imagesWrapper = gallery.querySelector(".gallery24_wrapper");
         let isLocked = false;
+        let hasStartedScrolling = false; // Ensures horizontal scrolling starts only once
 
         function handleScroll() {
             const rect = section.getBoundingClientRect();
             const windowHeight = window.innerHeight;
 
+            // Check if the section is fully locked (stuck at the top)
             if (!isLocked && rect.top <= 0 && rect.bottom >= windowHeight) {
                 isLocked = true;
-                enableHorizontalScroll(gallery, imagesWrapper, () => {
-                    isLocked = false;
-                    window.removeEventListener("wheel", preventVerticalScroll, { passive: false });
-                });
+                setTimeout(() => { 
+                    hasStartedScrolling = true;
+                    enableHorizontalScroll(gallery, imagesWrapper, () => {
+                        isLocked = false;
+                        hasStartedScrolling = false;
+                        window.removeEventListener("wheel", preventVerticalScroll, { passive: false });
+                    });
+                }, 300); // Small delay to make sure the card is fully locked
             }
         }
 
@@ -522,6 +528,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let scrollLeft = 0;
 
             function handleMouseDown(e) {
+                if (!hasStartedScrolling) return;
                 startX = e.pageX - imagesWrapper.offsetLeft;
                 scrollLeft = imagesWrapper.scrollLeft;
                 gallery.classList.add("dragging");
