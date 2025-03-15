@@ -496,38 +496,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-var Webflow = Webflow || [];
-Webflow.push(function() {
-    function restartWebflow() {
-        window.Webflow && window.Webflow.destroy();
-        window.Webflow && window.Webflow.ready();
-        window.Webflow && window.Webflow.require('ix2').init();
-        document.dispatchEvent(new Event('readystatechange'));
-    };
+document.addEventListener("DOMContentLoaded", function () {
+    let observer = new IntersectionObserver(
+        function (entries, observer) {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setTimeout(function () {
+                        let slider = document.querySelector(".gallery14_slider");
+                        if (slider) {
+                            let webflowSlider = Webflow.require("slider");
+                            webflowSlider.redraw(); // Ensures slider is initialized
+                            slider.querySelector(".w-slider-arrow-right")?.click(); // Triggers next slide
+                            observer.disconnect(); // Stop observing after trigger
+                        }
+                    }, 2000); // 2-second delay
+                }
+            });
+        },
+        { threshold: 0.5 }
+    );
 
-    var scrollTimer;
-    function scrollFunction() {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(function() {
-            var caseStudyCard = document.querySelector('.case-study-card');
-            var gallerySlider = document.querySelector('.gallery14_slider');
-
-            if (!caseStudyCard || !gallerySlider) {
-                console.error("Elements not found: Check your class names.");
-                return;
-            }
-
-            var rect = caseStudyCard.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                setTimeout(function() {
-                    gallerySlider.setAttribute('data-autoplay', '1');
-                    gallerySlider.setAttribute('data-delay', '3000'); // Adjust as needed
-                    window.removeEventListener('scroll', scrollFunction);
-                    restartWebflow(); // Restart Webflow to apply changes
-                }, 2000); // 2-second delay
-            }
-        }, 200);
+    let target = document.querySelector(".case-study-card");
+    if (target) {
+        observer.observe(target);
+    } else {
+        console.error("case-study-card not found. Check class name.");
     }
-
-    window.addEventListener('scroll', scrollFunction);
 });
