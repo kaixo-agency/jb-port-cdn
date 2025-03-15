@@ -497,7 +497,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const sliders = document.querySelectorAll('.gallery14_slide');
+    const sliders = document.querySelectorAll('.gallery14_slider-right');
     const caseStudyCard = document.querySelector('.case-study-card');
 
     let observer = new IntersectionObserver((entries) => {
