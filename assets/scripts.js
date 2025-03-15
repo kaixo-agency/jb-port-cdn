@@ -339,10 +339,11 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    let autoplayIntervals = {}; // Object to store autoplay intervals per gallery
+    let autoplayIntervals = {}; // Store autoplay intervals per gallery
 
     function stopAutoplay(gallery) {
         if (autoplayIntervals[gallery]) {
+            console.log("Stopping autoplay for:", gallery);
             clearInterval(autoplayIntervals[gallery]);
             autoplayIntervals[gallery] = null;
         }
@@ -350,6 +351,7 @@ $(document).ready(function () {
 
     function startAutoplay(gallery) {
         if (!autoplayIntervals[gallery]) {
+            console.log("Starting autoplay for:", gallery);
             autoplayIntervals[gallery] = setInterval(function () {
                 $(gallery).find('.w-slider-arrow-right').click();
             }, 3000);
@@ -393,6 +395,8 @@ $(document).ready(function () {
         var $video = $(this).find("video").get(0);
         var $gallery = $(this).closest('.w-slider');
 
+        console.log("Video clicked, stopping autoplay for:", $gallery[0]);
+
         // Stop autoplay when the video starts
         stopAutoplay($gallery[0]);
 
@@ -400,6 +404,7 @@ $(document).ready(function () {
         $image.stop().animate({ opacity: 0 }, 1000, function () {
             // Wait 1 second before playing the video
             setTimeout(function () {
+                console.log("Playing video...");
                 $video.play();
             }, 1000);
         });
@@ -409,6 +414,8 @@ $(document).ready(function () {
     $("video").on("ended", function () {
         var $gallery = $(this).closest('.w-slider');
         var $image = $(this).siblings(".gallery14_image");
+
+        console.log("Video ended, resuming autoplay for:", $gallery[0]);
 
         // Fade image back in after video ends
         $image.stop().animate({ opacity: 1 }, 1000, function () {
