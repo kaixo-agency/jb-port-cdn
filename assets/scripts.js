@@ -500,33 +500,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const caseStudyCard = document.querySelector('.case-study-card');
     const sliderNextBtn = document.querySelector('.w-slider-arrow-right');
     let autoplayInterval;
+    let autoplayStarted = false;
 
-    // Function to check if case-study-card is sticky
-    function isCardStuck() {
-        return caseStudyCard.getBoundingClientRect().top === 0;
+    // Function to check if element is in viewport
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom > 0;
     }
 
     function startAutoplay() {
-        if (!autoplayInterval) {
-            autoplayInterval = setInterval(() => {
-                sliderNextBtn.click();
-            }, 3000); // Adjust speed if needed
+        if (!autoplayStarted) {
+            autoplayStarted = true;
+            setTimeout(() => {
+                autoplayInterval = setInterval(() => {
+                    sliderNextBtn.click();
+                }, 3000); // Adjust speed if needed
+            }, 2000); // 2-second delay
         }
     }
 
-    function stopAutoplay() {
-        clearInterval(autoplayInterval);
-        autoplayInterval = null;
-    }
-
     function handleScroll() {
-        if (isCardStuck()) {
+        if (isElementInViewport(caseStudyCard)) {
             startAutoplay();
-            window.removeEventListener('scroll', handleScroll); // Stop checking once autoplay starts
+            window.removeEventListener('scroll', handleScroll); // Stop checking after it starts
         }
     }
 
     // Ensure autoplay is off initially
-    stopAutoplay();
     window.addEventListener('scroll', handleScroll);
 });
