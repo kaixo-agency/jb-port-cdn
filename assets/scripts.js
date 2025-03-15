@@ -514,7 +514,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     setTimeout(() => {
                         content.style.transform = 'translateY(0)';
                         content.style.opacity = '1';
-                    }, 200); // Delay before animation
+                    }, 500); // Adjust this delay (in milliseconds) as needed
 
                     observer.unobserve(entry.target); // Stop observing once animated
                 }
