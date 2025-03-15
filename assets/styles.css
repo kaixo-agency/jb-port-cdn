@@ -144,7 +144,7 @@ html {
     position: absolute;
     width: 4px; /* Line width */
     height: 100%; /* Thin line */
-    background-color: #fff;
+    background-color: #ffffff80;
     border-radius: 0;
     left: 50%;
     top: 50%;
