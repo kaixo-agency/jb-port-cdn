@@ -497,36 +497,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 (() => {
-    if (window.existingObserver) {
-        window.existingObserver.disconnect();
-    }
+    let activeObservers = new Map(); // Store observers per card
+    let activeIntervals = new Map(); // Store intervals per card
 
-    let sliderAutoplay; // Store the interval reference
-
-    function startAutoplay() {
-        if (!sliderAutoplay) { // Prevent multiple intervals
-            console.log("Starting autoplay...");
-            sliderAutoplay = setInterval(() => {
-                $('.w-slider-arrow-right').click();
+    function startAutoplay(card) {
+        if (!activeIntervals.has(card)) { // Prevent multiple intervals per card
+            console.log(`Starting autoplay for ${card}...`);
+            let interval = setInterval(() => {
+                $(card).find('.w-slider-arrow-right').click();
             }, 3000);
+            activeIntervals.set(card, interval);
         }
     }
 
-    let observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                console.log("case-study-card detected! Starting autoplay in 4s...");
-                setTimeout(startAutoplay, 1000);
-                observer.unobserve(entry.target); // Stop observing after first trigger
-            }
-        });
-    }, { rootMargin: "0px 0px -100px 0px" });
+    document.querySelectorAll('.case-study-card').forEach(card => {
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    let cardClass = entry.target.classList[1]; // Get unique class (e.g., "card-one")
+                    console.log(`${cardClass} detected! Starting autoplay in 4s...`);
 
-    let target = document.querySelector('.case-study-card');
-    if (target) {
-        observer.observe(target);
-        window.existingObserver = observer;
-    } else {
-        console.log("case-study-card not found");
-    }
+                    setTimeout(() => startAutoplay(`.${cardClass}`), 4000);
+
+                    observer.unobserve(entry.target); // Stop observing this card
+                }
+            });
+        }, { rootMargin: "0px 0px -100px 0px" });
+
+        observer.observe(card);
+        activeObservers.set(card, observer);
+    });
 })();
