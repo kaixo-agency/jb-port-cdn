@@ -339,6 +339,23 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
+    let autoplayIntervals = {}; // Object to store autoplay intervals per gallery
+
+    function stopAutoplay(gallery) {
+        if (autoplayIntervals[gallery]) {
+            clearInterval(autoplayIntervals[gallery]);
+            autoplayIntervals[gallery] = null;
+        }
+    }
+
+    function startAutoplay(gallery) {
+        if (!autoplayIntervals[gallery]) {
+            autoplayIntervals[gallery] = setInterval(function () {
+                $(gallery).find('.w-slider-arrow-right').click();
+            }, 3000);
+        }
+    }
+
     $(".has-video").on("mouseenter", function () {
         $(".custom-cursor").addClass("tooltip cursor-text-visible");
     });
@@ -348,29 +365,36 @@ $(document).ready(function () {
 
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);
+        var $gallery = $(this).closest('.w-slider');
 
-        // Pause the video immediately
+        // Pause the video
         $video.pause();
-        
 
         // Wait 0.5s, then fade in the image over 1s
         setTimeout(function () {
             $image.stop().animate({ opacity: 1 }, 1000, function () {
                 // Reset video time **only after** the fade-in is complete
                 $video.currentTime = 0;
+
+                // Resume autoplay when the image fades back in
+                startAutoplay($gallery[0]);
             });
         }, 500);
     });
 
     $(".has-video").on("click", function () {
-        $(".cursor-text").css("visibility", "hidden");  // Hide the .cursor-carat again
+        $(".cursor-text").css("visibility", "hidden");
         $(".custom-cursor").removeClass("tooltip cursor-text-visible");
-        $(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
-        $(".custom-cursor").css("width", "6px");  // Restore the default system cursor
-        $(this).css("cursor", "");  // Restore the default system cursor
+        $(".cursor-carat").css("visibility", "hidden");
+        $(".custom-cursor").css("width", "6px");
+        $(this).css("cursor", "");
 
         var $image = $(this).find(".gallery14_image");
-        var $video = $(this).find("video").get(0);        
+        var $video = $(this).find("video").get(0);
+        var $gallery = $(this).closest('.w-slider');
+
+        // Stop autoplay when the video starts
+        stopAutoplay($gallery[0]);
 
         // Fade out image over 1s
         $image.stop().animate({ opacity: 0 }, 1000, function () {
@@ -380,7 +404,19 @@ $(document).ready(function () {
             }, 1000);
         });
     });
+
+    // Resume autoplay when video ends
+    $("video").on("ended", function () {
+        var $gallery = $(this).closest('.w-slider');
+        var $image = $(this).siblings(".gallery14_image");
+
+        // Fade image back in after video ends
+        $image.stop().animate({ opacity: 1 }, 1000, function () {
+            startAutoplay($gallery[0]);
+        });
+    });
 });
+
 
 
 window.addEventListener("scroll", function () {
