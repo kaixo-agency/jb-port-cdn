@@ -135,7 +135,7 @@ html {
   box-shadow: none !important; /* Removes any focus-related shadows */
 }
 .w-slider-dot.w-active::after {
-  background-color: yellow !important;
+  background-color: var(--base-color-brand--olive) !important;
   border-radius:0;
 }
 
