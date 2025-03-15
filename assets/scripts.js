@@ -495,3 +495,64 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll(".layout410");
+    
+    sections.forEach((section) => {
+        const gallery = section.querySelector(".gallery24");
+        const imagesWrapper = gallery.querySelector(".gallery24_wrapper");
+        let isLocked = false;
+
+        function handleScroll() {
+            const rect = section.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (!isLocked && rect.top <= 0 && rect.bottom >= windowHeight) {
+                isLocked = true;
+                enableHorizontalScroll(gallery, imagesWrapper, () => {
+                    isLocked = false;
+                    window.removeEventListener("wheel", preventVerticalScroll, { passive: false });
+                });
+            }
+        }
+
+        function enableHorizontalScroll(gallery, imagesWrapper, callback) {
+            let startX = 0;
+            let scrollLeft = 0;
+
+            function handleMouseDown(e) {
+                startX = e.pageX - imagesWrapper.offsetLeft;
+                scrollLeft = imagesWrapper.scrollLeft;
+                gallery.classList.add("dragging");
+                window.addEventListener("mousemove", handleMouseMove);
+                window.addEventListener("mouseup", handleMouseUp);
+            }
+
+            function handleMouseMove(e) {
+                const x = e.pageX - imagesWrapper.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                imagesWrapper.scrollLeft = scrollLeft - walk;
+            }
+
+            function handleMouseUp() {
+                gallery.classList.remove("dragging");
+                window.removeEventListener("mousemove", handleMouseMove);
+                window.removeEventListener("mouseup", handleMouseUp);
+
+                if (imagesWrapper.scrollLeft + gallery.clientWidth >= imagesWrapper.scrollWidth) {
+                    callback(); // Unlocks vertical scroll when done
+                }
+            }
+
+            gallery.addEventListener("mousedown", handleMouseDown);
+            window.addEventListener("wheel", preventVerticalScroll, { passive: false });
+        }
+
+        function preventVerticalScroll(e) {
+            e.preventDefault();
+        }
+
+        window.addEventListener("scroll", handleScroll);
+    });
+});
