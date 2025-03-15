@@ -499,6 +499,13 @@ document.addEventListener("DOMContentLoaded", function () {
 (() => {
     let activeIntervals = new Map(); // Store intervals per card
 
+    function stopAutoplay(cardElement) {
+        if (activeIntervals.has(cardElement)) {
+            clearInterval(activeIntervals.get(cardElement));
+            activeIntervals.delete(cardElement);
+        }
+    }
+
     function startAutoplay(cardElement) {
         if (!activeIntervals.has(cardElement)) { // Prevent multiple intervals per card
             console.log(`Starting autoplay for`, cardElement);
@@ -515,18 +522,35 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function restartAutoplayWithDelay(cardElement) {
+        stopAutoplay(cardElement);
+        setTimeout(() => {
+            startAutoplay(cardElement);
+        }, 6000); // Restart autoplay after 6s delay
+    }
+
     document.querySelectorAll('.case-study-card').forEach(card => {
         let observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     console.log(`Detected case-study-card in view:`, entry.target);
-
-                    setTimeout(() => startAutoplay(entry.target),500); // 4s delay
-                    observer.unobserve(entry.target); // Stop observing this card
+                    setTimeout(() => startAutoplay(entry.target), 500);
+                    observer.unobserve(entry.target);
                 }
             });
         }, { rootMargin: "0px 0px -100px 0px" });
 
         observer.observe(card);
+
+        // Stop autoplay on manual navigation
+        let slider = card.querySelector('.w-slider');
+        if (slider) {
+            slider.querySelectorAll('.w-slider-arrow-right, .w-slider-arrow-left').forEach(arrow => {
+                arrow.addEventListener('click', () => {
+                    console.log("User interaction detected, stopping autoplay for:", card);
+                    restartAutoplayWithDelay(card);
+                });
+            });
+        }
     });
 })();
