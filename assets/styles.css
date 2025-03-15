@@ -132,8 +132,8 @@ html {
 .w-slider-dot::after {
     content: "";
     position: absolute;
-    width: 30px; /* Line width */
-    height: 4px; /* Thin line */
+    width: 4px; /* Line width */
+    height: 30px; /* Thin line */
     background-color: #5f7c6b;
     border-radius: 2px;
     left: 50%;
