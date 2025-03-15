@@ -496,30 +496,43 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    let observer = new IntersectionObserver(
-        function (entries, observer) {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setTimeout(function () {
-                        let slider = document.querySelector(".gallery14_slider");
-                        if (slider) {
-                            let webflowSlider = Webflow.require("slider");
-                            webflowSlider.redraw(); // Ensures slider is initialized
-                            slider.querySelector(".w-slider-arrow-right")?.click(); // Triggers next slide
-                            observer.disconnect(); // Stop observing after trigger
-                        }
-                    }, 2000); // 2-second delay
-                }
-            });
-        },
-        { threshold: 0.5 }
-    );
+function play_slide() {
+    let tabTimeout;
+    clearTimeout(tabTimeout);
+    tabLoop();
 
-    let target = document.querySelector(".case-study-card");
-    if (target) {
-        observer.observe(target);
-    } else {
-        console.error("case-study-card not found. Check class name.");
+    // Define loop - cycle through all slides
+    function tabLoop() {
+        tabTimeout = setTimeout(function () {
+            $('.w-slider-arrow-right').click(); // Clicks next slide
+            tabLoop(); // Recursively calls itself to keep autoplaying
+        }, 3000); // Adjust delay if needed
     }
-});
+
+    // Reset timeout if a slide is manually clicked
+    $('.w-slider-arrow-right, .w-slider-arrow-left').click(function () {
+        clearTimeout(tabTimeout);
+        tabLoop();
+    });
+}
+
+// Intersection Observer to trigger autoplay when the slider enters viewport
+let observer = new IntersectionObserver(
+    (entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                play_slide(); // Start autoplay
+                observer.unobserve(entry.target); // Run once
+            }
+        });
+    },
+    { rootMargin: "0px 0px -100px 0px" } // Adjust based on when you want it to start
+);
+
+// Select slider and observe it
+let target = $('.w-slider')[0];
+if (target) {
+    observer.observe(target);
+} else {
+    console.error("Slider not found! Check your class name.");
+}
