@@ -497,30 +497,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const caseStudyCard = document.querySelector(".case-study-card");
-    const sliders = document.querySelectorAll(".gallery14_slider-right"); // Target the parent slider
-  
-    let autoplayStarted = false; // Prevents multiple triggers
-  
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !autoplayStarted) {
-            autoplayStarted = true; // Prevent retriggering
-            setTimeout(() => {
-              sliders.forEach((slider) => {
-                slider.setAttribute("data-autoplay", "true"); // Enable autoplay
-                slider.wf_reset(); // Reset Webflow to apply changes
-              });
-            }, 500); // Adjust delay as needed
-          }
+    const sliders = document.querySelectorAll('.gallery14_slide');
+    const caseStudyCard = document.querySelector('.case-study-card');
+
+    let observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                sliders.forEach(slider => {
+                    let webflowSlider = slider.closest('.w-slider');
+                    let sliderComponent = Webflow.require('slider');
+                    sliderComponent.init([webflowSlider]); // Restart autoplay
+                });
+            }
         });
-      },
-      { threshold: 1.0 } // Ensures it triggers only when fully visible
-    );
-  
+    }, { threshold: 0.5 }); // Adjust threshold if needed
+
     if (caseStudyCard) {
-      observer.observe(caseStudyCard);
+        observer.observe(caseStudyCard);
     }
-  });
-  
+});
