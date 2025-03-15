@@ -526,7 +526,7 @@ document.addEventListener("DOMContentLoaded", function () {
         stopAutoplay(cardElement);
         setTimeout(() => {
             startAutoplay(cardElement);
-        }, 6000); // Restart autoplay after 6s delay
+        }, 4000); // Restart autoplay after 6s delay
     }
 
     document.querySelectorAll('.case-study-card').forEach(card => {
