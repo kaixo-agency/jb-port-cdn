@@ -495,32 +495,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
-(() => {
-    document.querySelectorAll('.case-study-card').forEach(card => {
-        let content = card.querySelector('.case-study-card-content');
-        if (!content) return;
-
-        // Set initial position above its final placement
-        content.style.transform = 'translateY(-50px)';
-        content.style.opacity = '0';
-        content.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
-
-        let observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    console.log(`Animating case-study-card-content for:`, entry.target);
-
-                    setTimeout(() => {
-                        content.style.transform = 'translateY(0)';
-                        content.style.opacity = '1';
-                    }, 500); // Adjust this delay (in milliseconds) as needed
-
-                    observer.unobserve(entry.target); // Stop observing once animated
-                }
-            });
-        }, { rootMargin: "0px 0px -50px 0px" });
-
-        observer.observe(card);
-    });
-})();
