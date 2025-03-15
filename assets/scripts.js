@@ -497,20 +497,36 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const sliders = document.querySelectorAll('.gallery14_slider-right');
     const caseStudyCard = document.querySelector('.case-study-card');
+    const sliderTrack = document.querySelector('.w-slider-mask');
+    const slides = document.querySelectorAll('.gallery14_slide');
+
+    let currentIndex = 0;
+    let autoplayInterval;
+
+    function startAutoplay() {
+        if (!autoplayInterval) {
+            autoplayInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }, 3000); // Change slides every 3 seconds
+        }
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+    }
 
     let observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                sliders.forEach(slider => {
-                    let webflowSlider = slider.closest('.w-slider');
-                    let sliderComponent = Webflow.require('slider');
-                    sliderComponent.init([webflowSlider]); // Restart autoplay
-                });
+                startAutoplay(); // Start autoplay when visible
+            } else {
+                stopAutoplay(); // Stop autoplay when not visible
             }
         });
-    }, { threshold: 0.5 }); // Adjust threshold if needed
+    }, { threshold: 0.7 }); // Adjust threshold as needed
 
     if (caseStudyCard) {
         observer.observe(caseStudyCard);
