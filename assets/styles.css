@@ -125,7 +125,7 @@ html {
     border: 0 !important;
     background-color: transparent !important; /* Make the actual dot invisible */
     width: 30px; /* Larger hitbox */
-    height: 100%; /* Larger hitbox */
+    height: 40px; /* Larger hitbox */
     opacity: 1; /* Ensure the hitbox is active */
     border-radius:0;
     outline: none !important; /* Removes the default focus outline */
