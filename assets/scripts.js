@@ -497,7 +497,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll(".layout410");
+    const sections = document.querySelectorAll(".case-study-card");
 
     sections.forEach((section) => {
         const gallery = section.querySelector(".gallery24");
