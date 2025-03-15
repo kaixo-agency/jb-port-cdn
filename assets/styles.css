@@ -128,7 +128,7 @@ html {
     height: 100%; /* Larger hitbox */
     opacity: 1; /* Ensure the hitbox is active */
 }
-.w-slider-dot.w-active{
+.w-slider-dot::after.w-active{
   background-color: yellow !important;
 }
 
