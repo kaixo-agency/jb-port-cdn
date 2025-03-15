@@ -359,39 +359,8 @@ $(document).ready(function () {
         }
     }
 
-    $(".has-video").on("mouseenter", function () {
-        $(".custom-cursor").addClass("tooltip cursor-text-visible");
-    });
-
-    $(".has-video").on("mouseleave", function () {
-        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
-
-        var $image = $(this).find(".gallery14_image");
-        var $video = $(this).find("video").get(0);
-        var $gallery = $(this).closest('.w-slider')[0];
-
-        if (isPlaying[$gallery]) {
-            return; // Don't restart autoplay while video is playing
-        }
-
-        // Pause the video
-        $video.pause();
-
-        // Wait 0.5s, then fade in the image over 1s
-        setTimeout(function () {
-            $image.stop().animate({ opacity: 1 }, 1000, function () {
-                $video.currentTime = 0;
-                startAutoplay($gallery);
-            });
-        }, 500);
-    });
-
-    $(".has-video").on("click", function () {
-        $(".cursor-text").css("visibility", "hidden");
-        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
-        $(".cursor-carat").css("visibility", "hidden");
-        $(".custom-cursor").css("width", "6px");
-        $(this).css("cursor", "");
+    $(".has-video").on("click", function (e) {
+        e.stopPropagation(); // Prevent unwanted bubbling
 
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);
@@ -402,7 +371,7 @@ $(document).ready(function () {
         stopAutoplay($gallery);
         isPlaying[$gallery] = true; // Mark as playing
 
-        // Fade out image over 1s
+        // Fade out image and start video
         $image.stop().animate({ opacity: 0 }, 1000, function () {
             setTimeout(function () {
                 console.log("Playing video...");
@@ -411,7 +380,13 @@ $(document).ready(function () {
         });
     });
 
-    // Resume autoplay when video ends
+    $("video").on("play", function () {
+        var $gallery = $(this).closest('.w-slider')[0];
+        console.log("Video started, ensuring autoplay is stopped for:", $gallery);
+        stopAutoplay($gallery); // Ensure autoplay is stopped
+        isPlaying[$gallery] = true;
+    });
+
     $("video").on("ended", function () {
         var $gallery = $(this).closest('.w-slider')[0];
         var $image = $(this).siblings(".gallery14_image");
