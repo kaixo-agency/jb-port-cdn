@@ -496,38 +496,38 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const caseStudyCard = document.querySelector('.case-study-card');
-    const slider = document.querySelector('.w-slider');
-    const sliderNextBtn = document.querySelector('.w-slider-arrow-right');
+var Webflow = Webflow || [];
+Webflow.push(function() {
+    function restartWebflow() {
+        window.Webflow && window.Webflow.destroy();
+        window.Webflow && window.Webflow.ready();
+        window.Webflow && window.Webflow.require('ix2').init();
+        document.dispatchEvent(new Event('readystatechange'));
+    };
 
-    if (!caseStudyCard || !slider || !sliderNextBtn) {
-        console.error("Missing elements: Check if .case-study-card, .w-slider, and .w-slider-arrow-right exist.");
-        return;
+    var scrollTimer;
+    function scrollFunction() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+            var caseStudyCard = document.querySelector('.case-study-card');
+            var gallerySlider = document.querySelector('.gallery14_slider');
+
+            if (!caseStudyCard || !gallerySlider) {
+                console.error("Elements not found: Check your class names.");
+                return;
+            }
+
+            var rect = caseStudyCard.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                setTimeout(function() {
+                    gallerySlider.setAttribute('data-autoplay', '1');
+                    gallerySlider.setAttribute('data-delay', '3000'); // Adjust as needed
+                    window.removeEventListener('scroll', scrollFunction);
+                    restartWebflow(); // Restart Webflow to apply changes
+                }, 2000); // 2-second delay
+            }
+        }, 200);
     }
 
-    // Disable autoplay on load
-    Webflow.require('slider').redraw();
-
-    function isElementInViewport(el) {
-        const rect = el.getBoundingClientRect();
-        return rect.top < window.innerHeight && rect.bottom > 0;
-    }
-
-    function startAutoplay() {
-        setTimeout(() => {
-            setInterval(() => {
-                sliderNextBtn.click();
-            }, 3000); // Adjust speed if needed
-        }, 2000); // 2-second delay
-    }
-
-    function handleScroll() {
-        if (isElementInViewport(caseStudyCard)) {
-            startAutoplay();
-            window.removeEventListener('scroll', handleScroll); // Remove listener after triggering autoplay
-        }
-    }
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', scrollFunction);
 });
