@@ -497,49 +497,32 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    
-    function play_slide() {
-        let tabTimeout;
-        clearTimeout(tabTimeout);
-        tabLoop();
-    
-        // Define loop - cycle through all slides
-        function tabLoop() {
-            tabTimeout = setTimeout(function () {
-                $('.w-slider-arrow-right').click(); // Clicks next slide
-                tabLoop(); // Recursively calls itself to keep autoplaying
-            }, 3000); // Adjust delay if needed
-        }
-    
-        // Reset timeout if a slide is manually clicked
-        $('.w-slider-arrow-right, .w-slider-arrow-left').click(function () {
-            clearTimeout(tabTimeout);
-            tabLoop();
-        });
-    }
-    
-    // Intersection Observer to trigger autoplay when the slider enters viewport
-    let observer = new IntersectionObserver(
-        (entries, observer) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    play_slide(); // Start autoplay
-                    observer.unobserve(entry.target); // Run once
-                }
-            });
-        },
-        { rootMargin: "0px 0px -100px 0px" } // Adjust based on when you want it to start
-    );
-    
-    // Select slider and observe it
-    $('.w-slider').each(function() {
-        observer.observe(this);
-    });
-    if (target) {
-        observer.observe(target);
-    } else {
-        console.error("Slider not found! Check your class name.");
-    }
-    
+    let sliderAutoplay; // Global variable to store interval
 
+    function startAutoplay() {
+        if (!sliderAutoplay) { // Prevent multiple intervals
+            sliderAutoplay = setInterval(() => {
+                $('.w-slider-arrow-right').click();
+            }, 3000);
+        }
+    }
+
+    function stopAutoplay() {
+        clearInterval(sliderAutoplay);
+        sliderAutoplay = null;
+    }
+
+    // Observer to detect when .case-study-card is sticky
+    let observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startAutoplay(); // Start autoplay when sticky
+            } else {
+                stopAutoplay(); // Stop autoplay when out of view (optional)
+            }
+        });
+    }, { rootMargin: "0px 0px -100px 0px" });
+
+    let target = document.querySelector('.case-study-card');
+    if (target) observer.observe(target);
 });
