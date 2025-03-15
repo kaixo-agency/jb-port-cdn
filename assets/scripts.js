@@ -515,7 +515,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 autoplayInterval = setInterval(() => {
                     sliderNextBtn.click();
                 }, 3000); // Adjust speed if needed
-            }, 2000); // 2-second delay
+            }, 10000); // 2-second delay
         }
     }
 
