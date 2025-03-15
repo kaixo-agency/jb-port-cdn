@@ -495,3 +495,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const caseStudyCard = document.querySelector(".case-study-card");
+    const sliders = document.querySelectorAll(".gallery14_slider-right"); // Target the parent slider
+  
+    let autoplayStarted = false; // Prevents multiple triggers
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !autoplayStarted) {
+            autoplayStarted = true; // Prevent retriggering
+            setTimeout(() => {
+              sliders.forEach((slider) => {
+                slider.setAttribute("data-autoplay", "true"); // Enable autoplay
+                slider.wf_reset(); // Reset Webflow to apply changes
+              });
+            }, 500); // Adjust delay as needed
+          }
+        });
+      },
+      { threshold: 1.0 } // Ensures it triggers only when fully visible
+    );
+  
+    if (caseStudyCard) {
+      observer.observe(caseStudyCard);
+    }
+  });
+  
