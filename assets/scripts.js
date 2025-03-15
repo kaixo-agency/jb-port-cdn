@@ -498,37 +498,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const caseStudyCard = document.querySelector('.case-study-card');
-    const sliderTrack = document.querySelector('.w-slider-mask');
-    const slides = document.querySelectorAll('.gallery14_slide');
-
-    let currentIndex = 0;
-    let autoplayInterval;
+    const slider = document.querySelector('.w-slider');
+    let autoplayEnabled = false;
+    
+    function isCardStuck() {
+        return caseStudyCard.getBoundingClientRect().top === 0; // Checks if it's stuck at the top
+    }
 
     function startAutoplay() {
-        if (!autoplayInterval) {
-            autoplayInterval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }, 3000); // Change slides every 3 seconds
+        if (!autoplayEnabled) {
+            slider.setAttribute('data-autoplay', 'true'); // Simulate enabling autoplay
+            document.querySelector('.w-slider-arrow-right').click(); // Kickstart autoplay
+            autoplayEnabled = true;
         }
     }
 
     function stopAutoplay() {
-        clearInterval(autoplayInterval);
-        autoplayInterval = null;
+        slider.setAttribute('data-autoplay', 'false');
+        autoplayEnabled = false;
     }
 
-    let observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                startAutoplay(); // Start autoplay when visible
-            } else {
-                stopAutoplay(); // Stop autoplay when not visible
-            }
-        });
-    }, { threshold: 0.7 }); // Adjust threshold as needed
-
-    if (caseStudyCard) {
-        observer.observe(caseStudyCard);
-    }
+    window.addEventListener('scroll', function () {
+        if (isCardStuck()) {
+            startAutoplay();
+        } else {
+            stopAutoplay();
+        }
+    });
 });
