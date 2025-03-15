@@ -340,7 +340,8 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     let autoplayIntervals = new Map(); // Stores autoplay intervals per gallery
-    let isVideoPlaying = new Map(); // Tracks video play state per gallery
+    let isVideoPlaying = new Map(); // Tracks if autoplay is paused
+    let resumeTimeouts = new Map(); // Stores timeout IDs for resuming autoplay
 
     function stopAutoplay($gallery) {
         let intervalId = autoplayIntervals.get($gallery);
@@ -363,49 +364,40 @@ $(document).ready(function () {
         }
     }
 
+    function restartAutoplayAfterDelay($gallery, delay = 30000) {
+        console.log("Setting autoplay to resume in", delay / 1000, "seconds for:", $gallery);
+
+        if (resumeTimeouts.has($gallery)) {
+            clearTimeout(resumeTimeouts.get($gallery)); // Reset if another video is clicked
+        }
+
+        let timeoutId = setTimeout(() => {
+            console.log("Resuming autoplay for:", $gallery);
+            isVideoPlaying.set($gallery, false);
+            startAutoplay($gallery);
+            resumeTimeouts.delete($gallery);
+        }, delay);
+
+        resumeTimeouts.set($gallery, timeoutId);
+    }
+
     $(".has-video").on("click", function (e) {
         e.stopPropagation();
         let $image = $(this).find(".gallery14_image");
         let $video = $(this).find("video").get(0);
         let $gallery = $(this).closest('.w-slider');
 
-        console.log("Video clicked, stopping autoplay immediately for:", $gallery);
-
+        console.log("Video clicked, stopping autoplay for:", $gallery);
         stopAutoplay($gallery);
         isVideoPlaying.set($gallery, true);
 
         // Fade out image and play video
         $image.stop().animate({ opacity: 0 }, 1000, function () {
-            setTimeout(function () {
+            setTimeout(() => {
                 console.log("Playing video...");
                 $video.play();
+                restartAutoplayAfterDelay($gallery);
             }, 1000);
-        });
-    });
-
-    $("video").on("play", function () {
-        let $gallery = $(this).closest('.w-slider');
-
-        console.log("Video started, ensuring autoplay remains stopped for:", $gallery);
-        stopAutoplay($gallery);
-        isVideoPlaying.set($gallery, true);
-    });
-
-    $("video").on("ended", function () {
-        let $gallery = $(this).closest('.w-slider');
-        let $image = $(this).siblings(".gallery14_image");
-
-        console.log("Video ended, resuming autoplay for:", $gallery);
-
-        isVideoPlaying.set($gallery, false);
-
-        // Fade image back in, then resume autoplay
-        $image.stop().animate({ opacity: 1 }, 1000, function () {
-            setTimeout(() => {
-                if (!isVideoPlaying.get($gallery)) {
-                    startAutoplay($gallery);
-                }
-            }, 1500);
         });
     });
 
