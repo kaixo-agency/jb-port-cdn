@@ -500,8 +500,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll(".case-study-card");
 
     sections.forEach((section) => {
-        const gallery = section.querySelector(".gallery24");
-        const imagesWrapper = gallery.querySelector(".gallery24_wrapper");
+        const gallery = section.querySelector(".section_gallery24");
+        const imagesWrapper = gallery.querySelector(".gallery24_horizontal-scroll-wrapper");
         let isLocked = false;
         let hasStartedScrolling = false; // Ensures horizontal scrolling starts only once
 
