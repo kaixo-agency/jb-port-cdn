@@ -499,23 +499,26 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     const caseStudyCard = document.querySelector('.case-study-card');
     const slider = document.querySelector('.w-slider');
-    let autoplayEnabled = false;
-    
+
+    let autoplayStarted = false;
+
     function isCardStuck() {
-        return caseStudyCard.getBoundingClientRect().top === 0; // Checks if it's stuck at the top
+        return caseStudyCard.getBoundingClientRect().top === 0; // Check if sticky is engaged
     }
 
     function startAutoplay() {
-        if (!autoplayEnabled) {
-            slider.setAttribute('data-autoplay', 'true'); // Simulate enabling autoplay
-            document.querySelector('.w-slider-arrow-right').click(); // Kickstart autoplay
-            autoplayEnabled = true;
+        if (!autoplayStarted) {
+            const sliderInstance = Webflow.require('slider'); // Get Webflow's slider API
+            sliderInstance.redraw(); // Ensure Webflow recognizes the change
+            sliderInstance.play(slider); // Start autoplay
+            autoplayStarted = true;
         }
     }
 
     function stopAutoplay() {
-        slider.setAttribute('data-autoplay', 'false');
-        autoplayEnabled = false;
+        const sliderInstance = Webflow.require('slider');
+        sliderInstance.stop(slider);
+        autoplayStarted = false;
     }
 
     window.addEventListener('scroll', function () {
