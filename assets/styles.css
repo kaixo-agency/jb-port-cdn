@@ -133,7 +133,7 @@ html {
     content: "";
     position: absolute;
     width: 4px; /* Line width */
-    height: 30px; /* Thin line */
+    height: 100%; /* Thin line */
     background-color: #5f7c6b;
     border-radius: 0;
     left: 50%;
