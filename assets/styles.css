@@ -360,3 +360,13 @@ body.force-hide-cursor {
   flex: 0 0 100%; /* Make each slide take full height */
   width: 100%;
 }
+
+.testimonial-logo {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.testimonial-logo.active {
+  opacity: 1;
+}
