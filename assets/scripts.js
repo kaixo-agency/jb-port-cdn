@@ -589,3 +589,19 @@ window.addEventListener("scroll", function () {
 
     lastScrollTop = scrollTop;
 }, { passive: true });
+
+$(document).ready(function () {
+    const $menu = $(".w-nav-overlay");
+    const $blurOverlay = $("<div class='blur-overlay'></div>").appendTo("body");
+
+    // Monitor changes in visibility
+    const observer = new MutationObserver(() => {
+        if ($menu.is(":visible")) {
+            $blurOverlay.css({ opacity: 1, pointerEvents: "auto" });
+        } else {
+            $blurOverlay.css({ opacity: 0, pointerEvents: "none" });
+        }
+    });
+
+    observer.observe($menu[0], { attributes: true, attributeFilter: ["style"] });
+});
