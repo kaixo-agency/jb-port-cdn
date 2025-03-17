@@ -499,11 +499,13 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).ready(function () {
     const $slider = $(".testimonial7_slider");
     const $logos = $(".testimonial-logo");
-
+    
     // Click event for logo navigation
     $logos.on("click", function () {
-        let slideIndex = $(this).data("slide") - 1; // Convert to zero-based index
-        $slider.slick('slickGoTo', slideIndex); // Change slide using Slick Slider (Webflow uses Slick under the hood)
+        let slideIndex = $(this).data("slide"); // Webflow uses 1-based index
+
+        // Trigger Webflow slider navigation
+        $slider.find('.w-slider-dot').eq(slideIndex - 1).trigger('click');
 
         // Update active state
         $logos.removeClass("active");
@@ -511,8 +513,10 @@ $(document).ready(function () {
     });
 
     // Sync active state when slider changes
-    $slider.on("afterChange", function (event, slick, currentSlide) {
+    $slider.on("click", ".w-slider-dot", function () {
+        let currentSlide = $(this).index(); // Get current slide index
         $logos.removeClass("active");
         $logos.eq(currentSlide).addClass("active");
     });
 });
+
