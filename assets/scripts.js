@@ -571,3 +571,27 @@ $(document).ready(function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    let lastScrollTop = window.scrollY;
+    const navbar = document.querySelector(".navbar1_component");
+    let isHidden = false;
+
+    window.addEventListener("scroll", function () {
+        let currentScroll = window.scrollY;
+
+        if (currentScroll > lastScrollTop && !isHidden) {
+            // Scrolling down – hide navbar
+            navbar.style.transition = "top 0.4s ease-in-out";
+            navbar.style.top = "-5.5rem";
+            isHidden = true;
+        } else if (currentScroll < lastScrollTop && isHidden) {
+            // Scrolling up – show navbar
+            navbar.style.transition = "top 0.4s ease-in-out";
+            navbar.style.top = "0";
+            isHidden = false;
+        }
+
+        lastScrollTop = currentScroll;
+    });
+});
