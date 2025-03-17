@@ -498,18 +498,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const slider = document.querySelector(".testimonial7_slider");
-    const slides = slider.querySelectorAll(".w-slide");
-    const logos = document.querySelectorAll(".testimonial-logo");
+    const sliderInstance = Webflow.require("slider"); // Get Webflow's slider API
+    const navLogos = document.querySelectorAll(".testimonial-logo");
 
-    logos.forEach((logo, index) => {
+    navLogos.forEach(logo => {
         logo.addEventListener("click", function () {
-            slider.querySelector(".w-slider").scrollTo({
-                left: slides[index].offsetLeft,
-                behavior: "smooth",
-            });
+            const slideIndex = parseInt(logo.dataset.slide, 10) - 1; // Convert to zero-based index
+            sliderInstance.goTo(slideIndex, slider); // Navigate to the selected slide
 
             // Update active state
-            logos.forEach(l => l.classList.remove("active"));
+            navLogos.forEach(l => l.classList.remove("active"));
             logo.classList.add("active");
         });
     });
