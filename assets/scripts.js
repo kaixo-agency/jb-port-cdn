@@ -520,3 +520,23 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $(".testimonial-logo").hover(
+        function () {
+            $(this).find(".tool-base").hide(); // Hide on hover
+        },
+        function () {
+            if (!$(this).hasClass("active")) {
+                $(this).find(".tool-base").show(); // Show on mouseleave if not active
+            }
+        }
+    );
+
+    $(".testimonial-logo").on("click", function () {
+        $(".testimonial-logo.active .tool-base").show(); // Reset previous active
+        $(".testimonial-logo").removeClass("active");
+
+        $(this).addClass("active");
+        $(this).find(".tool-base").hide(); // Keep hidden when active
+    });
+});
