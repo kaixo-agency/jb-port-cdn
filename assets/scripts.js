@@ -585,9 +585,10 @@ document.addEventListener("DOMContentLoaded", function () {
     navbar.style.top = "0";
     navbar.style.transition = "transform 0.4s ease-in-out";
 
-    window.addEventListener("scroll", function () {
-        let currentScroll = window.scrollY;
-        console.log("Scroll Position:", currentScroll);
+    document.addEventListener("scroll", function () {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        console.log("Scroll Position:", currentScroll); // Debugging log
 
         if (currentScroll > lastScrollTop && currentScroll > 50) {
             console.log("Scrolling down: hiding navbar");
@@ -598,7 +599,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    });
+    }, { passive: true });
 });
 
 
