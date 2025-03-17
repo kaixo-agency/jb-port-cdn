@@ -576,7 +576,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastScrollTop = 0;
     const navbar = document.querySelector(".navbar1_component");
 
-    if (!navbar) return; // Exit if navbar is not found
+    if (!navbar) {
+        console.error("Navbar not found");
+        return;
+    }
 
     navbar.style.position = "sticky";
     navbar.style.top = "0";
@@ -584,16 +587,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("scroll", function () {
         let currentScroll = window.scrollY;
+        console.log("Scroll Position:", currentScroll);
 
         if (currentScroll > lastScrollTop && currentScroll > 50) {
-            // Scrolling down, hide navbar
+            console.log("Scrolling down: hiding navbar");
             navbar.style.transform = "translateY(-5.5rem)";
         } else {
-            // Scrolling up, show navbar
+            console.log("Scrolling up: showing navbar");
             navbar.style.transform = "translateY(0)";
         }
 
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative values
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     });
 });
+
 
