@@ -576,25 +576,31 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastScrollTop = window.scrollY;
     const navbar = document.querySelector(".navbar1_component");
     let isHidden = false;
+    let ticking = false;
 
-    // Ensure navbar has an initial style
     navbar.style.position = "sticky";
     navbar.style.top = "0";
     navbar.style.transition = "top 0.4s ease-in-out";
 
-    window.addEventListener("scroll", function () {
+    function handleScroll() {
         let currentScroll = window.scrollY;
 
         if (currentScroll > lastScrollTop && currentScroll > 50 && !isHidden) {
-            // Scrolling down – hide navbar
             navbar.style.top = "-5.5rem";
             isHidden = true;
         } else if (currentScroll < lastScrollTop && isHidden) {
-            // Scrolling up – show navbar
             navbar.style.top = "0";
             isHidden = false;
         }
 
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative values
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        ticking = false;
+    }
+
+    window.addEventListener("scroll", function () {
+        if (!ticking) {
+            requestAnimationFrame(handleScroll);
+            ticking = true;
+        }
     });
 });
