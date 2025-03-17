@@ -348,3 +348,15 @@ body.force-hide-cursor {
   -webkit-user-drag: none;
   user-select: none;
 }
+
+.gallery14_slider .w-slider-mask {
+  display: flex;
+  flex-direction: column; /* Stack slides vertically */
+  overflow: hidden;
+  height: 100%; /* Ensure the container takes full height */
+}
+
+.gallery14_slider .w-slide {
+  flex: 0 0 100%; /* Make each slide take full height */
+  width: 100%;
+}
