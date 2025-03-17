@@ -573,6 +573,21 @@ $(document).ready(function () {
 });
 
 window.addEventListener("scroll", function () {
-    console.log("Window is scrolling!");
-});
+    const navbar = document.querySelector(".navbar1_component");
+    if (!navbar) {
+        console.error("Navbar not found");
+        return;
+    }
 
+    console.log("Scroll detected!"); // Debugging
+
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > 50) {
+        console.log("Scrolling down: hiding navbar");
+        navbar.style.transform = "translateY(-5.5rem)";
+    } else {
+        console.log("Scrolling up: showing navbar");
+        navbar.style.transform = "translateY(0)";
+    }
+});
