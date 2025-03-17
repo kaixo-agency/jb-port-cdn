@@ -587,7 +587,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (currentScroll > lastScrollTop && currentScroll > 50 && !isHidden) {
             // Scrolling down – hide navbar
-            navbar.style.top = "-100px";
+            navbar.style.top = "-5.5rem";
             isHidden = true;
         } else if (currentScroll < lastScrollTop && isHidden) {
             // Scrolling up – show navbar
