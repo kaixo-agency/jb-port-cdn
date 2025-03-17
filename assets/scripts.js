@@ -495,3 +495,41 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    let slider = document.querySelector(".gallery14_slider");
+    if (!slider) return;
+
+    let mask = slider.querySelector(".w-slider-mask");
+    let slides = slider.querySelectorAll(".w-slide");
+    let prevArrow = slider.querySelector(".w-slider-arrow-left");
+    let nextArrow = slider.querySelector(".w-slider-arrow-right");
+    
+    let currentIndex = 0;
+
+    function updateSlidePosition() {
+        mask.style.transform = `translateY(-${currentIndex * 100}%)`;
+        mask.style.transition = "transform 0.7s ease-in-out"; // Smooth vertical transition
+    }
+
+    nextArrow.addEventListener("click", function () {
+        if (currentIndex < slides.length - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Loop back to first slide
+        }
+        updateSlidePosition();
+    });
+
+    prevArrow.addEventListener("click", function () {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = slides.length - 1; // Loop to last slide
+        }
+        updateSlidePosition();
+    });
+
+    // Ensure the first slide is positioned correctly on load
+    updateSlidePosition();
+});
