@@ -572,6 +572,8 @@ $(document).ready(function () {
     });
 });
 
+let lastScrollTop = 0;
+
 window.addEventListener("scroll", function () {
     const navbar = document.querySelector(".navbar1_component");
     if (!navbar) {
@@ -579,15 +581,15 @@ window.addEventListener("scroll", function () {
         return;
     }
 
-    console.log("Scroll detected!"); // Debugging
-
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (scrollTop > 50) {
-        console.log("Scrolling down: hiding navbar");
+    if (scrollTop > lastScrollTop) {
+        // Scrolling down: hide navbar
         navbar.style.transform = "translateY(-5.5rem)";
     } else {
-        console.log("Scrolling up: showing navbar");
+        // Scrolling up: show navbar
         navbar.style.transform = "translateY(0)";
     }
-});
+
+    lastScrollTop = scrollTop;
+}, { passive: true });
