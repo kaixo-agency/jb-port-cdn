@@ -114,7 +114,7 @@ $(document).ready(function () {
             // Apply dark mode
             navbar.addClass("nav-dark"); 
             navbar.css({
-                "background": "rgba(18, 29, 41, 0.85)", // Updated dark mode background
+                "background": "var(--base-color-brand--slate-dark)", // Updated dark mode background
                 "border-color": "var(--base-color-brand--slate-dark)", 
                 "transition": "background-color 0.5s ease, border-color 0.5s ease",
                 "box-shadow": "0 4px 20px #4b5f7240"
