@@ -496,19 +496,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const slider = document.querySelector(".testimonial7_slider");
-    const sliderInstance = Webflow.require("slider"); // Get Webflow's slider API
-    const navLogos = document.querySelectorAll(".testimonial-logo");
+$(document).ready(function () {
+    const $slider = $(".testimonial7_slider");
+    const $logos = $(".testimonial-logo");
 
-    navLogos.forEach(logo => {
-        logo.addEventListener("click", function () {
-            const slideIndex = parseInt(logo.dataset.slide, 10) - 1; // Convert to zero-based index
-            sliderInstance.goTo(slideIndex, slider); // Navigate to the selected slide
+    // Click event for logo navigation
+    $logos.on("click", function () {
+        let slideIndex = $(this).data("slide") - 1; // Convert to zero-based index
+        $slider.slick('slickGoTo', slideIndex); // Change slide using Slick Slider (Webflow uses Slick under the hood)
 
-            // Update active state
-            navLogos.forEach(l => l.classList.remove("active"));
-            logo.classList.add("active");
-        });
+        // Update active state
+        $logos.removeClass("active");
+        $(this).addClass("active");
+    });
+
+    // Sync active state when slider changes
+    $slider.on("afterChange", function (event, slick, currentSlide) {
+        $logos.removeClass("active");
+        $logos.eq(currentSlide).addClass("active");
     });
 });
