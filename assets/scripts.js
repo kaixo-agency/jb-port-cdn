@@ -499,13 +499,13 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).ready(function () {
     const $slider = $(".testimonial7_slider");
     const $logos = $(".testimonial-logo");
-    
+
     // Click event for logo navigation
     $logos.on("click", function () {
         let slideIndex = $(this).data("slide"); // Webflow uses 1-based index
 
         // Trigger Webflow slider navigation
-        $slider.find('.w-slider-dot').eq(slideIndex - 1).trigger('click');
+        $slider.find(".w-slider-dot").eq(slideIndex - 1).trigger("click");
 
         // Update active state
         $logos.removeClass("active");
@@ -515,13 +515,21 @@ $(document).ready(function () {
     // Sync active state when slider changes
     $slider.on("click", ".w-slider-dot", function () {
         let currentSlide = $(this).index(); // Get current slide index
+        setTimeout(() => {
+            $logos.removeClass("active");
+            $logos.eq(currentSlide).addClass("active");
+        }, 50); // Small delay to allow Webflow to process slide change
+    });
+
+    // Ensure the correct logo is active on page load (for SEO and consistency)
+    setTimeout(() => {
+        let currentSlide = $slider.find(".w-slider-dot.w-active").index();
         $logos.removeClass("active");
         $logos.eq(currentSlide).addClass("active");
-    });
+    }, 100);
 });
 
-
-
+// Handle hover effects for the logos
 document.querySelectorAll(".testimonial-logo").forEach((logo) => {
     logo.addEventListener("mouseenter", () => {
         logo.querySelectorAll("svg path").forEach((path) => {
