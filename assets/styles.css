@@ -364,3 +364,6 @@ body.force-hide-cursor {
 .testimonial-logo {
   cursor: pointer;
 }
+.navbar1_component {
+  transition: transform 0.4s ease-in-out;
+}
