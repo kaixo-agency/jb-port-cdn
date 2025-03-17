@@ -540,3 +540,26 @@ $(document).ready(function () {
         $(this).find(".tool-base").hide(); // Keep hidden when active
     });
 });
+
+document.querySelectorAll(".testimonial-logo").forEach((logo) => {
+    logo.addEventListener("mouseenter", () => {
+        // Find all path elements inside the SVG
+        logo.querySelectorAll("svg path").forEach((path) => {
+            // Store the current class value
+            path.dataset.originalClass = path.getAttribute("class");
+
+            // Remove the class attribute to hide it
+            path.removeAttribute("class");
+        });
+    });
+
+    logo.addEventListener("mouseleave", () => {
+        // Restore the class attribute on mouseleave
+        logo.querySelectorAll("svg path").forEach((path) => {
+            // Restore the original class
+            if (path.dataset.originalClass) {
+                path.setAttribute("class", path.dataset.originalClass);
+            }
+        });
+    });
+});
