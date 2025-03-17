@@ -573,34 +573,27 @@ $(document).ready(function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    let lastScrollTop = window.scrollY;
+    let lastScrollTop = 0;
     const navbar = document.querySelector(".navbar1_component");
-    let isHidden = false;
-    let ticking = false;
+
+    if (!navbar) return; // Exit if navbar is not found
 
     navbar.style.position = "sticky";
     navbar.style.top = "0";
-    navbar.style.transition = "top 0.4s ease-in-out";
-
-    function handleScroll() {
-        let currentScroll = window.scrollY;
-
-        if (currentScroll > lastScrollTop && currentScroll > 50 && !isHidden) {
-            navbar.style.top = "-5.5rem";
-            isHidden = true;
-        } else if (currentScroll < lastScrollTop && isHidden) {
-            navbar.style.top = "0";
-            isHidden = false;
-        }
-
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        ticking = false;
-    }
+    navbar.style.transition = "transform 0.4s ease-in-out";
 
     window.addEventListener("scroll", function () {
-        if (!ticking) {
-            requestAnimationFrame(handleScroll);
-            ticking = true;
+        let currentScroll = window.scrollY;
+
+        if (currentScroll > lastScrollTop && currentScroll > 50) {
+            // Scrolling down, hide navbar
+            navbar.style.transform = "translateY(-5.5rem)";
+        } else {
+            // Scrolling up, show navbar
+            navbar.style.transform = "translateY(0)";
         }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative values
     });
 });
+
