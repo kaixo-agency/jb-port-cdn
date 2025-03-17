@@ -116,7 +116,6 @@ $(document).ready(function () {
             navbar.css({
                 "background": "var(--base-color-brand--slate-medium)", // Updated dark mode background
                 "transition": "background-color 0.5s ease, border-color 0.5s ease",
-                "box-shadow": "0 4px 20px #4b5f7240"
             });
             buttonLabels.css({
                 "color": "var(--base-color-neutral--white)",
