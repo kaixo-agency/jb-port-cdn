@@ -577,21 +577,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.querySelector(".navbar1_component");
     let isHidden = false;
 
+    // Ensure navbar has an initial style
+    navbar.style.position = "sticky";
+    navbar.style.top = "0";
+    navbar.style.transition = "top 0.4s ease-in-out";
+
     window.addEventListener("scroll", function () {
         let currentScroll = window.scrollY;
 
-        if (currentScroll > lastScrollTop && !isHidden) {
+        if (currentScroll > lastScrollTop && currentScroll > 50 && !isHidden) {
             // Scrolling down – hide navbar
-            navbar.style.transition = "top 0.4s ease-in-out";
             navbar.style.top = "-5.5rem";
             isHidden = true;
         } else if (currentScroll < lastScrollTop && isHidden) {
             // Scrolling up – show navbar
-            navbar.style.transition = "top 0.4s ease-in-out";
             navbar.style.top = "0";
             isHidden = false;
         }
 
-        lastScrollTop = currentScroll;
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative values
     });
 });
