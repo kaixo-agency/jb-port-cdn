@@ -511,6 +511,9 @@ $(document).ready(function () {
         // Update active state
         $logos.removeClass("active");
         $(this).addClass("active");
+
+        // Ensure correct SVG paths are updated
+        updateSVGPaths();
     });
 
     // Detect active slide when Webflow changes slides
@@ -521,6 +524,9 @@ $(document).ready(function () {
             $logos.removeClass("active");
             $logos.eq(activeIndex).addClass("active");
         }
+
+        // Ensure SVG paths are updated
+        updateSVGPaths();
     };
 
     // Observe for changes in the slider (Webflow updates `w-active` dynamically)
@@ -531,25 +537,37 @@ $(document).ready(function () {
 
     // Ensure correct logo is active on page load
     setTimeout(updateActiveLogo, 100);
-});
 
-// Handle hover effects for the logos
-document.querySelectorAll(".testimonial-logo").forEach((logo) => {
-    logo.addEventListener("mouseenter", () => {
-        logo.querySelectorAll("svg path").forEach((path) => {
-            path.dataset.originalClass = path.getAttribute("class");
-            path.removeAttribute("class");
-        });
-    });
+    // Function to handle SVG path updates
+    function updateSVGPaths() {
+        document.querySelectorAll(".testimonial-logo").forEach((logo) => {
+            const isActive = logo.classList.contains("active");
 
-    logo.addEventListener("mouseleave", () => {
-        // Restore class only if not active
-        if (!logo.classList.contains("active")) {
             logo.querySelectorAll("svg path").forEach((path) => {
-                if (path.dataset.originalClass) {
-                    path.setAttribute("class", path.dataset.originalClass);
+                if (isActive) {
+                    path.removeAttribute("class"); // Show original attributes
+                } else {
+                    path.setAttribute("class", "tool-base"); // Ensure it gets the class back
                 }
             });
-        }
+        });
+    }
+
+    // Handle hover effects for the logos
+    document.querySelectorAll(".testimonial-logo").forEach((logo) => {
+        logo.addEventListener("mouseenter", () => {
+            logo.querySelectorAll("svg path").forEach((path) => {
+                path.dataset.originalClass = path.getAttribute("class");
+                path.removeAttribute("class");
+            });
+        });
+
+        logo.addEventListener("mouseleave", () => {
+            if (!logo.classList.contains("active")) {
+                logo.querySelectorAll("svg path").forEach((path) => {
+                    path.setAttribute("class", "tool-base");
+                });
+            }
+        });
     });
 });
