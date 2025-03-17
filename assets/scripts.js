@@ -499,34 +499,38 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).ready(function () {
     const $slider = $(".testimonial7_slider");
     const $logos = $(".testimonial-logo");
+    const $dots = $slider.find(".w-slider-dot");
 
-    // Click event for logo navigation
+    // Click event for testimonial logos
     $logos.on("click", function () {
-        let slideIndex = $(this).data("slide"); // Webflow uses 1-based index
+        let slideIndex = $(this).data("slide") - 1; // Convert to 0-based index
 
         // Trigger Webflow slider navigation
-        $slider.find(".w-slider-dot").eq(slideIndex - 1).trigger("click");
+        $dots.eq(slideIndex).trigger("click");
 
         // Update active state
         $logos.removeClass("active");
         $(this).addClass("active");
     });
 
-    // Sync active state when slider changes
-    $slider.on("click", ".w-slider-dot", function () {
-        let currentSlide = $(this).index(); // Get current slide index
-        setTimeout(() => {
+    // Detect active slide when Webflow changes slides
+    const updateActiveLogo = () => {
+        let activeIndex = $dots.filter(".w-active").index();
+
+        if (activeIndex !== -1) {
             $logos.removeClass("active");
-            $logos.eq(currentSlide).addClass("active");
-        }, 50); // Small delay to allow Webflow to process slide change
+            $logos.eq(activeIndex).addClass("active");
+        }
+    };
+
+    // Observe for changes in the slider (Webflow updates `w-active` dynamically)
+    const observer = new MutationObserver(updateActiveLogo);
+    $dots.each(function () {
+        observer.observe(this, { attributes: true, attributeFilter: ["class"] });
     });
 
-    // Ensure the correct logo is active on page load (for SEO and consistency)
-    setTimeout(() => {
-        let currentSlide = $slider.find(".w-slider-dot.w-active").index();
-        $logos.removeClass("active");
-        $logos.eq(currentSlide).addClass("active");
-    }, 100);
+    // Ensure correct logo is active on page load
+    setTimeout(updateActiveLogo, 100);
 });
 
 // Handle hover effects for the logos
@@ -539,7 +543,7 @@ document.querySelectorAll(".testimonial-logo").forEach((logo) => {
     });
 
     logo.addEventListener("mouseleave", () => {
-        // Only restore class if .testimonial-logo does NOT have "active" class
+        // Restore class only if not active
         if (!logo.classList.contains("active")) {
             logo.querySelectorAll("svg path").forEach((path) => {
                 if (path.dataset.originalClass) {
