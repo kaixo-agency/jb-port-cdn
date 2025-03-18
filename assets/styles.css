@@ -366,16 +366,3 @@ body.force-hide-cursor {
 .navbar-dark{
   background-color: var(--base-color-brand--slate-medium) !important;
 }
-.blur-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(21, 27, 32, 0.95);
-  backdrop-filter: blur(10px); /* Adjust blur intensity */
-  z-index: 998; /* Below .w-nav-overlay */
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
-}
