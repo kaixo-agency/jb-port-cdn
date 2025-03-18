@@ -2,10 +2,7 @@ html {
     scroll-behavior: auto !important;
     overflow-x: hidden;
     }
-    a, .button{
-      z-index:1200 !important;
-     
-    }
+
     a, .skill-pill{
     transition:all .5s linear;
     }
