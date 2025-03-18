@@ -376,7 +376,7 @@ body.force-hide-cursor {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(21, 27, 32, 0.90);
+  background: rgba(21, 27, 32, 0.95);
   backdrop-filter: blur(10px); /* Adjust blur intensity */
   z-index: 998; /* Below .w-nav-overlay */
   opacity: 0;
