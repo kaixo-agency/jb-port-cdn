@@ -373,3 +373,6 @@ body.force-hide-cursor {
 .nav-dark .navbar1_menu-button {
   border-left:1px solid #303b3a !important;
 }
+.nav-dark .menu-icon1 div{
+  background:#fff;
+}
