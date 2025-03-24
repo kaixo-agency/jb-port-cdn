@@ -365,5 +365,5 @@ body.force-hide-cursor {
 }
 .navbar-dark{
   background-color: var(--base-color-brand--slate-medium) !important;
-  border-bottom:1px solid #303b3a;
+  border-bottom:1px solid #303b3a !important;
 }
