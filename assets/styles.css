@@ -364,6 +364,6 @@ body.force-hide-cursor {
   transition: transform 0.4s ease-in-out;
 }
 
-.navbar1_component.nav-dark{
+.nav-dark{
   border-bottom:1px solid #303b3a !important;
 }
