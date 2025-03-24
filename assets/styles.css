@@ -363,9 +363,7 @@ body.force-hide-cursor {
 .navbar1_component {
   transition: transform 0.4s ease-in-out;
 }
-.navbar1_component.navbar-dark{
-  background-color: var(--base-color-brand--slate-medium) !important;
-}
+
 .navbar1_component.nav-dark{
   border-bottom:1px solid #303b3a !important;
 }
