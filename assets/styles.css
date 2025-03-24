@@ -370,3 +370,6 @@ body.force-hide-cursor {
 .nav-dark .navbar1_logo-link{
   border-right:1px solid #303b3a !important;
 }
+.nav-dark .navbar1_menu-button {
+  border-left:1px solid #303b3a !important;
+}
