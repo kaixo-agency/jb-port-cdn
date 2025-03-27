@@ -612,23 +612,23 @@ window.addEventListener('scroll', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const chips = document.querySelectorAll('.tool-chip');
-    const orbitCenter = document.querySelector('.orbit-container'); // The element they orbit around
+    const orbitContainer = document.querySelector('.orbit-container');
     let angle = 0;
 
     function orbitChips() {
-        angle += 0.02; // Adjust speed of orbiting
+        angle += 0.02; // Adjust speed
+
+        const centerX = orbitContainer.offsetWidth / 2;
+        const centerY = orbitContainer.offsetHeight / 2;
+        const radius = 100; // Adjust orbit size
 
         chips.forEach((chip, index) => {
-            const radius = 100; // Distance from center
-            const chipAngle = angle + (index * (Math.PI * 2) / chips.length); // Spread chips evenly
-
-            const centerX = orbitCenter.offsetWidth / 2; 
-            const centerY = orbitCenter.offsetHeight / 2;
-
+            const chipAngle = angle + (index * (Math.PI * 2) / chips.length);
             const x = centerX + Math.cos(chipAngle) * radius - (chip.offsetWidth / 2);
             const y = centerY + Math.sin(chipAngle) * radius - (chip.offsetHeight / 2);
 
-            chip.style.transform = `translate(${x}px, ${y}px)`;
+            chip.style.left = `${x}px`;
+            chip.style.top = `${y}px`;
         });
 
         requestAnimationFrame(orbitChips);
