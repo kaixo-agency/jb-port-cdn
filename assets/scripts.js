@@ -600,8 +600,12 @@ window.addEventListener('scroll', () => {
     if (!aboutSection || !front || !back) return;
 
     const rect = aboutSection.getBoundingClientRect();
-    const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / rect.height));
+    const sectionHeight = rect.height;
+    const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / sectionHeight));
 
-    front.style.transform = `translateY(${scrollProgress * 200}px)`;
-    back.style.transform = `translateY(${scrollProgress * 200}px)`;
+    // Reverse movement direction by using a negative multiplier
+    const moveY = -scrollProgress * 200; 
+
+    front.style.transform = `translateY(${moveY}px)`;
+    back.style.transform = `translateY(${moveY}px)`;
 });
