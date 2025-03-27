@@ -612,6 +612,7 @@ window.addEventListener('scroll', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const chips = document.querySelectorAll('.tool-chip');
+    const orbitCenter = document.querySelector('.orbit-container'); // The element they orbit around
     let angle = 0;
 
     function orbitChips() {
@@ -619,13 +620,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         chips.forEach((chip, index) => {
             const radius = 100; // Distance from center
-            const orbitSpeed = 0.05 + (index * 0.02); // Vary speed slightly per chip
+            const chipAngle = angle + (index * (Math.PI * 2) / chips.length); // Spread chips evenly
 
-            const centerX = window.innerWidth / 2; // Center horizontally
-            const centerY = window.innerHeight / 2; // Center vertically
+            const centerX = orbitCenter.offsetWidth / 2; 
+            const centerY = orbitCenter.offsetHeight / 2;
 
-            const x = centerX + Math.cos(angle + index) * radius;
-            const y = centerY + Math.sin(angle + index) * radius;
+            const x = centerX + Math.cos(chipAngle) * radius - (chip.offsetWidth / 2);
+            const y = centerY + Math.sin(chipAngle) * radius - (chip.offsetHeight / 2);
 
             chip.style.transform = `translate(${x}px, ${y}px)`;
         });
