@@ -592,15 +592,31 @@ window.addEventListener("scroll", function () {
 
 
 
+window.addEventListener('scroll', () => {
+    const aboutSection = document.querySelector('#about-me');
+    const front = document.querySelector('.portrait-front');
+    const back = document.querySelector('.portrait-back');
+
+    if (!aboutSection || !front || !back) return;
+
+    const rect = aboutSection.getBoundingClientRect();
+    const sectionHeight = rect.height;
+    const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / sectionHeight));
+
+    // Reverse movement direction by using a negative multiplier
+    const moveY = -scrollProgress * 200; 
+
+    front.style.transform = `translateY(${moveY}px)`;
+    back.style.transform = `translateY(${moveY}px)`;
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const chips = document.querySelectorAll('.tool-chip');
-    const portraits = document.querySelectorAll('.portrait');
     const aboutSection = document.querySelector('#about-me');
-
     let angle = 0; // Start angle for orbiting animation
 
-    function animateElements() {
-        if (!aboutSection) return;
+    function animateChips() {
+        if (!aboutSection || chips.length === 0) return;
 
         const rect = aboutSection.getBoundingClientRect();
         const scrollY = window.scrollY;
@@ -608,33 +624,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const orbitEnd = 1700;
 
         // Check if we are in the orbiting range
-        if (scrollY >= orbitStart && scrollY <= orbitEnd) {
-            angle += 1; // Speed of orbit rotation
-
-            // Orbiting tool-chip elements
-            chips.forEach((chip, index) => {
-                const radius = 100 + (index * 10); // Different radii for variation
-                const orbitSpeed = 0.05 + (index * 0.02); // Slightly different speeds
-
-                const x = Math.cos(angle * orbitSpeed) * radius;
-                const y = Math.sin(angle * orbitSpeed) * radius;
-
-                chip.style.transform = `translate(${x}px, ${y}px)`;
-
-                // Z-Index Logic: If y < 0, place behind, else in front
-                chip.style.zIndex = y < 0 ? 1 : 3;
-            });
+        if (scrollY < orbitStart || scrollY > orbitEnd) {
+            requestAnimationFrame(animateChips);
+            return;
         }
 
-        // Move portraits in sync (adjust as needed)
-        portraits.forEach((portrait, index) => {
-            const moveX = Math.sin(scrollY * 0.005) * 50; // Left-right movement
-            const moveY = Math.cos(scrollY * 0.005) * 30; // Up-down movement
-            portrait.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        angle += 1; // Speed of rotation (adjust for faster/slower orbit)
+
+        chips.forEach((chip, index) => {
+            const radius = 100 + (index * 10); // Different radii for variation
+            const orbitSpeed = 0.05 + (index * 0.02); // Slightly different speeds per chip
+
+            const x = Math.cos(angle * orbitSpeed) * radius;
+            const y = Math.sin(angle * orbitSpeed) * radius;
+
+            chip.style.transform = `translate(${x}px, ${y}px)`;
+
+            // Z-Index Logic: If y < 0, place behind portrait-front, else in front
+            chip.style.zIndex = y < 0 ? 1 : 3;
         });
 
-        requestAnimationFrame(animateElements);
+        requestAnimationFrame(animateChips);
     }
 
-    animateElements();
+    animateChips();
 });
