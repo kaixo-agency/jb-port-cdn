@@ -590,3 +590,47 @@ window.addEventListener("scroll", function () {
     lastScrollTop = scrollTop;
 }, { passive: true });
 
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const aboutMeSection = document.querySelector("#about-me");
+    const portraitFront = document.querySelector(".portrait-front");
+    const portraitBack = document.querySelector(".portrait-back");
+    const toolChips = document.querySelectorAll(".tool-chip");
+
+    function updateParallax() {
+        const rect = aboutMeSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const progress = Math.min(Math.max((viewportHeight - rect.top) / (viewportHeight + rect.height), 0), 1);
+        
+        const moveY = (1 - progress) * 150; // Adjust movement range
+        portraitFront.style.transform = `translateY(${moveY}px)`;
+        portraitBack.style.transform = `translateY(${moveY}px)`;
+        
+        updateOrbit(progress * 2000); // Simulate scrolling range for orbiting effect
+    }
+
+    function updateOrbit(scrollY) {
+        toolChips.forEach((chip, index) => {
+            const angle = (scrollY / 10) + (index * (Math.PI / 2));
+            const radius = 80;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+            
+            chip.style.transform = `translate(${x}px, ${y}px)`;
+            
+            // Toggle z-index based on orbit position
+            if (y > 0) {
+                chip.style.zIndex = 2; // In front of .portrait-front
+            } else {
+                chip.style.zIndex = 0; // Behind .portrait-front
+            }
+        });
+    }
+
+    window.addEventListener("scroll", () => {
+        requestAnimationFrame(updateParallax);
+    });
+
+    updateParallax(); // Initial call
+});
