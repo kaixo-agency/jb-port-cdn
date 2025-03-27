@@ -592,41 +592,38 @@ window.addEventListener("scroll", function () {
 
 
 
-window.addEventListener('scroll', () => {
-    const aboutSection = document.querySelector('#about-me');
-    const front = document.querySelector('.portrait-front');
-    const back = document.querySelector('.portrait-back');
-
-    if (!aboutSection || !front || !back) return;
-
-    const rect = aboutSection.getBoundingClientRect();
-    const sectionHeight = rect.height;
-    const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / sectionHeight));
-
-    // Reverse movement direction by using a negative multiplier
-    const moveY = -scrollProgress * 200; 
-
-    front.style.transform = `translateY(${moveY}px)`;
-    back.style.transform = `translateY(${moveY}px)`;
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     const chips = document.querySelectorAll('.tool-chip');
+    console.log(chips); // This should log the chip elements
+
+    if (chips.length === 0) {
+        console.error("No .tool-chip elements found");
+        return;
+    }
+
     const orbitContainer = document.querySelector('.orbit-container');
+    if (!orbitContainer) {
+        console.error("No .orbit-container found");
+        return;
+    }
+
     let angle = 0;
+    const radius = 100; // Distance from center
 
     function orbitChips() {
-        angle += 0.02; // Adjust speed
+        angle += 0.02; // Speed of rotation
 
+        // Calculate center of the orbit container
         const centerX = orbitContainer.offsetWidth / 2;
         const centerY = orbitContainer.offsetHeight / 2;
-        const radius = 100; // Adjust orbit size
 
+        // Orbit each chip
         chips.forEach((chip, index) => {
             const chipAngle = angle + (index * (Math.PI * 2) / chips.length);
             const x = centerX + Math.cos(chipAngle) * radius - (chip.offsetWidth / 2);
             const y = centerY + Math.sin(chipAngle) * radius - (chip.offsetHeight / 2);
 
+            // Move chip to new position
             chip.style.left = `${x}px`;
             chip.style.top = `${y}px`;
         });
