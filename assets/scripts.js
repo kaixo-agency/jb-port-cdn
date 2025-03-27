@@ -612,7 +612,7 @@ window.addEventListener('scroll', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const chips = document.querySelectorAll('.tool-chip');
-    console.log(chips); // This should log the chip elements
+    console.log(chips); // Check if chips are selected
 
     if (chips.length === 0) {
         console.error("No .tool-chip elements found");
@@ -631,23 +631,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function orbitChips() {
         angle += 0.02; // Speed of rotation
 
-        // Calculate center of the orbit container
+        // Get the center of the container
         const centerX = orbitContainer.offsetWidth / 2;
         const centerY = orbitContainer.offsetHeight / 2;
 
-        // Orbit each chip
         chips.forEach((chip, index) => {
-            const chipAngle = angle + (index * (Math.PI * 2) / chips.length);
-            const x = centerX + Math.cos(chipAngle) * radius - (chip.offsetWidth / 2);
-            const y = centerY + Math.sin(chipAngle) * radius - (chip.offsetHeight / 2);
+            const chipAngle = angle + (index * (Math.PI * 2) / chips.length); // Spread chips evenly
+            const x = centerX + Math.cos(chipAngle) * radius;  // Calculate X position
+            const y = centerY + Math.sin(chipAngle) * radius;  // Calculate Y position
 
-            // Move chip to new position
-            chip.style.left = `${x}px`;
-            chip.style.top = `${y}px`;
+            // Apply transform to move chips
+            chip.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
         });
 
+        // Repeat the animation
         requestAnimationFrame(orbitChips);
     }
 
+    // Start the animation
     orbitChips();
 });
