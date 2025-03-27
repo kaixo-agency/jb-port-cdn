@@ -611,22 +611,18 @@ window.addEventListener('scroll', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Select the chips and the container
     const chips = document.querySelectorAll('.tool-chip');
-    console.log(chips); // Check if chips are selected
-
-    if (chips.length === 0) {
-        console.error("No .tool-chip elements found");
-        return;
-    }
-
     const orbitContainer = document.querySelector('.orbit-container');
-    if (!orbitContainer) {
-        console.error("No .orbit-container found");
+
+    // Ensure both the chips and container exist
+    if (chips.length === 0 || !orbitContainer) {
+        console.error("Check your HTML structure. Ensure both .tool-chip and .orbit-container exist.");
         return;
     }
 
     let angle = 0;
-    const radius = 100; // Distance from center
+    const radius = 100; // Orbit radius
 
     function orbitChips() {
         angle += 0.02; // Speed of rotation
@@ -636,15 +632,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const centerY = orbitContainer.offsetHeight / 2;
 
         chips.forEach((chip, index) => {
-            const chipAngle = angle + (index * (Math.PI * 2) / chips.length); // Spread chips evenly
-            const x = centerX + Math.cos(chipAngle) * radius;  // Calculate X position
-            const y = centerY + Math.sin(chipAngle) * radius;  // Calculate Y position
+            // Spread chips evenly in the orbit
+            const chipAngle = angle + (index * (Math.PI * 2) / chips.length); 
 
-            // Apply transform to move chips
+            // Calculate new X and Y position
+            const x = centerX + Math.cos(chipAngle) * radius;
+            const y = centerY + Math.sin(chipAngle) * radius;
+
+            // Apply the calculated position to each chip
+            chip.style.position = 'absolute';  // Ensure it's absolutely positioned
             chip.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
         });
 
-        // Repeat the animation
+        // Loop the animation
         requestAnimationFrame(orbitChips);
     }
 
