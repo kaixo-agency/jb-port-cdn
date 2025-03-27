@@ -615,19 +615,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let angle = 0;
 
     function orbitChips() {
-        angle += 1; // Adjust speed of orbiting
+        angle += 0.02; // Adjust speed of orbiting
 
         chips.forEach((chip, index) => {
-            const radius = 100 + (index * 10); // Different radii for variation
-            const orbitSpeed = 0.05 + (index * 0.02); // Slightly different speeds
+            const radius = 100; // Distance from center
+            const orbitSpeed = 0.05 + (index * 0.02); // Vary speed slightly per chip
 
-            const x = Math.cos(angle * orbitSpeed) * radius;
-            const y = Math.sin(angle * orbitSpeed) * radius;
+            const centerX = window.innerWidth / 2; // Center horizontally
+            const centerY = window.innerHeight / 2; // Center vertically
+
+            const x = centerX + Math.cos(angle + index) * radius;
+            const y = centerY + Math.sin(angle + index) * radius;
 
             chip.style.transform = `translate(${x}px, ${y}px)`;
-
-            // Z-Index Logic: If y < 0, place behind, else in front
-            chip.style.zIndex = y < 0 ? 1 : 3;
         });
 
         requestAnimationFrame(orbitChips);
