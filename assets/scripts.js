@@ -592,6 +592,24 @@ window.addEventListener("scroll", function () {
 
 
 
+window.addEventListener('scroll', () => {
+    const aboutSection = document.querySelector('#about-me');
+    const front = document.querySelector('.portrait-front');
+    const back = document.querySelector('.portrait-back');
+
+    if (!aboutSection || !front || !back) return;
+
+    const rect = aboutSection.getBoundingClientRect();
+    const sectionHeight = rect.height;
+    const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / sectionHeight));
+
+    // Reverse movement direction by using a negative multiplier
+    const moveY = -scrollProgress * 200; 
+
+    front.style.transform = `translateY(${moveY}px)`;
+    back.style.transform = `translateY(${moveY}px)`;
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const chips = document.querySelectorAll('.tool-chip');
     console.log(chips); // This should log the chip elements
