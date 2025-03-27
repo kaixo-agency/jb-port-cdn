@@ -611,43 +611,37 @@ window.addEventListener('scroll', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Select the chips and the container
     const chips = document.querySelectorAll('.tool-chip');
     const orbitContainer = document.querySelector('.orbit-container');
+    const portraits = document.querySelectorAll('.portrait-wrap');
 
-    // Ensure both the chips and container exist
-    if (chips.length === 0 || !orbitContainer) {
-        console.error("Check your HTML structure. Ensure both .tool-chip and .orbit-container exist.");
-        return;
-    }
-
-    let angle = 0;
-    const radius = 100; // Orbit radius
+    let angle = 0; // Starting angle
+    const radius = 150; // Orbit radius
+    const speed = 0.01; // Speed of the rotation
 
     function orbitChips() {
-        angle += 0.02; // Speed of rotation
+        angle += speed; // Increment angle to animate
 
         // Get the center of the container
         const centerX = orbitContainer.offsetWidth / 2;
         const centerY = orbitContainer.offsetHeight / 2;
 
+        // Loop through each chip and calculate its position on the orbit path
         chips.forEach((chip, index) => {
-            // Spread chips evenly in the orbit
-            const chipAngle = angle + (index * (Math.PI * 2) / chips.length); 
+            const chipAngle = angle + (index * (Math.PI * 2) / chips.length); // Spread chips evenly
 
-            // Calculate new X and Y position
-            const x = centerX + Math.cos(chipAngle) * radius;
-            const y = centerY + Math.sin(chipAngle) * radius;
+            // Calculate X and Y positions
+            const x = centerX + Math.cos(chipAngle) * radius - chip.offsetWidth / 2;
+            const y = centerY + Math.sin(chipAngle) * radius - chip.offsetHeight / 2;
 
-            // Apply the calculated position to each chip
-            chip.style.position = 'absolute';  // Ensure it's absolutely positioned
-            chip.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
+            // Apply calculated position
+            chip.style.transform = `translate(${x}px, ${y}px)`; // Translate to calculated position
         });
 
-        // Loop the animation
+        // Request the next frame for smooth animation
         requestAnimationFrame(orbitChips);
     }
 
-    // Start the animation
+    // Initialize the orbiting effect
     orbitChips();
 });
