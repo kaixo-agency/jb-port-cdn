@@ -610,3 +610,28 @@ window.addEventListener('scroll', () => {
     back.style.transform = `translateY(${moveY}px)`;
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const chips = document.querySelectorAll('.tool-chip');
+    let angle = 0;
+
+    function orbitChips() {
+        angle += 1; // Adjust speed of orbiting
+
+        chips.forEach((chip, index) => {
+            const radius = 100 + (index * 10); // Different radii for variation
+            const orbitSpeed = 0.05 + (index * 0.02); // Slightly different speeds
+
+            const x = Math.cos(angle * orbitSpeed) * radius;
+            const y = Math.sin(angle * orbitSpeed) * radius;
+
+            chip.style.transform = `translate(${x}px, ${y}px)`;
+
+            // Z-Index Logic: If y < 0, place behind, else in front
+            chip.style.zIndex = y < 0 ? 1 : 3;
+        });
+
+        requestAnimationFrame(orbitChips);
+    }
+
+    orbitChips();
+});
