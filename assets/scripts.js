@@ -592,45 +592,54 @@ window.addEventListener("scroll", function () {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const aboutMeSection = document.querySelector("#about-me");
-    const portraitFront = document.querySelector(".portrait-front");
+document.addEventListener("DOMContentLoaded", () => {
+    const aboutMeSection = document.getElementById("about-me");
     const portraitBack = document.querySelector(".portrait-back");
+    const portraitFront = document.querySelector(".portrait-front");
     const toolChips = document.querySelectorAll(".tool-chip");
+
+    let scrollY = window.scrollY;
+    let lastScrollY = scrollY;
+    let angle = 0;
 
     function updateParallax() {
         const rect = aboutMeSection.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const progress = Math.min(Math.max((viewportHeight - rect.top) / (viewportHeight + rect.height), 0), 1);
-        
-        const moveY = (1 - progress) * 150; // Adjust movement range
-        portraitFront.style.transform = `translateY(${moveY}px)`;
-        portraitBack.style.transform = `translateY(${moveY}px)`;
-        
-        updateOrbit(progress * 2000); // Simulate scrolling range for orbiting effect
+        const sectionTop = rect.top + window.scrollY;
+        const sectionHeight = rect.height;
+        const scrollProgress = (window.scrollY - sectionTop) / sectionHeight;
+
+        // Move portraits on the y-axis based on scroll
+        const translateY = Math.max(0, Math.min(scrollProgress * 200, 200));
+        portraitBack.style.transform = `translateY(${translateY}px)`;
+        portraitFront.style.transform = `translateY(${translateY}px)`;
     }
 
-    function updateOrbit(scrollY) {
+    function updateOrbit() {
+        angle += 0.02; // Controls orbit speed
+        const orbitRadius = 100;
+        const centerX = portraitFront.offsetLeft + portraitFront.offsetWidth / 2;
+        const centerY = portraitFront.offsetTop + portraitFront.offsetHeight / 2;
+
         toolChips.forEach((chip, index) => {
-            const angle = (scrollY / 10) + (index * (Math.PI / 2));
-            const radius = 80;
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
+            const orbitAngle = angle + (index * (Math.PI / 2));
+            const x = centerX + orbitRadius * Math.cos(orbitAngle) - chip.offsetWidth / 2;
+            const y = centerY + orbitRadius * Math.sin(orbitAngle) - chip.offsetHeight / 2;
             
             chip.style.transform = `translate(${x}px, ${y}px)`;
-            
-            // Toggle z-index based on orbit position
-            if (y > 0) {
-                chip.style.zIndex = 2; // In front of .portrait-front
-            } else {
-                chip.style.zIndex = 0; // Behind .portrait-front
-            }
+            chip.style.zIndex = y > centerY ? 5 : 1; // Adjust z-index based on depth
         });
     }
 
-    window.addEventListener("scroll", () => {
-        requestAnimationFrame(updateParallax);
-    });
+    function animate() {
+        scrollY = window.scrollY;
+        if (scrollY !== lastScrollY) {
+            updateParallax();
+            lastScrollY = scrollY;
+        }
+        updateOrbit();
+        requestAnimationFrame(animate);
+    }
 
-    updateParallax(); // Initial call
+    window.addEventListener("scroll", updateParallax);
+    animate();
 });
