@@ -609,39 +609,3 @@ window.addEventListener('scroll', () => {
     front.style.transform = `translateY(${moveY}px)`;
     back.style.transform = `translateY(${moveY}px)`;
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    const chips = document.querySelectorAll('.tool-chip');
-    const orbitContainer = document.querySelector('.orbit-container');
-    const portraits = document.querySelectorAll('.portrait-wrap');
-
-    let angle = 0; // Starting angle
-    const radius = 150; // Orbit radius
-    const speed = 0.01; // Speed of the rotation
-
-    function orbitChips() {
-        angle += speed; // Increment angle to animate
-
-        // Get the center of the container
-        const centerX = orbitContainer.offsetWidth / 2;
-        const centerY = orbitContainer.offsetHeight / 2;
-
-        // Loop through each chip and calculate its position on the orbit path
-        chips.forEach((chip, index) => {
-            const chipAngle = angle + (index * (Math.PI * 2) / chips.length); // Spread chips evenly
-
-            // Calculate X and Y positions
-            const x = centerX + Math.cos(chipAngle) * radius - chip.offsetWidth / 2;
-            const y = centerY + Math.sin(chipAngle) * radius - chip.offsetHeight / 2;
-
-            // Apply calculated position
-            chip.style.transform = `translate(${x}px, ${y}px)`; // Translate to calculated position
-        });
-
-        // Request the next frame for smooth animation
-        requestAnimationFrame(orbitChips);
-    }
-
-    // Initialize the orbiting effect
-    orbitChips();
-});
