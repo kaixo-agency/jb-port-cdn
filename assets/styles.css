@@ -389,8 +389,13 @@ body.force-hide-cursor {
 
 .tool-chip {
   position: absolute;
-  width: 40px; 
+  width: 40px;
   height: 40px;
-  background: red;
+  background: red;  /* Just for visibility */
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
 }
