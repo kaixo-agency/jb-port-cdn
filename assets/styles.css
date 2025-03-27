@@ -378,7 +378,7 @@ body.force-hide-cursor {
 }
 
 .orbit-container {
-  position: relative;
+  position: absolute;
   width: 300px; /* Adjust as needed */
   height: 300px;
   margin: 100px auto;
