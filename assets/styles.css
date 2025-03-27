@@ -382,6 +382,7 @@ body.force-hide-cursor {
   width: 300px; /* Adjust as needed */
   height: 300px;
   margin: 100px auto;
+  border:1px solid red;
 }
 
 .tool-chip {
