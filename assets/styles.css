@@ -376,3 +376,18 @@ body.force-hide-cursor {
 .nav-dark .menu-icon1 div{
   background:#fff;
 }
+
+.orbit-container {
+  position: relative;
+  width: 300px; /* Adjust as needed */
+  height: 300px;
+  margin: 100px auto;
+}
+
+.tool-chip {
+  position: absolute;
+  width: 40px; 
+  height: 40px;
+  background: red;
+  border-radius: 50%;
+}
