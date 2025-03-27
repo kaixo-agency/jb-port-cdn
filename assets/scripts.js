@@ -609,3 +609,43 @@ window.addEventListener('scroll', () => {
     front.style.transform = `translateY(${moveY}px)`;
     back.style.transform = `translateY(${moveY}px)`;
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const chips = document.querySelectorAll('.tool-chip');
+    const aboutSection = document.querySelector('#about-me');
+    let angle = 0; // Start angle for orbiting animation
+
+    function animateChips() {
+        if (!aboutSection || chips.length === 0) return;
+
+        const rect = aboutSection.getBoundingClientRect();
+        const scrollY = window.scrollY;
+        const orbitStart = 900;
+        const orbitEnd = 1700;
+
+        // Check if we are in the orbiting range
+        if (scrollY < orbitStart || scrollY > orbitEnd) {
+            requestAnimationFrame(animateChips);
+            return;
+        }
+
+        angle += 1; // Speed of rotation (adjust for faster/slower orbit)
+
+        chips.forEach((chip, index) => {
+            const radius = 100 + (index * 10); // Different radii for variation
+            const orbitSpeed = 0.05 + (index * 0.02); // Slightly different speeds per chip
+
+            const x = Math.cos(angle * orbitSpeed) * radius;
+            const y = Math.sin(angle * orbitSpeed) * radius;
+
+            chip.style.transform = `translate(${x}px, ${y}px)`;
+
+            // Z-Index Logic: If y < 0, place behind portrait-front, else in front
+            chip.style.zIndex = y < 0 ? 1 : 3;
+        });
+
+        requestAnimationFrame(animateChips);
+    }
+
+    animateChips();
+});
