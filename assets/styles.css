@@ -383,6 +383,7 @@ body.force-hide-cursor {
   height: 300px;
   margin: 100px auto;
   border:1px solid red;
+  top:900px;
 }
 
 .tool-chip {
