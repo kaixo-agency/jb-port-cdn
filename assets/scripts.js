@@ -626,15 +626,14 @@ window.addEventListener('scroll', () => {
         svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
     });
 
-    // **Fade in the word cloud at 10% scroll progress**
+    // **Fade in the word cloud at 10% scroll progress (Max Opacity: 0.3)**
     const fadeStart = 0.1; // 10% of the animation progress
     const fadeEnd = 0.4;   // Fully visible at 40%
 
     if (scrollProgress >= fadeStart) {
-        let opacity = Math.min(1, (scrollProgress - fadeStart) / (fadeEnd - fadeStart));
+        let opacity = Math.min(0.3, (scrollProgress - fadeStart) / (fadeEnd - fadeStart) * 0.3); 
         wordCloud.style.opacity = opacity;
     } else {
         wordCloud.style.opacity = 0;
     }
 });
-
