@@ -603,6 +603,7 @@ window.addEventListener('scroll', () => {
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
     const windowHeight = window.innerHeight;
+    const wordCloudWidth = wordCloud.offsetWidth; // Get width of wordCloud container
 
     // **Further extending the exit point**
     const startScroll = rect.top - windowHeight * 0.75; // Start earlier
@@ -616,14 +617,17 @@ window.addEventListener('scroll', () => {
     front.style.transform = `translateY(${moveY}px)`;
     back.style.transform = `translateY(${moveY}px)`;
 
-    // Move the word cloud SVGs horizontally (left/right staggered movement)
+    // Move the word cloud SVGs from the left and right edges
     const svgElements = wordCloud.querySelectorAll('svg');
-    const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
+    const staggerFactor = 50; // Adjust the stagger effect speed
 
     svgElements.forEach((svg, index) => {
-        // Flip the direction of movement (left-to-right or right-to-left)
-        const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
-        svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
+        // Odd-indexed SVGs start from left edge (0px) and move right
+        // Even-indexed SVGs start from right edge (100% width) and move left
+        const baseMove = scrollProgress * (500 + index * staggerFactor);
+        const staggeredMove = index % 2 === 0 ? -baseMove : baseMove;
+
+        svg.style.transform = `translateX(${staggeredMove}px)`;
     });
 
     // **Fade in the word cloud at 10% scroll progress (Max Opacity: 0.3)**
