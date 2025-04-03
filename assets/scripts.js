@@ -631,3 +631,23 @@ window.addEventListener('scroll', () => {
         });
     }
 });
+// Create an intersection observer to detect when the about-me section enters and exits the viewport
+const aboutSection = document.querySelector('#about-me');
+
+if (aboutSection) {
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Alert when the section enters the viewport
+                alert("The 'about-me' section has entered the viewport.");
+            } else {
+                // Alert when the section exits the viewport
+                alert("The 'about-me' section has exited the viewport.");
+            }
+        });
+    }, {
+        threshold: [0, 1] // Trigger when any part (0) or the entire section (1) is in view
+    });
+
+    observer.observe(aboutSection); // Start observing the about-me section
+}
