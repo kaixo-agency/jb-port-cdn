@@ -605,7 +605,7 @@ window.addEventListener('scroll', () => {
     const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / sectionHeight));
 
     // Reverse movement direction by using a negative multiplier
-    const moveY = -scrollProgress * 20; 
+    const moveY = -scrollProgress * 2000; 
 
     // Move images
     front.style.transform = `translateY(${moveY}px)`;
