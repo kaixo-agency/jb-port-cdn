@@ -612,7 +612,7 @@ window.addEventListener('scroll', () => {
     // Check if the section is in the viewport (start when section top is in view)
     if (window.scrollY + window.innerHeight > sectionTop && window.scrollY < sectionBottom) {
         // Move the images (portrait front and back) vertically based on scroll progress
-        const moveY = scrollProgress * 200; // Vertical movement for the portraits
+        const moveY = scrollProgress * 500; // Vertical movement for the portraits
         front.style.transform = `translateY(${moveY}px)`;
         back.style.transform = `translateY(${moveY}px)`;
 
