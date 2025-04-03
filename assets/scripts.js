@@ -603,18 +603,16 @@ window.addEventListener('scroll', () => {
     // Get the position and height of the #about-me section
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
-
-    // Calculate the scroll distance from the top of the document to the section
     const sectionTop = rect.top + window.scrollY;
     const sectionBottom = sectionTop + sectionHeight;
 
-    // Determine the amount of scroll within the section
+    // Calculate the scroll position within the section
     const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - sectionTop) / sectionHeight));
 
-    // If section is still in view, continue parallax effect
-    if (window.scrollY < sectionBottom) {
-        // Move the images (portrait front and back) vertically
-        const moveY = (scrollProgress) * 200; // Vertical movement for the portraits
+    // Check if the section is in the viewport (start when section top is in view)
+    if (window.scrollY + window.innerHeight > sectionTop && window.scrollY < sectionBottom) {
+        // Move the images (portrait front and back) vertically based on scroll progress
+        const moveY = scrollProgress * 200; // Vertical movement for the portraits
         front.style.transform = `translateY(${moveY}px)`;
         back.style.transform = `translateY(${moveY}px)`;
 
