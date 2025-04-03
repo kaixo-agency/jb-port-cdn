@@ -602,49 +602,49 @@ if (aboutSection) {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Section is entering the viewport, trigger animation
-                // Trigger the portrait parallax animation
-                if (front && back) {
-                    front.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                    back.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                    front.style.transform = 'translateY(0px)';
-                    back.style.transform = 'translateY(0px)';
-                }
+                // When the section enters the viewport, start the animations
 
-                // Trigger the word cloud animation
-                if (wordCloud) {
-                    const svgElements = wordCloud.querySelectorAll('svg');
-                    svgElements.forEach((svg, index) => {
-                        svg.style.transition = 'transform 0.5s ease-out'; // Smooth transition
-                        svg.style.transform = `translateX(0px)`; // Reset position or trigger movement
-                    });
-                }
-            } else {
-                // Section is exiting the viewport, stop animation or reverse it
-                // Reverse the portrait parallax animation
+                // Trigger the portrait parallax animation (moving vertically)
                 if (front && back) {
                     front.style.transition = 'transform 0.5s ease-out';
                     back.style.transition = 'transform 0.5s ease-out';
-                    front.style.transform = 'translateY(240px)'; // Or any final position
-                    back.style.transform = 'translateY(240px)'; // Or any final position
+                    front.style.transform = 'translateY(0px)'; // Starting position for portraits
+                    back.style.transform = 'translateY(0px)';
                 }
 
-                // Reverse the word cloud animation
+                // Trigger the word cloud animation (move horizontally with staggered effect)
                 if (wordCloud) {
                     const svgElements = wordCloud.querySelectorAll('svg');
                     svgElements.forEach((svg, index) => {
-                        svg.style.transition = 'transform 0.5s ease-out';
-                        svg.style.transform = `translateX(${index % 2 !== 0 ? 1 : -1} * 500px)`; // Example of moving it out
+                        svg.style.transition = 'transform 0.5s ease-out'; // Smooth transition for word cloud
+                        svg.style.transform = `translateX(${index % 2 !== 0 ? 1 : -1} * 200px)`; // Example move
+                    });
+                }
+            } else {
+                // When the section exits the viewport, reverse the animations or stop them
+
+                // Reverse the portrait parallax animation (moving vertically)
+                if (front && back) {
+                    front.style.transition = 'transform 0.5s ease-out';
+                    back.style.transition = 'transform 0.5s ease-out';
+                    front.style.transform = 'translateY(-240px)'; // Reset position for portraits
+                    back.style.transform = 'translateY(-240px)';
+                }
+
+                // Reverse the word cloud animation (move horizontally back)
+                if (wordCloud) {
+                    const svgElements = wordCloud.querySelectorAll('svg');
+                    svgElements.forEach((svg, index) => {
+                        svg.style.transition = 'transform 0.5s ease-out'; // Smooth transition for word cloud
+                        svg.style.transform = `translateX(${index % 2 !== 0 ? 1 : -1} * 100px)`; // Reset move
                     });
                 }
             }
         });
     }, {
-        threshold: 0.1, // Trigger when at least 10% of the section is in the viewport
-        rootMargin: '-2% 0px -2% 0px' // Add a margin to trigger when the section is about to enter/exit
+        threshold: 0.1, // Trigger when 10% of the section is in the viewport
+        rootMargin: '-50% 0px -50% 0px' // Adjust the rootMargin to trigger when the section is halfway in the viewport
     });
 
     observer.observe(aboutSection); // Start observing the about-me section
 }
-
-
