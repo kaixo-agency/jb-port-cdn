@@ -592,59 +592,42 @@ window.addEventListener("scroll", function () {
 
 
 
-// Create an intersection observer to detect when the about-me section enters and exits the viewport
-const aboutSection = document.querySelector('#about-me');
-const front = document.querySelector('.portrait-front');
-const back = document.querySelector('.portrait-back');
-const wordCloud = document.querySelector('.jb-word-cloud');
+window.addEventListener('scroll', () => {
+    const aboutSection = document.querySelector('#about-me');
+    const front = document.querySelector('.portrait-front');
+    const back = document.querySelector('.portrait-back');
+    const wordCloud = document.querySelector('.jb-word-cloud');
 
-if (aboutSection) {
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // When the section enters the viewport, start the animations
+    if (!aboutSection || !front || !back || !wordCloud) return;
 
-                // Trigger the portrait parallax animation (moving vertically)
-                if (front && back) {
-                    front.style.transition = 'transform 0.5s ease-out';
-                    back.style.transition = 'transform 0.5s ease-out';
-                    front.style.transform = 'translateY(0px)'; // Starting position for portraits
-                    back.style.transform = 'translateY(0px)';
-                }
+    // Get the position and height of the #about-me section
+    const rect = aboutSection.getBoundingClientRect();
+    const sectionHeight = rect.height;
 
-                // Trigger the word cloud animation (move horizontally with staggered effect)
-                if (wordCloud) {
-                    const svgElements = wordCloud.querySelectorAll('svg');
-                    svgElements.forEach((svg, index) => {
-                        svg.style.transition = 'transform 0.5s ease-out'; // Smooth transition for word cloud
-                        svg.style.transform = `translateX(${index % 2 !== 0 ? 1 : -1} * 200px)`; // Example move
-                    });
-                }
-            } else {
-                // When the section exits the viewport, reverse the animations or stop them
+    // Calculate scroll progress as a ratio based on how far the section has scrolled out of view
+    const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - rect.top) / sectionHeight));
 
-                // Reverse the portrait parallax animation (moving vertically)
-                if (front && back) {
-                    front.style.transition = 'transform 0.5s ease-out';
-                    back.style.transition = 'transform 0.5s ease-out';
-                    front.style.transform = 'translateY(-240px)'; // Reset position for portraits
-                    back.style.transform = 'translateY(-240px)';
-                }
+    // Move the images (portrait front and back) vertically
+    const moveY = -scrollProgress * 240; // Vertical movement for the portraits
+    front.style.transform = `translateY(${moveY}px)`;
+    back.style.transform = `translateY(${moveY}px)`;
 
-                // Reverse the word cloud animation (move horizontally back)
-                if (wordCloud) {
-                    const svgElements = wordCloud.querySelectorAll('svg');
-                    svgElements.forEach((svg, index) => {
-                        svg.style.transition = 'transform 0.5s ease-out'; // Smooth transition for word cloud
-                        svg.style.transform = `translateX(${index % 2 !== 0 ? 1 : -1} * 100px)`; // Reset move
-                    });
-                }
-            }
-        });
-    }, {
-        threshold: 0.1, // Trigger when 10% of the section is in the viewport
-        rootMargin: '-50% 0px -50% 0px' // Adjust the rootMargin to trigger when the section is halfway in the viewport
+    // Move the word cloud SVGs horizontally (left/right staggered movement)
+    const svgElements = wordCloud.querySelectorAll('svg');
+    const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
+
+    svgElements.forEach((svg, index) => {
+        // Flip the direction of movement (left-to-right or right-to-left)
+        const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
+        svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
     });
 
-    observer.observe(aboutSection); // Start observing the about-me section
-}
+    // Ensure movement continues after the section is fully out of the viewport
+    if (rect.bottom <= 0) {
+        svgElements.forEach((svg, index) => {
+            // Continue staggered movement for each SVG after the section is out of view
+            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
+            svg.style.transform = `translateX(${staggeredMove}px)`; // Continue staggered movement
+        });
+    }
+});
