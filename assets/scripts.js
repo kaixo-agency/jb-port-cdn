@@ -596,8 +596,9 @@ window.addEventListener('scroll', () => {
     const aboutSection = document.querySelector('#about-me');
     const front = document.querySelector('.portrait-front');
     const back = document.querySelector('.portrait-back');
+    const wordCloud = document.querySelector('.jb-word-cloud');
 
-    if (!aboutSection || !front || !back) return;
+    if (!aboutSection || !front || !back || !wordCloud) return;
 
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
@@ -605,7 +606,20 @@ window.addEventListener('scroll', () => {
 
     // Reverse movement direction by using a negative multiplier
     const moveY = -scrollProgress * 200; 
+    const wordCloudMoveX = scrollProgress * 500; // Adjust movement speed for X axis
+    const staggerFactor = 100; // Adjust the stagger effect speed
 
+    // Move images
     front.style.transform = `translateY(${moveY}px)`;
     back.style.transform = `translateY(${moveY}px)`;
+
+    // Move word cloud SVGs (staggered left/right movement)
+    wordCloud.style.transform = `translateX(${wordCloudMoveX - staggerFactor}px)`; // Adjust as needed
+
+    // Optionally, if you want to animate individual SVGs inside the word cloud:
+    const svgElements = wordCloud.querySelectorAll('svg');
+    svgElements.forEach((svg, index) => {
+        const staggeredMove = (index % 2 === 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
+        svg.style.transform = `translateX(${staggeredMove}px)`; // Stagger movement for each SVG
+    });
 });
