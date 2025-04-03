@@ -604,9 +604,9 @@ window.addEventListener('scroll', () => {
     const sectionHeight = rect.height;
     const windowHeight = window.innerHeight;
 
-    // **Expanded motion range**: Adjust the start and end points
-    const startScroll = rect.top - windowHeight * 0.75; // Start animation earlier
-    const endScroll = rect.bottom + windowHeight * 0.75; // Continue animation much later
+    // **Further extending the exit point**
+    const startScroll = rect.top - windowHeight * 0.75; // Start earlier
+    const endScroll = rect.bottom + windowHeight * 1.5; // Continue animation MUCH longer
 
     // Calculate scroll progress over the extended range
     const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - startScroll) / (endScroll - startScroll)));
