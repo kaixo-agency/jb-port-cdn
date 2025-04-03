@@ -603,8 +603,6 @@ if (aboutSection) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 // Section is entering the viewport, trigger animation
-                alert("The 'about-me' section has entered the viewport.");
-
                 // Trigger the portrait parallax animation
                 if (front && back) {
                     front.style.transition = 'transform 0.5s ease-out'; // Smooth transition
@@ -623,8 +621,6 @@ if (aboutSection) {
                 }
             } else {
                 // Section is exiting the viewport, stop animation or reverse it
-                alert("The 'about-me' section has exited the viewport.");
-
                 // Reverse the portrait parallax animation
                 if (front && back) {
                     front.style.transition = 'transform 0.5s ease-out';
@@ -650,4 +646,5 @@ if (aboutSection) {
 
     observer.observe(aboutSection); // Start observing the about-me section
 }
+
 
