@@ -613,24 +613,21 @@ window.addEventListener('scroll', () => {
     back.style.transform = `translateY(${moveY}px)`;
 
     // Move the word cloud SVGs horizontally (left/right staggered movement)
-    if (rect.bottom > 0) {
-        const svgElements = wordCloud.querySelectorAll('svg');
-        const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
+    const svgElements = wordCloud.querySelectorAll('svg');
+    const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
 
-        svgElements.forEach((svg, index) => {
-            // Flip the direction of movement (left-to-right or right-to-left)
-            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
-            svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
-        });
-    } else {
-        // Ensure movement continues after the section is fully out of the viewport
-        const svgElements = wordCloud.querySelectorAll('svg');
-        const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
+    svgElements.forEach((svg, index) => {
+        // Flip the direction of movement (left-to-right or right-to-left)
+        const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
+        svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
+    });
 
+    // Ensure movement continues after the section is fully out of the viewport
+    if (rect.bottom <= 0) {
         svgElements.forEach((svg, index) => {
-            // Flip the direction of movement
+            // Continue staggered movement for each SVG after the section is out of view
             const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
-            svg.style.transform = `translateX(${staggeredMove}px)`; // Continue staggered movement for each SVG
+            svg.style.transform = `translateX(${staggeredMove}px)`; // Continue staggered movement
         });
     }
 });
