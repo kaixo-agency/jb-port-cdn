@@ -604,8 +604,8 @@ window.addEventListener('scroll', () => {
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
 
-    // Scroll progress will range from 0 to 1 based on how much of the section has been scrolled
-    const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / sectionHeight));
+    // Scroll progress will be based on the entire section height to keep motion after it's out of view
+    const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - rect.top) / sectionHeight));
 
     // Move the images (portrait front and back) vertically as before
     const moveY = -scrollProgress * 100; // Slower vertical movement
@@ -622,6 +622,18 @@ window.addEventListener('scroll', () => {
             // Flip the direction of movement
             const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor)); // Continuous movement until section is out of view
             svg.style.transform = `translateX(${staggeredMove}px)`; // Stagger movement for each SVG
+        });
+    }
+
+    // Ensure movement continues after the section is out of the viewport
+    if (rect.bottom < 0) {
+        const svgElements = wordCloud.querySelectorAll('svg');
+        const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
+
+        svgElements.forEach((svg, index) => {
+            // Flip the direction of movement
+            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
+            svg.style.transform = `translateX(${staggeredMove}px)`; // Continue staggered movement for each SVG
         });
     }
 });
