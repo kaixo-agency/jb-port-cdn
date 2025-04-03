@@ -608,7 +608,7 @@ window.addEventListener('scroll', () => {
     const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - rect.top) / sectionHeight));
 
     // Move the images (portrait front and back) vertically
-    const moveY = -scrollProgress * 200; // Vertical movement for the portraits
+    const moveY = -scrollProgress * 500; // Vertical movement for the portraits
     front.style.transform = `translateY(${moveY}px)`;
     back.style.transform = `translateY(${moveY}px)`;
 
