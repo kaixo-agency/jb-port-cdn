@@ -604,14 +604,17 @@ window.addEventListener('scroll', () => {
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
 
-    // Calculate the progress based on how far the section has been scrolled
+    // Define when the motion should begin and end (in percentages of the section's height)
+    const motionStart = 0.1; // 10% from the top of the section (adjust as needed)
+    const motionEnd = 0.9;   // 90% from the top of the section (adjust as needed)
+
+    // Calculate the scroll progress within the section
     const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - rect.top) / sectionHeight));
 
-    // Ensure the effect starts as soon as the section enters the viewport
-    const scrollStart = Math.max(0, -rect.top / sectionHeight);
-    const adjustedProgress = Math.max(scrollStart, scrollProgress);
+    // Adjust the scroll progress to respect the start and end motion values
+    const adjustedProgress = Math.max(0, Math.min(1, (scrollProgress - motionStart) / (motionEnd - motionStart)));
 
-    // Move the images (portrait front and back) vertically
+    // Move the images (portrait front and back) vertically based on adjusted scroll progress
     const moveY = -adjustedProgress * 240; // Vertical movement for the portraits
     front.style.transform = `translateY(${moveY}px)`;
     back.style.transform = `translateY(${moveY}px)`;
