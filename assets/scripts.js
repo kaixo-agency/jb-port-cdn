@@ -604,29 +604,26 @@ window.addEventListener('scroll', () => {
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
 
-    // Scroll progress will be based on the entire section height to keep motion after it's out of view
+    // Calculate scroll progress as a ratio based on how far the section has scrolled out of view
     const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - rect.top) / sectionHeight));
 
-    // Move the images (portrait front and back) vertically as before
-    const moveY = -scrollProgress * 100; // Slower vertical movement
+    // Move the images (portrait front and back) vertically
+    const moveY = -scrollProgress * 200; // Vertical movement for the portraits
     front.style.transform = `translateY(${moveY}px)`;
     back.style.transform = `translateY(${moveY}px)`;
 
-    // Check if the #about-me section is in the viewport
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-        // Move the word cloud SVGs horizontally (left/right staggered movement)
+    // Move the word cloud SVGs horizontally (left/right staggered movement)
+    if (rect.bottom > 0) {
         const svgElements = wordCloud.querySelectorAll('svg');
         const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
 
         svgElements.forEach((svg, index) => {
-            // Flip the direction of movement
-            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor)); // Continuous movement until section is out of view
-            svg.style.transform = `translateX(${staggeredMove}px)`; // Stagger movement for each SVG
+            // Flip the direction of movement (left-to-right or right-to-left)
+            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
+            svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
         });
-    }
-
-    // Ensure movement continues after the section is out of the viewport
-    if (rect.bottom < 0) {
+    } else {
+        // Ensure movement continues after the section is fully out of the viewport
         const svgElements = wordCloud.querySelectorAll('svg');
         const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
 
