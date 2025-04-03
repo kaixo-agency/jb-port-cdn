@@ -604,28 +604,35 @@ window.addEventListener('scroll', () => {
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
 
-    // Define when the motion should begin and end (in percentages of the section's height)
-    const motionStart = .01; // 10% from the top of the section (adjust as needed)
-    const motionEnd = 0.4;   // 90% from the top of the section (adjust as needed)
+    // Portrait Parallax Settings
+    const portraitMotionStart = 0.1;  // 10% from the top of the section
+    const portraitMotionEnd = 0.9;    // 90% from the top of the section
 
-    // Calculate the scroll progress within the section
+    // Word Cloud Settings
+    const wordCloudMotionStart = 0.2; // 20% from the top of the section
+    const wordCloudMotionEnd = 0.8;   // 80% from the top of the section
+
+    // Calculate the scroll progress for the section
     const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - rect.top) / sectionHeight));
 
-    // Adjust the scroll progress to respect the start and end motion values
-    const adjustedProgress = Math.max(0, Math.min(1, (scrollProgress - motionStart) / (motionEnd - motionStart)));
+    // Adjust the scroll progress to respect the motion ranges for the portraits
+    const adjustedPortraitProgress = Math.max(0, Math.min(1, (scrollProgress - portraitMotionStart) / (portraitMotionEnd - portraitMotionStart)));
 
-    // Move the images (portrait front and back) vertically based on adjusted scroll progress
-    const moveY = -adjustedProgress * 240; // Vertical movement for the portraits
+    // Adjust the scroll progress to respect the motion ranges for the word cloud
+    const adjustedWordCloudProgress = Math.max(0, Math.min(1, (scrollProgress - wordCloudMotionStart) / (wordCloudMotionEnd - wordCloudMotionStart)));
+
+    // Move the portraits vertically based on adjusted scroll progress for portraits
+    const moveY = -adjustedPortraitProgress * 240; // Vertical movement for the portraits
     front.style.transform = `translateY(${moveY}px)`;
     back.style.transform = `translateY(${moveY}px)`;
 
-    // Move the word cloud SVGs horizontally (left/right staggered movement)
+    // Move the word cloud SVGs horizontally based on adjusted scroll progress for word cloud
     const svgElements = wordCloud.querySelectorAll('svg');
     const staggerFactor = 20; // Adjust the stagger effect speed (slower movement)
 
     svgElements.forEach((svg, index) => {
         // Flip the direction of movement (left-to-right or right-to-left)
-        const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (adjustedProgress * (500 + index * staggerFactor));
+        const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (adjustedWordCloudProgress * (500 + index * staggerFactor));
         svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
     });
 });
