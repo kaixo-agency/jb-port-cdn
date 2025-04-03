@@ -375,3 +375,6 @@ body.force-hide-cursor {
 .nav-dark .menu-icon1 div{
   background:#fff;
 }
+.jb-word-cloud{
+  border-bottom:1px solid red;
+}
