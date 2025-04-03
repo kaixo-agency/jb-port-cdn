@@ -615,7 +615,7 @@ window.addEventListener('scroll', () => {
     // Move the word cloud SVGs horizontally (left/right staggered movement)
     if (rect.bottom > 0) {
         const svgElements = wordCloud.querySelectorAll('svg');
-        const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
+        const staggerFactor = 20; // Adjust the stagger effect speed (slower movement)
 
         svgElements.forEach((svg, index) => {
             // Flip the direction of movement (left-to-right or right-to-left)
