@@ -604,33 +604,25 @@ window.addEventListener('scroll', () => {
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
 
-    // Calculate scroll progress as a ratio based on how far the section has scrolled out of view
+    // Calculate the progress based on how far the section has been scrolled
     const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - rect.top) / sectionHeight));
 
+    // Ensure the effect starts as soon as the section enters the viewport
+    const scrollStart = Math.max(0, -rect.top / sectionHeight);
+    const adjustedProgress = Math.max(scrollStart, scrollProgress);
+
     // Move the images (portrait front and back) vertically
-    const moveY = -scrollProgress * 240; // Vertical movement for the portraits
+    const moveY = -adjustedProgress * 240; // Vertical movement for the portraits
     front.style.transform = `translateY(${moveY}px)`;
     back.style.transform = `translateY(${moveY}px)`;
 
     // Move the word cloud SVGs horizontally (left/right staggered movement)
-    if (rect.bottom > 0) {
-        const svgElements = wordCloud.querySelectorAll('svg');
-        const staggerFactor = 20; // Adjust the stagger effect speed (slower movement)
+    const svgElements = wordCloud.querySelectorAll('svg');
+    const staggerFactor = 20; // Adjust the stagger effect speed (slower movement)
 
-        svgElements.forEach((svg, index) => {
-            // Flip the direction of movement (left-to-right or right-to-left)
-            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
-            svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
-        });
-    } else {
-        // Ensure movement continues after the section is fully out of the viewport
-        const svgElements = wordCloud.querySelectorAll('svg');
-        const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
-
-        svgElements.forEach((svg, index) => {
-            // Flip the direction of movement
-            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
-            svg.style.transform = `translateX(${staggeredMove}px)`; // Continue staggered movement for each SVG
-        });
-    }
+    svgElements.forEach((svg, index) => {
+        // Flip the direction of movement (left-to-right or right-to-left)
+        const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (adjustedProgress * (500 + index * staggerFactor));
+        svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
+    });
 });
