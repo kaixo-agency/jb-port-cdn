@@ -377,4 +377,5 @@ body.force-hide-cursor {
 }
 .jb-word-cloud{
   border-bottom:1px solid red;
+  bottom:0;
 }
