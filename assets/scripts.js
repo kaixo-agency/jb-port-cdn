@@ -605,33 +605,33 @@ window.addEventListener('scroll', () => {
     const windowHeight = window.innerHeight;
     const wordCloudWidth = wordCloud.offsetWidth; // Get width of wordCloud container
 
-    // **Further extending the exit point**
+    // **Extended Scroll Range**
     const startScroll = rect.top - windowHeight * 0.75; // Start earlier
     const endScroll = rect.bottom + windowHeight * 2; // Continue animation MUCH longer
 
     // Calculate scroll progress over the extended range
     const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - startScroll) / (endScroll - startScroll)));
 
-    // Move the images (portrait front and back) vertically
-    const moveY = -scrollProgress * 240; // Vertical movement for the portraits
-    front.style.transform = `translateY(${moveY}px)`;
+    // **Match `.portrait-back` vertical movement for `.jb-word-cloud`**
+    const moveY = -scrollProgress * 240; // Same vertical movement as `.portrait-back`
     back.style.transform = `translateY(${moveY}px)`;
+    wordCloud.style.transform = `translateY(${moveY}px)`; // Sync word cloud movement
 
-    // Move the word cloud SVGs from the left and right edges
+    // **Move word cloud SVGs horizontally with staggered motion**
     const svgElements = wordCloud.querySelectorAll('svg');
-    const staggerFactor = 50; // Adjust the stagger effect speed
+    const staggerFactor = 50; // Adjust stagger effect speed
 
     svgElements.forEach((svg, index) => {
-        // Odd-indexed SVGs start from left edge (0px) and move right
-        // Even-indexed SVGs start from right edge (100% width) and move left
+        // Odd SVGs start from left (0px) → move right
+        // Even SVGs start from right (100% width) → move left
         const baseMove = scrollProgress * (500 + index * staggerFactor);
         const staggeredMove = index % 2 === 0 ? -baseMove : baseMove;
 
         svg.style.transform = `translateX(${staggeredMove}px)`;
     });
 
-    // **Fade in the word cloud at 10% scroll progress (Max Opacity: 0.3)**
-    const fadeStart = 0.1; // 10% of the animation progress
+    // **Fade in `.jb-word-cloud` at 10% scroll progress (Max Opacity: 0.3)**
+    const fadeStart = 0.1; // 10% of animation progress
     const fadeEnd = 0.4;   // Fully visible at 40%
 
     if (scrollProgress >= fadeStart) {
