@@ -591,7 +591,6 @@ window.addEventListener("scroll", function () {
 }, { passive: true });
 
 
-
 window.addEventListener('scroll', () => {
     const aboutSection = document.querySelector('#about-me');
     const front = document.querySelector('.portrait-front');
