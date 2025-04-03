@@ -24,7 +24,7 @@ observer.observe(section);
 // H1 Text effect 
 
 $(document).ready(function () {
-    var words = ["Graphic Designer", "Web Designer", "UI Designer", "Art Director", "Illustrator", "Senior Multidisciplinary Designer"];
+    var words = ["A Graphic Designer", "A Web Designer", "A UI Designer", "An Art Director", "An Illustrator", "A Senior Multidisciplinary Designer"];
     var index = 0;
     var typingSpeed = 100;
     var deletingSpeed = 50;
