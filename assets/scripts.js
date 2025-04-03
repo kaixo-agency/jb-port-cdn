@@ -606,18 +606,15 @@ window.addEventListener('scroll', () => {
 
     // Reverse movement direction by using a negative multiplier
     const moveY = -scrollProgress * 200; 
-    const wordCloudMoveX = scrollProgress * 500; // Adjust movement speed for X axis
-    const staggerFactor = 100; // Adjust the stagger effect speed
 
     // Move images
     front.style.transform = `translateY(${moveY}px)`;
     back.style.transform = `translateY(${moveY}px)`;
 
-    // Move word cloud SVGs (staggered left/right movement)
-    wordCloud.style.transform = `translateX(${wordCloudMoveX - staggerFactor}px)`; // Adjust as needed
-
     // Optionally, if you want to animate individual SVGs inside the word cloud:
     const svgElements = wordCloud.querySelectorAll('svg');
+    const staggerFactor = 100; // Adjust the stagger effect speed
+
     svgElements.forEach((svg, index) => {
         // Flip the direction of movement
         const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
