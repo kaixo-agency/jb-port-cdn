@@ -600,24 +600,28 @@ window.addEventListener('scroll', () => {
 
     if (!aboutSection || !front || !back || !wordCloud) return;
 
+    // Check if #about-me is in the viewport
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
     const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / sectionHeight));
 
-    // Reverse movement direction by using a negative multiplier
-    const moveY = -scrollProgress * 500; 
+    // Only start the animation when the section is in the viewport
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+        // Reverse movement direction by using a negative multiplier
+        const moveY = -scrollProgress * 100;  // Slower movement (adjust multiplier)
 
-    // Move images
-    front.style.transform = `translateY(${moveY}px)`;
-    back.style.transform = `translateY(${moveY}px)`;
+        // Move images
+        front.style.transform = `translateY(${moveY}px)`;
+        back.style.transform = `translateY(${moveY}px)`;
 
-    // Optionally, if you want to animate individual SVGs inside the word cloud:
-    const svgElements = wordCloud.querySelectorAll('svg');
-    const staggerFactor = 100; // Adjust the stagger effect speed
+        // Move word cloud SVGs (staggered left/right movement)
+        const svgElements = wordCloud.querySelectorAll('svg');
+        const staggerFactor = 50; // Adjust the stagger effect speed (slower)
 
-    svgElements.forEach((svg, index) => {
-        // Flip the direction of movement
-        const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (50 + index * staggerFactor));
-        svg.style.transform = `translateX(${staggeredMove}px)`; // Stagger movement for each SVG
-    });
+        svgElements.forEach((svg, index) => {
+            // Flip the direction of movement
+            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (200 + index * staggerFactor)); // Slower and shorter movement
+            svg.style.transform = `translateX(${staggeredMove}px)`; // Stagger movement for each SVG
+        });
+    }
 });
