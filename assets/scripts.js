@@ -605,7 +605,7 @@ window.addEventListener('scroll', () => {
     const sectionHeight = rect.height;
 
     // Define when the motion should begin and end (in percentages of the section's height)
-    const motionStart = -5; // 10% from the top of the section (adjust as needed)
+    const motionStart = -20; // 10% from the top of the section (adjust as needed)
     const motionEnd = 0.9;   // 90% from the top of the section (adjust as needed)
 
     // Calculate the scroll progress within the section
