@@ -649,7 +649,7 @@ if (aboutSection) {
         });
     }, {
         threshold: 0.1, // Trigger when at least 10% of the section is in the viewport
-        rootMargin: '0px 0px -10% 0px' // Add a margin to trigger when the section is about to enter/exit
+        rootMargin: '0px 0px -5% 0px' // Add a margin to trigger when the section is about to enter/exit
     });
 
     observer.observe(aboutSection); // Start observing the about-me section
