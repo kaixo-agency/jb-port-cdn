@@ -600,27 +600,27 @@ window.addEventListener('scroll', () => {
 
     if (!aboutSection || !front || !back || !wordCloud) return;
 
-    // Check if #about-me is in the viewport
+    // Get the position and height of the #about-me section
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
+
+    // Scroll progress will range from 0 to 1 based on how much of the section has been scrolled
     const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / sectionHeight));
 
-    // Only start the animation when the section is in the viewport
+    // Move the images (portrait front and back) vertically as before
+    const moveY = -scrollProgress * 100; // Slower vertical movement
+    front.style.transform = `translateY(${moveY}px)`;
+    back.style.transform = `translateY(${moveY}px)`;
+
+    // Check if the #about-me section is in the viewport
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-        // Reverse movement direction by using a negative multiplier
-        const moveY = -scrollProgress * 100;  // Slower movement (adjust multiplier)
-
-        // Move images
-        front.style.transform = `translateY(${moveY}px)`;
-        back.style.transform = `translateY(${moveY}px)`;
-
-        // Move word cloud SVGs (staggered left/right movement)
+        // Move the word cloud SVGs horizontally (left/right staggered movement)
         const svgElements = wordCloud.querySelectorAll('svg');
-        const staggerFactor = 50; // Adjust the stagger effect speed (slower)
+        const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
 
         svgElements.forEach((svg, index) => {
             // Flip the direction of movement
-            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (200 + index * staggerFactor)); // Slower and shorter movement
+            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor)); // Continuous movement until section is out of view
             svg.style.transform = `translateX(${staggeredMove}px)`; // Stagger movement for each SVG
         });
     }
