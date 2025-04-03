@@ -610,7 +610,7 @@ window.addEventListener('scroll', () => {
 
     // Word Cloud Settings
     const wordCloudMotionStart = 0.2; // 20% from the top of the section
-    const wordCloudMotionEnd = 0.8;   // 80% from the top of the section
+    const wordCloudMotionEnd = 2;   // 80% from the top of the section
 
     // Calculate the scroll progress for the section
     const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - rect.top) / sectionHeight));
