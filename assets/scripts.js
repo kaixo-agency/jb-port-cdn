@@ -592,7 +592,7 @@ window.addEventListener("scroll", function () {
 
 
 
-wwindow.addEventListener('scroll', () => {
+window.addEventListener('scroll', () => {
     const aboutSection = document.querySelector('#about-me');
     const front = document.querySelector('.portrait-front');
     const back = document.querySelector('.portrait-back');
