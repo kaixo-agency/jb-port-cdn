@@ -602,9 +602,14 @@ window.addEventListener('scroll', () => {
     // Get the position and height of the #about-me section
     const rect = aboutSection.getBoundingClientRect();
     const sectionHeight = rect.height;
+    const windowHeight = window.innerHeight;
 
-    // Calculate scroll progress as a ratio based on how far the section has scrolled out of view
-    const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - rect.top) / sectionHeight));
+    // **Expanded motion range**: Adjust the start and end points
+    const startScroll = rect.top - windowHeight * 0.75; // Start animation earlier
+    const endScroll = rect.bottom + windowHeight * 0.75; // Continue animation much later
+
+    // Calculate scroll progress over the extended range
+    const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - startScroll) / (endScroll - startScroll)));
 
     // Move the images (portrait front and back) vertically
     const moveY = -scrollProgress * 240; // Vertical movement for the portraits
@@ -620,13 +625,4 @@ window.addEventListener('scroll', () => {
         const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
         svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
     });
-
-    // Ensure movement continues after the section is fully out of the viewport
-    if (rect.bottom <= 0) {
-        svgElements.forEach((svg, index) => {
-            // Continue staggered movement for each SVG after the section is out of view
-            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
-            svg.style.transform = `translateX(${staggeredMove}px)`; // Continue staggered movement
-        });
-    }
 });
