@@ -617,7 +617,7 @@ window.addEventListener('scroll', () => {
 
     svgElements.forEach((svg, index) => {
         // Flip the direction of movement
-        const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
+        const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (50 + index * staggerFactor));
         svg.style.transform = `translateX(${staggeredMove}px)`; // Stagger movement for each SVG
     });
 });
