@@ -612,13 +612,13 @@ window.addEventListener('scroll', () => {
     // Check if the section is in the viewport (start when section top is in view)
     if (window.scrollY + window.innerHeight > sectionTop && window.scrollY < sectionBottom) {
         // Move the images (portrait front and back) vertically based on scroll progress
-        const moveY = scrollProgress * 300; // Vertical movement for the portraits
+        const moveY = scrollProgress * 100; // Vertical movement for the portraits
         front.style.transform = `translateY(${moveY}px)`;
         back.style.transform = `translateY(${moveY}px)`;
 
         // Move the word cloud SVGs horizontally (left/right staggered movement)
         const svgElements = wordCloud.querySelectorAll('svg');
-        const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
+        const staggerFactor = 20; // Adjust the stagger effect speed (slower movement)
 
         svgElements.forEach((svg, index) => {
             // Flip the direction of movement (left-to-right or right-to-left)
