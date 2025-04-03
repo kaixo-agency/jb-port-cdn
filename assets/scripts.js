@@ -592,59 +592,55 @@ window.addEventListener("scroll", function () {
 
 
 
-window.addEventListener('scroll', () => {
-    const aboutSection = document.querySelector('#about-me');
-    const front = document.querySelector('.portrait-front');
-    const back = document.querySelector('.portrait-back');
-    const wordCloud = document.querySelector('.jb-word-cloud');
-
-    if (!aboutSection || !front || !back || !wordCloud) return;
-
-    // Get the position and height of the #about-me section
-    const rect = aboutSection.getBoundingClientRect();
-    const sectionHeight = rect.height;
-
-    // Calculate scroll progress as a ratio based on how far the section has scrolled out of view
-    const scrollProgress = Math.max(0, Math.min(1, (window.scrollY - rect.top) / sectionHeight));
-
-    // Move the images (portrait front and back) vertically
-    const moveY = -scrollProgress * 240; // Vertical movement for the portraits
-    front.style.transform = `translateY(${moveY}px)`;
-    back.style.transform = `translateY(${moveY}px)`;
-
-    // Move the word cloud SVGs horizontally (left/right staggered movement)
-    const svgElements = wordCloud.querySelectorAll('svg');
-    const staggerFactor = 50; // Adjust the stagger effect speed (slower movement)
-
-    svgElements.forEach((svg, index) => {
-        // Flip the direction of movement (left-to-right or right-to-left)
-        const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
-        svg.style.transform = `translateX(${staggeredMove}px)`; // Staggered movement for each SVG
-    });
-
-    // Ensure movement continues after the section is fully out of the viewport
-    if (rect.bottom <= 0) {
-        svgElements.forEach((svg, index) => {
-            // Continue staggered movement for each SVG after the section is out of view
-            const staggeredMove = (index % 2 !== 0 ? 1 : -1) * (scrollProgress * (500 + index * staggerFactor));
-            svg.style.transform = `translateX(${staggeredMove}px)`; // Continue staggered movement
-        });
-    }
-});
-
-
 // Create an intersection observer to detect when the about-me section enters and exits the viewport
 const aboutSection = document.querySelector('#about-me');
+const front = document.querySelector('.portrait-front');
+const back = document.querySelector('.portrait-back');
+const wordCloud = document.querySelector('.jb-word-cloud');
 
 if (aboutSection) {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Alert when the section enters the viewport (only when a larger portion enters)
+                // Section is entering the viewport, trigger animation
                 alert("The 'about-me' section has entered the viewport.");
+
+                // Trigger the portrait parallax animation
+                if (front && back) {
+                    front.style.transition = 'transform 0.5s ease-out'; // Smooth transition
+                    back.style.transition = 'transform 0.5s ease-out'; // Smooth transition
+                    front.style.transform = 'translateY(0px)';
+                    back.style.transform = 'translateY(0px)';
+                }
+
+                // Trigger the word cloud animation
+                if (wordCloud) {
+                    const svgElements = wordCloud.querySelectorAll('svg');
+                    svgElements.forEach((svg, index) => {
+                        svg.style.transition = 'transform 0.5s ease-out'; // Smooth transition
+                        svg.style.transform = `translateX(0px)`; // Reset position or trigger movement
+                    });
+                }
             } else {
-                // Alert when the section exits the viewport
+                // Section is exiting the viewport, stop animation or reverse it
                 alert("The 'about-me' section has exited the viewport.");
+
+                // Reverse the portrait parallax animation
+                if (front && back) {
+                    front.style.transition = 'transform 0.5s ease-out';
+                    back.style.transition = 'transform 0.5s ease-out';
+                    front.style.transform = 'translateY(240px)'; // Or any final position
+                    back.style.transform = 'translateY(240px)'; // Or any final position
+                }
+
+                // Reverse the word cloud animation
+                if (wordCloud) {
+                    const svgElements = wordCloud.querySelectorAll('svg');
+                    svgElements.forEach((svg, index) => {
+                        svg.style.transition = 'transform 0.5s ease-out';
+                        svg.style.transform = `translateX(${index % 2 !== 0 ? 1 : -1} * 500px)`; // Example of moving it out
+                    });
+                }
             }
         });
     }, {
@@ -654,3 +650,4 @@ if (aboutSection) {
 
     observer.observe(aboutSection); // Start observing the about-me section
 }
+
