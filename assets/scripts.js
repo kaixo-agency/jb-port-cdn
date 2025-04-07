@@ -632,4 +632,17 @@ document.querySelectorAll('.faq6_question').forEach(button => {
       button.classList.toggle('qa-active');
     });
   });
+
+  document.querySelectorAll('.accordion2_top').forEach(button => {
+    button.addEventListener('click', () => {
+      setTimeout(() => {
+        const calendlyFrame = button.closest('.accordion-item')?.querySelector('iframe');
+        if (calendlyFrame) {
+          calendlyFrame.style.display = 'none'; // force reflow
+          calendlyFrame.offsetHeight; // trigger reflow
+          calendlyFrame.style.display = 'block';
+        }
+      }, 300); // delay after accordion opens
+    });
+  });
   
