@@ -147,7 +147,7 @@ html {
     position: absolute;
     width: 4px; /* Line width */
     height: 100%; /* Thin line */
-    background-color: var(--base-color-brand--grey-medium);
+    background-color: var(--base-color-brand--grey-dark);
     border-radius: 0;
     left: 50%;
     top: 50%;
