@@ -92,19 +92,31 @@ html {
       animation: slideUp 0.3s cubic-bezier(0.2, 0, 0.2, 1) forwards, slideInFromBelow 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
     }
   
-    .button:not(:hover) .button-label, .navbar3_link:not(:hover) .button-label, .faq6_question:not(:hover) .qa-label {
-      animation: none; /* No animation when mouse is out */
-      transform: translateY(0); /* Return to the original position */
-      opacity: 1; /* Keep it visible */
-    }
-    .qa-label {
-      font-variation-settings: "wght" 300 !important;
-      transition: font-variation-settings 0.3s ease-in-out;
-    }
-    
-    .faq6_question:hover .qa-label, .faq_question.qa-active {
-      font-variation-settings: "wght" 500 !important;
-    }
+    /* Default non-hover state */
+.button:not(:hover) .button-label,
+.navbar3_link:not(:hover) .button-label,
+.faq6_question:not(:hover) .qa-label {
+  animation: none;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Smooth font weight transition */
+.qa-label {
+  font-variation-settings: "wght" 300 !important;
+  transition: font-variation-settings 0.3s ease-in-out;
+}
+
+/* Only apply hover effect if faq6_question does NOT have qa-active */
+.faq6_question:not(.qa-active):hover .qa-label {
+  font-variation-settings: "wght" 500 !important;
+}
+
+/* Also increase weight if qa-active is present, even without hover */
+.faq6_question.qa-active .qa-label {
+  font-variation-settings: "wght" 500 !important;
+}
+
   }
   
   /* Keyframe animation for sliding up outside the top boundary */
