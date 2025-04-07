@@ -13,7 +13,7 @@ html {
     cursor:default;
     }
     .skill-pill:hover .skill-label{
-      background-color: var(--base-color-brand--grey-light);
+      color: var(--base-color-brand--grey-light);
       }
     .case-study-card-content .logo-embed svg g path{
     fill:#fff;
