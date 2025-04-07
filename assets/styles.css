@@ -415,3 +415,8 @@ body.force-hide-cursor {
 .button.is-secondary.cursor-hover {
   text-decoration: none;
 }
+.calendly-overlay {
+  backdrop-filter: blur(12px);
+  background-color: #0B0D1E !important;
+  transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+}
