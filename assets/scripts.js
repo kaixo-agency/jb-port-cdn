@@ -627,3 +627,9 @@ window.addEventListener('scroll', () => {
         wordCloud.style.opacity = 0;
     }
 });
+document.querySelectorAll('.faq6_question').forEach(button => {
+    button.addEventListener('click', () => {
+      button.classList.toggle('qa-active');
+    });
+  });
+  
