@@ -632,3 +632,15 @@ document.querySelectorAll('.faq6_question').forEach(button => {
       button.classList.toggle('qa-active');
     });
   });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.book-a-call').forEach(button => {
+      button.addEventListener('click', (e) => {
+        alert="test!";
+        e.preventDefault(); // prevent default anchor behavior
+        Calendly.initPopupWidget({
+          url: 'https://calendly.com/juanbenedit'
+        });
+      });
+    });
+  });
