@@ -412,3 +412,6 @@ body.force-hide-cursor {
 .jb-word-cloud{
   bottom:-60px;
 }
+.button.is-secondary.cursor-hover {
+  text-decoration: none;
+}
