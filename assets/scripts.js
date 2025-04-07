@@ -636,7 +636,7 @@ document.querySelectorAll('.faq6_question').forEach(button => {
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.book-a-call').forEach(button => {
       button.addEventListener('click', (e) => {
-        alert="test!";
+        alert("test!");
         e.preventDefault(); // prevent default anchor behavior
         Calendly.initPopupWidget({
           url: 'https://calendly.com/juanbenedit'
