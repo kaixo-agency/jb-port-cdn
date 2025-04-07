@@ -131,7 +131,7 @@ html {
   box-shadow: none !important; /* Removes any focus-related shadows */
 }
 .w-slider-dot.w-active::after {
-  background-color: var(--base-color-brand--olive) !important;
+  background-color: var(--base-color-brand--fuscia) !important;
   border-radius:0;
 }
 
@@ -192,7 +192,7 @@ html {
   background:transparent;
   pointer-events: none;
   cursor:none;
-  background-color: var(--base-color-brand--olive) !important;
+  background-color: var(--base-color-brand--fuscia) !important;
   opacity:.25;
 }
 
