@@ -92,7 +92,7 @@ html {
       animation: slideUp 0.3s cubic-bezier(0.2, 0, 0.2, 1) forwards, slideInFromBelow 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
     }
   
-    .button:not(:hover) .button-label, .navbar3_link:not(:hover) .button-label {
+    .button:not(:hover) .button-label, .navbar3_link:not(:hover) .button-label, .faq6_question:not(:hover) .button-label {
       animation: none; /* No animation when mouse is out */
       transform: translateY(0); /* Return to the original position */
       opacity: 1; /* Keep it visible */
