@@ -92,30 +92,37 @@ html {
       animation: slideUp 0.3s cubic-bezier(0.2, 0, 0.2, 1) forwards, slideInFromBelow 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
     }
   
-    /* Default non-hover state */
-.button:not(:hover) .button-label,
-.navbar3_link:not(:hover) .button-label,
-.faq6_question:not(:hover) .qa-label {
-  animation: none;
-  transform: translateY(0);
-  opacity: 1;
-}
+    /* Default state: reset animations and transforms when not hovered */
+    .button:not(:hover) .button-label,
+    .navbar3_link:not(:hover) .button-label,
+    .faq6_question:not(:hover) .qa-label {
+      animation: none;
+      transform: translateY(0);
+      opacity: 1;
+    }
 
-/* Smooth font weight transition */
-.qa-label {
-  font-variation-settings: "wght" 300 !important;
-  transition: font-variation-settings 0.3s ease-in-out;
-}
+    /* Base font style with smooth transition */
+    .qa-label {
+      font-variation-settings: "wght" 300 !important;
+      transition: font-variation-settings 0.3s ease-in-out;
+    }
 
-/* Only apply hover effect if faq6_question does NOT have qa-active */
-.faq6_question:not(.qa-active):hover .qa-label {
-  font-variation-settings: "wght" 500 !important;
-}
+    /* Hover style ONLY if .qa-active is NOT present */
+    .faq6_question:not(.qa-active):hover .qa-label {
+      font-variation-settings: "wght" 500 !important;
+      transform: translateY(-2px); /* optional transform if you had it */
+      transition: font-variation-settings 0.3s ease-in-out, transform 0.3s ease;
+    }
 
-/* Also increase weight if qa-active is present, even without hover */
-.faq6_question.qa-active .qa-label {
-  font-variation-settings: "wght" 500 !important;
-}
+    /* Active state (click/toggle) also makes it bold */
+    .faq6_question.qa-active .qa-label {
+      font-variation-settings: "wght" 500 !important;
+    }
+
+    /* Completely block hover styles if qa-active is present */
+    .faq6_question.qa-active:hover .qa-label {
+      pointer-events: none;
+    }
 
   }
   
