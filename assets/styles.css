@@ -97,8 +97,12 @@ html {
       transform: translateY(0); /* Return to the original position */
       opacity: 1; /* Keep it visible */
     }
+    .qa-label {
+      transition: font-weight 0.3s ease;
+    }
+    
     .faq6_question:hover .qa-label {
-      font-weight:600;
+      font-weight: 600;
     }
   }
   
