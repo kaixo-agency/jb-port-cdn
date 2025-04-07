@@ -415,8 +415,23 @@ body.force-hide-cursor {
 .button.is-secondary.cursor-hover {
   text-decoration: none;
 }
+/* Style Calendly modal background overlay */
 .calendly-overlay {
   backdrop-filter: blur(12px);
   background-color: #0B0D1E !important;
   transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+}
+
+/* Optional: smooth fade-in for the overlay */
+.calendly-popup {
+  animation: fadeInModal 0.4s ease forwards;
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
