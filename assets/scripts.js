@@ -643,4 +643,34 @@ document.querySelectorAll('.faq6_question').forEach(button => {
       });
     });
   });
-  
+  function loadCalendlyScript(callback) {
+    const existingScript = document.querySelector('script[src*="calendly.com/assets/external/widget.js"]');
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.onload = callback;
+      document.head.appendChild(script);
+    } else {
+      if (callback) callback();
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.book-a-call');
+
+    loadCalendlyScript(() => {
+      buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (window.Calendly) {
+            Calendly.initPopupWidget({
+              url: 'https://calendly.com/juanbenedit'
+            });
+          } else {
+            console.error('Calendly is not loaded.');
+          }
+        });
+      });
+    });
+  });
