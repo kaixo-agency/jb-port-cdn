@@ -16,7 +16,7 @@ html {
       color: var(--base-color-brand--grey-light);
       }
     .case-study-pill-wrap .skill-pill:hover .skill-label{
-      color: var(--base-color-brand--grey-dark);
+      color: var(--base-color-brand--slate-dark);
       }
 
     .case-study-card-content .logo-embed svg g path{
