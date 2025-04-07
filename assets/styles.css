@@ -242,7 +242,7 @@ html {
 /* Tool icons */
 /* Default colors */
 .tool-base {
-  fill: #7D7D7C !important;  /* Desaturated color */
+  fill: var(--base-color-brand--grey-medium) !important;  /* Desaturated color */
 }
 
 .tool-secondary {
