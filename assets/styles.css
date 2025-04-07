@@ -102,7 +102,7 @@ html {
       transition: font-variation-settings 0.3s ease-in-out;
     }
     
-    .faq6_question:hover .qa-label {
+    .faq6_question:hover .qa-label, .faq_question.qa-active {
       font-variation-settings: "wght" 500 !important;
     }
   }
