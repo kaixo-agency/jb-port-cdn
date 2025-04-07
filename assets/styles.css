@@ -140,6 +140,7 @@ html {
 .w-slider-dot.w-active::after {
   background-color: var(--base-color-brand--fuscia) !important;
   border-radius:0;
+  transition: all 0.5s ease-out;
 }
 
 .w-slider-dot::after {
