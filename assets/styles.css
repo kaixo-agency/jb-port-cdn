@@ -418,9 +418,10 @@ body.force-hide-cursor {
 /* Style Calendly modal background overlay */
 .calendly-overlay {
   backdrop-filter: blur(12px);
-  background-color: #0B0D1E !important;
+  background-color: rgba(11, 13, 30, 0.7) !important; /* 70% opacity */
   transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
 }
+
 
 /* Optional: smooth fade-in for the overlay */
 .calendly-popup {
