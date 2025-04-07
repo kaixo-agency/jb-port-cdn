@@ -319,7 +319,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(".has-video").on("mouseenter", function () {
         $(".custom-cursor").addClass("tooltip cursor-text-visible");
-        $(".cursor-text").css("visibility", "visible");  // Hide the .cursor-carat again
+        
     });
 
     $(".has-video").on("mouseleave", function () {
