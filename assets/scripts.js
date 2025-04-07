@@ -146,7 +146,7 @@ $(document).ready(function () {
                 "transition": "stroke 0.5s ease"
             });
             buttons.css({
-                "background-color": "var(--base-color-brand--olive)",
+                "background-color": "var(--base-color-brand--fuscia)",
                 "border": "var(--base-color-brand--olive)",
                 "transition": "background-color 0.5s ease"
             });
