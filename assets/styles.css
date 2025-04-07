@@ -88,7 +88,7 @@ html {
   
   /* Hover effect */
   @media (min-width: 769px) {
-    .button:hover .button-label, .navbar3_link:hover .button-label {
+    .button:hover .button-label, .navbar3_link:hover .button-label, .faq6_question:hover .button-label  {
       animation: slideUp 0.3s cubic-bezier(0.2, 0, 0.2, 1) forwards, slideInFromBelow 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
     }
   
