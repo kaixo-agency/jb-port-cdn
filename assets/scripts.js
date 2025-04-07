@@ -638,7 +638,7 @@ document.querySelectorAll('.faq6_question').forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
         Calendly.initPopupWidget({
-          url: 'https://calendly.com/juanbenedit?hide_landing_page_details=1&hide_gdpr_banner=1&text_color=464b5d&primary_color=a4093a'
+          url: 'https://calendly.com/juanbenedit?text_color=464b5d&primary_color=a4093a'
         });
       });
     });
