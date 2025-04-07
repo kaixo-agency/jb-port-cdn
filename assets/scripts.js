@@ -633,14 +633,15 @@ document.querySelectorAll('.faq6_question').forEach(button => {
     });
   });
 
-  document.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('load', () => {
     document.querySelectorAll('.book-a-call').forEach(button => {
       button.addEventListener('click', (e) => {
-        e.preventDefault(); // prevent default anchor behavior
+        e.preventDefault();
+        console.log('clicked'); // Or use alert for testing
         Calendly.initPopupWidget({
           url: 'https://calendly.com/juanbenedit'
         });
       });
     });
-    alert("Hello\nHow are you?");
   });
+  
