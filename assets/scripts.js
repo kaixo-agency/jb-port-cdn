@@ -122,7 +122,7 @@ $(document).ready(function () {
                 "transition": "color 0.5s ease"
             });
             logoSvgPaths.css({
-                "stroke": "var(--base-color-brand--slate-med)", 
+                "stroke": "var(--base-color-brand--slate-medium)", 
                 "transition": "stroke 0.5s ease"
             });
             buttons.css({
@@ -261,25 +261,7 @@ $(document).ready(function () {
         $cursorText.text(""); 
     });
 
-    // Extra interaction for slider dots
-    $(".w-slider-dot").on("mouseenter", function () {
-        var label = $(this).attr("cursor-label");
-        $cursor.addClass("cursor-focus");
-        $cursorText.text(label);
-        
-        setTimeout(() => {
-            var textWidth = $cursorText[0].offsetWidth + 24;
-            $cursor.css({
-                width: textWidth + "px"
-            }).addClass("cursor-text-visible");
-        }, 10);
 
-    }).on("mouseleave", function () {
-        $cursor.removeClass("cursor-focus cursor-text-visible").css({
-            width: "6px"
-        });
-        $cursorText.text("");
-    });
 
     // Change cursor to white when inside section_case-studies
     $(".section_case-studies, .section_cta").on("mouseenter", function () {
