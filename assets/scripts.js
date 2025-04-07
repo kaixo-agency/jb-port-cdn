@@ -637,11 +637,9 @@ document.querySelectorAll('.faq6_question').forEach(button => {
     document.querySelectorAll('.book-a-call').forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('clicked'); // Or use alert for testing
         Calendly.initPopupWidget({
-          url: 'https://calendly.com/juanbenedit'
+          url: 'https://calendly.com/juanbenedit?hide_landing_page_details=1&hide_gdpr_banner=1&text_color=464b5d&primary_color=a4093a'
         });
       });
     });
   });
-  
