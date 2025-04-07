@@ -114,7 +114,7 @@ $(document).ready(function () {
             // Apply dark mode
             navbar.addClass("nav-dark"); 
             navbar.css({
-                "background": "var(--base-color-brand--slate-medium)", // Updated dark mode background
+                "background": "var(--base-color-brand--slate-dark)", // Updated dark mode background
                 "transition": "background-color 0.5s ease, border-color 0.5s ease",
             });
             buttonLabels.css({
