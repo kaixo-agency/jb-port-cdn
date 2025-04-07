@@ -152,7 +152,6 @@ html {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    opacity: .4;
 }
 .gallery14_slide-nav {
   grid-column-gap: 0px;
