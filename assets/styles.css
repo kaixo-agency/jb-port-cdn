@@ -124,7 +124,7 @@ html {
   }
   .w-slider-dot {
     position: relative;
-    transition: all 0.25s ease-out;
+    transition: all 0.5s ease-out;
     border: 0 !important;
     background-color: transparent !important; /* Make the actual dot invisible */
     width: 30px; /* Larger hitbox */
