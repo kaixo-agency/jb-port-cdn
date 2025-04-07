@@ -246,7 +246,7 @@ html {
 }
 
 .tool-secondary {
-  fill: #FAFAF9 !important;  /* Desaturated color */
+  fill: var(--base-color-brand--grey-light) !important;  /* Desaturated color */
 }
 
 /* Set initial transition properties */
