@@ -641,6 +641,6 @@ document.querySelectorAll('.faq6_question').forEach(button => {
           url: 'https://calendly.com/juanbenedit'
         });
       });
-      alert("Hello\nHow are you?");
     });
+    alert("Hello\nHow are you?");
   });
