@@ -97,6 +97,9 @@ html {
       transform: translateY(0); /* Return to the original position */
       opacity: 1; /* Keep it visible */
     }
+    .faq6_question:hover .qa-label {
+      font-weight:600;
+    }
   }
   
   /* Keyframe animation for sliding up outside the top boundary */
