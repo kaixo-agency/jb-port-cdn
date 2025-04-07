@@ -418,7 +418,7 @@ body.force-hide-cursor {
 /* Style Calendly modal background overlay */
 .calendly-overlay {
   backdrop-filter: blur(18px);
-  background-color: rgba(11, 13, 30, 0.7) !important; /* 70% opacity */
+  background-color: rgba(11, 13, 30, 0.75) !important; /* 70% opacity */
   transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
 }
 
