@@ -418,12 +418,20 @@ body.force-hide-cursor {
 /* Style Calendly modal background overlay */
 .calendly-overlay {
   backdrop-filter: blur(12px);
-  background-color: rgba(11, 13, 30, 0.6) !important; /* Semi-transparent dark */
+  background-color: rgba(11, 13, 30, 0.6) !important;
   transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
 }
 
+/* Fade in the Calendly modal */
 .calendly-popup {
-  animation: fadeInModal 0.4s ease forwards;
+  animation: fadeInModal 0.4s ease forwards !important;
+  opacity: 0;
+}
+
+/* Optional: fade in the iframe inside Calendly popup too */
+.calendly-popup iframe {
+  animation: fadeInModal 0.4s ease forwards !important;
+  opacity: 0;
 }
 
 @keyframes fadeInModal {
