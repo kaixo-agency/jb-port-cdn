@@ -98,11 +98,12 @@ html {
       opacity: 1; /* Keep it visible */
     }
     .qa-label {
-      transition: font-weight 0.3s ease;
+      font-variation-settings: "wght" 400;
+      transition: font-variation-settings 0.3s ease-in-out;
     }
     
     .faq6_question:hover .qa-label {
-      font-weight: 500;
+      font-variation-settings: "wght" 600;
     }
   }
   
