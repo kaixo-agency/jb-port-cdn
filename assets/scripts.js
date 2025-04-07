@@ -636,7 +636,7 @@ document.querySelectorAll('.faq6_question').forEach(button => {
   document.querySelectorAll('.accordion2_top').forEach(button => {
     button.addEventListener('click', () => {
       setTimeout(() => {
-        const calendlyFrame = button.closest('.accordion-item')?.querySelector('iframe');
+        const calendlyFrame = button.closest('.accordion2_bottom')?.querySelector('iframe');
         if (calendlyFrame) {
           calendlyFrame.style.display = 'none'; // force reflow
           calendlyFrame.offsetHeight; // trigger reflow
