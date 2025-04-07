@@ -42,7 +42,7 @@ $(document).ready(function () {
             if (index === words.length - 1) {
                 setTimeout(function () {
                     headingRole.css("transition", "color 0.6s ease");
-                    headingRole.css("color", "var(--base-color-brand--olive)");
+                    headingRole.css("color", "var(--base-color-brand--fuscia)");
 
                     setTimeout(function () {
                         cursor.css({
@@ -122,7 +122,7 @@ $(document).ready(function () {
                 "transition": "color 0.5s ease"
             });
             logoSvgPaths.css({
-                "stroke": "var(--base-color-brand--slate-light)", 
+                "stroke": "var(--base-color-brand--slate-medium)", 
                 "transition": "stroke 0.5s ease"
             });
             buttons.css({
