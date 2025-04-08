@@ -410,7 +410,7 @@ body.force-hide-cursor {
   border-left:1px solid var(--base-color-brand--slate-light);
 }
 .nav-dark .menu-icon div{
-  background:var(--base-color-brand--slate-medium);
+  background:var(--base-color-brand--slate-light);
 }
 .jb-word-cloud{
   bottom:-60px;
