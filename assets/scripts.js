@@ -89,9 +89,51 @@ $(document).ready(function () {
 $(document).ready(function () {
     var navbar = $(".navbar1_container.nav-wrapper");
     var buttonLabels = $(".button-label");
-    var logoSvgPaths = $(".navbar1_logo-link svg path"); // Target all path elements inside the SVG
-    var buttons = $(".button.is-navbar1-button"); // Target buttons for background transition
+    var logoSvgPaths = $(".navbar1_logo-link svg path");
+    var buttons = $(".button.is-navbar1-button");
     var darkSectionClass = "section_case-studies";
+
+    function applyDarkMode() {
+        navbar.addClass("nav-dark");
+        navbar.css({
+            "background": "var(--base-color-brand--slate-dark)",
+            "transition": "background-color 0.5s ease, border-color 0.5s ease",
+        });
+        buttonLabels.css({
+            "color": "var(--base-color-neutral--white)",
+            "transition": "color 0.5s ease"
+        });
+        logoSvgPaths.css({
+            "stroke": "var(--base-color-brand--slate-medium)",
+            "transition": "stroke 0.5s ease"
+        });
+        buttons.css({
+            "background-color": "var(--base-color-brand--slate-light)",
+            "border": "var(--base-color-brand--slate-light)",
+            "transition": "background-color 0.5s ease"
+        });
+    }
+
+    function applyLightMode() {
+        navbar.removeClass("nav-dark");
+        navbar.css({
+            "background": "rgba(255, 255, 255, 0.85)",
+            "transition": "background-color 0.5s ease, border-color 0.5s ease",
+        });
+        buttonLabels.css({
+            "color": "",
+            "transition": "color 0.5s ease"
+        });
+        logoSvgPaths.css({
+            "stroke": "",
+            "transition": "stroke 0.5s ease"
+        });
+        buttons.css({
+            "background-color": "var(--base-color-brand--fuscia)",
+            "border": "var(--base-color-brand--olive)",
+            "transition": "background-color 0.5s ease"
+        });
+    }
 
     function checkSection() {
         var navbarHeight = navbar.outerHeight();
@@ -102,60 +144,43 @@ $(document).ready(function () {
             var section = $(this);
             var offsetTop = section.offset().top;
             var sectionHeight = section.outerHeight();
-            
+
             if (scrollTop + navbarHeight >= offsetTop && scrollTop < offsetTop + sectionHeight) {
                 isDarkMode = true;
-                return false; // Stop checking further sections
+                return false;
             }
-            //navbar.addClass("nav-dark"); 
         });
 
         if (isDarkMode) {
-            // Apply dark mode
-            navbar.addClass("nav-dark"); 
-            navbar.css({
-                "background": "var(--base-color-brand--slate-dark)", // Updated dark mode background
-                "transition": "background-color 0.5s ease, border-color 0.5s ease",
-            });
-            buttonLabels.css({
-                "color": "var(--base-color-neutral--white)",
-                "transition": "color 0.5s ease"
-            });
-            logoSvgPaths.css({
-                "stroke": "var(--base-color-brand--slate-medium)", 
-                "transition": "stroke 0.5s ease"
-            });
-            buttons.css({
-                "background-color": "var(--base-color-brand--slate-light)",
-                "border": "var(--base-color-brand--slate-light)",
-                "transition": "background-color 0.5s ease"
-            });
+            applyDarkMode();
         } else {
-            // Apply light mode
-            navbar.removeClass("nav-dark"); 
-            navbar.css({
-                "background": "rgba(255, 255, 255, 0.85)",
-                "transition": "background-color 0.5s ease, border-color 0.5s ease",
-            });
-            buttonLabels.css({
-                "color": "",
-                "transition": "color 0.5s ease"
-            });
-            logoSvgPaths.css({
-                "stroke": "", 
-                "transition": "stroke 0.5s ease"
-            });
-            buttons.css({
-                "background-color": "var(--base-color-brand--fuscia)",
-                "border": "var(--base-color-brand--olive)",
-                "transition": "background-color 0.5s ease"
-            });
+            applyLightMode();
         }
     }
 
     $(window).on("scroll", checkSection);
-    checkSection(); // Run on page load
+    checkSection();
+
+    // --- MutationObserver for .w-nav-button class change ---
+    var navButton = document.querySelector(".w-nav-button");
+    if (navButton) {
+        var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (mutation.attributeName === "class") {
+                    var hasOpenClass = navButton.classList.contains("w--open");
+                    if (hasOpenClass) {
+                        applyDarkMode(); // Force dark mode when nav is open
+                    } else {
+                        checkSection(); // Revert based on scroll position
+                    }
+                }
+            });
+        });
+
+        observer.observe(navButton, { attributes: true });
+    }
 });
+
 
 
 // Anchor scrolling + Testimonial tab switching
