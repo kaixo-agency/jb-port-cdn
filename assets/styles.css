@@ -396,7 +396,7 @@ body.force-hide-cursor {
 .navbar1_component {
   transition: transform 0.4s ease-in-out;
 }
-.navbar-wrapper{
+.nav-wrapper{
   border-bottom:1px solid var(--base-color-neutral--neutral-lightest);
 }
 .w-nav-button, .navbar1_logo-link{
