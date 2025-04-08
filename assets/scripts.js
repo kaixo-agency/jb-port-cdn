@@ -670,37 +670,14 @@ document.querySelectorAll('.faq6_question').forEach(button => {
   });
 
 
-  function disableScroll() {
-    $("body").css({
-        "overflow": "hidden",
-        "height": "100vh"
+  $(document).ready(function () {
+    $(".w-nav-button").on("click", function () {
+        setTimeout(function () {
+            if ($(".w-nav-button").hasClass("w--open")) {
+                $("body").addClass("no-scroll");
+            } else {
+                $("body").removeClass("no-scroll");
+            }
+        }, 50); // Slight delay to allow class toggle to apply
     });
-}
-
-function enableScroll() {
-    $("body").css({
-        "overflow": "",
-        "height": ""
-    });
-}
-
-  var navButton = document.querySelector(".w-nav-button");
-  if (navButton) {
-      var observer = new MutationObserver(function (mutations) {
-          mutations.forEach(function (mutation) {
-              if (mutation.attributeName === "class") {
-                  var hasOpenClass = navButton.classList.contains("w--open");
-                  if (hasOpenClass) {
-                      applyDarkMode();  // Optional, as you already have this
-                      disableScroll();  // Prevent page from scrolling
-                  } else {
-                      checkSection();   // Revert to scroll logic
-                      enableScroll();   // Re-enable scrolling
-                  }
-              }
-          });
-      });
-  
-      observer.observe(navButton, { attributes: true });
-  }
-  
+});
