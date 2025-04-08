@@ -669,22 +669,38 @@ document.querySelectorAll('.faq6_question').forEach(button => {
     });
   });
 
-  var navButton = document.querySelector(".w-nav-button");
-if (navButton) {
-    var observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-            if (mutation.attributeName === "class") {
-                var hasOpenClass = navButton.classList.contains("w--open");
-                if (hasOpenClass) {
-                    applyDarkMode();  // Optional, as you already have this
-                    disableScroll();  // Prevent page from scrolling
-                } else {
-                    checkSection();   // Revert to scroll logic
-                    enableScroll();   // Re-enable scrolling
-                }
-            }
-        });
-    });
 
-    observer.observe(navButton, { attributes: true });
+  function disableScroll() {
+    $("body").css({
+        "overflow": "hidden",
+        "height": "100vh"
+    });
 }
+
+function enableScroll() {
+    $("body").css({
+        "overflow": "",
+        "height": ""
+    });
+}
+
+  var navButton = document.querySelector(".w-nav-button");
+  if (navButton) {
+      var observer = new MutationObserver(function (mutations) {
+          mutations.forEach(function (mutation) {
+              if (mutation.attributeName === "class") {
+                  var hasOpenClass = navButton.classList.contains("w--open");
+                  if (hasOpenClass) {
+                      applyDarkMode();  // Optional, as you already have this
+                      disableScroll();  // Prevent page from scrolling
+                  } else {
+                      checkSection();   // Revert to scroll logic
+                      enableScroll();   // Re-enable scrolling
+                  }
+              }
+          });
+      });
+  
+      observer.observe(navButton, { attributes: true });
+  }
+  
