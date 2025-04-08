@@ -397,7 +397,7 @@ body.force-hide-cursor {
   transition: transform 0.4s ease-in-out;
 }
 .navbar-wrapper{
-  border-bottom:1px solid var(--base-color-neutral--neutral-lightest);
+  border-bottom:1px solid var(--base-color-neutral--neutral-lightest) !important;
 }
 .w-nav-button, .navbar1_logo-link{
   transition: all 0.25s ease-in-out;
