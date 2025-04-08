@@ -394,7 +394,7 @@ body.force-hide-cursor {
   cursor: pointer;
 }
 .navbar1_component {
-  border:1px solid red;
+  border-bottom:1px solid red !important;
   transition: transform 0.4s ease-in-out;
 }
 .w-nav-button, .navbar1_logo-link{
