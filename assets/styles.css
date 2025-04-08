@@ -398,13 +398,13 @@ body.force-hide-cursor {
 }
 
 .nav-dark{
-  border-bottom:1px solid #303b3a !important;
+  border-bottom:1px solid var(--base-color-brand--slate-medium);
 }
 .nav-dark .navbar1_logo-link{
-  border-right:1px solid #303b3a !important;
+  border-right:1px solid var(--base-color-brand--slate-medium);
 }
 .nav-dark .navbar1_menu-button {
-  border-left:1px solid #303b3a !important;
+  border-left:1px solid var(--base-color-brand--slate-medium);
 }
 .nav-dark .menu-icon1 div{
   background:#fff;
