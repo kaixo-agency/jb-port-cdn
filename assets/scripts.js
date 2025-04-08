@@ -104,7 +104,7 @@ $(document).ready(function () {
             "transition": "color 0.5s ease"
         });
         logoSvgPaths.css({
-            "stroke": "#21233A",
+            "stroke": "var(--base-color-brand--slate-medium)",
             "transition": "stroke 0.5s ease"
         });
         buttons.css({
