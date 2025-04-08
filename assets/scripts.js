@@ -681,3 +681,32 @@ document.querySelectorAll('.faq6_question').forEach(button => {
         }, 50); // Slight delay to allow class toggle to apply
     });
 });
+
+
+$(document).ready(function () {
+    $(".w-nav-button").on("click", function () {
+        setTimeout(function () {
+            var isOpen = $(".w-nav-button").hasClass("w--open");
+
+            if (isOpen) {
+                // Disable scroll
+                $("body").addClass("no-scroll");
+
+                // Animate in menu links staggered
+                $(".navbar1_menu-links .navbar3_link").each(function (index) {
+                    var $link = $(this);
+                    setTimeout(function () {
+                        $link.addClass("animate-in");
+                    }, index * 100); // Stagger: 100ms between items
+                });
+
+            } else {
+                // Re-enable scroll
+                $("body").removeClass("no-scroll");
+
+                // Reset menu links
+                $(".navbar1_menu-links .navbar3_link").removeClass("animate-in");
+            }
+        }, 50); // Slight delay to wait for Webflow class toggle
+    });
+});
