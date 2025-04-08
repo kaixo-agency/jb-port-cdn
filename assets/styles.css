@@ -458,3 +458,15 @@ body.force-hide-cursor {
   opacity: 1;
   transform: translateY(0);
 }
+/* Initial state for .nav-buttons (off-screen) */
+.nav-buttons {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Animation when the class 'animate-in' is added */
+.nav-buttons.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
