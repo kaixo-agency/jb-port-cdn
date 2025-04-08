@@ -700,7 +700,7 @@ $(document).ready(function () {
                             $link.addClass("animate-in");
                         }, index * 100); // 100ms stagger
                     });
-                }, 500); // 500ms delay before the first link animates in
+                }, 400); // 500ms delay before the first link animates in
 
             } else {
                 // Re-enable scroll
