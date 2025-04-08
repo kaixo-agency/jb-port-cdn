@@ -687,28 +687,34 @@ $(document).ready(function () {
     $(".w-nav-button").on("click", function () {
         setTimeout(function () {
             var isOpen = $(".w-nav-button").hasClass("w--open");
+            var $links = $(".navbar1_menu-links .navbar3_link");
 
             if (isOpen) {
                 // Disable scroll
                 $("body").addClass("no-scroll");
 
-                // Wait 500ms before starting staggered animation
+                // Wait 500ms before animating in
                 setTimeout(function () {
-                    $(".navbar1_menu-links .navbar3_link").each(function (index) {
+                    $links.each(function (index) {
                         var $link = $(this);
                         setTimeout(function () {
                             $link.addClass("animate-in");
-                        }, index * 100); // 100ms stagger
+                        }, index * 100); // Stagger in from top to bottom
                     });
-                }, 400); // 500ms delay before the first link animates in
+                }, 500);
 
             } else {
                 // Re-enable scroll
                 $("body").removeClass("no-scroll");
 
-                // Reset menu links immediately
-                $(".navbar1_menu-links .navbar3_link").removeClass("animate-in");
+                // Animate out in reverse order (bottom to top), no delay
+                $($links.get().reverse()).each(function (index) {
+                    var $link = $(this);
+                    setTimeout(function () {
+                        $link.removeClass("animate-in");
+                    }, index * 100); // Stagger out from bottom to top
+                });
             }
-        }, 50); // Wait for Webflow to toggle the .w--open class
+        }, 50); // Slight delay to wait for Webflow class toggle
     });
 });
