@@ -704,7 +704,7 @@ $(document).ready(function () {
                     // After the last menu link animation, animate the .nav-buttons
                     setTimeout(function () {
                         $(".nav-buttons").addClass("animate-in");
-                    }, $(".navbar1_menu-links .navbar3_link").length * 50 + 400); // Delay after all menu items have animated
+                    }, $(".navbar1_menu-links .navbar3_link").length * 0 + 400); // Delay after all menu items have animated
 
                 }, 400); // Delay before first menu item starts animating
 
