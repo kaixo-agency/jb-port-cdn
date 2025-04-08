@@ -692,21 +692,23 @@ $(document).ready(function () {
                 // Disable scroll
                 $("body").addClass("no-scroll");
 
-                // Animate in menu links staggered
-                $(".navbar1_menu-links .navbar3_link").each(function (index) {
-                    var $link = $(this);
-                    setTimeout(function () {
-                        $link.addClass("animate-in");
-                    }, index * 100); // Stagger: 100ms between items
-                });
+                // Wait 500ms before starting staggered animation
+                setTimeout(function () {
+                    $(".navbar1_menu-links .navbar3_link").each(function (index) {
+                        var $link = $(this);
+                        setTimeout(function () {
+                            $link.addClass("animate-in");
+                        }, index * 100); // 100ms stagger
+                    });
+                }, 500); // 500ms delay before the first link animates in
 
             } else {
                 // Re-enable scroll
                 $("body").removeClass("no-scroll");
 
-                // Reset menu links
+                // Reset menu links immediately
                 $(".navbar1_menu-links .navbar3_link").removeClass("animate-in");
             }
-        }, 50); // Slight delay to wait for Webflow class toggle
+        }, 50); // Wait for Webflow to toggle the .w--open class
     });
 });
