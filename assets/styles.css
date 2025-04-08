@@ -398,7 +398,7 @@ body.force-hide-cursor {
 }
 
 .nav-dark{
-  border-bottom:1px solid var(--base-color-brand--slate-medium);
+  border-bottom:1px solid var(--base-color-brand--slate-medium) !important;
 }
 .nav-dark .navbar1_logo-link{
   border-right:1px solid var(--base-color-brand--slate-medium);
