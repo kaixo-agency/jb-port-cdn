@@ -462,7 +462,7 @@ body.force-hide-cursor {
 .nav-buttons {
   opacity: 0;
   transform: translateX(100%);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.75s ease, transform 0.5s ease;
 }
 
 /* Animation when the class 'animate-in' is added */
