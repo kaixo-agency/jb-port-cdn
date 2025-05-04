@@ -334,8 +334,7 @@ body.force-hide-cursor {
   margin-right:10px;
 }
 .cursor-icon{
-  visibility: hidden;
-  display:none;
+
   width:80px;
   height:80px;
   border-radius:20px;
