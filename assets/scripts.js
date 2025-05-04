@@ -359,7 +359,7 @@ $(document).ready(function () {
 
         // Wait 0.5s, then fade in the image over 1s
         setTimeout(function () {
-            $image.stop().animate({ opacity: 1 }, 1000, function () {
+            $image.stop().animate({ opacity: 1 }, 500, function () {
                 // Reset video time **only after** the fade-in is complete
                 $video.currentTime = 0;
             });
