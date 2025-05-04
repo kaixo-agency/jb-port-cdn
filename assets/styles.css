@@ -24,7 +24,7 @@ html {
     }
     .cursor {
       display: inline-block;
-      width: 3px;
+      width: 2px;
       height: 58px;
       background-color: var(--base-color-brand--grey-medium);
       margin-left: 0;
