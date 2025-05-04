@@ -348,7 +348,7 @@ $(document).ready(function () {
     $(".has-video").on("mouseenter", function () {
         $(".custom-cursor").addClass("play");
         //$(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
-        $(".cursor-play").css("visibility", "visible");  // Hide the .cursor-carat again
+        $(".cursor-icon").css("visibility", "visible");  // Hide the .cursor-carat again
         $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
         $(".custom-cursor").removeClass("play");
@@ -359,7 +359,7 @@ $(document).ready(function () {
     $(".is-centre-previous").on("mouseenter", function () {
         $(".custom-cursor").addClass("next-prev");
         //$(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
-        $(".cursor-next-prev").css("visibility", "visible");  // Hide the .cursor-carat again
+        $(".cursor-icon").css("visibility", "visible");  // Hide the .cursor-carat again
         $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
         $(".custom-cursor").removeClass("next-prev");
