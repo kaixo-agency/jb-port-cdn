@@ -7,7 +7,7 @@ html {
     transition:all .5s linear;
     }
     body{
-      background-color:#fff;
+      background-color:#red;
     }
     .skill-pill{
     cursor:default;
