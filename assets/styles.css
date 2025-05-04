@@ -333,6 +333,14 @@ body.force-hide-cursor {
   border-radius:20px;
   margin-right:10px;
 }
+.cursor-play{
+  visibility: hidden;
+  display:none;
+  width:80px;
+  height:80px;
+  border-radius:20px;
+  margin-right:10px;
+}
 
 .w-background-video > video {
   object-fit: cover;
