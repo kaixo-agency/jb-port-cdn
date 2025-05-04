@@ -337,6 +337,8 @@ body.force-hide-cursor {
   width:80px;
   height:80px;
   border-radius:100px;
+  left:-40px;
+  top:-40px;
 }
 .cursor-play-icon, .cursor-next-icon, .cursor-prev-icon{
   visibility: hidden;
