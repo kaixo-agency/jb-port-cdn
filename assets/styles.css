@@ -334,10 +334,9 @@ body.force-hide-cursor {
   margin-right:10px;
 }
 .cursor-icon{
-
   width:80px;
   height:80px;
-  border-radius:20px;
+  border-radius:50%;
   margin-right:10px;
 }
 .cursor-play-icon, .cursor-next-icon, .cursor-prev-icon{
