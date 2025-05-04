@@ -356,6 +356,17 @@ $(document).ready(function () {
         $(this).css("cursor", "");  // Restore the default system cursor
     });
 
+    $(".is-centre-previous").on("mouseenter", function () {
+        $(".custom-cursor").addClass("next-prev");
+        //$(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
+        $(".cursor-next-prev").css("visibility", "visible");  // Hide the .cursor-carat again
+        $(this).css("cursor", "none");  // Hide the system cursor
+    }).on("mouseleave", function () {
+        $(".custom-cursor").removeClass("next-prev");
+        //$(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
+        $(this).css("cursor", "");  // Restore the default system cursor
+    });
+
     $(".has-video").on("mouseenter", function () {
         $(".custom-cursor").addClass("tooltip cursor-text-visible");
     });
