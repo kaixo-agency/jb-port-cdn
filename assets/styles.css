@@ -304,7 +304,13 @@ svg path{
   width:auto !important;
   height:auto !important;
 }
-
+.play{
+  left:10px;
+  top:10px;
+  padding:20px 20px 20px 20px;
+  width:100px !important;
+  height:100px !important;
+}
 .no-cursor {
   cursor: none !important;
 }
