@@ -47,8 +47,7 @@ $(document).ready(function () {
                     setTimeout(function () {
                         cursor.css({
                             transition: "all 0.6s ease",
-                            opacity: 0,
-                            display: "none"
+                            opacity: 0
                         });
                     }, 800);
                 }, pauseTime);
