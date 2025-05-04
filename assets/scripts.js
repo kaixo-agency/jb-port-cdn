@@ -46,7 +46,7 @@ $(document).ready(function () {
 
                     setTimeout(function () {
                         cursor.css({
-                            transition: "opacity 0.6s ease",
+                            transition: "all 0.6s ease",
                             opacity: 0,
                             display: "none"
                         });
