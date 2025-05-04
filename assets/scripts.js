@@ -684,6 +684,14 @@ document.querySelectorAll('.faq6_question').forEach(button => {
 
 
 $(document).ready(function () {
+    // Function to reset animations and enable scrolling
+    function resetMenu() {
+        $("body").removeClass("no-scroll");
+        $(".navbar1_menu-links .navbar3_link").removeClass("animate-in");
+        $(".nav-buttons").removeClass("animate-in");
+    }
+
+    // Handle hamburger button clicks
     $(".w-nav-button").on("click", function () {
         setTimeout(function () {
             var isOpen = $(".w-nav-button").hasClass("w--open");
@@ -704,20 +712,27 @@ $(document).ready(function () {
                     // After the last menu link animation, animate the .nav-buttons
                     setTimeout(function () {
                         $(".nav-buttons").addClass("animate-in");
-                    }, $(".navbar1_menu-links .navbar3_link").length * 0 + 400); // Delay after all menu items have animated
+                    }, $(".navbar1_menu-links .navbar3_link").length * 100 + 400); // Delay after all menu items have animated
 
                 }, 400); // Delay before first menu item starts animating
 
             } else {
-                // Re-enable scroll
-                $("body").removeClass("no-scroll");
-
-                // Reset menu links immediately
-                $(".navbar1_menu-links .navbar3_link").removeClass("animate-in");
-
-                // Reset .nav-buttons immediately
-                $(".nav-buttons").removeClass("animate-in");
+                resetMenu();
             }
         }, 50); // Wait for Webflow to toggle the .w--open class
+    });
+    
+    // Handle menu link clicks
+    $(".navbar1_menu-links .navbar3_link").on("click", function() {
+        // Small timeout to ensure this happens after Webflow's default actions
+        setTimeout(resetMenu, 50);
+    });
+    
+    // Also listen for Webflow's native menu close event for extra reliability
+    $(document).on('click', function(event) {
+        // If the menu was open and is now closed (but not by the nav button)
+        if (!$(".w-nav-button").hasClass("w--open") && $("body").hasClass("no-scroll")) {
+            resetMenu();
+        }
     });
 });
