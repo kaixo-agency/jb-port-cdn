@@ -352,7 +352,6 @@ $(document).ready(function () {
         //$(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
         $(this).css("cursor", "");  // Restore the default system cursor
     });
-    
 });
 
 
