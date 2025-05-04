@@ -311,6 +311,14 @@ svg path{
   width:100px !important;
   height:100px !important;
 }
+.next-prev{
+  left:50px;
+  top:50px;
+  padding:20px 20px 20px 20px;
+  width:100px !important;
+  height:100px !important;
+}
+
 .no-cursor {
   cursor: none !important;
 }
