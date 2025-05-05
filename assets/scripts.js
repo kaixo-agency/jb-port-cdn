@@ -360,6 +360,7 @@ $(document).ready(function () {
         $(".custom-cursor").addClass("cursor-icon");
         //$(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
         $(".cursor-icon").css("visibility", "visible");  // Hide the .cursor-carat again
+        $(".cursor-prev-icon").css("visibility", "visible");  // Hide the .cursor-carat again
         $(this).css("cursor", "none");  // Hide the system cursor
     }).on("mouseleave", function () {
         $(".custom-cursor").removeClass("cursor-icon");
