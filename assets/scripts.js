@@ -793,3 +793,23 @@ $(document).ready(function () {
         }
     });
 });
+const cursorText = document.querySelector('.cursor-text');
+
+document.addEventListener('mouseover', function (e) {
+  const target = e.target.closest('[data-tooltip]');
+  
+  if (target && cursorText) {
+    const tooltipHTML = target.getAttribute('data-tooltip');
+    cursorText.innerHTML = tooltipHTML;
+    cursorText.style.display = 'block';
+  }
+});
+
+document.addEventListener('mouseout', function (e) {
+  const target = e.target.closest('[data-tooltip]');
+  
+  if (target && cursorText) {
+    cursorText.innerHTML = '';
+    cursorText.style.display = 'none';
+  }
+});
