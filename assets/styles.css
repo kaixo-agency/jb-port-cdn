@@ -315,6 +315,7 @@ svg path{
   width:auto !important;
   height:58px !important;
   line-height:1.05rem;
+  font-size:1rem;
 }
 .avatar span{
   color:#0ACF83;
