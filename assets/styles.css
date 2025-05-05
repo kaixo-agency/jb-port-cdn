@@ -336,6 +336,9 @@ body.force-hide-cursor {
   left:-12px;
   top:-12px;
 }
+.avatar{
+  height:64px;
+}
 .cursor-avatar{
   visibility: hidden;
   display:none;
