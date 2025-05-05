@@ -345,6 +345,18 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
+    $(".navbar1_logo-link").on("mouseenter", function () {
+        $(".custom-cursor").addClass("cursor-icon");
+        $(".cursor-avatar").css("visibility", "visible");  // Hide the .cursor-carat again
+        $(".cursor-avatar").css("display", "block");  // Hide the .cursor-carat again
+        $(this).css("cursor", "none");  // Hide the system cursor
+    }).on("mouseleave", function () {
+        $(".custom-cursor").removeClass("cursor-icon");
+        $(".cursor-avatar").css("visibility", "hidden");  // Hide the .cursor-carat again
+        $(".cursor-avatar").css("display", "none");  // Hide the .cursor-carat again
+        $(this).css("cursor", "");  // Restore the default system cursor
+    });
+
     $(".has-video").on("mouseenter", function () {
         $(".custom-cursor").addClass("cursor-icon");
         //$(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
