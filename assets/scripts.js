@@ -289,7 +289,7 @@ $(document).ready(function () {
 
 
     // Change cursor to white when inside section_case-studies
-    $(".section_case-studies, .section_cta, .about-comp-wrap").on("mouseenter", function () {
+    $(".section_case-studies, .section_cta, .about-comp-wrap, .footer6_component").on("mouseenter", function () {
         $cursor.addClass("cursor-white");
     }).on("mouseleave", function () {
         $cursor.removeClass("cursor-white");
