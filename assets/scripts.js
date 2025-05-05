@@ -344,17 +344,7 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    // When hovering over 
-    $(".has-video").on("mouseenter", function () {
-        $(".custom-cursor").addClass("play");
-        //$(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
-        $(".cursor-icon").css("visibility", "visible");  // Hide the .cursor-carat again
-        $(this).css("cursor", "none");  // Hide the system cursor
-    }).on("mouseleave", function () {
-        $(".custom-cursor").removeClass("play");
-        //$(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
-        $(this).css("cursor", "");  // Restore the default system cursor
-    });
+
 
     $(".has-video").on("mouseenter", function () {
         $(".custom-cursor").addClass("cursor-icon");
