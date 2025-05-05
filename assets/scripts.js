@@ -795,21 +795,24 @@ $(document).ready(function () {
 });
 const cursorText = document.querySelector('.cursor-text');
 
+// Mouseover: show tooltip with HTML
 document.addEventListener('mouseover', function (e) {
-  const target = e.target.closest('[data-tooltip]');
+  const target = e.target.closest('[cursor-label]');
   
   if (target && cursorText) {
-    const tooltipHTML = target.getAttribute('data-tooltip');
-    cursorText.innerHTML = tooltipHTML;
+    const labelHTML = target.getAttribute('cursor-label');
+    cursorText.innerHTML = labelHTML;
     cursorText.style.display = 'block';
   }
 });
 
+// Mouseout: hide tooltip
 document.addEventListener('mouseout', function (e) {
-  const target = e.target.closest('[data-tooltip]');
+  const target = e.target.closest('[cursor-label]');
   
   if (target && cursorText) {
     cursorText.innerHTML = '';
     cursorText.style.display = 'none';
   }
 });
+
