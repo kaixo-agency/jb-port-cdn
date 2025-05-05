@@ -3,13 +3,13 @@ html {
     overflow-x: hidden;
     }
     ::selection {
-      background: red;
+      background-color: var(--base-color-brand--fuscia) !important;
       color: white;
     }
     
     /* For Firefox */
     ::-moz-selection {
-      background: red;
+      background-color: var(--base-color-brand--fuscia) !important;
       color: white;
     }
 
