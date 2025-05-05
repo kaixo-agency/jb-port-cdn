@@ -337,15 +337,15 @@ body.force-hide-cursor {
   top:-12px;
 }
 .avatar{
-  height:64px;
+  height:54px;
 }
 .cursor-avatar{
   visibility: hidden;
   display:none;
-  width:60px;
-  height:60px;
+  width:50px;
+  height:50px;
   border-radius:50%;
-  margin-right:10px;
+  margin-right:15px;
 }
 .cursor-icon{
   width:80px !important;
