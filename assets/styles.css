@@ -318,6 +318,7 @@ svg path{
 }
 .avatar span{
   color:#0ACF83;
+  font-size:.75rem;
 }
 .avatar span::before{
   content:"•";
