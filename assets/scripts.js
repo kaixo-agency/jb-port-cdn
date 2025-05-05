@@ -369,7 +369,21 @@ $(document).ready(function () {
         $(".cursor-prev-icon").css("display", "none");  // Hide the .cursor-carat again
         //$(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
         $(this).css("cursor", "");  // Restore the default system cursor
-        
+    });
+
+    $(".is-centre-next").on("mouseenter", function () {
+        $(".custom-cursor").addClass("cursor-icon");
+        //$(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
+        $(".cursor-icon").css("visibility", "visible");  // Hide the .cursor-carat again
+        $(".cursor-prev-icon").css("visibility", "visible");  // Hide the .cursor-carat again
+        $(".cursor-prev-icon").css("display", "block");  // Hide the .cursor-carat again
+        $(this).css("cursor", "none");  // Hide the system cursor
+    }).on("mouseleave", function () {
+        $(".custom-cursor").removeClass("cursor-icon");
+        $(".cursor-prev-icon").css("visibility", "hidden");  // Hide the .cursor-carat again
+        $(".cursor-prev-icon").css("display", "none");  // Hide the .cursor-carat again
+        //$(".cursor-carat").css("visibility", "hidden");  // Hide the .cursor-carat again
+        $(this).css("cursor", "");  // Restore the default system cursor
     });
 
     $(".has-video").on("mouseenter", function () {
