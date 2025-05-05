@@ -2,6 +2,16 @@ html {
     scroll-behavior: auto !important;
     overflow-x: hidden;
     }
+    ::selection {
+      background: red;
+      color: white;
+    }
+    
+    /* For Firefox */
+    ::-moz-selection {
+      background: red;
+      color: white;
+    }
 
     a, .skill-pill{
     transition:all .5s linear;
