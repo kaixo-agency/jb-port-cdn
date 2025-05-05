@@ -321,7 +321,7 @@ svg path{
 }
 .avatar span::before{
   content:"•";
-  margin-right:10px;
+  margin-right:5px;
 }
 
 .no-cursor {
