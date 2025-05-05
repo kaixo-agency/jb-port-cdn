@@ -414,6 +414,8 @@ $(document).ready(function () {
         $(".custom-cursor").removeClass("cursor-icon");
         $(".custom-cursor").css("width", "6px !important");  // Restore the default system cursor
         $(this).css("cursor", "");  // Restore the default system cursor
+        $(".cursor-play-icon").css("visibility", "hidden");  // Hide the .cursor-carat again
+        $(".cursor-play-icon").css("display", "none");  // Hide the .cursor-carat again
 
         var $image = $(this).find(".gallery14_image");
         var $video = $(this).find("video").get(0);        
