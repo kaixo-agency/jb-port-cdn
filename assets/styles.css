@@ -317,7 +317,7 @@ svg path{
   line-height:1.25rem;
 }
 .avatar span{
-  color:green;
+  color:#0ACF83;
 }
 .avatar span::before{
   content:"•";
