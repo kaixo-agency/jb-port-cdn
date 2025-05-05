@@ -320,6 +320,9 @@ svg path{
   color:green;
   padding-left:10px;
 }
+.avatar span::before{
+  content:"•";
+}
 
 .no-cursor {
   cursor: none !important;
