@@ -318,6 +318,7 @@ svg path{
 }
 .avatar span{
   color:green;
+  padding-left:20px;
 }
 
 .no-cursor {
