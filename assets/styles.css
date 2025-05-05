@@ -355,6 +355,7 @@ body.force-hide-cursor {
 .cursor-play-icon, .cursor-next-icon, .cursor-prev-icon{
   visibility: hidden;
   display:none;
+  height:22px;
 }
 .w-background-video > video {
   object-fit: cover;
