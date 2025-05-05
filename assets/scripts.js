@@ -412,6 +412,7 @@ $(document).ready(function () {
 
     $(".has-video").on("click", function () {
         $(".custom-cursor").removeClass("cursor-icon");
+        $(".custom-cursor").removeClass("tooltip");
         $(".custom-cursor").css("width", "6px !important");  // Restore the default system cursor
         $(this).css("cursor", "");  // Restore the default system cursor
         $(".cursor-play-icon").css("visibility", "hidden");  // Hide the .cursor-carat again
