@@ -345,7 +345,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-
     $(".has-video").on("mouseenter", function () {
         $(".custom-cursor").addClass("cursor-icon");
         //$(".cursor-carat").css("visibility", "visible");  // Make the .cursor-carat visible
@@ -391,9 +390,7 @@ $(document).ready(function () {
         $(this).css("cursor", "");  // Restore the default system cursor
     });
 
-    $(".has-video").on("mouseenter", function () {
-        $(".custom-cursor").addClass("tooltip cursor-text-visible");
-    });
+    
 
     $(".has-video").on("mouseleave", function () {
         $(".custom-cursor").removeClass("tooltip cursor-text-visible");
