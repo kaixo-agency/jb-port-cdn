@@ -229,7 +229,7 @@ html {
 
 
 /* Scale effect */
-.cursor-scale {
+.cursor-scale, .cursor-scale-dark {
   width: 78px !important;
   height: 78px !important;
   top: -39px;
@@ -239,6 +239,9 @@ html {
   cursor:none;
   background-color: var(--base-color-brand--fuscia) !important;
   opacity:.25;
+}
+.cursor-scale-dark{
+  background-color: var(--base-color-brand--slate-dark) !important;
 }
 
 
