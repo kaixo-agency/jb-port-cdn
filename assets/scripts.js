@@ -266,6 +266,11 @@ $(document).ready(function () {
     }).on("mouseleave", function () {
         $(".custom-cursor").removeClass("cursor-scale");
     });
+    $(".cursor-hover-dark").on("mouseenter", function () {
+        $(".custom-cursor").addClass("cursor-scale-dark");
+    }).on("mouseleave", function () {
+        $(".custom-cursor").removeClass("cursor-scale-dark");
+    });
 
     $("[cursor-label]").on("mouseenter", function () {
         var label = $(this).attr("cursor-label");
