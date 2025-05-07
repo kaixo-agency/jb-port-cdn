@@ -1,6 +1,7 @@
 html {
     scroll-behavior: auto !important;
     overflow-x: hidden;
+    overflow-y: scroll;
     }
     ::selection {
       background-color: var(--base-color-brand--fuscia) !important;
