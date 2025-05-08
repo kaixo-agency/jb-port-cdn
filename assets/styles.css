@@ -435,13 +435,13 @@ body.force-hide-cursor {
 .navbar1_component {
   transition: transform 0.4s ease-in-out;
 }
-.navbar1_logo-link svg path, .menu-icon svg path {
+.navbar1_logo-link svg path, .menu-icon div {
   fill: var(--base-color-brand--grey-medium) !important;
   transition: fill 1s ease !important;
 }
 
 /* Hover state */
-.navbar1_logo-link:hover svg path, .menu-icon:hover svg path {
+.navbar1_logo-link:hover svg path, .menu-icon:hover div {
   fill: var(--base-color-brand--grey-dark) !important;
 }
 .nav-wrapper{
