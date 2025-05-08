@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     observer.observe(target);
   });
+  
 // H1 Text effect 
 
 $(document).ready(function () {
