@@ -408,26 +408,32 @@ $(document).ready(function () {
     });
     
 
-    $(".gallery14_mask").on("mouseleave", function() {
-        // Find the video within this gallery mask
-        var $video = $(this).find(".has-video video").get(0);
-        var $image = $(this).find(".has-video .gallery14_image");
+    $(".has-video").on("mouseleave", function(event) {
+        // Check if we're moving to one of the navigation buttons
+        var $relatedTarget = $(event.relatedTarget);
         
-        // Remove cursor class
-        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
-        
-        // Pause the video immediately
-        if ($video) {
-            $video.pause();
-            
-            // Wait 0.5s, then fade in the image over 0.5s
-            setTimeout(function() {
-                $image.stop().animate({ opacity: 1 }, 500, function() {
-                    // Reset video time after the fade-in is complete
-                    $video.currentTime = 0;
-                });
-            }, 500);
+        // Check if the element we're moving to (or any of its parents) is a navigation button
+        if ($relatedTarget.closest(".is-centre-previous, .is-centre-next").length > 0) {
+            // If moving to navigation buttons, don't trigger the pause/fade effect
+            return;
         }
+        
+        // Original code - only executes if we're not moving to navigation buttons
+        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+    
+        var $image = $(this).find(".gallery14_image");
+        var $video = $(this).find("video").get(0);
+    
+        // Pause the video immediately
+        $video.pause();
+        
+        // Wait 0.5s, then fade in the image over 1s
+        setTimeout(function() {
+            $image.stop().animate({ opacity: 1 }, 500, function() {
+                // Reset video time **only after** the fade-in is complete
+                $video.currentTime = 0;
+            });
+        }, 500);
     });
 
     $(".has-video").on("click", function () {
