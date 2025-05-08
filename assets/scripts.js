@@ -192,6 +192,13 @@ $(document).ready(function () {
         }
     }
     
+    // Bind the function to the scroll and resize events
+    $(window).on("scroll resize", checkSection);
+    
+    // Call the function on initial page load to check the state
+    $(document).ready(checkSection);
+    
+    
     
 
     $(window).on("scroll", checkSection);
