@@ -408,7 +408,7 @@ $(document).ready(function () {
     });
     
 
-    $(".has-video").on("mouseleave", function () {
+    $(".gallery14_mask").on("mouseleave", function () {
         $(".custom-cursor").removeClass("tooltip cursor-text-visible");
 
         var $image = $(this).find(".gallery14_image");
