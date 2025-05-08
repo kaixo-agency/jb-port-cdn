@@ -408,44 +408,27 @@ $(document).ready(function () {
     });
     
 
-    // Instead of watching mouseleave on .has-video
-// Let's watch mouseenter/mouseleave on the parent container
-$(".gallery14_mask").on("mouseenter", function() {
-    // Find the video within this gallery mask
-    var $video = $(this).find(".has-video video").get(0);
-    var $image = $(this).find(".has-video .gallery14_image");
-    
-    // Play video and hide image
-    if ($video) {
-        $video.play();
-        $image.stop().animate({ opacity: 0 }, 500);
-    }
-    
-    // Add your cursor class if needed
-    $(".custom-cursor").addClass("tooltip cursor-text-visible");
-});
-
-$(".gallery14_mask").on("mouseleave", function() {
-    // Find the video within this gallery mask
-    var $video = $(this).find(".has-video video").get(0);
-    var $image = $(this).find(".has-video .gallery14_image");
-    
-    // Remove cursor class
-    $(".custom-cursor").removeClass("tooltip cursor-text-visible");
-    
-    // Pause the video immediately
-    if ($video) {
-        $video.pause();
+    $(".gallery14_mask").on("mouseleave", function() {
+        // Find the video within this gallery mask
+        var $video = $(this).find(".has-video video").get(0);
+        var $image = $(this).find(".has-video .gallery14_image");
         
-        // Wait 0.5s, then fade in the image over 0.5s
-        setTimeout(function() {
-            $image.stop().animate({ opacity: 1 }, 500, function() {
-                // Reset video time after the fade-in is complete
-                $video.currentTime = 0;
-            });
-        }, 500);
-    }
-});
+        // Remove cursor class
+        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+        
+        // Pause the video immediately
+        if ($video) {
+            $video.pause();
+            
+            // Wait 0.5s, then fade in the image over 0.5s
+            setTimeout(function() {
+                $image.stop().animate({ opacity: 1 }, 500, function() {
+                    // Reset video time after the fade-in is complete
+                    $video.currentTime = 0;
+                });
+            }, 500);
+        }
+    });
 
     $(".has-video").on("click", function () {
         $(".custom-cursor").removeClass("cursor-icon");
