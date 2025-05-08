@@ -435,13 +435,20 @@ body.force-hide-cursor {
 .navbar1_component {
   transition: transform 0.4s ease-in-out;
 }
-.navbar1_logo-link svg path, .menu-icon div {
+.navbar1_logo-link svg path {
   fill: var(--base-color-brand--grey-medium) !important;
   transition: fill 1s ease !important;
 }
-
 /* Hover state */
-.navbar1_logo-link:hover svg path, .menu-icon:hover div {
+.navbar1_logo-link:hover svg path {
+  fill: var(--base-color-brand--grey-dark) !important;
+}
+.menu-icon div {
+  fill: var(--base-color-brand--grey-medium) !important;
+  transition: fill 1s ease !important;
+}
+/* Hover state */
+.menu-icon:hover div {
   fill: var(--base-color-brand--grey-dark) !important;
 }
 .nav-wrapper{
