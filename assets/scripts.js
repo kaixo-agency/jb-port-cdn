@@ -144,15 +144,16 @@ $(document).ready(function () {
 
             if (scrollTop + navbarHeight >= offsetTop && scrollTop < offsetTop + sectionHeight) {
                 isDarkMode = true;
-                $(".keep-scrolling").addClass("visible");
                 return false;
             }
         });
 
         if (isDarkMode) {
             applyDarkMode();
+            $(".keep-scrolling").addClass("visible");
         } else {
             applyLightMode();
+            $(".keep-scrolling").removeClass("visible");
         }
     }
 
