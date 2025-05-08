@@ -159,40 +159,39 @@ $(document).ready(function () {
         var scrollTop = $(window).scrollTop();
         var windowHeight = $(window).height();
     
-        var isCaseStudiesFullyInView = false;
-        var otherSectionVisible = false;
-    
-        // Get viewport boundaries
         var viewportTop = scrollTop;
         var viewportBottom = scrollTop + windowHeight;
     
+        let caseStudiesInView = false;
+        let anyOtherSectionInView = false;
+    
         // Check if .section_case-studies is in view
         $(".section_case-studies").each(function () {
-            var sectionTop = $(this).offset().top;
-            var sectionBottom = sectionTop + $(this).outerHeight();
+            const sectionTop = $(this).offset().top;
+            const sectionBottom = sectionTop + $(this).outerHeight();
     
             if (sectionBottom > viewportTop && sectionTop < viewportBottom) {
-                isCaseStudiesFullyInView = true;
+                caseStudiesInView = true;
             }
         });
     
-        // Check if ANY other section is visible
+        // Check if any other section intersects the viewport
         $(".section").not(".section_case-studies").each(function () {
-            var sectionTop = $(this).offset().top;
-            var sectionBottom = sectionTop + $(this).outerHeight();
+            const sectionTop = $(this).offset().top;
+            const sectionBottom = sectionTop + $(this).outerHeight();
     
             if (sectionBottom > viewportTop && sectionTop < viewportBottom) {
-                otherSectionVisible = true;
+                anyOtherSectionInView = true;
             }
         });
     
-        // Show/hide .keep-scrolling
-        if (isCaseStudiesFullyInView && !otherSectionVisible) {
+        if (caseStudiesInView && !anyOtherSectionInView) {
             $(".keep-scrolling").addClass("visible");
         } else {
             $(".keep-scrolling").removeClass("visible");
         }
     }
+    
     
 
     $(window).on("scroll", checkSection);
