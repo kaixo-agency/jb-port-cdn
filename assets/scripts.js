@@ -176,7 +176,7 @@ $(document).ready(function () {
             }
         });
     
-        // Check if any section below .section_case-studies is in view
+        // Check if any section after .section_case-studies is in view
         $(".section").not(".section_case-studies").each(function () {
             const sectionTop = $(this).offset().top;
             const sectionBottom = sectionTop + $(this).outerHeight();
@@ -187,13 +187,20 @@ $(document).ready(function () {
             }
         });
     
-        // Show .keep-scrolling only if .section_case-studies is fully visible
+        // Show .keep-scrolling only if .section_case-studies is fully visible and no other section is in view
         if (caseStudiesInView && !nextSectionInView) {
             $(".keep-scrolling").addClass("visible");
         } else {
             $(".keep-scrolling").removeClass("visible");
         }
     }
+    
+    // Bind to scroll and resize events
+    $(window).on("scroll resize", checkSection);
+    
+    // Call on initial load
+    $(document).ready(checkSection);
+    
     
     // Bind to scroll and resize events
     $(window).on("scroll resize", checkSection);
