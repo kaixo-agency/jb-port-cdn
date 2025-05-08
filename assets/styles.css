@@ -7,7 +7,13 @@ html {
       background-color: var(--base-color-brand--fuscia) !important;
       color: white;
     }
-    
+    .keep-scrolling {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .keep-scrolling.visible {
+      opacity: 1;
+    }
     /* For Firefox */
     ::-moz-selection {
       background-color: var(--base-color-brand--fuscia) !important;
