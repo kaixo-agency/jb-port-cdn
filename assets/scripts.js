@@ -408,48 +408,54 @@ $(document).ready(function () {
     });
     
 
-    $(".gallery14_mask").on("mouseleave", function() {
-    // Find the video within this gallery mask
-    var $video = $(this).find(".has-video video").get(0);
-    var $image = $(this).find(".has-video .gallery14_image");
-    
-    // Remove cursor class
-    $(".custom-cursor").removeClass("tooltip cursor-text-visible");
-    
-    // Pause the video immediately
-    if ($video) {
-        $video.pause();
-        
-        // Wait 0.5s, then fade in the image over 0.5s
-        setTimeout(function() {
-            $image.stop().animate({ opacity: 1 }, 500, function() {
-                // Reset video time after the fade-in is complete
-                $video.currentTime = 0;
-            });
-        }, 500);
-    }
-});
-
-    $(".has-video").on("click", function () {
-        $(".custom-cursor").removeClass("cursor-icon");
-        $(".custom-cursor").removeClass("tooltip");
-        $(".custom-cursor").css("width", "6px !important");  // Restore the default system cursor
-        $(this).css("cursor", "");  // Restore the default system cursor
-        $(".cursor-play-icon").css("visibility", "hidden");  // Hide the .cursor-carat again
-        $(".cursor-play-icon").css("display", "none");  // Hide the .cursor-carat again
-
-        var $image = $(this).find(".gallery14_image");
-        var $video = $(this).find("video").get(0);        
-
-        // Fade out image over 1s
-        $image.stop().animate({ opacity: 0 }, 1000, function () {
-            // Wait 1 second before playing the video
-            setTimeout(function () {
-                $video.play();
-            }, 1000);
+    $(document).ready(function() {
+        // Handle mouseleave from gallery14_mask (container)
+        $(".gallery14_mask").on("mouseleave", function() {
+            // Find the video within this gallery mask
+            var $video = $(this).find(".has-video video").get(0);
+            var $image = $(this).find(".has-video .gallery14_image");
+            
+            // Remove cursor class
+            $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+            
+            // Pause the video immediately
+            if ($video) {
+                $video.pause();
+                
+                // Wait 0.5s, then fade in the image over 0.5s
+                setTimeout(function() {
+                    $image.stop().animate({ opacity: 1 }, 500, function() {
+                        // Reset video time after the fade-in is complete
+                        $video.currentTime = 0;
+                    });
+                }, 500);
+            }
         });
+    
+        // Handle click on has-video
+        $(".has-video").on("click", function() {
+            $(".custom-cursor").removeClass("cursor-icon tooltip");
+            $(".custom-cursor").css("width", "6px !important");  // Restore the default system cursor
+            $(this).css("cursor", "");  // Restore the default system cursor
+            $(".cursor-play-icon").css("visibility", "hidden");  // Hide the .cursor-carat again
+            $(".cursor-play-icon").css("display", "none");  // Hide the .cursor-carat again
+    
+            var $image = $(this).find(".gallery14_image");
+            var $video = $(this).find("video").get(0);        
+    
+            // Fade out image over 1s
+            $image.stop().animate({ opacity: 0 }, 1000, function() {
+                // Wait 1 second before playing the video
+                setTimeout(function() {
+                    $video.play();
+                }, 1000);
+            });
+        });
+    
+        // We might also want to ensure the original has-video mouseleave is removed
+        // to prevent any conflicting behavior
+        $(".has-video").off("mouseleave");
     });
-});
 
 
 window.addEventListener("scroll", function () {
