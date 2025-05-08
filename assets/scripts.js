@@ -408,42 +408,14 @@ $(document).ready(function () {
     });
     
 
-    // Keep the original mouseleave handler on .has-video, but with the button exception
-$(".has-video").on("mouseleave", function(event) {
-    // Check if we're moving to one of the navigation buttons
-    var $relatedTarget = $(event.relatedTarget);
+    $(".gallery14_mask").on("mouseleave", function() {
+    // Find the video within this gallery mask
+    var $video = $(this).find(".has-video video").get(0);
+    var $image = $(this).find(".has-video .gallery14_image");
     
-    // Check if the element we're moving to (or any of its parents) is a navigation button
-    if ($relatedTarget.closest(".is-centre-previous, .is-centre-next").length > 0) {
-        // If moving to navigation buttons, don't trigger the pause/fade effect
-        return;
-    }
-    
-    stopVideoAndFadeImage(this);
-});
-
-// Add mouseleave handlers to the navigation buttons
-$(".is-centre-previous, .is-centre-next").on("mouseleave", function(event) {
-    // Check if we're moving to the video or another navigation button
-    var $relatedTarget = $(event.relatedTarget);
-    
-    // Only stop the video if we're not moving to another navigation button or the video itself
-    if ($relatedTarget.closest(".has-video, .is-centre-previous, .is-centre-next").length === 0) {
-        // Find the associated video container
-        var $videoContainer = $(this).closest(".gallery14_mask").find(".has-video");
-        
-        // Stop the video and fade in the image
-        stopVideoAndFadeImage($videoContainer);
-    }
-});
-
-// Function to stop video and fade in image
-function stopVideoAndFadeImage(videoContainer) {
+    // Remove cursor class
     $(".custom-cursor").removeClass("tooltip cursor-text-visible");
-
-    var $image = $(videoContainer).find(".gallery14_image");
-    var $video = $(videoContainer).find("video").get(0);
-
+    
     // Pause the video immediately
     if ($video) {
         $video.pause();
@@ -456,7 +428,7 @@ function stopVideoAndFadeImage(videoContainer) {
             });
         }, 500);
     }
-}
+});
 
     $(".has-video").on("click", function () {
         $(".custom-cursor").removeClass("cursor-icon");
