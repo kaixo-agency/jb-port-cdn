@@ -408,33 +408,55 @@ $(document).ready(function () {
     });
     
 
-    $(".has-video").on("mouseleave", function(event) {
-        // Check if we're moving to one of the navigation buttons
-        var $relatedTarget = $(event.relatedTarget);
-        
-        // Check if the element we're moving to (or any of its parents) is a navigation button
-        if ($relatedTarget.closest(".is-centre-previous, .is-centre-next").length > 0) {
-            // If moving to navigation buttons, don't trigger the pause/fade effect
-            return;
-        }
-        
-        // Original code - only executes if we're not moving to navigation buttons
-        $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+    // Keep the original mouseleave handler on .has-video, but with the button exception
+$(".has-video").on("mouseleave", function(event) {
+    // Check if we're moving to one of the navigation buttons
+    var $relatedTarget = $(event.relatedTarget);
     
-        var $image = $(this).find(".gallery14_image");
-        var $video = $(this).find("video").get(0);
+    // Check if the element we're moving to (or any of its parents) is a navigation button
+    if ($relatedTarget.closest(".is-centre-previous, .is-centre-next").length > 0) {
+        // If moving to navigation buttons, don't trigger the pause/fade effect
+        return;
+    }
     
-        // Pause the video immediately
+    stopVideoAndFadeImage(this);
+});
+
+// Add mouseleave handlers to the navigation buttons
+$(".is-centre-previous, .is-centre-next").on("mouseleave", function(event) {
+    // Check if we're moving to the video or another navigation button
+    var $relatedTarget = $(event.relatedTarget);
+    
+    // Only stop the video if we're not moving to another navigation button or the video itself
+    if ($relatedTarget.closest(".has-video, .is-centre-previous, .is-centre-next").length === 0) {
+        // Find the associated video container
+        var $videoContainer = $(this).closest(".gallery14_mask").find(".has-video");
+        
+        // Stop the video and fade in the image
+        stopVideoAndFadeImage($videoContainer);
+    }
+});
+
+// Function to stop video and fade in image
+function stopVideoAndFadeImage(videoContainer) {
+    $(".custom-cursor").removeClass("tooltip cursor-text-visible");
+
+    var $image = $(videoContainer).find(".gallery14_image");
+    var $video = $(videoContainer).find("video").get(0);
+
+    // Pause the video immediately
+    if ($video) {
         $video.pause();
         
-        // Wait 0.5s, then fade in the image over 1s
+        // Wait 0.5s, then fade in the image over 0.5s
         setTimeout(function() {
             $image.stop().animate({ opacity: 1 }, 500, function() {
-                // Reset video time **only after** the fade-in is complete
+                // Reset video time after the fade-in is complete
                 $video.currentTime = 0;
             });
         }, 500);
-    });
+    }
+}
 
     $(".has-video").on("click", function () {
         $(".custom-cursor").removeClass("cursor-icon");
