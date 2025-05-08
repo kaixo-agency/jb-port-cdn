@@ -435,7 +435,7 @@ body.force-hide-cursor {
 .navbar1_component {
   transition: transform 0.4s ease-in-out;
 }
-.navbar1_logo-link:hover{
+.navbar1_logo-link:hover, .menu-icon:hover{
   background-color: #dbebea33;
 }
 .navbar1_logo-link svg path {
