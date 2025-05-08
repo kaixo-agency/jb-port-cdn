@@ -1,6 +1,3 @@
-
-
-  
 // Create an Intersection Observer to detect when the section is at the top of the viewport
 var section = document.querySelector('.section_case-studies');
 
@@ -20,6 +17,27 @@ var observer = new IntersectionObserver(function(entries, observer) {
 
 observer.observe(section);
 
+document.addEventListener("DOMContentLoaded", function () {
+    const target = document.getElementById("section_case-studies");
+    const keepScrolling = document.querySelector(".keep-scrolling");
+
+    if (!target || !keepScrolling) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            keepScrolling.classList.add("visible");
+          } else {
+            keepScrolling.classList.remove("visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(target);
+  });
 
 // H1 Text effect 
 
