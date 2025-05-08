@@ -163,41 +163,51 @@ $(document).ready(function () {
         var viewportBottom = scrollTop + windowHeight;
     
         let caseStudiesInView = false;
-        let anyOtherSectionInView = false;
+        let nextSectionInView = false;
     
         // Check if .section_case-studies is in view
         $(".section_case-studies").each(function () {
             const sectionTop = $(this).offset().top;
             const sectionBottom = sectionTop + $(this).outerHeight();
     
+            // Check if any part of .section_case-studies is in the viewport
             if (sectionBottom > viewportTop && sectionTop < viewportBottom) {
                 caseStudiesInView = true;
             }
         });
     
-        // Check if any other section intersects the viewport
+        // Check if any section below .section_case-studies is in view
         $(".section").not(".section_case-studies").each(function () {
             const sectionTop = $(this).offset().top;
             const sectionBottom = sectionTop + $(this).outerHeight();
     
+            // If any part of the next section enters the viewport, set nextSectionInView to true
             if (sectionBottom > viewportTop && sectionTop < viewportBottom) {
-                anyOtherSectionInView = true;
+                nextSectionInView = true;
             }
         });
     
-        if (caseStudiesInView && !anyOtherSectionInView) {
+        // Show .keep-scrolling only if .section_case-studies is fully visible
+        if (caseStudiesInView && !nextSectionInView) {
             $(".keep-scrolling").addClass("visible");
         } else {
             $(".keep-scrolling").removeClass("visible");
         }
     }
     
-    // Bind the function to the scroll and resize events
+    // Bind to scroll and resize events
     $(window).on("scroll resize", checkSection);
     
-    // Call the function on initial page load to check the state
+    // Call on initial load
     $(document).ready(checkSection);
     
+
+// Bind the function to the scroll and resize events
+$(window).on("scroll resize", checkSection);
+
+// Call the function on initial page load to check the state
+$(document).ready(checkSection);
+
     
     
 
