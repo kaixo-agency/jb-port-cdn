@@ -436,13 +436,13 @@ body.force-hide-cursor {
   transition: transform 0.4s ease-in-out;
 }
 .navbar1_logo-link svg path {
-  fill: var(--base-color-brand--grey-medium);
+  fill: var(--base-color-brand--grey-medium) !important;
   transition: fill 0.3s ease;
 }
 
 /* Hover state */
 .navbar1_logo-link:hover svg path {
-  fill: var(--base-color-brand--slate-light) !important;
+  fill: var(--base-color-brand--grey-dark) !important;
 }
 .nav-wrapper{
   border-bottom:1px solid var(--base-color-neutral--neutral-lightest) !important;
