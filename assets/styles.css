@@ -444,12 +444,12 @@ body.force-hide-cursor {
   fill: var(--base-color-brand--grey-dark) !important;
 }
 .menu-icon div {
-  fill: var(--base-color-brand--grey-medium) !important;
+  background: var(--base-color-brand--grey-medium) !important;
   transition: fill 1s ease !important;
 }
 /* Hover state */
 .menu-icon:hover div {
-  fill: var(--base-color-brand--grey-dark) !important;
+  background: var(--base-color-brand--grey-dark) !important;
 }
 .nav-wrapper{
   border-bottom:1px solid var(--base-color-neutral--neutral-lightest) !important;
