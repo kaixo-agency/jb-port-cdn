@@ -154,7 +154,59 @@ $(document).ready(function () {
             applyLightMode();
         }
     }
+
     
+
+
+
+    function checkSection() {
+        var scrollTop = $(window).scrollTop();
+        var windowHeight = $(window).height();
+    
+        var viewportTop = scrollTop;
+        var viewportBottom = scrollTop + windowHeight;
+    
+        let caseStudiesInView = false;
+        let otherSectionsInView = false;
+    
+        // Check if .section_case-studies is the only section in the viewport
+        $(".section_case-studies").each(function () {
+            const sectionTop = $(this).offset().top;
+            const sectionBottom = sectionTop + $(this).outerHeight();
+    
+            // Check if any part of .section_case-studies is in the viewport
+            if (sectionBottom > viewportTop && sectionTop < viewportBottom) {
+                caseStudiesInView = true;
+            }
+        });
+    
+        // Check if any other section is in the viewport
+        $(".section").not(".section_case-studies").each(function () {
+            const sectionTop = $(this).offset().top;
+            const sectionBottom = sectionTop + $(this).outerHeight();
+    
+            // If any part of another section is in the viewport, set otherSectionsInView to true
+            if (sectionBottom > viewportTop && sectionTop < viewportBottom) {
+                otherSectionsInView = true;
+            }
+        });
+    
+        // Show .keep-scrolling only if .section_case-studies is the only section in view
+        if (caseStudiesInView && !otherSectionsInView) {
+            $(".keep-scrolling").addClass("visible");
+        } else {
+            $(".keep-scrolling").removeClass("visible");
+        }
+    }
+    
+    // Bind to scroll and resize events
+    $(window).on("scroll resize", checkSection);
+    
+    // Call on initial load
+    $(document).ready(checkSection);
+    
+
+
     
 
     $(window).on("scroll", checkSection);
