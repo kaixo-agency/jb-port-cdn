@@ -18,7 +18,7 @@ var observer = new IntersectionObserver(function(entries, observer) {
 observer.observe(section);
 
 document.addEventListener("DOMContentLoaded", function () {
-    const target = document.getElementById("section_case-studies");
+    const target = document.querySelector(".section_case-studies");
     const keepScrolling = document.querySelector(".keep-scrolling");
 
     if (!target || !keepScrolling) return;
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     observer.observe(target);
   });
-
+  
 // H1 Text effect 
 
 $(document).ready(function () {
