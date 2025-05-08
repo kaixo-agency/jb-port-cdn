@@ -17,23 +17,6 @@ var observer = new IntersectionObserver(function(entries, observer) {
 
 observer.observe(section);
 
-const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        console.log('Observer fired:', entry); // <-- log each entry
-        if (entry.isIntersecting) {
-          keepScrolling.classList.add("visible");
-          console.log('Fade in');
-        } else {
-          keepScrolling.classList.remove("visible");
-          console.log('Fade out');
-        }
-      });
-    },
-    {
-      threshold: 0.1
-    }
-  );
 
 // H1 Text effect 
 
