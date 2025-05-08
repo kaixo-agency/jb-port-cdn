@@ -145,6 +145,7 @@ $(document).ready(function () {
             if (scrollTop + navbarHeight >= offsetTop && scrollTop < offsetTop + sectionHeight) {
                 isDarkMode = true;
                 return false;
+                $(".keep-scrolling").addClass("visible");
             }
         });
 
