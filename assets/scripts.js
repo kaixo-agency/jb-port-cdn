@@ -17,28 +17,24 @@ var observer = new IntersectionObserver(function(entries, observer) {
 
 observer.observe(section);
 
-document.addEventListener("DOMContentLoaded", function () {
-    const target = document.querySelector(".section_case-studies");
-    const keepScrolling = document.querySelector(".keep-scrolling");
+const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        console.log('Observer fired:', entry); // <-- log each entry
+        if (entry.isIntersecting) {
+          keepScrolling.classList.add("visible");
+          console.log('Fade in');
+        } else {
+          keepScrolling.classList.remove("visible");
+          console.log('Fade out');
+        }
+      });
+    },
+    {
+      threshold: 0.1
+    }
+  );
 
-    if (!target || !keepScrolling) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            keepScrolling.classList.add("visible");
-          } else {
-            keepScrolling.classList.remove("visible");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(target);
-  });
-  
 // H1 Text effect 
 
 $(document).ready(function () {
