@@ -446,7 +446,7 @@ body.force-hide-cursor {
 .navbar1_logo-link:hover svg path {
   fill: var(--base-color-brand--grey-dark) !important;
 }
-.menu-icon div {
+.navbar1_menu-button .menu-icon div {
   background: var(--base-color-brand--grey-medium) !important;
   transition: fill 1s ease !important;
 }
