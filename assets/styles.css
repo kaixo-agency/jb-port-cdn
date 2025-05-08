@@ -442,7 +442,7 @@ body.force-hide-cursor {
 
 /* Hover state */
 .navbar1_logo-link:hover svg path {
-  fill: var(--base-color-brand--slate-dark) !important;
+  fill: var(--base-color-brand--slate-medium) !important;
 }
 .nav-wrapper{
   border-bottom:1px solid var(--base-color-neutral--neutral-lightest) !important;
