@@ -934,8 +934,8 @@ $(document).ready(function () {
       }
 
       // Step 4: Finally, reveal the section after animations
-      $section.css({
+      $section.animate({
         opacity: 1
-      });
+      }, 600);
     }
   });
