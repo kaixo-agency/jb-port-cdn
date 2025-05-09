@@ -891,7 +891,7 @@ function debugLog(message) {
     function detectAvailableClasses() {
       debugLog('Checking for available elements on the page...');
       
-      // Look for each class individually
+      // Look for each class individually or similar classes
       const taglines = document.querySelectorAll('.text-style-tagline');
       debugLog(`Found ${taglines.length} elements with class 'text-style-tagline'`);
       
@@ -900,108 +900,96 @@ function debugLog(message) {
       
       const paragraphs = document.querySelectorAll('.text-style-medium');
       debugLog(`Found ${paragraphs.length} elements with class 'text-style-medium'`);
-      
-      // Check for similar class names (in case of typos or different naming conventions)
-      document.querySelectorAll('[class*="tagline"]').forEach(el => {
-        debugLog(`Possible tagline alternative: ${el.className}`);
-      });
-      
-      document.querySelectorAll('[class*="heading"]').forEach(el => {
-        debugLog(`Possible heading alternative: ${el.className}`);
-      });
-      
-      document.querySelectorAll('[class*="text"]').forEach(el => {
-        debugLog(`Possible text alternative: ${el.className}`);
-      });
     }
     
     // Run detection immediately
     detectAvailableClasses();
   
-    // Now, let's define a more flexible approach to find and observe relevant sections
-    function findAndObserveSections() {
-      debugLog('Finding sections to observe with more flexible detection');
-      
-      // Get all containers that might be relevant
-      const containers = document.querySelectorAll('section, div, article');
-      debugLog(`Found ${containers.length} potential containers`);
-      
-      let observedCount = 0;
-      
-      // Initialize Intersection Observer with lower threshold for easier triggering
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          debugLog(`Container intersection: ${entry.isIntersecting}`);
-          
-          if (entry.isIntersecting) {
-            const container = entry.target;
-            animateContainer(container);
-            observer.unobserve(container);
-          }
-        });
-      }, {
-        threshold: 0.2,
-        rootMargin: '0px 0px -10% 0px'
+    // Define class targets more precisely
+    const taglineSelectors = ['.text-style-tagline'];
+    const headingSelectors = ['.heading-style-h2'];
+    const paragraphSelectors = ['.text-style-medium'];
+  
+    // Initialize Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          debugLog(`Section intersection detected`);
+          const section = entry.target;
+          animateSection(section);
+          observer.unobserve(section);
+        }
       });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -10% 0px'
+    });
+  
+    // Function to animate a section
+    function animateSection(section) {
+      debugLog(`Animating section: ${section.className || section.tagName}`);
       
-      // Function to animate any container with interesting content
-      function animateContainer(container) {
-        debugLog(`Animating container: ${container.className}`);
-        
-        // Find elements - using more flexible selectors
-        const taglines = container.querySelectorAll('.text-style-tagline, [class*="tagline"]');
-        const headings = container.querySelectorAll('.heading-style-h2, h2, [class*="heading"]');
-        const paragraphs = container.querySelectorAll('.text-style-medium, p, [class*="text-style"]');
-        
-        debugLog(`Found in container: ${taglines.length} taglines, ${headings.length} headings, ${paragraphs.length} paragraphs`);
-        
-        // Animate taglines
-        taglines.forEach((tagline, i) => {
+      // Find target elements using our precise selectors
+      const taglines = findElements(section, taglineSelectors);
+      const headings = findElements(section, headingSelectors);
+      const paragraphs = findElements(section, paragraphSelectors);
+      
+      debugLog(`Found in section: ${taglines.length} taglines, ${headings.length} headings, ${paragraphs.length} paragraphs`);
+      
+      // Only proceed if we have at least one of each type of element
+      if (taglines.length > 0 && headings.length > 0 && paragraphs.length > 0) {
+        // Animate taglines - fade in
+        taglines.forEach(tagline => {
+          // Set initial state
           tagline.style.opacity = '0';
           tagline.style.transition = `opacity ${fadeInDuration}ms`;
           
+          // Trigger animation
           setTimeout(() => {
             tagline.style.opacity = '1';
-          }, 100 + (i * 100));
+          }, 100);
         });
         
-        // Animate headings
-        headings.forEach((heading, i) => {
+        // Animate headings - type out
+        headings.forEach(heading => {
+          // Store and clear text
           const originalText = heading.textContent;
           heading.setAttribute('data-original-text', originalText);
           heading.textContent = '';
           
+          // Start typing animation after tagline starts fading in
           setTimeout(() => {
             typeWord(heading, originalText, 0);
-          }, 500 + (i * 200));
+          }, fadeInDuration * 0.3);
         });
         
-        // Animate paragraphs
-        paragraphs.forEach((paragraph, i) => {
-          paragraph.style.opacity = '0';
-          paragraph.style.transform = `translateY(${slideDistance}px)`;
-          paragraph.style.transition = `opacity ${fadeInDuration}ms, transform ${fadeInDuration}ms`;
-          
-          setTimeout(() => {
-            paragraph.style.opacity = '1';
-            paragraph.style.transform = 'translateY(0)';
-          }, 800 + (i * staggerDelay));
-        });
+        // Animate paragraphs - fade in and slide up
+        initializeParagraphs(paragraphs);
+        
+        // Start paragraph animations after heading starts typing
+        setTimeout(() => {
+          animateParagraphs(paragraphs, 0);
+        }, fadeInDuration * 0.6);
       }
-      
-      // Check each container
-      containers.forEach(container => {
-        // If it has any content that could be animated, observe it
-        const hasContent = 
-          container.querySelector('.text-style-tagline, [class*="tagline"], .heading-style-h2, h2, [class*="heading"], .text-style-medium, p, [class*="text-style"]');
-        
-        if (hasContent) {
-          observer.observe(container);
-          observedCount++;
-        }
+    }
+    
+    // Helper function to find elements using multiple possible selectors
+    function findElements(container, selectors) {
+      let elements = [];
+      selectors.forEach(selector => {
+        const found = container.querySelectorAll(selector);
+        elements = elements.concat(Array.from(found));
       });
-      
-      debugLog(`Observing ${observedCount} containers with potentially animatable content`);
+      return elements;
+    }
+    
+    // Set initial state for paragraphs
+    function initializeParagraphs(paragraphs) {
+      paragraphs.forEach(paragraph => {
+        paragraph.style.opacity = '0';
+        paragraph.style.transform = `translateY(${slideDistance}px)`;
+        paragraph.style.transition = `opacity ${fadeInDuration}ms, transform ${fadeInDuration}ms`;
+      });
     }
     
     // Function to type out text character by character
@@ -1014,6 +1002,48 @@ function debugLog(message) {
       }
     }
     
+    // Function to animate paragraphs with staggered delay
+    function animateParagraphs(paragraphs, index) {
+      if (index < paragraphs.length) {
+        const paragraph = paragraphs[index];
+        paragraph.style.opacity = '1';
+        paragraph.style.transform = 'translateY(0)';
+        
+        setTimeout(() => {
+          animateParagraphs(paragraphs, index + 1);
+        }, staggerDelay);
+      }
+    }
+    
+    // Function to find and observe sections that contain all required elements
+    function findAndObserveSections() {
+      debugLog('Finding sections to observe');
+      
+      // Get all containers that might be relevant
+      const containers = document.querySelectorAll('section, div, article');
+      let sectionsFound = 0;
+      
+      containers.forEach(container => {
+        // Check if this container has at least one of each required element
+        const hasTagline = findElements(container, taglineSelectors).length > 0;
+        const hasHeading = findElements(container, headingSelectors).length > 0;
+        const hasParagraphs = findElements(container, paragraphSelectors).length > 0;
+        
+        if (hasTagline && hasHeading && hasParagraphs) {
+          debugLog(`Found matching section: ${container.id || container.className || container.tagName}`);
+          observer.observe(container);
+          sectionsFound++;
+        }
+      });
+      
+      debugLog(`Total sections being observed: ${sectionsFound}`);
+      
+      // If no sections were found, try again shortly
+      if (sectionsFound === 0) {
+        setTimeout(findAndObserveSections, 1000);
+      }
+    }
+    
     // Start the process
-    setTimeout(findAndObserveSections, 500);
+    findAndObserveSections();
   })();
