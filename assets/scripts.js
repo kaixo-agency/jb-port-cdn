@@ -872,57 +872,78 @@ document.addEventListener('mouseout', function (e) {
 
 
 
-function animateIntro($section) {
-    const $tagline = $section.find('.text-style-tagline').first();
-    const $heading = $section.find('.heading-style-h2').first();
-    const $para = $section.find('.text-size-medium').first();
+$(document).ready(function () {
+    const typingSpeed = 50; // Adjust typing speed as needed
+    const animationDelay = 200; // Delay between each element's animation
   
-    let animations = [];
-  
-    // Step 1: Fade in tagline if present
-    if ($tagline.length) {
-      const taglineAnimation = $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600).promise();
-      animations.push(taglineAnimation);
+    // Function to type out text
+    function typeText($element, text, index) {
+      if (index < text.length) {
+        $element.text(text.substring(0, index + 1));
+        setTimeout(() => typeText($element, text, index + 1), typingSpeed);
+      }
     }
   
-    // Step 2: Type out the heading if present
-    let headingAnimationPromise = $.Deferred().resolve().promise(); // Default resolved promise
-    if ($heading.length) {
-      const fullText = $heading.text().replace(/\n/g, '').trim();
-      $heading.html('&nbsp;'); // prevent collapse
+    // Function to animate the intro section
+    function animateIntro($intro) {
+      const $tagline = $intro.find('.text-style-tagline').first();
+      const $heading = $intro.find('.heading-style-h2').first();
+      const $paragraph = $intro.find('.text-size-medium').first();
   
-      function typeText(el, text, i) {
-        if (i <= text.length) {
-          el.html(text.substring(0, i).replace(/\n/g, '<br>'));
-          setTimeout(() => typeText(el, text, i + 1), typingSpeed);
-        }
+      let currentDelay = 0;
+  
+      // 1. Fade in tagline
+      if ($tagline.length) {
+        $tagline.css({ opacity: 0, transform: 'translateY(10px)' })
+          .delay(currentDelay)
+          .animate({ opacity: 1, transform: 'translateY(0)' }, 600, 'ease-out');
+        currentDelay += animationDelay;
       }
   
-      const headingDeferred = $.Deferred();
-      setTimeout(() => {
-        typeText($heading, fullText, 0);
-        // Resolve the deferred when typing is complete (approximately)
-        setTimeout(() => headingDeferred.resolve(), fullText.length * typingSpeed + 100);
-      }, $tagline.length ? 700 : 0);
-      headingAnimationPromise = headingDeferred.promise();
-      animations.push(headingAnimationPromise);
+      // 2. Type out heading
+      if ($heading.length) {
+        const fullText = $heading.text().trim();
+        $heading.text(''); // Clear the heading initially
+        setTimeout(() => {
+          typeText($heading, fullText, 0);
+        }, currentDelay);
+        currentDelay += fullText.length * typingSpeed + animationDelay; // Add typing duration + delay
+      }
+  
+      // 3. Fade in paragraph
+      if ($paragraph.length) {
+        $paragraph.css({ opacity: 0, transform: 'translateY(10px)' })
+          .delay(currentDelay)
+          .animate({ opacity: 1, transform: 'translateY(0)' }, 600, 'ease-out');
+      }
+  
+      // Optionally, you might want to add a class to the intro element
+      // to indicate it has been animated.
+      $intro.addClass('animated');
     }
   
-    // Step 3: Fade in the entire paragraph (no line-by-line animation)
-    let paraAnimationPromise = $.Deferred().resolve().promise(); // Default resolved promise
-    if ($para.length) {
-      const paraDeferred = $.Deferred();
-      $.when(headingAnimationPromise).done(() => { // Ensure it starts after heading
-        $para.css({ opacity: 0, transform: 'translateY(20px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600).promise().done(() => {
-          paraDeferred.resolve();
+    // Set up the Intersection Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const $introElement = $(entry.target);
+            if (!$introElement.hasClass('animated')) { // Only animate once
+              animateIntro($introElement);
+            }
+            // Optionally, unobserve the element after animation if you only want it to run once
+            // observer.unobserve(entry.target);
+          }
         });
-      });
-      paraAnimationPromise = paraDeferred.promise();
-      animations.push(paraAnimationPromise);
-    }
+      },
+      {
+        rootMargin: '0px 0px 0px 0px', // Adjust root margin to trigger at the center
+        threshold: 0.5, // Trigger when 50% of the element is visible
+      }
+    );
   
-    // Step 4: Finally, reveal the section after all animations within it
-    $.when(...animations).done(() => {
-      $section.css({ opacity: 1 });
+    // Observe each intro element
+    $('.intro').each(function () {
+      observer.observe(this);
     });
-  }
+  });
