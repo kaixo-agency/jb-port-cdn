@@ -875,70 +875,60 @@ document.addEventListener('mouseout', function (e) {
 $(document).ready(function () {
     const typingSpeed = 50;
     const animatedSections = new Set();
-
+  
     function typeWord($el, word, i = 0) {
-        if (i < word.length) {
-            $el.text(word.substring(0, i + 1));
-            setTimeout(function () {
-                typeWord($el, word, i + 1);
-            }, typingSpeed);
-        }
+      if (i < word.length) {
+        $el.text(word.substring(0, i + 1));
+        setTimeout(function () {
+          typeWord($el, word, i + 1);
+        }, typingSpeed);
+      }
     }
-
+  
+    function isInViewport($el, threshold = 0.3) {
+      const rect = $el[0].getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+      return visibleHeight > 0 && (visibleHeight / rect.height) >= threshold;
+    }
+  
     function animateSection($section) {
-        if (animatedSections.has($section[0])) return;
-
-        const $tagline = $section.find(".text-style-tagline");
-        const $heading = $section.find(".heading-style-h2");
-        const $mediumTexts = $section.find(".text-style-medium");
-
-        $tagline.hide().fadeIn(600);
-
-        const text = $heading.text().trim();
-        $heading.text("");
-        typeWord($heading, text);
-
-        $mediumTexts.css({ opacity: 0, transform: "translateY(20px)" });
-        $mediumTexts.each(function (index) {
-            $(this).delay(index * 200).animate(
-                { opacity: 1 },
-                {
-                    duration: 500,
-                    step: function (now, fx) {
-                        if (fx.prop === "opacity") {
-                            $(this).css("transform", "translateY(0)");
-                        }
-                    },
-                }
-            );
-        });
-
-        animatedSections.add($section[0]);
+      if (animatedSections.has($section[0])) return;
+      console.log("Animating:", $section[0]);
+  
+      const $tagline = $section.find(".text-style-tagline");
+      const $heading = $section.find(".heading-style-h2");
+      const $mediums = $section.find(".text-style-medium");
+  
+      $tagline.hide().fadeIn(600);
+  
+      const headingText = $heading.text().trim();
+      $heading.text("");
+      typeWord($heading, headingText);
+  
+      $mediums.css({ opacity: 0, transform: "translateY(20px)" });
+      $mediums.each(function (index) {
+        $(this).delay(index * 200).animate({ opacity: 1 }, 500)
+          .queue(function (next) {
+            $(this).css("transform", "translateY(0)");
+            next();
+          });
+      });
+  
+      animatedSections.add($section[0]);
     }
-
-    function isPartiallyInViewport(el, threshold = 0.3) {
-        const rect = el.getBoundingClientRect();
-        const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
-
-        const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-        const totalHeight = rect.height;
-
-        return visibleHeight > 0 && (visibleHeight / totalHeight) >= threshold;
-    }
-
+  
     function checkSections() {
-        $("section").each(function () {
-            const $section = $(this);
-            if (
-                $section.find(".heading-style-h2").length &&
-                $section.find(".text-style-tagline").length &&
-                $section.find(".text-style-medium").length &&
-                isPartiallyInViewport(this, 0.3)
-            ) {
-                animateSection($section);
-            }
-        });
+      $("section").each(function () {
+        const $section = $(this);
+        const hasAll = $section.find(".heading-style-h2").length &&
+                       $section.find(".text-style-tagline").length &&
+                       $section.find(".text-style-medium").length;
+        if (hasAll && isInViewport($section)) {
+          animateSection($section);
+        }
+      });
     }
-
+  
     $(window).on("scroll resize load", checkSections);
-});
+  });
