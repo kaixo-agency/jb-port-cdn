@@ -875,10 +875,10 @@ document.addEventListener('mouseout', function (e) {
 $(document).ready(function () {
     const typingSpeed = 50;
 
-    // Initially hide .intro sections
+    // Initially hide .intro sections with opacity
     $('.intro').css({
       opacity: 0,
-      visibility: 'hidden'
+      display: 'none'
     });
 
     // Observe all .intro sections
@@ -937,7 +937,7 @@ $(document).ready(function () {
       // Ensure intro section is revealed once animation starts
       $section.css({
         opacity: 1,
-        visibility: 'visible'
+        display: 'block'
       });
     }
   });
