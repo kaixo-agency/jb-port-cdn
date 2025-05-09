@@ -923,7 +923,7 @@ $(document).ready(function () {
         }).html('&nbsp;'); // Keep a non-breaking space to prevent total collapse
       }
       if ($para.length) {
-        $para.css({ opacity: 0, transform: 'translateY(20px)' });
+        $para.css({ opacity: 0, transform: 'translateY(0px)' });
       }
       
       // Step 1: Fade in tagline if present
@@ -956,7 +956,7 @@ $(document).ready(function () {
         const totalDelay = headingDelay || taglineDelay || 0;
         
         setTimeout(() => {
-          $para.animate({ opacity: 1 }, 600);
+          $para.animate({ opacity: 1, transform: 'translateY(0)' }, 600);
         }, totalDelay);
       }
     }
