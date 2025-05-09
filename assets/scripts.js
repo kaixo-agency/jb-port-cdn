@@ -925,33 +925,9 @@ $(document).ready(function () {
         setTimeout(() => typeText($heading, fullText, 0), $tagline.length ? 700 : 0);
       }
 
-      // Step 3: Animate paragraph line by line, regardless of <br>
+      // Step 3: Fade in the entire paragraph (no line-by-line animation)
       if ($para.length) {
-        const rawHtml = $para.html();
-        const lines = rawHtml.split(/(?<=\S)\s+/);  // Split by spaces if no <br>
-        $para.html(''); // Clear original content
-
-        lines.forEach((line, i) => {
-          const trimmed = $.trim(line);
-          if (trimmed.length) {
-            const span = $(`<span class="animated-line" style="display:block; opacity:0; transform:translateY(20px);">${trimmed}</span>`);
-            $para.append(span);
-          }
-        });
-
-        // Animate each line with delay
-        $section.find('.animated-line').each(function (i) {
-          $(this).delay(1000 + i * 200).animate({
-            opacity: 1
-          }, {
-            duration: 500,
-            step: function (now, fx) {
-              if (fx.prop === "opacity") {
-                $(this).css('transform', 'translateY(0px)');
-              }
-            }
-          });
-        });
+        $para.css({ opacity: 0, transform: 'translateY(20px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
       }
 
       // Ensure intro section is revealed once animation starts
