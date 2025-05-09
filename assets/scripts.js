@@ -886,7 +886,7 @@ $(document).ready(function () {
   
     // Function to animate the intro section
     function animateIntro($intro) {
-      console.log("animateIntro CALLED for:", $intro); // Check if this is called
+      console.log("animateIntro CALLED for:", $intro);
       const $tagline = $intro.find('.text-style-tagline').first();
       const $heading = $intro.find('.heading-style-h2').first();
       const $paragraph = $intro.find('.text-size-medium').first();
@@ -896,48 +896,60 @@ $(document).ready(function () {
       console.log("Paragraph element found:", $paragraph.length > 0);
   
       let currentDelay = 0;
+      let allAnimations = [];
   
+      // 1. Fade in tagline
       if ($tagline.length) {
         console.log("Animating tagline with delay:", currentDelay);
-        $tagline.css({ opacity: 0, transform: 'translateY(10px)' })
-          .delay(currentDelay)
-          .animate({ opacity: 1, transform: 'translateY(0)' }, 600, 'ease-out');
+        const taglineAnimation = $tagline.delay(currentDelay).animate({ opacity: 1, transform: 'translateY(0)' }, 600, 'ease-out').promise();
+        allAnimations.push(taglineAnimation);
         currentDelay += animationDelay;
       }
   
+      // 2. Type out heading
       if ($heading.length) {
         const fullText = $heading.text().trim();
         $heading.text(''); // Clear the heading initially
         console.log("Typing heading after delay:", currentDelay);
+        const headingDeferred = $.Deferred();
         setTimeout(() => {
           typeText($heading, fullText, 0);
+          setTimeout(() => headingDeferred.resolve(), fullText.length * typingSpeed + 50); // Resolve after typing
         }, currentDelay);
+        allAnimations.push(headingDeferred.promise());
         currentDelay += fullText.length * typingSpeed + animationDelay;
       }
   
+      // 3. Fade in paragraph
       if ($paragraph.length) {
         console.log("Animating paragraph with delay:", currentDelay);
-        $paragraph.css({ opacity: 0, transform: 'translateY(10px)' })
-          .delay(currentDelay)
-          .animate({ opacity: 1, transform: 'translateY(0)' }, 600, 'ease-out');
+        const paragraphAnimation = $paragraph.delay(currentDelay).animate({ opacity: 1, transform: 'translateY(0)' }, 600, 'ease-out').promise();
+        allAnimations.push(paragraphAnimation);
       }
   
-      $intro.addClass('animated');
+      // Add the 'animated' class only after all animations are complete
+      $.when(...allAnimations).done(() => {
+        $intro.addClass('animated');
+      });
     }
+  
+    // Initially hide and move elements
+    $('.intro .text-style-tagline').css({ opacity: 0, transform: 'translateY(10px)' });
+    $('.intro .text-size-medium').css({ opacity: 0, transform: 'translateY(10px)' });
   
     // Set up the Intersection Observer
     const observer = new IntersectionObserver(
       (entries) => {
-        console.log("Intersection Observer Callback triggered"); // Check if the callback runs
         entries.forEach((entry) => {
-          console.log("Observed element:", entry.target, "Intersecting:", entry.isIntersecting); // Check each entry
+          console.log("Intersection Observer Callback triggered");
+          console.log("Observed element:", entry.target, "Intersecting:", entry.isIntersecting);
           if (entry.isIntersecting) {
             const $introElement = $(entry.target);
             if (!$introElement.hasClass('animated')) {
               animateIntro($introElement);
+              // Optionally, unobserve after animating once
+              // observer.unobserve(entry.target);
             }
-            // Optionally, unobserve after animating once
-            // observer.unobserve(entry.target);
           }
         });
       },
@@ -949,7 +961,7 @@ $(document).ready(function () {
   
     // Observe each intro element
     $('.intro').each(function () {
-      console.log("Observing element:", this); // Check which elements are being observed
+      console.log("Observing element:", this);
       observer.observe(this);
     });
   });
