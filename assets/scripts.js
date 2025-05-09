@@ -869,3 +869,103 @@ document.addEventListener('mouseout', function (e) {
   }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Configuration
+    const typingSpeed = 50; // Milliseconds between each character
+    const fadeInDuration = 1000; // Duration of fade in animation in milliseconds
+    const slideDistance = 30; // Distance in px to slide up
+    const staggerDelay = 200; // Milliseconds between each paragraph animation
+  
+    // Find all sections that might contain our target elements
+    const sections = document.querySelectorAll('section, div.section');
+    
+    // Initialize Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const section = entry.target;
+          
+          // Find our target elements within the section
+          const tagline = section.querySelector('.text-style-tagline');
+          const heading = section.querySelector('.heading-style-h2');
+          const paragraphs = section.querySelectorAll('.text-style-medium');
+          
+          // Verify we have all necessary elements before proceeding
+          if (tagline && heading && paragraphs.length > 0) {
+            // Store original heading text for typing animation
+            const headingText = heading.textContent;
+            
+            // Clear the heading text initially
+            heading.textContent = '';
+            
+            // Set initial states
+            tagline.style.opacity = '0';
+            
+            // Set initial states for paragraphs
+            paragraphs.forEach(paragraph => {
+              paragraph.style.opacity = '0';
+              paragraph.style.transform = `translateY(${slideDistance}px)`;
+              paragraph.style.transition = `opacity ${fadeInDuration}ms, transform ${fadeInDuration}ms`;
+            });
+            
+            // Start animations - first fade in the tagline
+            setTimeout(() => {
+              // Animate tagline
+              tagline.style.transition = `opacity ${fadeInDuration}ms`;
+              tagline.style.opacity = '1';
+              
+              // Start typing the heading after tagline starts fading in
+              setTimeout(() => {
+                typeWord(heading, headingText, 0);
+                
+                // Start animating paragraphs after heading starts typing
+                setTimeout(() => {
+                  animateParagraphs(paragraphs, 0);
+                }, headingText.length * typingSpeed * 0.3); // Start paragraph animations when heading is ~30% typed
+              }, fadeInDuration * 0.3);
+            }, 100); // Short delay before starting animations
+            
+            // Stop observing this section once animations have started
+            observer.unobserve(section);
+          }
+        }
+      });
+    }, {
+      threshold: 0.5 // Trigger when at least 50% of the section is visible
+    });
+    
+    // Observe all sections
+    sections.forEach(section => {
+      // Only observe sections that contain all required elements
+      const hasTagline = section.querySelector('.text-style-tagline');
+      const hasHeading = section.querySelector('.heading-style-h2');
+      const hasParagraphs = section.querySelectorAll('.text-style-medium').length > 0;
+      
+      if (hasTagline && hasHeading && hasParagraphs) {
+        observer.observe(section);
+      }
+    });
+    
+    // Function to type out text character by character
+    function typeWord(element, word, i) {
+      if (i < word.length) {
+        element.textContent = word.substring(0, i + 1);
+        setTimeout(function() {
+          typeWord(element, word, i + 1);
+        }, typingSpeed);
+      }
+    }
+    
+    // Function to animate paragraphs with staggered delay
+    function animateParagraphs(paragraphs, index) {
+      if (index < paragraphs.length) {
+        const paragraph = paragraphs[index];
+        paragraph.style.opacity = '1';
+        paragraph.style.transform = 'translateY(0)';
+        
+        setTimeout(() => {
+          animateParagraphs(paragraphs, index + 1);
+        }, staggerDelay);
+      }
+    }
+  });
