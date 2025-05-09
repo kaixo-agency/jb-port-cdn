@@ -872,178 +872,73 @@ document.addEventListener('mouseout', function (e) {
 
 
 
-// Debug function to help troubleshoot
-function debugLog(message) {
-    console.log(`[Animation Debug]: ${message}`);
-  }
-  
-  // Immediately executing function to ensure the script runs right away
-  (function() {
-    debugLog('Script started');
-    
-    // Configuration
-    const typingSpeed = 50; // Milliseconds between each character
-    const fadeInDuration = 1000; // Duration of fade in animation in milliseconds
-    const slideDistance = 30; // Distance in px to slide up
-    const staggerDelay = 200; // Milliseconds between each paragraph animation
-  
-    // First, let's log what classes actually exist in the document
-    function detectAvailableClasses() {
-      debugLog('Checking for available elements on the page...');
-      
-      // Look for each class individually or similar classes
-      const taglines = document.querySelectorAll('.text-style-tagline');
-      debugLog(`Found ${taglines.length} elements with class 'text-style-tagline'`);
-      
-      const headings = document.querySelectorAll('.heading-style-h2');
-      debugLog(`Found ${headings.length} elements with class 'heading-style-h2'`);
-      
-      const paragraphs = document.querySelectorAll('.text-style-medium');
-      debugLog(`Found ${paragraphs.length} elements with class 'text-style-medium'`);
-    }
-    
-    // Run detection immediately
-    detectAvailableClasses();
-  
-    // Define class targets more precisely
-    const taglineSelectors = ['.text-style-tagline'];
-    const headingSelectors = ['.heading-style-h2'];
-    const paragraphSelectors = ['.text-style-medium'];
-  
-    // Initialize Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
+$(document).ready(function () {
+    const typingSpeed = 50;
+
+    // Select all containers that have all 3 elements
+    const targets = $('body').find(':has(.text-style-tagline):has(.heading-style-h2):has(.text-size-medium)');
+
+    const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          debugLog(`Section intersection detected`);
-          const section = entry.target;
-          animateSection(section);
-          observer.unobserve(section);
+          const $section = $(entry.target);
+          animateSection($section);
+          obs.unobserve(entry.target); // Only run once
         }
       });
     }, {
-      threshold: 0.2,
-      rootMargin: '0px 0px -10% 0px'
+      threshold: 0.5
     });
-  
-    // Function to animate a section
-    function animateSection(section) {
-      debugLog(`Animating section: ${section.className || section.tagName}`);
-      
-      // Find target elements using our precise selectors
-      const taglines = findElements(section, taglineSelectors);
-      const headings = findElements(section, headingSelectors);
-      const paragraphs = findElements(section, paragraphSelectors);
-      
-      debugLog(`Found in section: ${taglines.length} taglines, ${headings.length} headings, ${paragraphs.length} paragraphs`);
-      
-      // Only proceed if we have at least one of each type of element
-      if (taglines.length > 0 && headings.length > 0 && paragraphs.length > 0) {
-        // Animate taglines - fade in
-        taglines.forEach(tagline => {
-          // Set initial state
-          tagline.style.opacity = '0';
-          tagline.style.transition = `opacity ${fadeInDuration}ms`;
-          
-          // Trigger animation
-          setTimeout(() => {
-            tagline.style.opacity = '1';
-          }, 100);
-        });
-        
-        // Animate headings - type out
-        headings.forEach(heading => {
-          // Store and clear text
-          const originalText = heading.textContent;
-          heading.setAttribute('data-original-text', originalText);
-          heading.textContent = '';
-          
-          // Start typing animation after tagline starts fading in
-          setTimeout(() => {
-            typeWord(heading, originalText, 0);
-          }, fadeInDuration * 0.3);
-        });
-        
-        // Animate paragraphs - fade in and slide up
-        initializeParagraphs(paragraphs);
-        
-        // Start paragraph animations after heading starts typing
-        setTimeout(() => {
-          animateParagraphs(paragraphs, 0);
-        }, fadeInDuration * 0.6);
+
+    targets.each(function () {
+      observer.observe(this);
+    });
+
+    function animateSection($section) {
+      const $tagline = $section.find('.text-style-tagline');
+      const $heading = $section.find('.heading-style-h2');
+      const $para = $section.find('.text-size-medium');
+
+      // --- Tagline: Fade in ---
+      $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1 }, 600);
+
+      // --- Heading: Type out ---
+      const fullText = $heading.text().replace(/\n/g, '').trim();
+      $heading.html('');
+
+      function typeWord(word, i) {
+        if (i < word.length) {
+          $heading.html(word.substring(0, i + 1));
+          setTimeout(function () {
+            typeWord(word, i + 1);
+          }, typingSpeed);
+        }
       }
-    }
-    
-    // Helper function to find elements using multiple possible selectors
-    function findElements(container, selectors) {
-      let elements = [];
-      selectors.forEach(selector => {
-        const found = container.querySelectorAll(selector);
-        elements = elements.concat(Array.from(found));
-      });
-      return elements;
-    }
-    
-    // Set initial state for paragraphs
-    function initializeParagraphs(paragraphs) {
-      paragraphs.forEach(paragraph => {
-        paragraph.style.opacity = '0';
-        paragraph.style.transform = `translateY(${slideDistance}px)`;
-        paragraph.style.transition = `opacity ${fadeInDuration}ms, transform ${fadeInDuration}ms`;
-      });
-    }
-    
-    // Function to type out text character by character
-    function typeWord(element, word, i) {
-      if (i < word.length) {
-        element.textContent = word.substring(0, i + 1);
-        setTimeout(function() {
-          typeWord(element, word, i + 1);
-        }, typingSpeed);
-      }
-    }
-    
-    // Function to animate paragraphs with staggered delay
-    function animateParagraphs(paragraphs, index) {
-      if (index < paragraphs.length) {
-        const paragraph = paragraphs[index];
-        paragraph.style.opacity = '1';
-        paragraph.style.transform = 'translateY(0)';
-        
-        setTimeout(() => {
-          animateParagraphs(paragraphs, index + 1);
-        }, staggerDelay);
-      }
-    }
-    
-    // Function to find and observe sections that contain all required elements
-    function findAndObserveSections() {
-      debugLog('Finding sections to observe');
-      
-      // Get all containers that might be relevant
-      const containers = document.querySelectorAll('section, div, article');
-      let sectionsFound = 0;
-      
-      containers.forEach(container => {
-        // Check if this container has at least one of each required element
-        const hasTagline = findElements(container, taglineSelectors).length > 0;
-        const hasHeading = findElements(container, headingSelectors).length > 0;
-        const hasParagraphs = findElements(container, paragraphSelectors).length > 0;
-        
-        if (hasTagline && hasHeading && hasParagraphs) {
-          debugLog(`Found matching section: ${container.id || container.className || container.tagName}`);
-          observer.observe(container);
-          sectionsFound++;
+      typeWord(fullText, 0);
+
+      // --- Paragraph: Animate line-by-line ---
+      const rawHtml = $para.html();
+      const lines = rawHtml.split('<br>');
+      $para.html('');
+
+      lines.forEach((line, idx) => {
+        const cleanLine = $.trim(line);
+        if (cleanLine.length > 0) {
+          $para.append(`<span class="animated-line" style="display:block; opacity:0; transform:translateY(20px);">${cleanLine}</span>`);
         }
       });
-      
-      debugLog(`Total sections being observed: ${sectionsFound}`);
-      
-      // If no sections were found, try again shortly
-      if (sectionsFound === 0) {
-        setTimeout(findAndObserveSections, 1000);
-      }
+
+      $section.find('.animated-line').each(function (i) {
+        $(this).delay(400 + i * 200).animate({
+          opacity: 1
+        }, {
+          duration: 500,
+          step: function (now, fx) {
+            if (fx.prop === "opacity") {
+              $(this).css('transform', 'translateY(0px)');
+            }
+          }
+        });
+      });
     }
-    
-    // Start the process
-    findAndObserveSections();
-  })();
+  });
