@@ -872,68 +872,57 @@ document.addEventListener('mouseout', function (e) {
 
 
 
-$(document).ready(function () {
-    const typingSpeed = 50;
-
-    // Initially hide .intro sections by setting opacity to 0
-    $('.intro').css({
-      opacity: 0
-    });
-
-    // Observe all .intro sections
-    const intros = $('.intro');
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const $intro = $(entry.target);
-          animateIntro($intro);
-          obs.unobserve(entry.target); // Run once
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
-
-    intros.each(function () {
-      observer.observe(this);
-    });
-
-    function animateIntro($section) {
-      const $tagline = $section.find('.text-style-tagline').first();
-      const $heading = $section.find('.heading-style-h2').first();
-      const $para = $section.find('.text-size-medium').first();
-
-      // Step 1: Fade in tagline if present
-      if ($tagline.length) {
-        $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
-      }
-
-      // Step 2: Type out the heading if present
-      if ($heading.length) {
-        const fullText = $heading.text().replace(/\n/g, '').trim();
-        $heading.html('&nbsp;'); // prevent collapse
-
-        function typeText(el, text, i) {
-          if (i <= text.length) {
-            el.html(text.substring(0, i).replace(/\n/g, '<br>'));
-            setTimeout(() => typeText(el, text, i + 1), typingSpeed);
-          }
-        }
-
-        // Delay heading typing to start after tagline fade-in
-        setTimeout(() => typeText($heading, fullText, 0), $tagline.length ? 700 : 0);
-      }
-
-      // Step 3: Fade in the entire paragraph (no line-by-line animation)
-      if ($para.length) {
-        // Ensure this starts after the heading finishes typing
-        setTimeout(() => {
-          $para.css({ opacity: 0, transform: 'translateY(20px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
-        }, $heading.length ? fullText.length * typingSpeed + 500 : 0);  // wait for typing to finish
-      }
-
-      // Step 4: Finally, reveal the section after animations
-      $section.css({ opacity: 1 }); // Make sure section itself is revealed
+function animateIntro($section) {
+    const $tagline = $section.find('.text-style-tagline').first();
+    const $heading = $section.find('.heading-style-h2').first();
+    const $para = $section.find('.text-size-medium').first();
+  
+    let animations = [];
+  
+    // Step 1: Fade in tagline if present
+    if ($tagline.length) {
+      const taglineAnimation = $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600).promise();
+      animations.push(taglineAnimation);
     }
-  });
+  
+    // Step 2: Type out the heading if present
+    let headingAnimationPromise = $.Deferred().resolve().promise(); // Default resolved promise
+    if ($heading.length) {
+      const fullText = $heading.text().replace(/\n/g, '').trim();
+      $heading.html('&nbsp;'); // prevent collapse
+  
+      function typeText(el, text, i) {
+        if (i <= text.length) {
+          el.html(text.substring(0, i).replace(/\n/g, '<br>'));
+          setTimeout(() => typeText(el, text, i + 1), typingSpeed);
+        }
+      }
+  
+      const headingDeferred = $.Deferred();
+      setTimeout(() => {
+        typeText($heading, fullText, 0);
+        // Resolve the deferred when typing is complete (approximately)
+        setTimeout(() => headingDeferred.resolve(), fullText.length * typingSpeed + 100);
+      }, $tagline.length ? 700 : 0);
+      headingAnimationPromise = headingDeferred.promise();
+      animations.push(headingAnimationPromise);
+    }
+  
+    // Step 3: Fade in the entire paragraph (no line-by-line animation)
+    let paraAnimationPromise = $.Deferred().resolve().promise(); // Default resolved promise
+    if ($para.length) {
+      const paraDeferred = $.Deferred();
+      $.when(headingAnimationPromise).done(() => { // Ensure it starts after heading
+        $para.css({ opacity: 0, transform: 'translateY(20px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600).promise().done(() => {
+          paraDeferred.resolve();
+        });
+      });
+      paraAnimationPromise = paraDeferred.promise();
+      animations.push(paraAnimationPromise);
+    }
+  
+    // Step 4: Finally, reveal the section after all animations within it
+    $.when(...animations).done(() => {
+      $section.css({ opacity: 1 });
+    });
+  }
