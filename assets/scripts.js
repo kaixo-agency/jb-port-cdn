@@ -875,70 +875,76 @@ document.addEventListener('mouseout', function (e) {
 $(document).ready(function () {
     const typingSpeed = 50;
 
-    // Select all containers that have all 3 elements
-    const targets = $('body').find(':has(.text-style-tagline):has(.heading-style-h2):has(.text-size-medium)');
+    // Observe all .intro sections
+    const intros = $('.intro');
 
     const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const $section = $(entry.target);
-          animateSection($section);
-          obs.unobserve(entry.target); // Only run once
+          const $intro = $(entry.target);
+          animateIntro($intro);
+          obs.unobserve(entry.target); // Run once
         }
       });
     }, {
       threshold: 0.5
     });
 
-    targets.each(function () {
+    intros.each(function () {
       observer.observe(this);
     });
 
-    function animateSection($section) {
-      const $tagline = $section.find('.text-style-tagline');
-      const $heading = $section.find('.heading-style-h2');
-      const $para = $section.find('.text-size-medium');
+    function animateIntro($section) {
+      const $tagline = $section.find('.text-style-tagline').first();
+      const $heading = $section.find('.heading-style-h2').first();
+      const $para = $section.find('.text-size-medium').first();
 
-      // --- Tagline: Fade in ---
-      $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1 }, 600);
-
-      // --- Heading: Type out ---
-      const fullText = $heading.text().replace(/\n/g, '').trim();
-      $heading.html('');
-
-      function typeWord(word, i) {
-        if (i < word.length) {
-          $heading.html(word.substring(0, i + 1));
-          setTimeout(function () {
-            typeWord(word, i + 1);
-          }, typingSpeed);
-        }
+      // Step 1: Fade in tagline if present
+      if ($tagline.length) {
+        $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1, top: 0 }, 600);
       }
-      typeWord(fullText, 0);
 
-      // --- Paragraph: Animate line-by-line ---
-      const rawHtml = $para.html();
-      const lines = rawHtml.split('<br>');
-      $para.html('');
+      // Step 2: Type heading if present
+      if ($heading.length) {
+        const fullText = $heading.text().replace(/\n/g, '').trim();
+        $heading.html('&nbsp;'); // prevent collapse
 
-      lines.forEach((line, idx) => {
-        const cleanLine = $.trim(line);
-        if (cleanLine.length > 0) {
-          $para.append(`<span class="animated-line" style="display:block; opacity:0; transform:translateY(20px);">${cleanLine}</span>`);
+        function typeText(el, text, i) {
+          if (i <= text.length) {
+            el.html(text.substring(0, i).replace(/\n/g, '<br>'));
+            setTimeout(() => typeText(el, text, i + 1), typingSpeed);
+          }
         }
-      });
+        setTimeout(() => typeText($heading, fullText, 0), $tagline.length ? 700 : 0);
+      }
 
-      $section.find('.animated-line').each(function (i) {
-        $(this).delay(400 + i * 200).animate({
-          opacity: 1
-        }, {
-          duration: 500,
-          step: function (now, fx) {
-            if (fx.prop === "opacity") {
-              $(this).css('transform', 'translateY(0px)');
-            }
+      // Step 3: Animate paragraph line by line if present
+      if ($para.length) {
+        const rawHtml = $para.html();
+        const lines = rawHtml.split('<br>');
+        $para.html(''); // Clear original content
+
+        lines.forEach((line, i) => {
+          const trimmed = $.trim(line);
+          if (trimmed.length) {
+            const span = $(`<span class="animated-line" style="display:block; opacity:0; transform:translateY(20px);">${trimmed}</span>`);
+            $para.append(span);
           }
         });
-      });
+
+        // Animate each line with delay
+        $section.find('.animated-line').each(function (i) {
+          $(this).delay(1000 + i * 200).animate({
+            opacity: 1
+          }, {
+            duration: 500,
+            step: function (now, fx) {
+              if (fx.prop === "opacity") {
+                $(this).css('transform', 'translateY(0px)');
+              }
+            }
+          });
+        });
+      }
     }
   });
