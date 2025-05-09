@@ -961,3 +961,55 @@ $(document).ready(function () {
       }
     }
   });
+
+
+  $(document).ready(function() {
+    // Initial setup: hide all fade-in elements
+    $('.fade-in').css({
+      opacity: 0,
+      transform: 'translateY(30px)',
+      transition: 'opacity 0.8s ease, transform 0.8s ease' // Smooth easing
+    });
+    
+    // Create intersection observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // Check if element is in view
+        if (entry.isIntersecting) {
+          // Add a small delay for a more natural effect
+          setTimeout(() => {
+            // Animate the element
+            $(entry.target).css({
+              opacity: 1,
+              transform: 'translateY(0)'
+            });
+          }, 100);
+          
+          // Stop observing after animation
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.25, // Trigger when at least 25% of the element is visible
+      rootMargin: '0px 0px -10% 0px' // Slightly offset to trigger earlier
+    });
+    
+    // Start observing all elements with the fade-in class
+    $('.fade-in').each(function() {
+      observer.observe(this);
+    });
+    
+    /**
+     * Optional: Add staggered delay for multiple elements
+     * Use with class "fade-in-stagger" on a parent element containing multiple .fade-in elements
+     */
+    $('.fade-in-stagger').each(function() {
+      const $staggerItems = $(this).find('.fade-in');
+      const staggerDelay = 150; // milliseconds between each item
+      
+      $staggerItems.each(function(index) {
+        const delay = staggerDelay * index;
+        $(this).css('transition-delay', delay + 'ms');
+      });
+    });
+  });
