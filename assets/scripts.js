@@ -956,7 +956,7 @@ $(document).ready(function () {
         const totalDelay = headingDelay || taglineDelay || 0;
         
         setTimeout(() => {
-          $para.animate({ opacity: 1, transform: 'translateY(0)' }, 600);
+          $para.animate({ opacity: 1 }, 600);
         }, totalDelay);
       }
     }
