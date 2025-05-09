@@ -874,9 +874,10 @@ document.addEventListener('mouseout', function (e) {
 $(document).ready(function () {
     const typingSpeed = 50;
   
-    // Initially hide .intro section content (only set opacity to 0)
-    $('.intro > *').css({
-      opacity: 0 // Initially hide all children
+    // Initially hide .intro section content (only set opacity to 0 and visibility to hidden)
+    $('.intro').css({
+      opacity: 0, // Hide the entire section
+      visibility: 'hidden' // Ensure it doesn't affect the layout before animation starts
     });
   
     // Observe all .intro sections
@@ -891,7 +892,7 @@ $(document).ready(function () {
         }
       });
     }, {
-      threshold: 0.5
+      threshold: 0.5 // Trigger when 50% of the section is in view
     });
   
     intros.each(function () {
@@ -931,14 +932,10 @@ $(document).ready(function () {
         }, $heading.length ? fullText.length * typingSpeed + 1000 : 0); // Wait for heading typing to finish
       }
   
-      // Step 4: Gradually make children visible after animation starts
+      // Step 4: Gradually reveal the section (fade in the entire section)
       $section.css({
         opacity: 1, // Reveal the section itself
-      });
-  
-      // Ensure intro section reveals children gradually
-      $section.find('*').each(function (index) {
-        $(this).delay(index * 150).animate({ opacity: 1 }, 600); // Gradually reveal children
+        visibility: 'visible' // Ensure it's visible once the animations start
       });
     }
   });
