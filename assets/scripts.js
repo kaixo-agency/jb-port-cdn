@@ -870,7 +870,6 @@ document.addEventListener('mouseout', function (e) {
 });
 
 
-
 $(document).ready(function () {
     const typingSpeed = 50;
   
@@ -927,6 +926,7 @@ $(document).ready(function () {
   
       // Step 3: Fade in the entire paragraph (no line-by-line animation), with delay after heading
       if ($para.length) {
+        // Ensure the paragraph fades in after the heading typing has finished
         setTimeout(() => {
           $para.css({ opacity: 0, transform: 'translateY(20px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
         }, $heading.length ? fullText.length * typingSpeed + 1000 : 0); // Wait for heading typing to finish
