@@ -872,61 +872,68 @@ document.addEventListener('mouseout', function (e) {
 
 
 
-function animateIntro($intro) {
-    console.log("animateIntro CALLED for:", $intro);
-    const $tagline = $intro.find('.text-style-tagline').first();
-    const $heading = $intro.find('.heading-style-h2').first();
-    const $paragraph = $intro.find('.text-size-medium').first();
-  
-    console.log("Tagline element found:", $tagline.length > 0);
-    console.log("Heading element found:", $heading.length > 0);
-    console.log("Paragraph element found:", $paragraph.length > 0);
-  
-    let currentDelay = 0;
-    let allAnimations = []; // Not strictly needed with CSS Transitions for fade/slide
-  
-    // 1. Fade in tagline
-    if ($tagline.length) {
-      console.log("Animating tagline with delay:", currentDelay);
-      setTimeout(() => {
-        $tagline.addClass('visible');
-      }, currentDelay);
-      currentDelay += animationDelay;
-    }
-  
-    // 2. Type out heading (remains the same jQuery animation)
-    if ($heading.length) {
-      const fullText = $heading.text().trim();
-      $heading.text('');
-      console.log("Typing heading after delay:", currentDelay);
-      const headingDeferred = $.Deferred();
-      setTimeout(() => {
-        typeText($heading, fullText, 0);
-        setTimeout(() => headingDeferred.resolve(), fullText.length * typingSpeed + 50);
-      }, currentDelay);
-      allAnimations.push(headingDeferred.promise());
-      currentDelay += fullText.length * typingSpeed + animationDelay;
-    }
-  
-    // 3. Fade in paragraph
-    if ($paragraph.length) {
-      console.log("Animating paragraph with delay:", currentDelay);
-      setTimeout(() => {
-        $paragraph.addClass('visible');
-      }, currentDelay);
-    }
-  
-    $.when(...allAnimations).done(() => {
-      $intro.addClass('animated');
+$(document).ready(function () {
+    const typingSpeed = 50;
+
+    // Initially hide .intro sections
+    $('.intro').css({
+      opacity: 0,
+      visibility: 'hidden'
     });
-  }
-  
-  $(document).ready(function () {
-    // ... (Intersection Observer setup remains largely the same)
-  
-    // No initial inline styles needed for opacity/transform if using CSS transitions
-    // $('.intro .text-style-tagline').css({ opacity: 0, transform: 'translateY(10px)' });
-    // $('.intro .text-size-medium').css({ opacity: 0, transform: 'translateY(10px)' });
-  
-    // ... (Intersection Observer and observing elements)
+
+    // Observe all .intro sections
+    const intros = $('.intro');
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const $intro = $(entry.target);
+          animateIntro($intro);
+          obs.unobserve(entry.target); // Run once
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    intros.each(function () {
+      observer.observe(this);
+    });
+
+    function animateIntro($section) {
+      const $tagline = $section.find('.text-style-tagline').first();
+      const $heading = $section.find('.heading-style-h2').first();
+      const $para = $section.find('.text-size-medium').first();
+
+      // Step 1: Fade in tagline if present
+      if ($tagline.length) {
+        $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
+      }
+
+      // Step 2: Type heading if present
+      if ($heading.length) {
+        const fullText = $heading.text().replace(/\n/g, '').trim();
+        $heading.html('&nbsp;'); // prevent collapse
+
+        function typeText(el, text, i) {
+          if (i <= text.length) {
+            el.html(text.substring(0, i).replace(/\n/g, '<br>'));
+            setTimeout(() => typeText(el, text, i + 1), typingSpeed);
+          }
+        }
+
+        setTimeout(() => typeText($heading, fullText, 0), $tagline.length ? 700 : 0);
+      }
+
+      // Step 3: Fade in the entire paragraph (no line-by-line animation)
+      if ($para.length) {
+        $para.css({ opacity: 0, transform: 'translateY(20px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
+      }
+
+      // Ensure intro section is revealed once animation starts
+      $section.css({
+        opacity: 1,
+        visibility: 'visible'
+      });
+    }
   });
