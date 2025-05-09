@@ -875,6 +875,12 @@ document.addEventListener('mouseout', function (e) {
 $(document).ready(function () {
     const typingSpeed = 50;
 
+    // Initially hide .intro sections
+    $('.intro').css({
+      opacity: 0,
+      visibility: 'hidden'
+    });
+
     // Observe all .intro sections
     const intros = $('.intro');
 
@@ -901,7 +907,7 @@ $(document).ready(function () {
 
       // Step 1: Fade in tagline if present
       if ($tagline.length) {
-        $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1, top: 0 }, 600);
+        $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
       }
 
       // Step 2: Type heading if present
@@ -915,13 +921,14 @@ $(document).ready(function () {
             setTimeout(() => typeText(el, text, i + 1), typingSpeed);
           }
         }
+
         setTimeout(() => typeText($heading, fullText, 0), $tagline.length ? 700 : 0);
       }
 
-      // Step 3: Animate paragraph line by line if present
+      // Step 3: Animate paragraph line by line, regardless of <br>
       if ($para.length) {
         const rawHtml = $para.html();
-        const lines = rawHtml.split('<br>');
+        const lines = rawHtml.split(/(?<=\S)\s+/);  // Split by spaces if no <br>
         $para.html(''); // Clear original content
 
         lines.forEach((line, i) => {
@@ -946,5 +953,11 @@ $(document).ready(function () {
           });
         });
       }
+
+      // Ensure intro section is revealed once animation starts
+      $section.css({
+        opacity: 1,
+        visibility: 'visible'
+      });
     }
   });
