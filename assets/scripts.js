@@ -918,7 +918,7 @@ $(document).ready(function () {
 
     function isPartiallyInViewport(el, threshold = 0.3) {
         const rect = el.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
 
         const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
         const totalHeight = rect.height;
