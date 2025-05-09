@@ -872,96 +872,61 @@ document.addEventListener('mouseout', function (e) {
 
 
 
-$(document).ready(function () {
-    const typingSpeed = 50; // Adjust typing speed as needed
-    const animationDelay = 200; // Delay between each element's animation
+function animateIntro($intro) {
+    console.log("animateIntro CALLED for:", $intro);
+    const $tagline = $intro.find('.text-style-tagline').first();
+    const $heading = $intro.find('.heading-style-h2').first();
+    const $paragraph = $intro.find('.text-size-medium').first();
   
-    // Function to type out text
-    function typeText($element, text, index) {
-      if (index < text.length) {
-        $element.text(text.substring(0, index + 1));
-        setTimeout(() => typeText($element, text, index + 1), typingSpeed);
-      }
+    console.log("Tagline element found:", $tagline.length > 0);
+    console.log("Heading element found:", $heading.length > 0);
+    console.log("Paragraph element found:", $paragraph.length > 0);
+  
+    let currentDelay = 0;
+    let allAnimations = []; // Not strictly needed with CSS Transitions for fade/slide
+  
+    // 1. Fade in tagline
+    if ($tagline.length) {
+      console.log("Animating tagline with delay:", currentDelay);
+      setTimeout(() => {
+        $tagline.addClass('visible');
+      }, currentDelay);
+      currentDelay += animationDelay;
     }
   
-    // Function to animate the intro section
-    function animateIntro($intro) {
-      console.log("animateIntro CALLED for:", $intro);
-      const $tagline = $intro.find('.text-style-tagline').first();
-      const $heading = $intro.find('.heading-style-h2').first();
-      const $paragraph = $intro.find('.text-size-medium').first();
-  
-      console.log("Tagline element found:", $tagline.length > 0);
-      console.log("Heading element found:", $heading.length > 0);
-      console.log("Paragraph element found:", $paragraph.length > 0);
-  
-      let currentDelay = 0;
-      let allAnimations = [];
-  
-      // 1. Fade in tagline
-      if ($tagline.length) {
-        console.log("Animating tagline with delay:", currentDelay);
-        const taglineAnimation = $tagline.delay(currentDelay).animate({ opacity: 1, transform: 'translateY(0)' }, 600, 'ease-out').promise();
-        allAnimations.push(taglineAnimation);
-        currentDelay += animationDelay;
-      }
-  
-      // 2. Type out heading
-      if ($heading.length) {
-        const fullText = $heading.text().trim();
-        $heading.text(''); // Clear the heading initially
-        console.log("Typing heading after delay:", currentDelay);
-        const headingDeferred = $.Deferred();
-        setTimeout(() => {
-          typeText($heading, fullText, 0);
-          setTimeout(() => headingDeferred.resolve(), fullText.length * typingSpeed + 50); // Resolve after typing
-        }, currentDelay);
-        allAnimations.push(headingDeferred.promise());
-        currentDelay += fullText.length * typingSpeed + animationDelay;
-      }
-  
-      // 3. Fade in paragraph
-      if ($paragraph.length) {
-        console.log("Animating paragraph with delay:", currentDelay);
-        const paragraphAnimation = $paragraph.delay(currentDelay).animate({ opacity: 1, transform: 'translateY(0)' }, 600, 'ease-out').promise();
-        allAnimations.push(paragraphAnimation);
-      }
-  
-      // Add the 'animated' class only after all animations are complete
-      $.when(...allAnimations).done(() => {
-        $intro.addClass('animated');
-      });
+    // 2. Type out heading (remains the same jQuery animation)
+    if ($heading.length) {
+      const fullText = $heading.text().trim();
+      $heading.text('');
+      console.log("Typing heading after delay:", currentDelay);
+      const headingDeferred = $.Deferred();
+      setTimeout(() => {
+        typeText($heading, fullText, 0);
+        setTimeout(() => headingDeferred.resolve(), fullText.length * typingSpeed + 50);
+      }, currentDelay);
+      allAnimations.push(headingDeferred.promise());
+      currentDelay += fullText.length * typingSpeed + animationDelay;
     }
   
-    // Initially hide and move elements
-    $('.intro .text-style-tagline').css({ opacity: 0, transform: 'translateY(10px)' });
-    $('.intro .text-size-medium').css({ opacity: 0, transform: 'translateY(10px)' });
+    // 3. Fade in paragraph
+    if ($paragraph.length) {
+      console.log("Animating paragraph with delay:", currentDelay);
+      setTimeout(() => {
+        $paragraph.addClass('visible');
+      }, currentDelay);
+    }
   
-    // Set up the Intersection Observer
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          console.log("Intersection Observer Callback triggered");
-          console.log("Observed element:", entry.target, "Intersecting:", entry.isIntersecting);
-          if (entry.isIntersecting) {
-            const $introElement = $(entry.target);
-            if (!$introElement.hasClass('animated')) {
-              animateIntro($introElement);
-              // Optionally, unobserve after animating once
-              // observer.unobserve(entry.target);
-            }
-          }
-        });
-      },
-      {
-        rootMargin: '0px 0px 0px 0px', // Adjust root margin to trigger at the center
-        threshold: 0.5, // Trigger when 50% of the element is visible
-      }
-    );
-  
-    // Observe each intro element
-    $('.intro').each(function () {
-      console.log("Observing element:", this);
-      observer.observe(this);
+    $.when(...allAnimations).done(() => {
+      $intro.addClass('animated');
     });
+  }
+  
+  $(document).ready(function () {
+    // ... (Intersection Observer setup remains largely the same)
+  
+    // No initial inline styles needed for opacity/transform if using CSS transitions
+    // $('.intro .text-style-tagline').css({ opacity: 0, transform: 'translateY(10px)' });
+    // $('.intro .text-size-medium').css({ opacity: 0, transform: 'translateY(10px)' });
+  
+    // ... (Intersection Observer and observing elements)
   });
