@@ -922,12 +922,16 @@ $(document).ready(function () {
           }
         }
 
+        // Delay heading typing to start after tagline fade-in
         setTimeout(() => typeText($heading, fullText, 0), $tagline.length ? 700 : 0);
       }
 
       // Step 3: Fade in the entire paragraph (no line-by-line animation)
       if ($para.length) {
-        $para.css({ opacity: 0, transform: 'translateY(20px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
+        // Ensure this starts after the heading finishes typing
+        setTimeout(() => {
+          $para.css({ opacity: 0, transform: 'translateY(20px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
+        }, $heading.length ? fullText.length * typingSpeed + 500 : 0);  // wait for typing to finish
       }
 
       // Ensure intro section is revealed once animation starts
