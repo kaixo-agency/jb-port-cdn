@@ -875,10 +875,12 @@ document.addEventListener('mouseout', function (e) {
 $(document).ready(function () {
     const typingSpeed = 50;
   
-    // Initially hide .intro sections
+    // Initially hide .intro sections' contents
     $('.intro').css({
-      opacity: 0,
-      visibility: 'hidden'
+      visibility: 'visible' // Make sure the section is visible
+    });
+    $('.intro > *').css({
+      opacity: 0 // Initially hide all children
     });
   
     // Observe all .intro sections
@@ -937,6 +939,11 @@ $(document).ready(function () {
       $section.css({
         opacity: 1,
         visibility: 'visible'
+      });
+  
+      // Allow children elements to gradually fade in based on their animation timing
+      $section.find('*').each(function(index) {
+        $(this).delay(index * 150).animate({ opacity: 1 }, 600);
       });
     }
   });
