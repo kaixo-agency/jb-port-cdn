@@ -1013,3 +1013,39 @@ $(document).ready(function () {
       });
     });
   });
+
+
+  Webflow.push(function() {
+    const navbarMenu = $('.navbar1_menu');
+    const body = $('body');
+  
+    // Function to prevent scrolling
+    function preventScroll() {
+      body.addClass('no-scroll');
+    }
+  
+    // Function to enable scrolling
+    function enableScroll() {
+      body.removeClass('no-scroll');
+    }
+  
+    // Observe changes to the "navbar1_menu" element's 'w--open' class
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName === 'class') {
+          const isNavbarOpen = navbarMenu.hasClass('w--open');
+          if (isNavbarOpen) {
+            preventScroll();
+          } else {
+            enableScroll();
+          }
+        }
+      });
+    });
+  
+    // Start observing the navbar menu for class changes
+    observer.observe(navbarMenu[0], {
+      attributes: true, // Listen for changes to the element's attributes
+      attributeFilter: ['class'] // Specifically listen for changes to the 'class' attribute
+    });
+  });
