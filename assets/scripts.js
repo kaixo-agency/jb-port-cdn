@@ -875,10 +875,7 @@ document.addEventListener('mouseout', function (e) {
 $(document).ready(function () {
     const typingSpeed = 50;
   
-    // Initially hide .intro sections' contents
-    $('.intro').css({
-      visibility: 'visible' // Make sure the section is visible
-    });
+    // Initially hide .intro section content but keep layout
     $('.intro > *').css({
       opacity: 0 // Initially hide all children
     });
@@ -912,7 +909,7 @@ $(document).ready(function () {
         $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
       }
   
-      // Step 2: Type heading if present, delay after tagline
+      // Step 2: Type heading if present, with delay after tagline
       if ($heading.length) {
         const fullText = $heading.text().replace(/\n/g, '').trim();
         $heading.html('&nbsp;'); // prevent collapse
@@ -938,11 +935,10 @@ $(document).ready(function () {
       // Ensure intro section is revealed once animation starts
       $section.css({
         opacity: 1,
-        visibility: 'visible'
       });
   
-      // Allow children elements to gradually fade in based on their animation timing
-      $section.find('*').each(function(index) {
+      // Step 4: Gradually make children visible after animation starts
+      $section.find('*').each(function (index) {
         $(this).delay(index * 150).animate({ opacity: 1 }, 600);
       });
     }
