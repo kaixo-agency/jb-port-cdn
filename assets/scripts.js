@@ -875,10 +875,9 @@ document.addEventListener('mouseout', function (e) {
 $(document).ready(function () {
     const typingSpeed = 50;
 
-    // Initially hide .intro sections with opacity
+    // Initially hide .intro sections by setting opacity to 0
     $('.intro').css({
-      opacity: 0,
-      display: 'none'
+      opacity: 0
     });
 
     // Observe all .intro sections
@@ -910,7 +909,7 @@ $(document).ready(function () {
         $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
       }
 
-      // Step 2: Type heading if present
+      // Step 2: Type out the heading if present
       if ($heading.length) {
         const fullText = $heading.text().replace(/\n/g, '').trim();
         $heading.html('&nbsp;'); // prevent collapse
@@ -934,10 +933,9 @@ $(document).ready(function () {
         }, $heading.length ? fullText.length * typingSpeed + 500 : 0);  // wait for typing to finish
       }
 
-      // Ensure intro section is revealed once animation starts
+      // Step 4: Finally, reveal the section after animations
       $section.css({
-        opacity: 1,
-        display: 'block'
+        opacity: 1
       });
     }
   });
