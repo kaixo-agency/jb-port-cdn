@@ -537,3 +537,8 @@ body.force-hide-cursor {
   opacity: 1;
   transform: translateX(0);
 }
+.no-scroll {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100%;
+}
