@@ -872,68 +872,52 @@ document.addEventListener('mouseout', function (e) {
 
 
 
-$(document).ready(function () {
-    const typingSpeed = 50;
-
-    // Initially hide .intro sections
-    $('.intro').css({
-      opacity: 0,
-      visibility: 'hidden'
+function animateIntro($section) {
+    const $tagline = $section.find('.text-style-tagline').first();
+    const $heading = $section.find('.heading-style-h2').first();
+    const $para = $section.find('.text-size-medium').first();
+    let currentDelay = 0;
+    const fadeDuration = 600; // Duration for fade animations
+  
+    // Ensure intro section is revealed immediately
+    $section.css({
+      opacity: 1,
+      visibility: 'visible'
     });
-
-    // Observe all .intro sections
-    const intros = $('.intro');
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const $intro = $(entry.target);
-          animateIntro($intro);
-          obs.unobserve(entry.target); // Run once
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
-
-    intros.each(function () {
-      observer.observe(this);
-    });
-
-    function animateIntro($section) {
-      const $tagline = $section.find('.text-style-tagline').first();
-      const $heading = $section.find('.heading-style-h2').first();
-      const $para = $section.find('.text-size-medium').first();
-
-      // Step 1: Fade in tagline if present
-      if ($tagline.length) {
-        $tagline.css({ opacity: 0, transform: 'translateY(10px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
-      }
-
-      // Step 2: Type heading if present
-      if ($heading.length) {
-        const fullText = $heading.text().replace(/\n/g, '').trim();
-        $heading.html('&nbsp;'); // prevent collapse
-
-        function typeText(el, text, i) {
-          if (i <= text.length) {
-            el.html(text.substring(0, i).replace(/\n/g, '<br>'));
-            setTimeout(() => typeText(el, text, i + 1), typingSpeed);
-          }
-        }
-
-        setTimeout(() => typeText($heading, fullText, 0), $tagline.length ? 700 : 0);
-      }
-
-      // Step 3: Fade in the entire paragraph (no line-by-line animation)
-      if ($para.length) {
-        $para.css({ opacity: 0, transform: 'translateY(20px)' }).animate({ opacity: 1, transform: 'translateY(0)' }, 600);
-      }
-
-      // Ensure intro section is revealed once animation starts
-      $section.css({
-        opacity: 1,
-        visibility: 'visible'
-      });
+  
+    // Step 1: Fade in tagline if present
+    if ($tagline.length) {
+      $tagline.css({ opacity: 0, transform: 'translateY(10px)' })
+        .animate({ opacity: 1, transform: 'translateY(0)' }, fadeDuration);
+      currentDelay += fadeDuration + 100; // Add fade duration + a small buffer
     }
-  });
+  
+    // Step 2: Type heading if present (start after tagline fades in)
+    if ($heading.length) {
+      const fullText = $heading.text().replace(/\n/g, '').trim();
+      $heading.html('&nbsp;'); // prevent collapse
+  
+      function typeText(el, text, i) {
+        if (i <= text.length) {
+          el.html(text.substring(0, i).replace(/\n/g, '<br>'));
+          setTimeout(() => typeText(el, text, i + 1), typingSpeed);
+        }
+      }
+  
+      setTimeout(() => {
+        typeText($heading, fullText, 0);
+        currentDelay += fullText.length * typingSpeed + 100; // Add typing duration + a small buffer
+      }, currentDelay);
+    } else {
+      // If no heading, adjust delay for the paragraph
+      currentDelay += 100; // Small buffer if no heading
+    }
+  
+    // Step 3: Fade in the entire paragraph (start after heading types out)
+    if ($para.length) {
+      setTimeout(() => {
+        $para.css({ opacity: 0, transform: 'translateY(20px)' })
+          .animate({ opacity: 1, transform: 'translateY(0)' }, fadeDuration);
+      }, currentDelay);
+    }
+  }
