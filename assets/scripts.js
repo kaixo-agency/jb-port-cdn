@@ -915,7 +915,12 @@ $(document).ready(function () {
         $tagline.css({ opacity: 0, transform: 'translateY(10px)' });
       }
       if ($heading.length) {
-        $heading.html('&nbsp;'); // prevent collapse
+        // Preserve the heading's height before animating to prevent "hop"
+        const headingHeight = $heading.height();
+        $heading.css({
+          height: headingHeight + 'px',
+          display: 'block' // Ensure block display for consistent height
+        }).html('&nbsp;'); // Keep a non-breaking space to prevent total collapse
       }
       if ($para.length) {
         $para.css({ opacity: 0, transform: 'translateY(20px)' });
@@ -932,6 +937,11 @@ $(document).ready(function () {
           if (i <= text.length) {
             el.html(text.substring(0, i).replace(/\n/g, '<br>'));
             setTimeout(() => typeText(el, text, i + 1), typingSpeed);
+          } else {
+            // Animation complete - remove fixed height to allow natural content flow
+            el.css({
+              height: 'auto'
+            });
           }
         }
         // Start typing after tagline fades in
