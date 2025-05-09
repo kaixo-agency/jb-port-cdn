@@ -159,51 +159,45 @@ $(document).ready(function () {
 
 
 
-    function checkSection() {
-        var scrollTop = $(window).scrollTop();
-        var windowHeight = $(window).height();
-    
-        var viewportTop = scrollTop;
-        var viewportBottom = scrollTop + windowHeight;
-    
-        let caseStudiesInView = false;
-        let otherSectionsInView = false;
-    
-        // Check if .section_case-studies is the only section in the viewport
-        $(".section_case-studies").each(function () {
-            const sectionTop = $(this).offset().top;
-            const sectionBottom = sectionTop + $(this).outerHeight();
-    
-            // Check if any part of .section_case-studies is in the viewport
-            if (sectionBottom > viewportTop && sectionTop < viewportBottom) {
-                caseStudiesInView = true;
-            }
-        });
-    
-        // Check if any other section is in the viewport
-        $(".section").not(".section_case-studies").each(function () {
-            const sectionTop = $(this).offset().top;
-            const sectionBottom = sectionTop + $(this).outerHeight();
-    
-            // If any part of another section is in the viewport, set otherSectionsInView to true
-            if (sectionBottom > viewportTop && sectionTop < viewportBottom) {
-                otherSectionsInView = true;
-            }
-        });
-    
-        // Show .keep-scrolling only if .section_case-studies is the only section in view
-        if (caseStudiesInView && !otherSectionsInView) {
-            $(".keep-scrolling").addClass("visible");
-        } else {
-            $(".keep-scrolling").removeClass("visible");
+    document.addEventListener('DOMContentLoaded', function() {
+        const caseStudiesSection = document.querySelector('.section_case-studies');
+        const keepScrollingElement = document.querySelector('.keep-scrolling');
+        
+        if (!caseStudiesSection || !keepScrollingElement) {
+          console.error('Required elements not found');
+          return;
         }
-    }
-    
-    // Bind to scroll and resize events
-    $(window).on("scroll resize", checkSection);
-    
-    // Call on initial load
-    $(document).ready(checkSection);
+        
+        function checkVisibility() {
+          // Get the viewport dimensions
+          const viewportHeight = window.innerHeight;
+          
+          // Get the element's position and dimensions
+          const rect = caseStudiesSection.getBoundingClientRect();
+          
+          // Check if the element fully occupies the viewport
+          // This means the top is at 0 or very close to it (allowing for small rounding errors)
+          // AND the bottom is at the viewport height or very close to it
+          const isTopAligned = Math.abs(rect.top) < 1;
+          const isBottomAligned = Math.abs(rect.bottom - viewportHeight) < 1;
+          
+          // Only add the visible class if the element perfectly fills the viewport
+          if (isTopAligned && isBottomAligned) {
+            keepScrollingElement.classList.add('visible');
+          } else {
+            keepScrollingElement.classList.remove('visible');
+          }
+        }
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkVisibility);
+        
+        // Check on resize
+        window.addEventListener('resize', checkVisibility);
+        
+        // Initial check
+        checkVisibility();
+      });
     
 
 
