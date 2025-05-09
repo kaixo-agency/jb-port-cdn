@@ -873,15 +873,8 @@ document.addEventListener('mouseout', function (e) {
 
 
 $(document).ready(function () {
-    const typingSpeed = 50; // adjust typing speed in ms
-
-    function isInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-        );
-    }
+    const typingSpeed = 50;
+    const animatedSections = new Set();
 
     function typeWord($el, word, i = 0) {
         if (i < word.length) {
@@ -892,55 +885,60 @@ $(document).ready(function () {
         }
     }
 
-    let animatedSections = new Set();
-
     function animateSection($section) {
-        if (animatedSections.has($section[0])) return; // already animated
+        if (animatedSections.has($section[0])) return;
 
         const $tagline = $section.find(".text-style-tagline");
         const $heading = $section.find(".heading-style-h2");
         const $mediumTexts = $section.find(".text-style-medium");
 
-        // Fade in tagline
         $tagline.hide().fadeIn(600);
 
-        // Type heading
         const text = $heading.text().trim();
-        $heading.text(""); // clear first
+        $heading.text("");
         typeWord($heading, text);
 
-        // Fade in + slide up medium texts
         $mediumTexts.css({ opacity: 0, transform: "translateY(20px)" });
         $mediumTexts.each(function (index) {
-            $(this)
-                .delay(index * 200)
-                .animate({ opacity: 1, top: "-=20" }, {
+            $(this).delay(index * 200).animate(
+                { opacity: 1 },
+                {
                     duration: 500,
                     step: function (now, fx) {
-                        if (fx.prop === "top") {
-                            $(this).css("transform", `translateY(${20 - (now - parseFloat($(this).css("top") || 0))}px)`);
+                        if (fx.prop === "opacity") {
+                            $(this).css("transform", "translateY(0)");
                         }
-                    }
-                });
+                    },
+                }
+            );
         });
 
         animatedSections.add($section[0]);
     }
 
-    function checkVisibleSections() {
+    function isPartiallyInViewport(el, threshold = 0.3) {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+        const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+        const totalHeight = rect.height;
+
+        return visibleHeight > 0 && (visibleHeight / totalHeight) >= threshold;
+    }
+
+    function checkSections() {
         $("section").each(function () {
             const $section = $(this);
             if (
                 $section.find(".heading-style-h2").length &&
                 $section.find(".text-style-tagline").length &&
                 $section.find(".text-style-medium").length &&
-                isInViewport($section[0])
+                isPartiallyInViewport(this, 0.3)
             ) {
                 animateSection($section);
             }
         });
     }
 
-    $(window).on("scroll resize", checkVisibleSections);
-    checkVisibleSections(); // on load
+    $(window).on("scroll resize load", checkSections);
 });
