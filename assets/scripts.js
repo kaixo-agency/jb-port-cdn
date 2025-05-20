@@ -1049,3 +1049,40 @@ $(document).ready(function () {
       attributeFilter: ['class'] // Specifically listen for changes to the 'class' attribute
     });
   });
+
+  const swup = new Swup({
+    containers: ['#swup'],
+  });
+
+  const overlay = document.querySelector('.transition-overlay');
+  const wipes = document.querySelectorAll('.wipe');
+
+  function playTransitionOut(callback) {
+    document.body.classList.add('wipe-active');
+    setTimeout(() => {
+      callback();
+    }, 800); // adjust to match wipe duration
+  }
+
+  function playTransitionIn() {
+    document.body.classList.remove('wipe-active');
+
+    // Trigger fade-in animation
+    const content = document.querySelectorAll('.fade-in');
+    content.forEach(el => {
+      setTimeout(() => el.classList.add('fade-in-active'), 100);
+    });
+  }
+
+  swup.hooks.on('visit:start', () => {
+    playTransitionOut(() => swup.loadPage({ url: swup.nextUrl }));
+  });
+
+  swup.hooks.on('content:replace', () => {
+    playTransitionIn();
+  });
+
+  // Initial fade-in
+  window.addEventListener('DOMContentLoaded', () => {
+    playTransitionIn();
+  });
