@@ -32,7 +32,32 @@ echo "✅ npm found: $(npm --version)"
 
 # Install Webflow CLI globally
 echo "📦 Installing Webflow CLI globally..."
-npm install -g @webflow/webflow-cli
+echo "   Note: This may require administrator privileges..."
+
+# Try to install globally with sudo
+if sudo npm install -g @webflow/webflow-cli; then
+    echo "✅ Webflow CLI installed successfully with sudo"
+else
+    echo "❌ Global installation failed. Trying alternative method..."
+    echo "📦 Setting up npm to avoid sudo for global packages..."
+    
+    # Create a directory for global packages
+    mkdir -p ~/.npm-global
+    
+    # Configure npm to use the new directory
+    npm config set prefix '~/.npm-global'
+    
+    # Add to PATH (for current session)
+    export PATH=~/.npm-global/bin:$PATH
+    
+    # Try installing again
+    echo "📦 Installing Webflow CLI without sudo..."
+    npm install -g @webflow/webflow-cli
+    
+    echo "⚠️  IMPORTANT: Add this line to your ~/.zshrc or ~/.bash_profile:"
+    echo "   export PATH=~/.npm-global/bin:\$PATH"
+    echo "   Then restart your terminal or run: source ~/.zshrc"
+fi
 
 # Verify installation
 if ! command_exists webflow; then
