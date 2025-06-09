@@ -4,7 +4,7 @@ html {
     overflow-y: scroll;
     }
     body{
-      background:red;
+      background:green;
     }
     ::selection {
       background-color: var(--base-color-brand--fuscia) !important;
